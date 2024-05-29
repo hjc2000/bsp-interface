@@ -4,6 +4,10 @@
 
 namespace bsp
 {
+	/// <summary>
+	///		arm 都有一个 systick，其他 CPU 可能也有。没有的话就不实现本接口
+	///		或使用定时器外设来模拟。
+	/// </summary>
 	class ISysTick
 	{
 	public:
