@@ -6,7 +6,7 @@ void ISysTick::NopLoopDelayForTicks(uint32_t tick_count)
 {
 	uint32_t old_tick = CurrentValue();
 	uint32_t total_tick = 0;
-	while (1)
+	while (true)
 	{
 		uint32_t now_tick = CurrentValue();
 		if (old_tick == now_tick)
