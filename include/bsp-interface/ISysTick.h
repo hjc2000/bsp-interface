@@ -15,9 +15,13 @@ namespace bsp
 		virtual uint32_t CurrentValue() = 0;
 		virtual uint32_t ReloadValue() = 0;
 
-		virtual void NopLoopDelayForTicks(uint32_t tick_count);
-		virtual void NopLoopDelay(std::chrono::microseconds microseconds);
-		virtual void NopLoopDelay(std::chrono::milliseconds milliseconds);
-		virtual void NopLoopDelay(std::chrono::seconds seconds);
+		/// <summary>
+		///		循环中检测 CurrentValue 的值来判断是否超时，从而进行延时。
+		/// </summary>
+		/// <param name="tick_count"></param>
+		virtual void DelayForTicks(uint32_t tick_count);
+		virtual void Delay(std::chrono::microseconds microseconds);
+		virtual void Delay(std::chrono::milliseconds milliseconds);
+		virtual void Delay(std::chrono::seconds seconds);
 	};
 }

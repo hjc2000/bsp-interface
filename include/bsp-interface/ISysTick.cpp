@@ -2,7 +2,7 @@
 
 using namespace bsp;
 
-void ISysTick::NopLoopDelayForTicks(uint32_t tick_count)
+void ISysTick::DelayForTicks(uint32_t tick_count)
 {
 	uint32_t old_tick = CurrentValue();
 	uint32_t total_tick = 0;
@@ -39,7 +39,7 @@ void ISysTick::NopLoopDelayForTicks(uint32_t tick_count)
 	}
 }
 
-void ISysTick::NopLoopDelay(std::chrono::microseconds microseconds)
+void ISysTick::Delay(std::chrono::microseconds microseconds)
 {
 	uint32_t freq = Frequency();
 
@@ -52,15 +52,15 @@ void ISysTick::NopLoopDelay(std::chrono::microseconds microseconds)
 	*	N = freq / 1e6 * microseconds
 	* 这样可避免溢出
 	*/
-	NopLoopDelayForTicks(freq / (uint32_t)1e6 * microseconds.count());
+	DelayForTicks(freq / (uint32_t)1e6 * microseconds.count());
 }
 
-void ISysTick::NopLoopDelay(std::chrono::milliseconds milliseconds)
+void ISysTick::Delay(std::chrono::milliseconds milliseconds)
 {
-	NopLoopDelay(std::chrono::microseconds { milliseconds });
+	Delay(std::chrono::microseconds { milliseconds });
 }
 
-void ISysTick::NopLoopDelay(std::chrono::seconds seconds)
+void ISysTick::Delay(std::chrono::seconds seconds)
 {
-	NopLoopDelay(std::chrono::milliseconds { seconds });
+	Delay(std::chrono::milliseconds { seconds });
 }
