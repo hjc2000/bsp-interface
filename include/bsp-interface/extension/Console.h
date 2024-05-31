@@ -17,7 +17,7 @@ namespace bsp
 		Console &operator=(Console const &o) = delete;
 		Console &operator=(Console const &&o) = delete;
 
-		std::shared_ptr<base::Stream> _out_stream;
+		base::Stream *_out_stream;
 
 	public:
 		static Console &Instance()
@@ -26,12 +26,12 @@ namespace bsp
 			return o;
 		}
 
-		std::shared_ptr<base::Stream> OutStream()
+		base::Stream *OutStream()
 		{
 			return _out_stream;
 		}
 
-		void SetOutStream(std::shared_ptr<base::Stream> value)
+		void SetOutStream(base::Stream *value)
 		{
 			_out_stream = value;
 		}
