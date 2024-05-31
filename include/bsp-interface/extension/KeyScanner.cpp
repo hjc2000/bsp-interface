@@ -70,25 +70,3 @@ bool KeyScanner::HasKeyPressedEvent(uint16_t key_index)
 
 	return _key_pressed_events[key_index];
 }
-
-void KeyScanner::ClearAllEvent(uint16_t key_index)
-{
-	_key_down_events[key_index] = false;
-	_key_up_events[key_index] = false;
-	_key_pressed_events[key_index] = false;
-}
-
-void KeyScanner::ClearKeyDownEvent(uint16_t key_index)
-{
-	_key_down_events[key_index] = false;
-}
-
-void KeyScanner::ClearKeyUpEvent(uint16_t key_index)
-{
-	_key_up_events[key_index] = false;
-}
-
-void KeyScanner::ClearKeyPressedEvent(uint16_t key_index)
-{
-	_key_pressed_events[key_index] = false;
-}

@@ -48,10 +48,5 @@ namespace bsp
 		bool HasKeyDownEvent(uint16_t key_index) override;
 		bool HasKeyUpEvent(uint16_t key_index) override;
 		bool HasKeyPressedEvent(uint16_t key_index) override;
-
-		void ClearAllEvent(uint16_t key_index) override;
-		void ClearKeyDownEvent(uint16_t key_index) override;
-		void ClearKeyUpEvent(uint16_t key_index) override;
-		void ClearKeyPressedEvent(uint16_t key_index) override;
 	};
 }
