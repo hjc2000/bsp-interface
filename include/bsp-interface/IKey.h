@@ -22,24 +22,5 @@ namespace bsp
 		{
 			return !KeyIsDown();
 		}
-
-		/// <summary>
-		///		按键消抖需要延时。
-		///		* 如果是带有滤波电路的按钮，不需要延时，则可将此函数实现为直接返回，什么都不做。
-		/// </summary>
-		/// <param name="num"></param>
-		virtual void Delay(std::chrono::milliseconds num) = 0;
-
-		/// <summary>
-		///		经过软件消抖，确定按键确实是处于被按下的状态。
-		/// </summary>
-		/// <returns>按键处于被按下的状态则返回 true，按键不处于被按下的状态则返回 false。</returns>
-		virtual bool KeyIsReallyDown();
-
-		/// <summary>
-		///		经过如按键消抖，确定按键确实是处于起来的状态。
-		/// </summary>
-		/// <returns></returns>
-		virtual bool KeyIsReallyUp();
 	};
 }
