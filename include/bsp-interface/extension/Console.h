@@ -5,6 +5,9 @@
 
 namespace bsp
 {
+	/// <summary>
+	///		单例控制台
+	/// </summary>
 	class Console
 	{
 	private:
