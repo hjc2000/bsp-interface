@@ -2,6 +2,16 @@
 
 using namespace bsp;
 
+std::shared_ptr<base::Stream> bsp::Console::OutStream()
+{
+	return _out_stream;
+}
+
+void bsp::Console::SetOutStream(std::shared_ptr<base::Stream> value)
+{
+	_out_stream = value;
+}
+
 void bsp::Console::Write(std::string const &str)
 {
 	if (_out_stream == nullptr)
