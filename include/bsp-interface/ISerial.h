@@ -81,5 +81,7 @@ namespace bsp
 		/// <param name="tick_freq">tick 的频率</param>
 		/// <returns></returns>
 		uint64_t BaudTicks(uint32_t baud_count, uint32_t tick_freq);
+
+		uint64_t FrameTicks(uint32_t frame_count, uint32_t tick_freq);
 	};
 }
