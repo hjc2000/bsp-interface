@@ -36,7 +36,6 @@ namespace bsp
 
 		enum class StopBitsOption
 		{
-			None,
 			ZeroPointFive, // 0.5
 			One, // 1
 			OnePointFive, // 1.5

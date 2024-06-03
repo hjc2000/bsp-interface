@@ -29,10 +29,6 @@ uint64_t bsp::ISerial::FrameTicks(uint32_t frame_count, uint32_t tick_freq)
 	// 停止位
 	switch (StopBits())
 	{
-	case StopBitsOption::None:
-		{
-			break;
-		}
 	case StopBitsOption::ZeroPointFive:
 		{
 			// 每 2 个帧占用 1 个位。
