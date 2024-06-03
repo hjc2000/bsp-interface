@@ -75,7 +75,10 @@ namespace bsp
 		virtual void Open() = 0;
 
 		/// <summary>
-		///		baud_count 个波特占用多少个 tick
+		///		baud_count 个波特占用多少个 tick。
+		/// 
+		///		* 这里的 tick 只要是一个能提供时间基准的计数器就行，不一定是 SysTick，
+		///		  也可以是定时器外设。
 		/// </summary>
 		/// <param name="baud_count"></param>
 		/// <param name="tick_freq">tick 的频率</param>
@@ -85,6 +88,9 @@ namespace bsp
 		/// <summary>
 		///		根据本对象的属性，计算出 frame_count 个串行帧占用多少个波特，
 		///		然后计算占用多少个 tick。
+		/// 
+		///		* 这里的 tick 只要是一个能提供时间基准的计数器就行，不一定是 SysTick，
+		///		  也可以是定时器外设。
 		/// </summary>
 		/// <param name="frame_count"></param>
 		/// <param name="tick_freq"></param>
