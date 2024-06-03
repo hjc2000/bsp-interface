@@ -82,6 +82,13 @@ namespace bsp
 		/// <returns></returns>
 		uint64_t BaudTicks(uint32_t baud_count, uint32_t tick_freq);
 
+		/// <summary>
+		///		根据本对象的属性，计算出 frame_count 个串行帧占用多少个波特，
+		///		然后计算占用多少个 tick。
+		/// </summary>
+		/// <param name="frame_count"></param>
+		/// <param name="tick_freq"></param>
+		/// <returns></returns>
 		uint64_t FrameTicks(uint32_t frame_count, uint32_t tick_freq);
 	};
 }
