@@ -10,14 +10,14 @@ namespace bsp
 		///		波特率。
 		/// </summary>
 		/// <returns></returns>
-		virtual uint32_t BaudRate() = 0;
+		virtual uint32_t BaudRate() const = 0;
 		virtual void SetBaudRate(uint32_t value) = 0;
 
 		/// <summary>
 		///		数据位的个数。
 		/// </summary>
 		/// <returns></returns>
-		virtual uint8_t DataBits() = 0;
+		virtual uint8_t DataBits() const = 0;
 		virtual void SetDataBits(uint8_t value) = 0;
 
 		enum class ParityOption
@@ -31,7 +31,7 @@ namespace bsp
 		///		校验位。
 		/// </summary>
 		/// <returns></returns>
-		virtual bsp::ISerial::ParityOption Parity() = 0;
+		virtual bsp::ISerial::ParityOption Parity() const = 0;
 		virtual void SetParity(bsp::ISerial::ParityOption value) = 0;
 
 		enum class StopBitsOption
@@ -46,7 +46,7 @@ namespace bsp
 		///		停止位个数。
 		/// </summary>
 		/// <returns></returns>
-		virtual bsp::ISerial::StopBitsOption StopBits() = 0;
+		virtual bsp::ISerial::StopBitsOption StopBits() const = 0;
 		virtual void SetStopBits(bsp::ISerial::StopBitsOption value) = 0;
 
 		/// <summary>
@@ -64,7 +64,7 @@ namespace bsp
 		///		硬件流控。
 		/// </summary>
 		/// <returns></returns>
-		virtual bsp::ISerial::HardwareFlowControlOption HardwareFlowControl() = 0;
+		virtual bsp::ISerial::HardwareFlowControlOption HardwareFlowControl() const = 0;
 		virtual void SetHardwareFlowControl(bsp::ISerial::HardwareFlowControlOption value) = 0;
 
 		/// <summary>
@@ -82,7 +82,7 @@ namespace bsp
 		/// <param name="baud_count"></param>
 		/// <param name="tick_freq">tick 的频率</param>
 		/// <returns></returns>
-		uint64_t BaudTicks(uint32_t baud_count, uint32_t tick_freq);
+		uint64_t BaudTicks(uint32_t baud_count, uint32_t tick_freq) const;
 
 		/// <summary>
 		///		根据本对象的属性，计算出 frame_count 个串行帧占用多少个波特，
@@ -94,6 +94,6 @@ namespace bsp
 		/// <param name="frame_count"></param>
 		/// <param name="tick_freq"></param>
 		/// <returns></returns>
-		uint64_t FrameTicks(uint32_t frame_count, uint32_t tick_freq);
+		uint64_t FrameTicks(uint32_t frame_count, uint32_t tick_freq) const;
 	};
 }

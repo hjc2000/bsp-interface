@@ -1,6 +1,6 @@
 #include"ISerial.h"
 
-uint64_t bsp::ISerial::BaudTicks(uint32_t baud_count, uint32_t tick_freq)
+uint64_t bsp::ISerial::BaudTicks(uint32_t baud_count, uint32_t tick_freq) const
 {
 	/*
 	* baud_interval = 1 / baud_rate
@@ -16,7 +16,7 @@ uint64_t bsp::ISerial::BaudTicks(uint32_t baud_count, uint32_t tick_freq)
 	return tick_count;
 }
 
-uint64_t bsp::ISerial::FrameTicks(uint32_t frame_count, uint32_t tick_freq)
+uint64_t bsp::ISerial::FrameTicks(uint32_t frame_count, uint32_t tick_freq) const
 {
 	uint32_t baud_count = 0;
 	baud_count += 1 * frame_count; // 1 位起始位
