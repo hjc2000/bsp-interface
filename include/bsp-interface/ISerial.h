@@ -31,8 +31,8 @@ namespace bsp
 		///		校验位。
 		/// </summary>
 		/// <returns></returns>
-		virtual ParityOption Parity() = 0;
-		virtual void SetParity(ParityOption value) = 0;
+		virtual bsp::ISerial::ParityOption Parity() = 0;
+		virtual void SetParity(bsp::ISerial::ParityOption value) = 0;
 
 		enum class StopBitsOption
 		{
@@ -47,8 +47,8 @@ namespace bsp
 		///		停止位个数。
 		/// </summary>
 		/// <returns></returns>
-		virtual StopBitsOption StopBits() = 0;
-		virtual void SetStopBits(StopBitsOption value) = 0;
+		virtual bsp::ISerial::StopBitsOption StopBits() = 0;
+		virtual void SetStopBits(bsp::ISerial::StopBitsOption value) = 0;
 
 		/// <summary>
 		///		硬件流控。
@@ -65,8 +65,8 @@ namespace bsp
 		///		硬件流控。
 		/// </summary>
 		/// <returns></returns>
-		virtual HardwareFlowControlOption HardwareFlowControl() = 0;
-		virtual void SetHardwareFlowControl(HardwareFlowControlOption value) = 0;
+		virtual bsp::ISerial::HardwareFlowControlOption HardwareFlowControl() = 0;
+		virtual void SetHardwareFlowControl(bsp::ISerial::HardwareFlowControlOption value) = 0;
 
 		/// <summary>
 		///		以指定的波特率启动串口。
