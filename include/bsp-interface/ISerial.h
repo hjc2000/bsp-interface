@@ -73,5 +73,13 @@ namespace bsp
 		/// </summary>
 		/// <param name="baud_rate"></param>
 		virtual void Open() = 0;
+
+		/// <summary>
+		///		baud_count 个波特占用多少个 tick
+		/// </summary>
+		/// <param name="baud_count"></param>
+		/// <param name="tick_freq">tick 的频率</param>
+		/// <returns></returns>
+		uint64_t BaudTicks(uint32_t baud_count, uint32_t tick_freq);
 	};
 }
