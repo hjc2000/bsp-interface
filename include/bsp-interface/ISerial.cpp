@@ -26,6 +26,7 @@ uint64_t bsp::ISerial::FrameTicks(uint32_t frame_count, uint32_t tick_freq)
 		baud_count += 1 * frame_count; // 1 位校验位
 	}
 
+	// 停止位
 	switch (StopBits())
 	{
 	case StopBitsOption::None:
