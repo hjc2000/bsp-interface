@@ -7,9 +7,71 @@ namespace bsp
 	{
 	public:
 		/// <summary>
+		///		波特率。
+		/// </summary>
+		/// <returns></returns>
+		virtual uint32_t BaudRate() = 0;
+		virtual void SetBaudRate(uint32_t value) = 0;
+
+		/// <summary>
+		///		数据位的个数。
+		/// </summary>
+		/// <returns></returns>
+		virtual uint8_t DataBits() = 0;
+		virtual void SetDataBits(uint8_t value) = 0;
+
+		enum class ParityOption
+		{
+			None,
+			Even,
+			Odd,
+		};
+
+		/// <summary>
+		///		校验位。
+		/// </summary>
+		/// <returns></returns>
+		virtual ParityOption Parity() = 0;
+		virtual void SetParity(ParityOption value) = 0;
+
+		enum class StopBitsOption
+		{
+			None,
+			ZeroPointFive, // 0.5
+			One, // 1
+			OnePointFive, // 1.5
+			Tow, // 2
+		};
+
+		/// <summary>
+		///		停止位个数。
+		/// </summary>
+		/// <returns></returns>
+		virtual StopBitsOption StopBits() = 0;
+		virtual void SetStopBits(StopBitsOption value) = 0;
+
+		/// <summary>
+		///		硬件流控。
+		/// </summary>
+		enum class HardwareFlowControlOption
+		{
+			None,
+			RTS,
+			CTS,
+			RTS_CTS,
+		};
+
+		/// <summary>
+		///		硬件流控。
+		/// </summary>
+		/// <returns></returns>
+		virtual HardwareFlowControlOption HardwareFlowControl() = 0;
+		virtual void SetHardwareFlowControl(HardwareFlowControlOption value) = 0;
+
+		/// <summary>
 		///		以指定的波特率启动串口。
 		/// </summary>
 		/// <param name="baud_rate"></param>
-		virtual void Begin(uint32_t baud_rate) = 0;
+		virtual void Open() = 0;
 	};
 }
