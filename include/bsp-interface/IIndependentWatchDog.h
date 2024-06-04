@@ -17,7 +17,7 @@ namespace bsp
 
 		/// <summary>
 		///		设置看门狗超时时间。
-		///		- 如果设置的毫秒数超出了能力范围，则会使用能达到的最大计时时间。
+		///		* 如果设置的毫秒数超出了能力范围，则会使用能达到的最大计时时间。
 		/// </summary>
 		/// <param name="value"></param>
 		virtual void SetWatchDogTimeoutDuration(std::chrono::milliseconds value) = 0;
