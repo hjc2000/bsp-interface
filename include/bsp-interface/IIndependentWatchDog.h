@@ -13,7 +13,7 @@ namespace bsp
 		///		看门狗超时时间。
 		/// </summary>
 		/// <returns></returns>
-		virtual std::chrono::milliseconds WatchDogTimeoutDuration() = 0;
+		virtual std::chrono::milliseconds WatchDogTimeoutDuration() const = 0;
 
 		/// <summary>
 		///		设置看门狗超时时间。
