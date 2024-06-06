@@ -3,7 +3,8 @@
 
 namespace bsp
 {
-	class ISerial :public base::Stream
+	class ISerial :
+		public base::Stream
 	{
 	public:
 		/// <summary>
