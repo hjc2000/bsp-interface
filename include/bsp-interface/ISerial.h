@@ -96,5 +96,20 @@ namespace bsp
 		/// <param name="tick_freq"></param>
 		/// <returns></returns>
 		uint64_t FrameTicks(uint32_t frame_count, uint32_t tick_freq) const;
+
+		#pragma region Stream
+		bool CanRead() override;
+		bool CanWrite() override;
+		bool CanSeek() override;
+
+		int64_t Length() override;
+		void SetLength(int64_t value) override;
+
+		void Flush() override;
+
+		int64_t Position() override;
+		void SetPosition(int64_t value) override;
+		#pragma endregion
+
 	};
 }
