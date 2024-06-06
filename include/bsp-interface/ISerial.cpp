@@ -2,23 +2,7 @@
 
 using namespace bsp;
 
-uint64_t bsp::ISerial::BaudTicks(uint32_t baud_count, uint32_t tick_freq) const
-{
-	/*
-	* baud_interval = 1 / baud_rate
-	* tick_interval = 1 / tick_frequency
-	*
-	* tick_count = baud_count * baud_interval / tick_interval
-	* tick_count = baud_count * (1 / baud_rate) / (1 / tick_frequency)
-	* tick_count = baud_count * (1 / baud_rate) * tick_frequency
-	* tick_count = baud_count * tick_frequency / baud_rate
-	*/
-
-	uint64_t tick_count = baud_count * tick_freq / BaudRate();
-	return tick_count;
-}
-
-uint64_t bsp::ISerial::FrameTicks(uint32_t frame_count, uint32_t tick_freq) const
+uint32_t bsp::ISerial::CalculateFramesBaudCount(uint32_t frame_count)
 {
 	uint32_t baud_count = 0;
 	baud_count += 1 * frame_count; // 1 位起始位
@@ -70,7 +54,7 @@ uint64_t bsp::ISerial::FrameTicks(uint32_t frame_count, uint32_t tick_freq) cons
 		}
 	}
 
-	return BaudTicks(baud_count, tick_freq);
+	return baud_count;
 }
 
 #pragma region Stream
