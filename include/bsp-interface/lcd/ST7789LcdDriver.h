@@ -7,18 +7,18 @@ namespace bsp
 	class ST7789LcdDriver :
 		public bsp::ILcd
 	{
-	private:
-		bsp::IDelayer &_delayer;
-		bool _is_horizontal_priority_scanning = true;
-		bsp::ILcd::HorizontalDirection _horizontal_direction = bsp::ILcd::HorizontalDirection::LeftToRight;
-		bsp::ILcd::VerticalDirection _vertical_direction = bsp::ILcd::VerticalDirection::TopToBottom;
-
-	protected:
+	public:
 		ST7789LcdDriver(bsp::IDelayer &delayer) :
 			_delayer(delayer)
 		{
 
 		}
+
+	private:
+		bsp::IDelayer &_delayer;
+		bool _is_horizontal_priority_scanning = true;
+		bsp::ILcd::HorizontalDirection _horizontal_direction = bsp::ILcd::HorizontalDirection::LeftToRight;
+		bsp::ILcd::VerticalDirection _vertical_direction = bsp::ILcd::VerticalDirection::TopToBottom;
 
 		/// <summary>
 		///		屏幕初始宽度。与屏幕旋转无关，无论屏幕怎么旋转，本属性都保持不变。
