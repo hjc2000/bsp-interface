@@ -7,7 +7,7 @@ namespace bsp
 	class ST7789LcdDriver :
 		public bsp::ILcd
 	{
-	public:
+	protected:
 		ST7789LcdDriver(bsp::IDelayer &delayer) :
 			_delayer(delayer)
 		{
