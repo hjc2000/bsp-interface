@@ -4,18 +4,6 @@
 
 namespace bsp
 {
-	enum class HorizontalDirection
-	{
-		LeftToRight,
-		RightToLeft,
-	};
-
-	enum class VerticalDirection
-	{
-		TopToBottom,
-		BottomToTop,
-	};
-
 	enum class Color
 	{
 		Red,
@@ -41,6 +29,18 @@ namespace bsp
 		virtual void DisplayOn() = 0;
 		virtual void DisplayOff() = 0;
 
+		enum class HorizontalDirection
+		{
+			LeftToRight,
+			RightToLeft,
+		};
+
+		enum class VerticalDirection
+		{
+			TopToBottom,
+			BottomToTop,
+		};
+
 		/// <summary>
 		///		设置扫描方向。
 		/// </summary>
@@ -53,8 +53,8 @@ namespace bsp
 		/// <param name="vdir"></param>
 		virtual void SetScanDirection(
 			bool horizontal_priority_scanning,
-			bsp::HorizontalDirection hdir,
-			bsp::VerticalDirection vdir
+			bsp::ILcd::HorizontalDirection hdir,
+			bsp::ILcd::VerticalDirection vdir
 		) = 0;
 
 		/// <summary>
