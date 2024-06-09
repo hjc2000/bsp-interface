@@ -1,8 +1,8 @@
 #pragma once
 #include<boost/dynamic_bitset.hpp>
 #include<bsp-interface/IDelayer.h>
-#include<bsp-interface/IKey.h>
-#include<bsp-interface/IKeyScanner.h>
+#include<bsp-interface/key/IKey.h>
+#include<bsp-interface/key/IKeyScanner.h>
 #include<vector>
 
 namespace bsp
