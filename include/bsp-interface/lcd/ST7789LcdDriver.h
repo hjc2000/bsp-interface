@@ -89,6 +89,7 @@ namespace bsp
 		virtual void TurnOffBackLight() = 0;
 		#pragma endregion
 
+		#pragma region ILcd
 	public:
 		uint32_t LcdDriverChipId() override;
 
@@ -134,5 +135,6 @@ namespace bsp
 		void SerCursor(uint32_t x, uint32_t y) override;
 
 		void DrawPoint(uint32_t x, uint32_t y, uint16_t rgb_565) override;
+		#pragma endregion
 	};
 }

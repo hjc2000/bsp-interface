@@ -2,6 +2,7 @@
 
 using namespace bsp;
 
+#pragma region ILcd
 uint32_t bsp::ST7789LcdDriver::LcdDriverChipId()
 {
 	uint16_t id = 0;
@@ -249,3 +250,4 @@ void bsp::ST7789LcdDriver::DrawPoint(uint32_t x, uint32_t y, uint16_t rgb_565)
 	PrepareForRendering();
 	WriteData(rgb_565);
 }
+#pragma endregion
