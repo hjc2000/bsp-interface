@@ -24,6 +24,7 @@ namespace bsp
 
 		/// <summary>
 		///		获取指定的中断向量对应的中断服务函数。
+		///		* 注意，返回的可能是 nullptr
 		/// </summary>
 		/// <param name="irq"></param>
 		/// <returns></returns>
