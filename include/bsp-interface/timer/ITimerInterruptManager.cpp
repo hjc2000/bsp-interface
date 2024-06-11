@@ -11,4 +11,5 @@ void bsp::ITimerInterruptManager::SetTimerIrqHandler(uint32_t timer_id, std::fun
 {
 	DisableTimerInterrupt(timer_id);
 	HandleMap()[timer_id] = handler;
+	EnableTimerInterrupt(timer_id);
 }

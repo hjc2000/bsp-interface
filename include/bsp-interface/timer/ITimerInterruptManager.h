@@ -44,8 +44,6 @@ namespace bsp
 
 		/// <summary>
 		///		通过定时器 ID 设置指定定时器的中断回调函数。
-		///		* 本函数内部会调用 DisableTimerInterrupt 函数禁用定时器中断，并且不会启用中断，
-		///		  需要在调用本函数后手动启用。
 		/// </summary>
 		/// <param name="timer_id"></param>
 		/// <param name="handler"></param>
