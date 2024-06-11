@@ -2,7 +2,7 @@
 
 using namespace bsp;
 
-std::function<void()> &bsp::ITimerInterruptManager::GetTimerIrqHandlerFromIsr(uint32_t timer_id)
+std::function<void()> const &bsp::ITimerInterruptManager::GetTimerIrqHandlerFromIsr(uint32_t timer_id)
 {
 	return HandleMap()[timer_id];
 }

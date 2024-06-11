@@ -40,7 +40,7 @@ namespace bsp
 		/// </summary>
 		/// <param name="timer_id"></param>
 		/// <returns></returns>
-		std::function<void()> &GetTimerIrqHandlerFromIsr(uint32_t timer_id);
+		std::function<void()> const &GetTimerIrqHandlerFromIsr(uint32_t timer_id);
 
 		/// <summary>
 		///		通过定时器 ID 设置指定定时器的中断回调函数。
