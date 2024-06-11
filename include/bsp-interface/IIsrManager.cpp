@@ -2,14 +2,16 @@
 
 using namespace bsp;
 
-std::function<void()> const &bsp::IIsrManager::GetIrqHandlerFromIsr(uint32_t irq)
-{
-	return HandlerMap()[irq];
-}
-
-void bsp::IIsrManager::SetIrqHandler(uint32_t irq, std::function<void()> handler)
+void bsp::IIsrManager::AddHandler(uint32_t irq, std::function<void()> handler)
 {
 	DisableInterrupt(irq);
 	HandlerMap()[irq] = handler;
+	EnableInterrupt(irq);
+}
+
+void bsp::IIsrManager::RemoveHandler(uint32_t irq)
+{
+	DisableInterrupt(irq);
+	HandlerMap().erase(irq);
 	EnableInterrupt(irq);
 }
