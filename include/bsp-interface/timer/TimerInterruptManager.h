@@ -14,6 +14,12 @@ namespace bsp
 		std::map<uint32_t, std::function<void()>> _handler_map;
 
 	public:
+		static TimerInterruptManager &Instance()
+		{
+			static TimerInterruptManager o;
+			return o;
+		}
+
 		std::function<void()> &GetTimerIrqHandler(uint32_t timer_id);
 		void SetTimerIrqHandler(uint32_t timer_id, std::function<void()> handler);
 	};
