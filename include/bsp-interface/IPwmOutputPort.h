@@ -4,6 +4,9 @@
 
 namespace bsp
 {
+	/// <summary>
+	///		PWM 输出端口
+	/// </summary>
 	class IPwmOutputPort
 	{
 	public:
