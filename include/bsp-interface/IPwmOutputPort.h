@@ -10,6 +10,7 @@ namespace bsp
 	class IPwmOutputPort
 	{
 	public:
+		#pragma region 周期
 		/// <summary>
 		///		支持的最小周期。设置周期时不能小于此值。
 		/// </summary>
@@ -23,11 +24,17 @@ namespace bsp
 		virtual std::chrono::microseconds MaxPeriod() = 0;
 
 		/// <summary>
-		///		周期
+		///		获取周期
 		/// </summary>
 		/// <returns></returns>
 		virtual std::chrono::microseconds Period() const = 0;
+
+		/// <summary>
+		///		设置周期。范围必须在 [MinPeriod, MaxPeriod] 上。
+		/// </summary>
+		/// <param name="value"></param>
 		virtual void SetPeriod(std::chrono::microseconds value) = 0;
+		#pragma endregion
 
 		/// <summary>
 		///		占空比
