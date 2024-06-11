@@ -24,7 +24,7 @@ namespace bsp
 		virtual std::chrono::microseconds MaxPeriod() = 0;
 
 		/// <summary>
-		///		获取周期
+		///		获取周期。
 		/// </summary>
 		/// <returns></returns>
 		virtual std::chrono::microseconds Period() const = 0;
