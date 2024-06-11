@@ -12,6 +12,11 @@ namespace bsp
 	{
 	public:
 		#pragma region 接口
+		/// <summary>
+		///		本类用户禁止通过本函数直接获取 map 来获得回调函数。
+		///		必须使用 GetTimerIrqHandlerFromIsr 函数。
+		/// </summary>
+		/// <returns></returns>
 		virtual std::map<uint32_t, std::function<void()>> &HandleMap() = 0;
 
 		/// <summary>
@@ -28,12 +33,12 @@ namespace bsp
 		#pragma endregion
 
 		/// <summary>
-		///		根据定时器 ID 获取定时器的中断处理函数。
-		///		* 一般在中断向量触发的函数中进行调用。特殊情况可能手动调用来模拟出中断发生的情况。
+		///		在中断服务函数中根据定时器 ID 获取定时器的中断处理函数。
+		///		* 禁止在非中断服务程序中调用，否则有可能会出错。
 		/// </summary>
 		/// <param name="timer_id"></param>
 		/// <returns></returns>
-		std::function<void()> &GetTimerIrqHandler(uint32_t timer_id);
+		std::function<void()> &GetTimerIrqHandlerFromIsr(uint32_t timer_id);
 
 		/// <summary>
 		///		通过定时器 ID 设置指定定时器的中断回调函数。
