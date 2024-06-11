@@ -11,6 +11,18 @@ namespace bsp
 	{
 	public:
 		/// <summary>
+		///		支持的最小周期。设置周期时不能小于此值。
+		/// </summary>
+		/// <returns></returns>
+		virtual std::chrono::microseconds MinPeriod() = 0;
+
+		/// <summary>
+		///		支持的最大周期。设置周期时不能大于此值。
+		/// </summary>
+		/// <returns></returns>
+		virtual std::chrono::microseconds MaxPeriod() = 0;
+
+		/// <summary>
 		///		周期
 		/// </summary>
 		/// <returns></returns>
