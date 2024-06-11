@@ -24,5 +24,4 @@ void bsp::IsrManager::RemoveHandler(uint32_t irq)
 {
 	_interrupt_switch.DisableInterrupt(irq);
 	_isr_map.erase(irq);
-	_interrupt_switch.EnableInterrupt(irq);
 }
