@@ -1,21 +1,18 @@
 #pragma once
-#include<stdint.h>
+#include <stdint.h>
 
 namespace bsp
 {
+	/// @brief 中断开关
 	class IInterruptSwitch
 	{
 	public:
-		/// <summary>
-		///		禁用 irq 指定的定时器的中断。
-		/// </summary>
-		/// <param name="irq"></param>
+		/// @brief 禁用 irq 指定的中断。
+		/// @param irq
 		virtual void DisableInterrupt(uint32_t irq) noexcept = 0;
 
-		/// <summary>
-		///		启用 irq 指定的定时器的中断。
-		/// </summary>
-		/// <param name="irq"></param>
+		/// @brief 启用 irq 指定的中断。
+		/// @param irq
 		virtual void EnableInterrupt(uint32_t irq) noexcept = 0;
 	};
 }

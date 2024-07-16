@@ -1,4 +1,4 @@
-#include"ISysTick.h"
+#include "ISysTick.h"
 
 using namespace bsp;
 
@@ -44,23 +44,23 @@ void ISysTick::Delay(std::chrono::microseconds microseconds)
 	uint32_t freq = Frequency();
 
 	/*
-	* 时钟周期 T = 1 / freq
-	* 要延时的周期数
-	*	N = microseconds / 1e6 / T
-	*	N = microseconds / 1e6 * freq
-	* 因为 freq 较大，所以调整为
-	*	N = freq / 1e6 * microseconds
-	* 这样可避免溢出
-	*/
+	 * 时钟周期 T = 1 / freq
+	 * 要延时的周期数
+	 *	N = microseconds / 1e6 / T
+	 *	N = microseconds / 1e6 * freq
+	 * 因为 freq 较大，所以调整为
+	 *	N = freq / 1e6 * microseconds
+	 * 这样可避免溢出
+	 */
 	DelayForTicks(freq / (uint32_t)1e6 * microseconds.count());
 }
 
 void ISysTick::Delay(std::chrono::milliseconds milliseconds)
 {
-	Delay(std::chrono::microseconds { milliseconds });
+	Delay(std::chrono::microseconds{milliseconds});
 }
 
 void ISysTick::Delay(std::chrono::seconds seconds)
 {
-	Delay(std::chrono::milliseconds { seconds });
+	Delay(std::chrono::milliseconds{seconds});
 }
