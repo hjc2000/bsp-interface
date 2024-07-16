@@ -5,7 +5,7 @@
 
 namespace bsp
 {
-	/// @brief arm 都有一个 systick，其他 CPU 可能也有。没有的话就不实现本接口
+	/// @brief arm 都有一个 SysTick ，其他 CPU 可能也有。没有的话就不实现本接口
 	/// 或使用定时器外设来模拟。
 	class ISysTick
 		: public bsp::IDelayer
@@ -15,13 +15,11 @@ namespace bsp
 		virtual uint32_t CurrentValue() = 0;
 		virtual uint32_t ReloadValue() = 0;
 
-		/// <summary>
-		///		循环中检测 CurrentValue 的值来判断是否超时，从而进行延时。
-		/// </summary>
-		/// <param name="tick_count"></param>
+		/// @brief 循环中检测 CurrentValue 的值来判断是否超时，从而进行延时。
+		/// @param tick_count 要延时多少个 SysTick 的计数值。
 		virtual void DelayForTicks(uint32_t tick_count);
-		virtual void Delay(std::chrono::microseconds microseconds) override;
-		virtual void Delay(std::chrono::milliseconds milliseconds) override;
-		virtual void Delay(std::chrono::seconds seconds) override;
+		void Delay(std::chrono::microseconds microseconds) override;
+		void Delay(std::chrono::milliseconds milliseconds) override;
+		void Delay(std::chrono::seconds seconds) override;
 	};
 }
