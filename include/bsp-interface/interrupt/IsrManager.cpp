@@ -15,13 +15,14 @@ std::function<void()> bsp::IsrManager::GetIsr(uint32_t irq)
 
 void bsp::IsrManager::AddIsr(uint32_t irq, std::function<void()> handler)
 {
-	_interrupt_switch.DisableInterrupt(irq);
+	_interrupt_switch.DisableGlobalInterrupt();
 	_isr_map[irq] = handler;
-	_interrupt_switch.EnableInterrupt(irq);
+	_interrupt_switch.EnableGlobalInterrupt();
 }
 
 void bsp::IsrManager::RemoveIsr(uint32_t irq)
 {
-	_interrupt_switch.DisableInterrupt(irq);
+	_interrupt_switch.DisableGlobalInterrupt();
 	_isr_map.erase(irq);
+	_interrupt_switch.EnableGlobalInterrupt();
 }
