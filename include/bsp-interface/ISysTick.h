@@ -1,14 +1,14 @@
 #pragma once
-#include<chrono>
-#include<stdint.h>
+#include <bsp-interface/IDelayer.h>
+#include <chrono>
+#include <stdint.h>
 
 namespace bsp
 {
-	/// <summary>
-	///		arm 都有一个 systick，其他 CPU 可能也有。没有的话就不实现本接口
-	///		或使用定时器外设来模拟。
-	/// </summary>
+	/// @brief arm 都有一个 systick，其他 CPU 可能也有。没有的话就不实现本接口
+	/// 或使用定时器外设来模拟。
 	class ISysTick
+		: public bsp::IDelayer
 	{
 	public:
 		virtual uint32_t Frequency() = 0;
@@ -20,8 +20,8 @@ namespace bsp
 		/// </summary>
 		/// <param name="tick_count"></param>
 		virtual void DelayForTicks(uint32_t tick_count);
-		virtual void Delay(std::chrono::microseconds microseconds);
-		virtual void Delay(std::chrono::milliseconds milliseconds);
-		virtual void Delay(std::chrono::seconds seconds);
+		virtual void Delay(std::chrono::microseconds microseconds) override;
+		virtual void Delay(std::chrono::milliseconds milliseconds) override;
+		virtual void Delay(std::chrono::seconds seconds) override;
 	};
 }
