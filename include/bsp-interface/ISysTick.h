@@ -11,9 +11,17 @@ namespace bsp
 		: public bsp::IDelayer
 	{
 	public:
-		virtual uint32_t Frequency() = 0;
-		virtual uint32_t CurrentValue() = 0;
-		virtual uint32_t ReloadValue() = 0;
+		/// @brief 当前的实际频率
+		/// @return
+		virtual uint32_t Frequency() const = 0;
+
+		/// @brief 当前的计数值。
+		/// @return
+		virtual uint32_t CurrentValue() const = 0;
+
+		/// @brief 当前的重装载值。
+		/// @return
+		virtual uint32_t ReloadValue() const = 0;
 
 		/// @brief 循环中检测 CurrentValue 的值来判断是否超时，从而进行延时。
 		/// @param tick_count 要延时多少个 SysTick 的计数值。
