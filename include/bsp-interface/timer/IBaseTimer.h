@@ -1,33 +1,25 @@
 #pragma once
-#include<chrono>
-#include<functional>
+#include <chrono>
+#include <functional>
 
 namespace bsp
 {
 	class IBaseTimer
 	{
 	public:
-		/// <summary>
-		///		初始化定时器
-		/// </summary>
-		/// <param name="period">定时周期</param>
+		/// @brief 初始化定时器
+		/// @param period 定时周期
 		virtual void Initialize(std::chrono::milliseconds period) = 0;
 
-		/// <summary>
-		///		启动定时器。
-		/// </summary>
+		/// @brief 启动定时器。
 		virtual void Start() = 0;
 
-		/// <summary>
-		///		停止定时器。
-		/// </summary>
+		/// @brief 停止定时器。
 		virtual void Stop() = 0;
 
-		/// <summary>
-		///		设置定时时间到触发的回调。
-		///		* 设置为 nullptr 可以取消回调。
-		/// </summary>
-		/// <param name="func"></param>
+		/// @brief 设置定时时间到触发的回调。
+		/// @note 设置为 nullptr 可以取消回调。
+		/// @param func
 		virtual void SetPeriodElapsedCallback(std::function<void()> func) = 0;
 	};
 }
