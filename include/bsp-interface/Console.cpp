@@ -1,4 +1,4 @@
-#include"Console.h"
+#include "Console.h"
 
 using namespace bsp;
 
@@ -68,7 +68,6 @@ void bsp::Console::WriteError(char const *str) noexcept
 	}
 	catch (...)
 	{
-
 	}
 }
 
@@ -80,6 +79,5 @@ void bsp::Console::WriteError(std::string const &str) noexcept
 	}
 	catch (...)
 	{
-
 	}
 }

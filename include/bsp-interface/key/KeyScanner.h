@@ -32,9 +32,7 @@ namespace bsp
 	public:
 		KeyScanner(std::vector<IKey *> const &keys);
 
-		/// <summary>
-		///		执行键盘扫描，更新内部状态。此函数应该被不断调用。
-		/// </summary>
+		/// @brief 执行键盘扫描，更新内部状态。此函数应该被不断调用。
 		void ScanKeys() override;
 
 		bool HasKeyDownEvent(uint16_t key_index) override;
