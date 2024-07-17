@@ -7,6 +7,9 @@ namespace bsp
 {
 	/// @brief arm 都有一个 SysTick ，其他 CPU 可能也有。没有的话就不实现本接口
 	/// 或使用定时器外设来模拟。
+	/// @note SysTick 是减计数的，所以如果用定时器模拟，需要配置定时器为减计数，或者将
+	/// CurrentValue 方法实现为返回 “计数最大值 - 当前值” ，这样就能用增计数定时器模拟出
+	/// 减计数定时器。
 	class ISysTick
 		: public bsp::IDelayer
 	{
