@@ -1,22 +1,21 @@
 #pragma once
-#include<boost/dynamic_bitset.hpp>
-#include<bsp-interface/IDelayer.h>
-#include<bsp-interface/key/IKey.h>
-#include<bsp-interface/key/IKeyScanner.h>
-#include<vector>
+#include <boost/dynamic_bitset.hpp>
+#include <bsp-interface/IDelayer.h>
+#include <bsp-interface/di.h>
+#include <bsp-interface/key/IKey.h>
+#include <bsp-interface/key/IKeyScanner.h>
+#include <vector>
 
 namespace bsp
 {
-	/// <summary>
-	///		按键扫描器。
-	///		* 板上的按键数量是固定的，所以初始化阶段构造一次本类对象就够了，
-	///		  不要反复构造，析构，会造成内存碎片。因为本类用到了动态内存分配。
-	/// </summary>
-	class KeyScanner :public bsp::IKeyScanner
+	/// @brief 按键扫描器。
+	/// @note 板上的按键数量是固定的，所以初始化阶段构造一次本类对象就够了，
+	/// 不要反复构造，析构，会造成内存碎片。因为本类用到了动态内存分配。
+	class KeyScanner
+		: public bsp::IKeyScanner
 	{
 	private:
 		std::vector<IKey *> const &_keys;
-		bsp::IDelayer &_delayer;
 
 		boost::dynamic_bitset<> _last_scan_result;
 		boost::dynamic_bitset<> _current_scan_result;
@@ -31,14 +30,7 @@ namespace bsp
 		void ScanKeysNoDelay(boost::dynamic_bitset<> &out);
 
 	public:
-		/// <summary>
-		///		
-		/// </summary>
-		/// <param name="keys"></param>
-		/// <param name="delayer">
-		///		按键扫描需要延时消抖。
-		/// </param>
-		KeyScanner(std::vector<IKey *> const &keys, bsp::IDelayer &delayer);
+		KeyScanner(std::vector<IKey *> const &keys);
 
 		/// <summary>
 		///		执行键盘扫描，更新内部状态。此函数应该被不断调用。

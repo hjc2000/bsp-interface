@@ -1,4 +1,4 @@
-#include"KeyScanner.h"
+#include "KeyScanner.h"
 
 using namespace bsp;
 
@@ -10,27 +10,25 @@ void KeyScanner::ScanKeysNoDelay(boost::dynamic_bitset<> &out)
 	}
 }
 
-KeyScanner::KeyScanner(std::vector<IKey *> const &keys, bsp::IDelayer &delayer) :
-	_keys(keys),
-	_delayer(delayer),
+KeyScanner::KeyScanner(std::vector<IKey *> const &keys)
+	: _keys(keys),
 
-	_last_scan_result(keys.size()),
-	_current_scan_result(keys.size()),
+	  _last_scan_result(keys.size()),
+	  _current_scan_result(keys.size()),
 
-	_key_down_events(keys.size()),
-	_key_up_events(keys.size()),
-	_key_pressed_events(keys.size()),
+	  _key_down_events(keys.size()),
+	  _key_up_events(keys.size()),
+	  _key_pressed_events(keys.size()),
 
-	_no_delay_scan_result1(keys.size()),
-	_no_delay_scan_result2(keys.size())
+	  _no_delay_scan_result1(keys.size()),
+	  _no_delay_scan_result2(keys.size())
 {
-
 }
 
 void KeyScanner::ScanKeys()
 {
 	ScanKeysNoDelay(_no_delay_scan_result1);
-	_delayer.Delay(std::chrono::milliseconds(10));
+	bsp::DI_Delayer().Delay(std::chrono::milliseconds(10));
 	ScanKeysNoDelay(_no_delay_scan_result2);
 	_current_scan_result = _no_delay_scan_result1 & _no_delay_scan_result2;
 
