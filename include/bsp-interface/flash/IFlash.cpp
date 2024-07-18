@@ -1,4 +1,15 @@
 #include "IFlash.h"
+#include <stdexcept>
+
+size_t bsp::IFlash::GetAbsoluteAddress(int32_t bank_id, size_t addr)
+{
+	if (addr >= GetBankSize(bank_id))
+	{
+		throw std::out_of_range{"地址超出范围"};
+	}
+
+	return GetBankBaseAddress(bank_id) + addr;
+}
 
 uint8_t bsp::IFlash::ReadUInt8(int32_t bank_id, size_t addr)
 {

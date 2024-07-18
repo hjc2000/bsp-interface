@@ -60,6 +60,12 @@ namespace bsp
 		/// 不能整除抛出异常。
 		virtual void Program(int32_t bank_id, size_t addr, uint8_t const *buffer) = 0;
 
+		/// @brief 将相对于指定 bank 的起始地址的地址转化为绝对地址。
+		/// @param bank_id 相对于哪一个 bank 的起始地址？
+		/// @param addr 相对于此 bank 起始地址的地址。
+		/// @return 绝对地址。可以被强制转换为指针。
+		size_t GetAbsoluteAddress(int32_t bank_id, size_t addr);
+
 		/// @brief 读取指定 bank 的指定地址的 1 字节数据。
 		/// @param bank_id bank 的 id。例如 bank1 的 id 是 1.
 		/// @param addr 相对于此 bank 的起始地址的地址。
