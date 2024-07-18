@@ -1,7 +1,7 @@
 #include "IFlash.h"
 #include <stdexcept>
 
-size_t bsp::IFlash::GetAbsoluteAddress(int32_t bank_id, size_t addr)
+size_t bsp::IFlash::GetAbsoluteAddress(int32_t bank_id, size_t addr) const
 {
 	if (addr >= GetBankSize(bank_id))
 	{

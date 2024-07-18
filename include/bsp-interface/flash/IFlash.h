@@ -11,34 +11,34 @@ namespace bsp
 	public:
 		/// @brief 获取此 flash 的 bank 数量。
 		/// @return
-		virtual int32_t BankCount() = 0;
+		virtual int32_t BankCount() const = 0;
 
 		/// @brief 获取指定 bank 的扇区数量。
 		/// @param bank_id bank 的 id。例如 bank1 的 id 是 1.
 		/// @return
-		virtual int32_t GetBankSectorCount(int32_t bank_id) = 0;
+		virtual int32_t GetBankSectorCount(int32_t bank_id) const = 0;
 
 		/// @brief 获取指定 bank 的基地址。
 		/// @param bank_id bank 的 id。例如 bank1 的 id 是 1.
 		/// @return
-		virtual size_t GetBankBaseAddress(int32_t bank_id) = 0;
+		virtual size_t GetBankBaseAddress(int32_t bank_id) const = 0;
 
 		/// @brief 获取指定 bank 的大小。单位：字节。
 		/// @param bank_id bank 的 id。例如 bank1 的 id 是 1.
 		/// @return
-		virtual size_t GetBankSize(int32_t bank_id) = 0;
+		virtual size_t GetBankSize(int32_t bank_id) const = 0;
 
 		/// @brief 将相对于指定 bank 的起始地址的地址转化为绝对地址。
 		/// @param bank_id bank 的 id。例如 bank1 的 id 是 1.
 		/// @param addr 相对于此 bank 起始地址的地址。
 		/// @return 绝对地址。可以被强制转换为指针。
-		size_t GetAbsoluteAddress(int32_t bank_id, size_t addr);
+		size_t GetAbsoluteAddress(int32_t bank_id, size_t addr) const;
 
 		/// @brief flash 的最小编程单位。单位：字节。
 		/// @note 最小单位是一次编程必须写入这么多字节，即使要写入的数据没有这么多，在一次
 		/// 写入后，整个单位大小的区域都无法再次写入了，除非擦除整个扇区。
 		/// @return 返回此 flash 编程的最小单位。
-		virtual int32_t MinProgrammingUnit() = 0;
+		virtual int32_t MinProgrammingUnit() const = 0;
 
 		/// @brief 擦除一整个 bank。
 		/// @param bank_id bank 的 id。例如 bank1 的 id 是 1.
