@@ -15,11 +15,6 @@ namespace bsp
 		/// @return 返回此 flash 编程的最小单位。
 		virtual int32_t MinProgrammingUnit() = 0;
 
-		/// @brief flash 的地址需要对齐到的字节数。本类中其他方法，凡事要传入 flash 地址的，
-		/// 都需要对齐到本属性。
-		/// @return
-		virtual int32_t FlashAddressAlign() = 0;
-
 		/// @brief 擦除一整个 bank。
 		/// @param bank_id 要擦除的扇区的 id。例如要擦除 bank1，就传入 1，要擦除 bank2 就传入 2.
 		virtual void EraseBank(int32_t bank_id) = 0;
