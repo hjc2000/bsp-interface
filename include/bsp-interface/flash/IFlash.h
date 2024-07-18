@@ -13,6 +13,11 @@ namespace bsp
 		/// @return
 		virtual int32_t BankCount() = 0;
 
+		/// @brief 获取指定 bank 的扇区数量。
+		/// @param bank_id
+		/// @return
+		virtual int32_t GetBankSectorCount(int32_t bank_id) = 0;
+
 		/// @brief 获取指定 bank 的基地址。
 		/// @param bank_id bank 的 id。例如 bank1 的 id 是 1.
 		/// @return
@@ -33,11 +38,16 @@ namespace bsp
 		/// @param bank_id bank 的 id。例如 bank1 的 id 是 1.
 		virtual void EraseBank(int32_t bank_id) = 0;
 
+		/// @brief 擦除指定 bank 的指定扇区。
+		/// @param bank_id 要擦除的扇区所在的 bank
+		/// @param sector_index 要擦除的扇区索引。
+		virtual void EraseSector(int32_t bank_id, int32_t sector_index) = 0;
+
 		/// @brief 擦除指定 bank 中从 start_sector_index 开始的 sector_count 个扇区。
 		/// @param bank_id bank 的 id。例如 bank1 的 id 是 1.
 		/// @param start_sector_index 要擦除的扇区的起始索引。
 		/// @param sector_count 要擦除的扇区的数量。
-		virtual void EraseSector(int32_t bank_id, int32_t start_sector_index, int32_t sector_count) = 0;
+		void EraseSector(int32_t bank_id, int32_t start_sector_index, int32_t sector_count);
 
 		/// @brief 将 flash 的数据读取到缓冲区中
 		/// @param bank_id bank 的 id。例如 bank1 的 id 是 1.
