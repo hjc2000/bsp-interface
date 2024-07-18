@@ -28,6 +28,12 @@ namespace bsp
 		/// @return
 		virtual size_t GetBankSize(int32_t bank_id) = 0;
 
+		/// @brief 将相对于指定 bank 的起始地址的地址转化为绝对地址。
+		/// @param bank_id bank 的 id。例如 bank1 的 id 是 1.
+		/// @param addr 相对于此 bank 起始地址的地址。
+		/// @return 绝对地址。可以被强制转换为指针。
+		size_t GetAbsoluteAddress(int32_t bank_id, size_t addr);
+
 		/// @brief flash 的最小编程单位。单位：字节。
 		/// @note 最小单位是一次编程必须写入这么多字节，即使要写入的数据没有这么多，在一次
 		/// 写入后，整个单位大小的区域都无法再次写入了，除非擦除整个扇区。
@@ -70,12 +76,7 @@ namespace bsp
 		/// 不能整除抛出异常。
 		virtual void Program(int32_t bank_id, size_t addr, uint8_t const *buffer) = 0;
 
-		/// @brief 将相对于指定 bank 的起始地址的地址转化为绝对地址。
-		/// @param bank_id bank 的 id。例如 bank1 的 id 是 1.
-		/// @param addr 相对于此 bank 起始地址的地址。
-		/// @return 绝对地址。可以被强制转换为指针。
-		size_t GetAbsoluteAddress(int32_t bank_id, size_t addr);
-
+#pragma region 读取
 		/// @brief 读取指定 bank 的指定地址的 1 字节数据。
 		/// @param bank_id bank 的 id。例如 bank1 的 id 是 1.
 		/// @param addr 相对于此 bank 的起始地址的地址。
@@ -99,5 +100,6 @@ namespace bsp
 		/// @param addr 相对于此 bank 的起始地址的地址。
 		/// @return
 		uint64_t ReadUInt64(int32_t bank_id, size_t addr);
+#pragma endregion
 	};
 }
