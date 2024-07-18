@@ -14,12 +14,12 @@ namespace bsp
 		virtual int32_t BankCount() = 0;
 
 		/// @brief 获取指定 bank 的基地址。
-		/// @param bank_id
+		/// @param bank_id bank 的 id。例如 bank1 的 id 是 1.
 		/// @return
 		virtual size_t GetBankBaseAddress(int32_t bank_id) = 0;
 
 		/// @brief 获取指定 bank 的大小。单位：字节。
-		/// @param bank_id
+		/// @param bank_id bank 的 id。例如 bank1 的 id 是 1.
 		/// @return
 		virtual size_t GetBankSize(int32_t bank_id) = 0;
 
@@ -30,24 +30,24 @@ namespace bsp
 		virtual int32_t MinProgrammingUnit() = 0;
 
 		/// @brief 擦除一整个 bank。
-		/// @param bank_id 要擦除的扇区的 id。例如要擦除 bank1，就传入 1，要擦除 bank2 就传入 2.
+		/// @param bank_id bank 的 id。例如 bank1 的 id 是 1.
 		virtual void EraseBank(int32_t bank_id) = 0;
 
 		/// @brief 擦除指定 bank 中从 start_sector_index 开始的 sector_count 个扇区。
-		/// @param bank_id 要擦除的扇区所在的 bank 的 id。
+		/// @param bank_id bank 的 id。例如 bank1 的 id 是 1.
 		/// @param start_sector_index 要擦除的扇区的起始索引。
 		/// @param sector_count 要擦除的扇区的数量。
 		virtual void EraseSector(int32_t bank_id, int32_t start_sector_index, int32_t sector_count) = 0;
 
 		/// @brief 将 flash 的数据读取到缓冲区中
-		/// @param bank_id
+		/// @param bank_id bank 的 id。例如 bank1 的 id 是 1.
 		/// @param addr
 		/// @param buffer
 		/// @param count
 		virtual void ReadBuffer(int32_t bank_id, size_t addr, uint8_t *buffer, int32_t count) = 0;
 
 		/// @brief 编程
-		/// @param bank_id 要写入的 bank 的 id.
+		/// @param bank_id bank 的 id。例如 bank1 的 id 是 1.
 		///
 		/// @param addr 要写入的数据相对于此 bank 的起始地址的地址。
 		/// @note 此地址必须能被 MinProgrammingUnit 整除。
@@ -61,7 +61,7 @@ namespace bsp
 		virtual void Program(int32_t bank_id, size_t addr, uint8_t const *buffer) = 0;
 
 		/// @brief 将相对于指定 bank 的起始地址的地址转化为绝对地址。
-		/// @param bank_id 相对于哪一个 bank 的起始地址？
+		/// @param bank_id bank 的 id。例如 bank1 的 id 是 1.
 		/// @param addr 相对于此 bank 起始地址的地址。
 		/// @return 绝对地址。可以被强制转换为指针。
 		size_t GetAbsoluteAddress(int32_t bank_id, size_t addr);
@@ -71,8 +71,23 @@ namespace bsp
 		/// @param addr 相对于此 bank 的起始地址的地址。
 		/// @return
 		uint8_t ReadUInt8(int32_t bank_id, size_t addr);
+
+		/// @brief 读取指定 bank 的指定地址的 2 字节数据。
+		/// @param bank_id bank 的 id。例如 bank1 的 id 是 1.
+		/// @param addr 相对于此 bank 的起始地址的地址。
+		/// @return
 		uint16_t ReadUInt16(int32_t bank_id, size_t addr);
+
+		/// @brief 读取指定 bank 的指定地址的 4 字节数据。
+		/// @param bank_id bank 的 id。例如 bank1 的 id 是 1.
+		/// @param addr 相对于此 bank 的起始地址的地址。
+		/// @return
 		uint32_t ReadUInt32(int32_t bank_id, size_t addr);
+
+		/// @brief 读取指定 bank 的指定地址的 8 字节数据。
+		/// @param bank_id bank 的 id。例如 bank1 的 id 是 1.
+		/// @param addr 相对于此 bank 的起始地址的地址。
+		/// @return
 		uint64_t ReadUInt64(int32_t bank_id, size_t addr);
 	};
 }
