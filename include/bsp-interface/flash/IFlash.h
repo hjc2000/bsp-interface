@@ -70,10 +70,11 @@ namespace bsp
 		///
 		/// @param buffer 要写入到 flash 的数据所在的缓冲区。
 		/// @warning buffer 的字节数必须 >= MinProgrammingUnit，否则将发生内存访问越界。
-		///
-		/// @exception 不同平台对 buffer 有对齐要求。例如 stm32 的 HAL 要求 buffer 要 4 字节
+		/// @note 不同平台对 buffer 有对齐要求。例如 stm32 的 HAL 要求 buffer 要 4 字节
 		/// 对齐。这里使用 uint8_t const * ，接口的实现者自己计算 buffer 能否被对齐字节数整除，
 		/// 不能整除抛出异常。
+		/// @note 对于 4 字节对齐的情况，调用者可以创建 uint32_t 数组，然后
+		/// 将 uint32_t const * 强制转换为 uint8_t const * 作为 buffer 传进来。
 		virtual void Program(int32_t bank_id, size_t addr, uint8_t const *buffer) = 0;
 
 #pragma region 读取
