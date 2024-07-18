@@ -14,7 +14,7 @@ namespace bsp
 		virtual int32_t BankCount() = 0;
 
 		/// @brief 获取指定 bank 的扇区数量。
-		/// @param bank_id
+		/// @param bank_id bank 的 id。例如 bank1 的 id 是 1.
 		/// @return
 		virtual int32_t GetBankSectorCount(int32_t bank_id) = 0;
 
@@ -57,7 +57,7 @@ namespace bsp
 
 		/// @brief 将 flash 的数据读取到缓冲区中
 		/// @param bank_id bank 的 id。例如 bank1 的 id 是 1.
-		/// @param addr
+		/// @param addr 相对于此 bank 的起始地址的地址。
 		/// @param buffer
 		/// @param count
 		virtual void ReadBuffer(int32_t bank_id, size_t addr, uint8_t *buffer, int32_t count) = 0;
