@@ -16,14 +16,31 @@ namespace bsp
 		/// @return 返回此 flash 编程的最小单位。
 		virtual int32_t MinProgrammingUnit() = 0;
 
+		/// @brief flash 的地址需要对齐到的字节数。本类中其他方法，凡事要传入 flash 地址的，
+		/// 都需要对齐到本属性。
+		/// @return
+		virtual int32_t FlashAddressAlign() = 0;
+
+		/// @brief 擦除一整个 bank。
+		/// @param bank_id 要擦除的扇区的 id。例如要擦除 bank1，就传入 1，要擦除 bank2 就传入 2.
+		virtual void EraseBank(int32_t bank_id) = 0;
+
+		/// @brief 擦除指定 bank 中从 start_sector_index 开始的 sector_count 个扇区。
+		/// @param bank_id 要擦除的扇区所在的 bank 的 id。
+		/// @param start_sector_index 要擦除的扇区的起始索引。
+		/// @param sector_count 要擦除的扇区的数量。
+		virtual void EraseSector(int32_t bank_id, int32_t start_sector_index, int32_t sector_count) = 0;
+
+		/// @brief 将 flash 的数据读取到缓冲区中
+		/// @param bank_id
+		/// @param addr
+		/// @param buffer
+		/// @param count
 		virtual void ReadBuffer(int32_t bank_id, size_t addr, uint8_t *buffer, int32_t count) = 0;
 
 		/// @brief 编程
 		/// @param bank_id 要写入的 bank 的 id.
-		///
 		/// @param addr 要写入的数据相对于此 bank 的起始地址的地址。
-		/// @warning 此地址要 32 字节对齐。
-		///
 		/// @param buffer 要写入到 flash 的数据所在的缓冲区。
 		/// @warning buffer 的元素个数必须 >= MinProgrammingUnit，否则将发生内存访问越界。
 		virtual void Program(int32_t bank_id, size_t addr, uint32_t const *buffer) = 0;
