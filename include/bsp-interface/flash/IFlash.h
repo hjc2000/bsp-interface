@@ -9,6 +9,20 @@ namespace bsp
 		: public base::ILock
 	{
 	public:
+		/// @brief 获取此 flash 的 bank 数量。
+		/// @return
+		virtual int32_t BankCount() = 0;
+
+		/// @brief 获取指定 bank 的基地址。
+		/// @param bank_id
+		/// @return
+		virtual size_t GetBankBaseAddress(int32_t bank_id) = 0;
+
+		/// @brief 获取指定 bank 的大小。单位：字节。
+		/// @param bank_id
+		/// @return
+		virtual size_t GetBankSize(int32_t bank_id) = 0;
+
 		/// @brief flash 的最小编程单位。单位：字节。
 		/// @note 最小单位是一次编程必须写入这么多字节，即使要写入的数据没有这么多，在一次
 		/// 写入后，整个单位大小的区域都无法再次写入了，除非擦除整个扇区。
@@ -34,10 +48,17 @@ namespace bsp
 
 		/// @brief 编程
 		/// @param bank_id 要写入的 bank 的 id.
+		///
 		/// @param addr 要写入的数据相对于此 bank 的起始地址的地址。
+		/// @note 此地址必须能被 MinProgrammingUnit 整除。
+		///
 		/// @param buffer 要写入到 flash 的数据所在的缓冲区。
-		/// @warning buffer 的元素个数必须 >= MinProgrammingUnit，否则将发生内存访问越界。
-		virtual void Program(int32_t bank_id, size_t addr, uint32_t const *buffer) = 0;
+		/// @warning buffer 的字节数必须 >= MinProgrammingUnit，否则将发生内存访问越界。
+		///
+		/// @exception 不同平台对 buffer 有对齐要求。例如 stm32 的 HAL 要求 buffer 要 4 字节
+		/// 对齐。这里使用 uint8_t const * ，接口的实现者自己计算 buffer 能否被对齐字节数整除，
+		/// 不能整除抛出异常。
+		virtual void Program(int32_t bank_id, size_t addr, uint8_t const *buffer) = 0;
 
 		/// @brief 读取指定 bank 的指定地址的 1 字节数据。
 		/// @param bank_id bank 的 id。例如 bank1 的 id 是 1.
