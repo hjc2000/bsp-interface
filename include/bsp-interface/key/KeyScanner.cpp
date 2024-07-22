@@ -28,7 +28,7 @@ KeyScanner::KeyScanner(std::vector<IKey *> const &keys)
 void KeyScanner::ScanKeys()
 {
 	ScanKeysNoDelay(_no_delay_scan_result1);
-	bsp::DI_Delayer().Delay(std::chrono::milliseconds(10));
+	DI_Delayer().Delay(std::chrono::milliseconds(10));
 	ScanKeysNoDelay(_no_delay_scan_result2);
 	_current_scan_result = _no_delay_scan_result1 & _no_delay_scan_result2;
 
