@@ -1,6 +1,12 @@
 #include "IsrManager.h"
+#include <bsp-interface/di.h>
 
 using namespace bsp;
+
+bsp::IsrManager::IsrManager()
+	: _interrupt_switch(DI_InterruptSwitch())
+{
+}
 
 std::function<void()> bsp::IsrManager::GetIsr(uint32_t irq)
 {

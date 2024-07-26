@@ -14,10 +14,7 @@ namespace bsp
 		IInterruptSwitch &_interrupt_switch;
 
 	public:
-		IsrManager(IInterruptSwitch &interrupt_switch)
-			: _interrupt_switch(interrupt_switch)
-		{
-		}
+		IsrManager();
 
 		/// @brief 获取指定的中断向量对应的中断服务函数。
 		/// @warning 注意，返回的可能是 nullptr
