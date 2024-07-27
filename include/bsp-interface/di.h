@@ -11,6 +11,7 @@ bsp::IDelayer &DI_Delayer();
 bsp::IInterruptSwitch &DI_InterruptSwitch();
 
 /// @brief 中断管理器。
+/// @note 此依赖本库已经提供了，不需要实现此函数了。
 /// @return
 bsp::IsrManager &DI_IsrManager();
 
