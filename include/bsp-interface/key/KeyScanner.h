@@ -4,7 +4,6 @@
 #include <bsp-interface/di.h>
 #include <bsp-interface/key/IKey.h>
 #include <bsp-interface/key/IKeyScanner.h>
-#include <vector>
 
 namespace bsp
 {
@@ -18,7 +17,7 @@ namespace bsp
 		: public bsp::IKeyScanner
 	{
 	private:
-		std::vector<IKey *> const &_keys;
+		base::IReadOnlyCollection<int, bsp::IKey *> const &_key_collection;
 
 		boost::dynamic_bitset<> _last_scan_result;
 		boost::dynamic_bitset<> _current_scan_result;
@@ -33,11 +32,11 @@ namespace bsp
 		void ScanKeysNoDelay(boost::dynamic_bitset<> &out);
 
 	public:
-		KeyScanner(std::vector<IKey *> const &keys);
+		KeyScanner(base::IReadOnlyCollection<int, bsp::IKey *> const &key_collection);
 
 		void ScanKeys() override;
-		bool HasKeyDownEvent(uint16_t key_index) override;
-		bool HasKeyUpEvent(uint16_t key_index) override;
-		bool HasKeyPressedEvent(uint16_t key_index) override;
+		bool HasKeyDownEvent(int key_index) override;
+		bool HasKeyUpEvent(int key_index) override;
+		bool HasKeyPressedEvent(int key_index) override;
 	};
 }

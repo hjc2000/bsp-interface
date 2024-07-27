@@ -4,31 +4,31 @@ using namespace bsp;
 
 void KeyScanner::ScanKeysNoDelay(boost::dynamic_bitset<> &out)
 {
-	for (uint16_t i = 0; i < _keys.size(); i++)
+	for (int i = 0; i < _key_collection.Count(); i++)
 	{
-		out[i] = _keys[i]->KeyIsDown();
+		out[i] = _key_collection.Get(i)->KeyIsDown();
 	}
 }
 
-KeyScanner::KeyScanner(std::vector<IKey *> const &keys)
-	: _keys(keys),
+KeyScanner::KeyScanner(base::IReadOnlyCollection<int, bsp::IKey *> const &key_collection)
+	: _key_collection(key_collection),
 
-	  _last_scan_result(keys.size()),
-	  _current_scan_result(keys.size()),
+	  _last_scan_result(_key_collection.Count()),
+	  _current_scan_result(_key_collection.Count()),
 
-	  _key_down_events(keys.size()),
-	  _key_up_events(keys.size()),
-	  _key_pressed_events(keys.size()),
+	  _key_down_events(_key_collection.Count()),
+	  _key_up_events(_key_collection.Count()),
+	  _key_pressed_events(_key_collection.Count()),
 
-	  _no_delay_scan_result1(keys.size()),
-	  _no_delay_scan_result2(keys.size())
+	  _no_delay_scan_result1(_key_collection.Count()),
+	  _no_delay_scan_result2(_key_collection.Count())
 {
 }
 
 void KeyScanner::ScanKeys()
 {
 	ScanKeysNoDelay(_no_delay_scan_result1);
-	DI_Delayer().Delay(std::chrono::milliseconds(10));
+	DI_Delayer().Delay(std::chrono::milliseconds{10});
 	ScanKeysNoDelay(_no_delay_scan_result2);
 	_current_scan_result = _no_delay_scan_result1 & _no_delay_scan_result2;
 
@@ -39,9 +39,9 @@ void KeyScanner::ScanKeys()
 	_last_scan_result = _current_scan_result;
 }
 
-bool KeyScanner::HasKeyDownEvent(uint16_t key_index)
+bool KeyScanner::HasKeyDownEvent(int key_index)
 {
-	if (key_index >= _keys.size())
+	if (key_index >= _key_collection.Count())
 	{
 		return false;
 	}
@@ -49,9 +49,9 @@ bool KeyScanner::HasKeyDownEvent(uint16_t key_index)
 	return _key_down_events[key_index];
 }
 
-bool KeyScanner::HasKeyUpEvent(uint16_t key_index)
+bool KeyScanner::HasKeyUpEvent(int key_index)
 {
-	if (key_index >= _keys.size())
+	if (key_index >= _key_collection.Count())
 	{
 		return false;
 	}
@@ -59,9 +59,9 @@ bool KeyScanner::HasKeyUpEvent(uint16_t key_index)
 	return _key_up_events[key_index];
 }
 
-bool KeyScanner::HasKeyPressedEvent(uint16_t key_index)
+bool KeyScanner::HasKeyPressedEvent(int key_index)
 {
-	if (key_index >= _keys.size())
+	if (key_index >= _key_collection.Count())
 	{
 		return false;
 	}

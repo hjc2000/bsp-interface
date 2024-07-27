@@ -1,4 +1,5 @@
 #pragma once
+#include <base/container/ICollection.h>
 #include <bsp-interface/IDelayer.h>
 #include <bsp-interface/ISysTick.h>
 #include <bsp-interface/interrupt/IInterruptSwitch.h>
@@ -13,4 +14,7 @@ bsp::IInterruptSwitch &DI_InterruptSwitch();
 /// @return
 bsp::IsrManager &DI_IsrManager();
 
+/// @brief 按键集合。
+/// @return
+base::IReadOnlyCollection<int, bsp::IKey *> &DI_KeyCollection();
 bsp::IKeyScanner &DI_KeyScanner();

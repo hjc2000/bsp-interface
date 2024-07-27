@@ -1,7 +1,14 @@
 #include "IsrManager.h"
+#include <base/Initializer.h>
 #include <bsp-interface/di.h>
 
 using namespace bsp;
+
+static base::Initializer _initializer{
+	[]()
+	{
+		bsp::IsrManager::Instance();
+	}};
 
 std::function<void()> bsp::IsrManager::GetIsr(uint32_t irq)
 {
