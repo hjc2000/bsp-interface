@@ -1,9 +1,9 @@
 #pragma once
 #include <bsp-interface/di.h>
 
+#ifndef No_Build_Test
 namespace bsp
 {
-#ifndef No_Build_Test
 	inline void TestLcd()
 	{
 		DI_GreenDigitalLed().TurnOn();
@@ -26,5 +26,5 @@ namespace bsp
 			DI_Delayer().Delay(std::chrono::seconds{1});
 		}
 	}
-#endif
 }
+#endif
