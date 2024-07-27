@@ -11,8 +11,7 @@ namespace bsp
 	{
 	private:
 		std::map<uint32_t, std::function<void()>> _isr_map;
-		IInterruptSwitch &_interrupt_switch;
-		IsrManager();
+		IsrManager() = default;
 
 	public:
 		static IsrManager &Instance()
