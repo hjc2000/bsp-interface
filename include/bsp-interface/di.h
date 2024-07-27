@@ -2,6 +2,7 @@
 #include <base/container/ICollection.h>
 #include <bsp-interface/IDelayer.h>
 #include <bsp-interface/IDigitalLed.h>
+#include <bsp-interface/IIndependentWatchDog.h>
 #include <bsp-interface/ISysTick.h>
 #include <bsp-interface/interrupt/IInterruptSwitch.h>
 #include <bsp-interface/interrupt/IsrManager.h>
@@ -38,3 +39,7 @@ bsp::IDigitalLed &DI_BlueDigitalLed();
 #pragma endregion
 
 bsp::ILcd &DI_Lcd();
+
+/// @brief 独立看门狗。
+/// @return
+bsp::IIndependentWatchDog &DI_IndependentWatchDog();
