@@ -6,6 +6,7 @@
 #include <bsp-interface/interrupt/IInterruptSwitch.h>
 #include <bsp-interface/interrupt/IsrManager.h>
 #include <bsp-interface/key/IKeyScanner.h>
+#include <bsp-interface/lcd/ILcd.h>
 
 /// @brief 复位单片机
 void DI_Reset();
@@ -35,3 +36,5 @@ bsp::IDigitalLed &DI_RedDigitalLed();
 bsp::IDigitalLed &DI_GreenDigitalLed();
 bsp::IDigitalLed &DI_BlueDigitalLed();
 #pragma endregion
+
+bsp::ILcd &DI_Lcd();
