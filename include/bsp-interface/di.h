@@ -8,5 +8,9 @@
 bsp::ISysTick &DI_SysTick();
 bsp::IDelayer &DI_Delayer();
 bsp::IInterruptSwitch &DI_InterruptSwitch();
+
+/// @brief 中断管理器。
+/// @return
 bsp::IsrManager &DI_IsrManager();
+
 bsp::IKeyScanner &DI_KeyScanner();

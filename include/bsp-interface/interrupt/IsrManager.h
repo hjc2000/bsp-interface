@@ -12,9 +12,14 @@ namespace bsp
 	private:
 		std::map<uint32_t, std::function<void()>> _isr_map;
 		IInterruptSwitch &_interrupt_switch;
+		IsrManager();
 
 	public:
-		IsrManager();
+		static IsrManager &Instance()
+		{
+			static IsrManager o;
+			return o;
+		}
 
 		/// @brief 获取指定的中断向量对应的中断服务函数。
 		/// @warning 注意，返回的可能是 nullptr
