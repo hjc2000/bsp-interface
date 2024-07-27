@@ -17,8 +17,6 @@ namespace bsp
 		: public bsp::IKeyScanner
 	{
 	private:
-		base::IReadOnlyCollection<int, bsp::IKey *> const &_key_collection;
-
 		boost::dynamic_bitset<> _last_scan_result;
 		boost::dynamic_bitset<> _current_scan_result;
 
@@ -32,7 +30,7 @@ namespace bsp
 		void ScanKeysNoDelay(boost::dynamic_bitset<> &out);
 
 	public:
-		KeyScanner(base::IReadOnlyCollection<int, bsp::IKey *> const &key_collection);
+		KeyScanner();
 
 		void ScanKeys() override;
 		bool HasKeyDownEvent(int key_index) override;

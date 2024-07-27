@@ -4,24 +4,22 @@ using namespace bsp;
 
 void KeyScanner::ScanKeysNoDelay(boost::dynamic_bitset<> &out)
 {
-	for (int i = 0; i < _key_collection.Count(); i++)
+	for (int i = 0; i < DI_KeyCollection().Count(); i++)
 	{
-		out[i] = _key_collection.Get(i)->KeyIsDown();
+		out[i] = DI_KeyCollection().Get(i)->KeyIsDown();
 	}
 }
 
-KeyScanner::KeyScanner(base::IReadOnlyCollection<int, bsp::IKey *> const &key_collection)
-	: _key_collection(key_collection),
+KeyScanner::KeyScanner()
+	: _last_scan_result(DI_KeyCollection().Count()),
+	  _current_scan_result(DI_KeyCollection().Count()),
 
-	  _last_scan_result(_key_collection.Count()),
-	  _current_scan_result(_key_collection.Count()),
+	  _key_down_events(DI_KeyCollection().Count()),
+	  _key_up_events(DI_KeyCollection().Count()),
+	  _key_pressed_events(DI_KeyCollection().Count()),
 
-	  _key_down_events(_key_collection.Count()),
-	  _key_up_events(_key_collection.Count()),
-	  _key_pressed_events(_key_collection.Count()),
-
-	  _no_delay_scan_result1(_key_collection.Count()),
-	  _no_delay_scan_result2(_key_collection.Count())
+	  _no_delay_scan_result1(DI_KeyCollection().Count()),
+	  _no_delay_scan_result2(DI_KeyCollection().Count())
 {
 }
 
@@ -41,7 +39,7 @@ void KeyScanner::ScanKeys()
 
 bool KeyScanner::HasKeyDownEvent(int key_index)
 {
-	if (key_index >= _key_collection.Count())
+	if (key_index >= DI_KeyCollection().Count())
 	{
 		return false;
 	}
@@ -51,7 +49,7 @@ bool KeyScanner::HasKeyDownEvent(int key_index)
 
 bool KeyScanner::HasKeyUpEvent(int key_index)
 {
-	if (key_index >= _key_collection.Count())
+	if (key_index >= DI_KeyCollection().Count())
 	{
 		return false;
 	}
@@ -61,7 +59,7 @@ bool KeyScanner::HasKeyUpEvent(int key_index)
 
 bool KeyScanner::HasKeyPressedEvent(int key_index)
 {
-	if (key_index >= _key_collection.Count())
+	if (key_index >= DI_KeyCollection().Count())
 	{
 		return false;
 	}
