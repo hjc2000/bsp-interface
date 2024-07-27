@@ -27,3 +27,11 @@ bsp::IKeyScanner &DI_KeyScanner();
 /// @brief 数字 LED 灯集合。
 /// @return
 base::IReadOnlyCollection<int, bsp::IDigitalLed *> &DI_DigitalLedCollection();
+
+#pragma region 具体颜色的 LED
+/* 具体颜色的 LED。有就实现，没有就不实现，也不要使用，避免发生链接错误。 */
+
+bsp::IDigitalLed &DI_RedDigitalLed();
+bsp::IDigitalLed &DI_GreenDigitalLed();
+bsp::IDigitalLed &DI_BlueDigitalLed();
+#pragma endregion
