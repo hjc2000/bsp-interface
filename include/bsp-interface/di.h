@@ -4,6 +4,7 @@
 #include <bsp-interface/IDigitalLed.h>
 #include <bsp-interface/IIndependentWatchDog.h>
 #include <bsp-interface/ISysTick.h>
+#include <bsp-interface/interrupt/IExtiManager.h>
 #include <bsp-interface/interrupt/IInterruptSwitch.h>
 #include <bsp-interface/interrupt/IsrManager.h>
 #include <bsp-interface/key/IKeyScanner.h>
@@ -43,3 +44,7 @@ bsp::ILcd &DI_Lcd();
 /// @brief 独立看门狗。
 /// @return
 bsp::IIndependentWatchDog &DI_IndependentWatchDog();
+
+/// @brief 外部中断管理器。
+/// @return
+bsp::IExtiManager &DI_ExtiManager();
