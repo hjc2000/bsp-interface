@@ -37,4 +37,19 @@ namespace bsp
 		virtual void DigitalWritePin(int pin_id, bool value) = 0;
 		virtual bool DigitalReadPin(int pin_id) = 0;
 	};
+
+	// enum class PinAlternate
+	// {
+	// 	UART,
+	// 	SPI,
+	// }
+
+	// class IGpioPin
+	// {
+	// public:
+	// 	virtual std::string Name() = 0;
+	// 	virtual base::IEnumerable<PinAlternate> SupportedFunctions() = 0;
+	// 	virtual void InitializeAsAlternateFunction(int pin_id, PinAlternate alternate) = 0;
+	// 	virtual void InitializeAsGpio(int pin_id, int direction, int pull_mode) = 0;
+	// };
 }
