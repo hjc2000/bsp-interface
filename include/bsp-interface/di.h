@@ -2,7 +2,6 @@
 #include <base/container/ICollection.h>
 #include <bsp-interface/IDelayer.h>
 #include <bsp-interface/IDigitalLed.h>
-#include <bsp-interface/IGpioManager.h>
 #include <bsp-interface/IIndependentWatchDog.h>
 #include <bsp-interface/ISysTick.h>
 #include <bsp-interface/interrupt/IExtiManager.h>
@@ -13,10 +12,6 @@
 
 /// @brief 复位单片机
 void DI_Reset();
-
-/// @brief GPIO 管理器。
-/// @return
-bsp::IGpioManager &DI_GpioManager();
 
 bsp::ISysTick &DI_SysTick();
 bsp::IDelayer &DI_Delayer();
