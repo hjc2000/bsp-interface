@@ -47,6 +47,10 @@ namespace bsp
 		virtual std::string PinName() const = 0;
 
 #pragma region 属性
+		/// @brief 指示此引脚是否已经打开。
+		/// @return
+		virtual bool IsOpen() = 0;
+
 		/// @brief 引脚工作模式。
 		/// @return
 		virtual GpioPinWorkMode WorkMode() const = 0;
@@ -58,10 +62,15 @@ namespace bsp
 		virtual void SetPullMode(GpioPullMode value) = 0;
 
 		/// @brief 引脚速度等级。
-		/// @note 有的平台引脚支持设置速度等级。
+		/// @note 有的平台引脚支持设置速度等级。不支持的平台忽略就好。
 		/// @return
 		virtual int SpeedLevel() const = 0;
 		virtual void SetSpeedLevel(int value) = 0;
+
+		/// @brief 复用功能。
+		/// @return
+		virtual std::string AlternateFunction() const = 0;
+		virtual void SetAlternateFunction(std::string value) = 0;
 #pragma endregion
 
 		/// @brief 支持的复用功能。
