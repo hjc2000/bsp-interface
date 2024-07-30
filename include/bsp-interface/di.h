@@ -50,4 +50,6 @@ bsp::IIndependentWatchDog &DI_IndependentWatchDog();
 /// @return
 bsp::IExtiManager &DI_ExtiManager();
 
+/// @brief 获取 GPIO 列表。
+/// @return
 base::IEnumerable<bsp::IGpioPin> &DI_GpioPins();
