@@ -1,7 +1,7 @@
 #pragma once
 #include <base/container/IEnumerable.h>
+#include <bsp-interface/gpio/GpioPinPullMode.h>
 #include <bsp-interface/gpio/GpioPinWorkMode.h>
-#include <bsp-interface/gpio/GpioPullMode.h>
 #include <functional>
 #include <string>
 
@@ -37,8 +37,8 @@ namespace bsp
 
 		/// @brief 引脚上下拉模式。
 		/// @return
-		virtual GpioPullMode PullMode() const = 0;
-		virtual void SetPullMode(GpioPullMode value) = 0;
+		virtual GpioPinPullMode PullMode() const = 0;
+		virtual void SetPullMode(GpioPinPullMode value) = 0;
 
 		/// @brief 引脚速度等级。
 		/// @note 有的平台引脚支持设置速度等级。不支持的平台忽略就好。
