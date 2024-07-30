@@ -15,6 +15,16 @@ namespace bsp
 		/// @return
 		virtual std::string PinName() const = 0;
 
+		/// @brief 端口索引。
+		/// @note 例如 stm32 的 PB0 的端口索引为 1.
+		/// @return
+		virtual int PortIndex() = 0;
+
+		/// @brief 引脚索引。
+		/// @note 例如 stm32 的 PB0 的引脚索引为 0.
+		/// @return
+		virtual int PinIndex() = 0;
+
 #pragma region 属性
 		/// @brief 指示此引脚是否已经打开。
 		/// @return
