@@ -4,6 +4,7 @@
 #include <bsp-interface/IDigitalLed.h>
 #include <bsp-interface/IIndependentWatchDog.h>
 #include <bsp-interface/ISysTick.h>
+#include <bsp-interface/gpio/IGpioPin.h>
 #include <bsp-interface/interrupt/IExtiManager.h>
 #include <bsp-interface/interrupt/IInterruptSwitch.h>
 #include <bsp-interface/interrupt/IsrManager.h>
@@ -48,3 +49,5 @@ bsp::IIndependentWatchDog &DI_IndependentWatchDog();
 /// @brief 外部中断管理器。
 /// @return
 bsp::IExtiManager &DI_ExtiManager();
+
+base::IEnumerable<bsp::IGpioPin> &DI_GpioPins();
