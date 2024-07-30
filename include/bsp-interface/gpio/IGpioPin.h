@@ -1,4 +1,5 @@
 #pragma once
+#include <base/container/IEnumerable.h>
 #include <functional>
 #include <string>
 
@@ -43,7 +44,7 @@ namespace bsp
 	public:
 		/// @brief 引脚名称
 		/// @return
-		virtual std::string const &PinName() const = 0;
+		virtual std::string PinName() const = 0;
 
 #pragma region 属性
 		/// @brief 引脚工作模式。
@@ -62,6 +63,10 @@ namespace bsp
 		virtual int SpeedLevel() const = 0;
 		virtual void SetSpeedLevel(int value) = 0;
 #pragma endregion
+
+		/// @brief 支持的复用功能。
+		/// @return
+		virtual base::IEnumerable<std::string> SupportedAlternateFunctions() = 0;
 
 		virtual void Open() = 0;
 		virtual void Close() = 0;
