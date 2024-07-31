@@ -10,10 +10,10 @@ namespace bsp
 	class IsrManager
 	{
 	private:
-		std::map<uint32_t, std::function<void()>> _isr_map;
 		IsrManager() = default;
 
-		static std::function<void()> _empty_func;
+		std::map<uint32_t, std::function<void()>> _isr_map;
+		std::function<void()> _empty_func = []() {};
 
 	public:
 		static IsrManager &Instance()

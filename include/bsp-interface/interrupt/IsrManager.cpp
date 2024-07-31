@@ -10,10 +10,6 @@ static base::Initializer _initializer{
 		bsp::IsrManager::Instance();
 	}};
 
-std::function<void()> bsp::IsrManager::_empty_func = []() {
-
-};
-
 std::function<void()> &bsp::IsrManager::GetIsr(uint32_t irq) noexcept
 {
 	auto it = _isr_map.find(irq);
