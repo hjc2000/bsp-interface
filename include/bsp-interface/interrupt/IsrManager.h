@@ -13,6 +13,8 @@ namespace bsp
 		std::map<uint32_t, std::function<void()>> _isr_map;
 		IsrManager() = default;
 
+		static std::function<void()> _empty_func;
+
 	public:
 		static IsrManager &Instance()
 		{
