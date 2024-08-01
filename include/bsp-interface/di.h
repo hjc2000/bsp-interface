@@ -55,6 +55,8 @@ bsp::IExtiManager &DI_ExtiManager();
 /// @return
 base::IEnumerable<bsp::IGpioPin> &DI_GpioPins();
 
+std::shared_ptr<bsp::ISerialOptions> DICreate_ISerialOptions();
+
 /// @brief 主串口。
 /// @return
 bsp::ISerial &DI_Serial();

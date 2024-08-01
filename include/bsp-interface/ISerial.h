@@ -52,8 +52,8 @@ namespace bsp
 	class ISerialOptions
 	{
 	public:
-		virtual ISerialDirection Direction() = 0;
-		virtual void SetDirection(ISerialDirection value) = 0;
+		virtual bsp::ISerialDirection Direction() = 0;
+		virtual void SetDirection(bsp::ISerialDirection value) = 0;
 
 		/// @brief 波特率。
 		/// @return
@@ -92,7 +92,7 @@ namespace bsp
 	{
 	public:
 		/// @brief 以指定的波特率启动串口。
-		virtual void Open(ISerialOptions const &options) = 0;
+		virtual void Open(bsp::ISerialOptions const &options) = 0;
 
 #pragma region Stream
 		bool CanRead() override;
