@@ -6,8 +6,13 @@ namespace bsp
 	/// @brief 用来设置 ISerial 的校验方式
 	enum class ISerialParity
 	{
+		/// @brief 不校验。
 		None,
+
+		/// @brief 偶校验。
 		Even,
+
+		/// @brief 奇校验。
 		Odd,
 	};
 
