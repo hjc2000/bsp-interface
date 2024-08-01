@@ -64,5 +64,5 @@ bsp::ISerial &DI_Serial();
 
 /// @brief 包含所有可用的串口的列表。
 /// @return
-base::IEnumerable<bsp::ISerial> &DI_SerialList();
+base::IEnumerable<bsp::ISerial *> &DI_SerialList();
 #pragma endregion
