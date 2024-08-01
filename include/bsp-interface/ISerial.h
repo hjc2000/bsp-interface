@@ -41,6 +41,7 @@ namespace bsp
 		RTS_CTS,
 	};
 
+	/// @brief 串口数据传输方向。
 	enum class ISerialDirection
 	{
 		RX,
@@ -52,6 +53,11 @@ namespace bsp
 	class ISerialOptions
 	{
 	public:
+		/// @brief 将本对象设置为默认配置。
+		virtual void UseDefaultOptions() = 0;
+
+		/// @brief 数据传输方向
+		/// @return
 		virtual bsp::ISerialDirection Direction() = 0;
 		virtual void SetDirection(bsp::ISerialDirection value) = 0;
 
