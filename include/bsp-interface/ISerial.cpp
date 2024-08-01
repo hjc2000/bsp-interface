@@ -2,7 +2,7 @@
 
 using namespace bsp;
 
-uint32_t bsp::ISerial::CalculateFramesBaudCount(uint32_t frame_count)
+uint32_t bsp::ISerialOptions::CalculateFramesBaudCount(uint32_t frame_count)
 {
 	uint32_t baud_count = 0;
 	baud_count += 1 * frame_count;			// 1 位起始位

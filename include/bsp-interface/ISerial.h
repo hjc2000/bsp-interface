@@ -41,11 +41,20 @@ namespace bsp
 		RTS_CTS,
 	};
 
-	/// @brief 串口接口。
-	class ISerial
-		: public base::Stream
+	enum class ISerialDirection
+	{
+		RX,
+		TX,
+		RX_TX,
+	};
+
+	/// @brief 串口选项。
+	class ISerialOptions
 	{
 	public:
+		virtual ISerialDirection Direction() = 0;
+		virtual void SetDirection(ISerialDirection value) = 0;
+
 		/// @brief 波特率。
 		/// @return
 		virtual uint32_t BaudRate() const = 0;
@@ -71,13 +80,19 @@ namespace bsp
 		virtual bsp::ISerialHardwareFlowControl HardwareFlowControl() const = 0;
 		virtual void SetHardwareFlowControl(bsp::ISerialHardwareFlowControl value) = 0;
 
-		/// @brief 以指定的波特率启动串口。
-		virtual void Open() = 0;
-
 		/// @brief 计算 frame_count 个帧占用多少个波特。
 		/// @param frame_count
 		/// @return
 		uint32_t CalculateFramesBaudCount(uint32_t frame_count);
+	};
+
+	/// @brief 串口接口。
+	class ISerial
+		: public base::Stream
+	{
+	public:
+		/// @brief 以指定的波特率启动串口。
+		virtual void Open(ISerialOptions const &options) = 0;
 
 #pragma region Stream
 		bool CanRead() override;
