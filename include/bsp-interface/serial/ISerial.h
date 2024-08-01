@@ -1,6 +1,7 @@
 #pragma once
 #include <base/stream/Stream.h>
 #include <bsp-interface/serial/ISerialOptions.h>
+#include <string>
 
 namespace bsp
 {
@@ -9,6 +10,8 @@ namespace bsp
 		: public base::Stream
 	{
 	public:
+		virtual std::string Name() = 0;
+
 		/// @brief 以指定的波特率启动串口。
 		virtual void Open(bsp::ISerialOptions const &options) = 0;
 

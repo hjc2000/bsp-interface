@@ -55,8 +55,14 @@ bsp::IExtiManager &DI_ExtiManager();
 /// @return
 base::IEnumerable<bsp::IGpioPin> &DI_GpioPins();
 
+#pragma region 串口
 std::shared_ptr<bsp::ISerialOptions> DICreate_ISerialOptions();
 
 /// @brief 主串口。
 /// @return
 bsp::ISerial &DI_Serial();
+
+/// @brief 包含所有可用的串口的列表。
+/// @return
+base::IEnumerable<bsp::ISerial> &DI_SerialList();
+#pragma endregion
