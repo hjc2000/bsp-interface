@@ -3,7 +3,6 @@
 #include <bsp-interface/IDelayer.h>
 #include <bsp-interface/IDigitalLed.h>
 #include <bsp-interface/IIndependentWatchDog.h>
-#include <bsp-interface/ISerial.h>
 #include <bsp-interface/ISysTick.h>
 #include <bsp-interface/gpio/IGpioPin.h>
 #include <bsp-interface/interrupt/IExtiManager.h>
@@ -11,6 +10,7 @@
 #include <bsp-interface/interrupt/IsrManager.h>
 #include <bsp-interface/key/IKeyScanner.h>
 #include <bsp-interface/lcd/ILcd.h>
+#include <bsp-interface/serial/ISerial.h>
 
 /// @brief 复位单片机
 void DI_Reset();
