@@ -15,5 +15,4 @@ namespace bsp
 			DI_Serial().Write(buffer.get(), 0, have_read);
 		}
 	}
-
 }
