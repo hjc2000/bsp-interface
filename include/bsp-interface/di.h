@@ -3,6 +3,7 @@
 #include <bsp-interface/IDelayer.h>
 #include <bsp-interface/IDigitalLed.h>
 #include <bsp-interface/IIndependentWatchDog.h>
+#include <bsp-interface/ISerial.h>
 #include <bsp-interface/ISysTick.h>
 #include <bsp-interface/gpio/IGpioPin.h>
 #include <bsp-interface/interrupt/IExtiManager.h>
@@ -53,3 +54,7 @@ bsp::IExtiManager &DI_ExtiManager();
 /// @brief 获取 GPIO 引脚列表。
 /// @return
 base::IEnumerable<bsp::IGpioPin> &DI_GpioPins();
+
+/// @brief 主串口。
+/// @return
+bsp::ISerial &DI_Serial();
