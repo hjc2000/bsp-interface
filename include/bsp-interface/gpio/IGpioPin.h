@@ -40,6 +40,7 @@ namespace bsp
 
 		virtual bool ReadPin() = 0;
 		virtual void WritePin(bool value) = 0;
+		virtual void TogglePin() = 0;
 
 		/// @brief 设置中断回调函数
 		/// @warning 只有当前引脚处于关闭状态才能设置。

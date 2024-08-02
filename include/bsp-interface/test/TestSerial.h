@@ -13,6 +13,7 @@ namespace bsp
 		{
 			int32_t have_read = serial->Read(buffer.get(), 0, 128);
 			DI_GreenDigitalLed().Toggle();
+			DI_RedDigitalLed().Toggle();
 			serial->Write(buffer.get(), 0, have_read);
 		}
 	}
