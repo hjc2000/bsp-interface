@@ -10,19 +10,28 @@ namespace bsp
 		Input,
 
 		/// @brief 输入中断模式。上升沿触发。
-		InputInterruptRisingEdgeTrigger,
+		InputInterrupt_RisingEdgeTrigger,
 
 		/// @brief 输入中断模式。下降沿触发。
-		InputInterruptFallingEdgeTrigger,
+		InputInterrupt_FallingEdgeTrigger,
 
 		/// @brief 输入中断模式。上升沿和下降沿都可触发。
-		InputInterruptBothEdgeTrigger,
+		InputInterrupt_BothEdgeTrigger,
 
 		/// @brief 推挽输出
 		OutputPushPull,
 
 		/// @brief 开漏输出
 		OutputOpenDrain,
+
+		/// @brief 事件。上升沿触发。
+		Event_RisingEdgeTrigger,
+
+		/// @brief 事件。下降沿触发。
+		Event_FallingEdgeTrigger,
+
+		/// @brief 事件。上升沿和下降沿触发。
+		Event_BothEdgeTrigger,
 
 		/// @brief 复用功能
 		AlternateFunction,
