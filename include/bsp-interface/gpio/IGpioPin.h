@@ -14,16 +14,6 @@ namespace bsp
 		/// @return
 		virtual std::string PinName() const = 0;
 
-		/// @brief 端口索引。
-		/// @note 例如 stm32 的 PB0 的端口索引为 1.
-		/// @return
-		virtual int PortIndex() = 0;
-
-		/// @brief 引脚索引。
-		/// @note 例如 stm32 的 PB0 的引脚索引为 0.
-		/// @return
-		virtual int PinIndex() = 0;
-
 		/// @brief 支持的复用功能。
 		/// @note 复用功能是非常复杂的，各个型号单片机都不一样，所以采用字符串。
 		/// @note 假设某个单片机的一个引脚的复用功能有：uart1, timer1_compare_output 等。
