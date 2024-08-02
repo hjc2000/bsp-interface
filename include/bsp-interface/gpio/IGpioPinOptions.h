@@ -64,6 +64,14 @@ namespace bsp
 		PullDown,
 	};
 
+	/// @brief 引脚驱动模式。
+	/// @note 引脚方向为输出时才有效。
+	enum class IGpioPinDriver
+	{
+		PushPull,
+		OpenDrain,
+	};
+
 	/// @brief GPIO 引脚选项
 	class IGpioPinOptions
 	{
