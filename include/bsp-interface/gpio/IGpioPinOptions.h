@@ -3,45 +3,56 @@
 
 namespace bsp
 {
-	/// @brief 引脚工作模式。
-	enum class IGpioPinWorkMode
+	/// @brief 引脚方向
+	enum class IGpioPinDirection
 	{
 		/// @brief 输入
 		Input,
 
-		/// @brief 输入中断模式。上升沿触发。
-		InputInterrupt_RisingEdgeTrigger,
+		/// @brief 输出
+		Output,
 
-		/// @brief 输入中断模式。下降沿触发。
-		InputInterrupt_FallingEdgeTrigger,
+		/// @brief 双向
+		TwoWay,
 
-		/// @brief 输入中断模式。上升沿和下降沿都可触发。
-		InputInterrupt_BothEdgeTrigger,
+		/// @brief 高阻态。
+		HighResistanceState,
+	};
 
-		/// @brief 推挽输出
-		OutputPushPull,
+	/// @brief 引脚工作模式。
+	enum class IGpioPinWorkMode
+	{
+		/// @brief 通用输入输出功能。
+		Gpio,
 
-		/// @brief 开漏输出
-		OutputOpenDrain,
+		/// @brief 事件功能。
+		Event,
 
-		/// @brief 事件。上升沿触发。
-		Event_RisingEdgeTrigger,
+		/// @brief 模拟量功能。
+		Analog,
 
-		/// @brief 事件。下降沿触发。
-		Event_FallingEdgeTrigger,
-
-		/// @brief 事件。上升沿和下降沿触发。
-		Event_BothEdgeTrigger,
-
-		/// @brief 复用功能
+		/// @brief 复用功能。
 		AlternateFunction,
+	};
+
+	/// @brief 触发边沿。
+	enum class IGpioPinTriggerEdge
+	{
+		RisingEdge,
+		FallingEdge,
+		BothEdge,
 	};
 
 	/// @brief 引脚上下拉模式。
 	enum class IGpioPinPullMode
 	{
+		/// @brief 不拉
 		NoPull,
+
+		/// @brief 上拉
 		PullUp,
+
+		/// @brief 下拉
 		PullDown,
 	};
 
@@ -49,10 +60,20 @@ namespace bsp
 	class IGpioPinOptions
 	{
 	public:
+		/// @brief 方向。
+		/// @return
+		virtual bsp::IGpioPinDirection Direction() const = 0;
+		virtual void SetDirection(bsp::IGpioPinDirection value) = 0;
+
 		/// @brief 引脚工作模式。
 		/// @return
 		virtual bsp::IGpioPinWorkMode WorkMode() const = 0;
 		virtual void SetWorkMode(bsp::IGpioPinWorkMode value) = 0;
+
+		/// @brief 触发边沿。
+		/// @return
+		virtual bsp::IGpioPinTriggerEdge TriggerEdge() const = 0;
+		virtual void SetTriggerEdge(bsp::IGpioPinTriggerEdge value) = 0;
 
 		/// @brief 引脚上下拉模式。
 		/// @return
