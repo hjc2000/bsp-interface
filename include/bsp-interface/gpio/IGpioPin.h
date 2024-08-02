@@ -35,7 +35,7 @@ namespace bsp
 		/// @return
 		virtual bool IsOpen() = 0;
 
-		virtual void Open() = 0;
+		virtual void Open(bsp::IGpioPinOptions const &options) = 0;
 		virtual void Close() = 0;
 
 		virtual bool ReadPin() = 0;

@@ -42,13 +42,13 @@ namespace bsp
 	public:
 		/// @brief 引脚工作模式。
 		/// @return
-		virtual IGpioPinWorkMode WorkMode() const = 0;
-		virtual void SetWorkMode(IGpioPinWorkMode value) = 0;
+		virtual bsp::IGpioPinWorkMode WorkMode() const = 0;
+		virtual void SetWorkMode(bsp::IGpioPinWorkMode value) = 0;
 
 		/// @brief 引脚上下拉模式。
 		/// @return
-		virtual IGpioPinPullMode PullMode() const = 0;
-		virtual void SetPullMode(IGpioPinPullMode value) = 0;
+		virtual bsp::IGpioPinPullMode PullMode() const = 0;
+		virtual void SetPullMode(bsp::IGpioPinPullMode value) = 0;
 
 		/// @brief 引脚速度等级。
 		/// @note 有的平台引脚支持设置速度等级。不支持的平台忽略就好。
