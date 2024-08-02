@@ -3,7 +3,7 @@
 namespace bsp
 {
 	/// @brief 引脚上下拉模式。
-	enum GpioPinPullMode
+	enum class GpioPinPullMode
 	{
 		NoPull,
 		PullUp,
