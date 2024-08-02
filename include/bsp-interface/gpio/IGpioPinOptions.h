@@ -38,6 +38,9 @@ namespace bsp
 	/// @brief 触发边沿。
 	enum class IGpioPinTriggerEdge
 	{
+		/// @brief 禁用中断
+		Disable,
+
 		/// @brief 上升沿
 		RisingEdge,
 
