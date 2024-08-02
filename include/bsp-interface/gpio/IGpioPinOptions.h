@@ -50,7 +50,7 @@ namespace bsp
 		virtual bsp::IGpioPinPullMode PullMode() const = 0;
 		virtual void SetPullMode(bsp::IGpioPinPullMode value) = 0;
 
-		/// @brief 引脚速度等级。
+		/// @brief 引脚速度等级。等级越高速度越快。
 		/// @note 有的平台引脚支持设置速度等级。不支持的平台忽略就好。
 		/// @return
 		virtual int SpeedLevel() const = 0;
