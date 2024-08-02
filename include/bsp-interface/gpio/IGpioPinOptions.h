@@ -3,6 +3,7 @@
 
 namespace bsp
 {
+#pragma region 枚举
 	/// @brief 引脚方向
 	enum class IGpioPinDirection
 	{
@@ -71,6 +72,7 @@ namespace bsp
 		PushPull,
 		OpenDrain,
 	};
+#pragma endregion
 
 	/// @brief GPIO 引脚选项
 	class IGpioPinOptions
