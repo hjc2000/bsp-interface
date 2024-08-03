@@ -5,7 +5,6 @@
 #include <bsp-interface/IIndependentWatchDog.h>
 #include <bsp-interface/ISysTick.h>
 #include <bsp-interface/gpio/IGpioPin.h>
-#include <bsp-interface/gpio/IGpioPinManager.h>
 #include <bsp-interface/interrupt/IExtiManager.h>
 #include <bsp-interface/interrupt/IInterruptSwitch.h>
 #include <bsp-interface/interrupt/IsrManager.h>
@@ -52,9 +51,9 @@ bsp::IIndependentWatchDog &DI_IndependentWatchDog();
 /// @return
 bsp::IExtiManager &DI_ExtiManager();
 
-/// @brief GPIO 引脚管理器。
+/// @brief GPIO 引脚集合
 /// @return
-bsp::IGpioPinManager &DI_GpioPinManager();
+base::IReadOnlyCollection<std::string, bsp::IGpioPin *> &DI_GpioPinCollection();
 
 #pragma region 串口
 std::shared_ptr<bsp::ISerialOptions> DICreate_ISerialOptions();
