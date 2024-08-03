@@ -52,6 +52,8 @@ bsp::IIndependentWatchDog &DI_IndependentWatchDog();
 bsp::IExtiManager &DI_ExtiManager();
 
 #pragma region GPIO
+/// @brief 创建一个 GPIO 引脚的配置对象。
+/// @return
 std::shared_ptr<bsp::IGpioPinOptions> DICreate_GpioPinOptions();
 
 /// @brief GPIO 引脚集合
