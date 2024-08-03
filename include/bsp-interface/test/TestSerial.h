@@ -15,7 +15,7 @@ namespace bsp
 		DI_RedDigitalLed().TurnOn();
 		serial->Open(*DICreate_ISerialOptions());
 		std::unique_ptr<uint8_t[]> buffer{new uint8_t[128]};
-		while (1)
+		while (true)
 		{
 			int32_t have_read = serial->Read(buffer.get(), 0, 128);
 			DI_GreenDigitalLed().Toggle();
