@@ -29,12 +29,10 @@ bsp::IsrManager &DI_IsrManager();
 base::IReadOnlyCollection<int, bsp::IKey *> &DI_KeyCollection();
 bsp::IKeyScanner &DI_KeyScanner();
 
+#pragma region LED
 /// @brief 数字 LED 灯集合。
 /// @return
-base::IReadOnlyCollection<int, bsp::IDigitalLed *> &DI_DigitalLedCollection();
-
-#pragma region 具体颜色的 LED
-/* 具体颜色的 LED。有就实现，没有就不实现，也不要使用，避免发生链接错误。 */
+base::IReadOnlyCollection<std::string, bsp::IDigitalLed *> &DI_DigitalLedCollection();
 
 bsp::IDigitalLed &DI_RedDigitalLed();
 bsp::IDigitalLed &DI_GreenDigitalLed();
@@ -68,7 +66,7 @@ std::shared_ptr<bsp::ISerialOptions> DICreate_ISerialOptions();
 /// @return
 bsp::ISerial &DI_Serial();
 
-/// @brief 包含所有可用的串口的列表。
+/// @brief 包含所有可用串口的集合。
 /// @return
-base::IEnumerable<bsp::ISerial *> &DI_SerialList();
+base::IReadOnlyCollection<std::string, bsp::ISerial *> &DI_SerialCollection();
 #pragma endregion

@@ -5,7 +5,7 @@ namespace bsp
 {
 	inline void TestSerial()
 	{
-		bsp::ISerial *serial = *DI_SerialList().begin();
+		bsp::ISerial *serial = DI_SerialCollection().Get("serial");
 		DI_RedDigitalLed().TurnOn();
 		serial->Open(*DICreate_ISerialOptions());
 		std::unique_ptr<uint8_t[]> buffer{new uint8_t[128]};
