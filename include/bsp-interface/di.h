@@ -51,9 +51,11 @@ bsp::IIndependentWatchDog &DI_IndependentWatchDog();
 /// @return
 bsp::IExtiManager &DI_ExtiManager();
 
+#pragma region DI_GpioPinCollection
 /// @brief GPIO 引脚集合
 /// @return
 base::IReadOnlyCollection<std::string, bsp::IGpioPin *> &DI_GpioPinCollection();
+#pragma endregion
 
 #pragma region 串口
 std::shared_ptr<bsp::ISerialOptions> DICreate_ISerialOptions();
