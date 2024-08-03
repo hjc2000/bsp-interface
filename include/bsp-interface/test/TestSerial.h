@@ -1,11 +1,17 @@
 #pragma once
 #include <bsp-interface/di.h>
+#include <stdexcept>
 
 namespace bsp
 {
 	inline void TestSerial()
 	{
 		bsp::ISerial *serial = DI_SerialCollection().Get("serial");
+		if (serial == nullptr)
+		{
+			throw std::runtime_error{"找不到名为 serial 的串口"};
+		}
+
 		DI_RedDigitalLed().TurnOn();
 		serial->Open(*DICreate_ISerialOptions());
 		std::unique_ptr<uint8_t[]> buffer{new uint8_t[128]};
