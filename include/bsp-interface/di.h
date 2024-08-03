@@ -15,8 +15,16 @@
 /// @brief 复位单片机
 void DI_Reset();
 
+#pragma region 时钟
 bsp::ISysTick &DI_SysTick();
 bsp::IDelayer &DI_Delayer();
+
+/// @brief 独立看门狗。
+/// @return
+bsp::IIndependentWatchDog &DI_IndependentWatchDog();
+#pragma endregion
+
+#pragma region 中断
 bsp::IInterruptSwitch &DI_InterruptSwitch();
 
 /// @brief 中断管理器。
@@ -24,10 +32,17 @@ bsp::IInterruptSwitch &DI_InterruptSwitch();
 /// @return
 bsp::IsrManager &DI_IsrManager();
 
+/// @brief 外部中断管理器。
+/// @return
+bsp::IExtiManager &DI_ExtiManager();
+#pragma endregion
+
+#pragma region 按键
 /// @brief 按键集合。
 /// @return
 base::IReadOnlyCollection<int, bsp::IKey *> &DI_KeyCollection();
 bsp::IKeyScanner &DI_KeyScanner();
+#pragma endregion
 
 #pragma region LED
 /// @brief 数字 LED 灯集合。
@@ -39,15 +54,9 @@ bsp::IDigitalLed &DI_GreenDigitalLed();
 bsp::IDigitalLed &DI_BlueDigitalLed();
 #pragma endregion
 
+#pragma region LCD
 bsp::ILcd &DI_Lcd();
-
-/// @brief 独立看门狗。
-/// @return
-bsp::IIndependentWatchDog &DI_IndependentWatchDog();
-
-/// @brief 外部中断管理器。
-/// @return
-bsp::IExtiManager &DI_ExtiManager();
+#pragma endregion
 
 #pragma region GPIO
 /// @brief 创建一个 GPIO 引脚的配置对象。
