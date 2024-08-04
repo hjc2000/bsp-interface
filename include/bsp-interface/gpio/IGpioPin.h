@@ -36,5 +36,11 @@ namespace bsp
 		/// @warning 只有当前引脚处于关闭状态才能设置。
 		/// @param callback
 		virtual void SetInterruptCallback(std::function<void()> callback) = 0;
+
+		/// @brief 禁用此引脚的中断。
+		virtual void DisableInterrupt() = 0;
+
+		/// @brief 启用此引脚的中断。
+		virtual void EnableInterrupt() = 0;
 	};
 }
