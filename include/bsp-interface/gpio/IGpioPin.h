@@ -32,15 +32,12 @@ namespace bsp
 		virtual void WritePin(bool value) = 0;
 		virtual void TogglePin() = 0;
 
-		/// @brief 设置中断回调函数
+		/// @brief 设置中断回调函数。
 		/// @warning 只有当前引脚处于关闭状态才能设置。
 		/// @param callback
-		virtual void SetInterruptCallback(std::function<void()> callback) = 0;
+		virtual void RegisterInterruptCallback(std::function<void()> callback) = 0;
 
-		/// @brief 禁用此引脚的中断。
-		virtual void DisableInterrupt() = 0;
-
-		/// @brief 启用此引脚的中断。
-		virtual void EnableInterrupt() = 0;
+		/// @brief 取消注册此引脚的中断回调函数。
+		virtual void UnregisterInterruptCallback() = 0;
 	};
 }
