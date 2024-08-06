@@ -4,9 +4,11 @@ using namespace bsp;
 
 void KeyScanner::ScanKeysNoDelay(boost::dynamic_bitset<> &out)
 {
-	for (int i = 0; i < DI_KeyCollection().Count(); i++)
+	int i = 0;
+	for (auto key : DI_KeyCollection())
 	{
-		out[i] = DI_KeyCollection().Get(i)->KeyIsDown();
+		out[i] = key->KeyIsDown();
+		i++;
 	}
 }
 
