@@ -2,69 +2,39 @@
 
 using namespace bsp;
 
-void KeyScanner::ScanKeysNoDelay(boost::dynamic_bitset<> &out)
+void KeyScanner::ScanKeysNoDelay(std::map<std::string, bool> &out)
 {
-	int i = 0;
 	for (auto key : DI_KeyCollection())
 	{
-		out[i] = key->KeyIsDown();
-		i++;
+		out[key->KeyName()] = key->KeyIsDown();
 	}
-}
-
-KeyScanner::KeyScanner()
-	: _last_scan_result(DI_KeyCollection().Count()),
-	  _current_scan_result(DI_KeyCollection().Count()),
-
-	  _key_down_events(DI_KeyCollection().Count()),
-	  _key_up_events(DI_KeyCollection().Count()),
-	  _key_pressed_events(DI_KeyCollection().Count()),
-
-	  _no_delay_scan_result1(DI_KeyCollection().Count()),
-	  _no_delay_scan_result2(DI_KeyCollection().Count())
-{
 }
 
 void KeyScanner::ScanKeys()
 {
+	_last_scan_result = _current_scan_result;
 	ScanKeysNoDelay(_no_delay_scan_result1);
 	DI_Delayer().Delay(std::chrono::milliseconds{10});
 	ScanKeysNoDelay(_no_delay_scan_result2);
-	_current_scan_result = _no_delay_scan_result1 & _no_delay_scan_result2;
 
-	// 更新事件状态
-	_key_down_events = (~_last_scan_result) & _current_scan_result;
-	_key_up_events = _last_scan_result & (~_current_scan_result);
-	_key_pressed_events = _current_scan_result;
-	_last_scan_result = _current_scan_result;
+	for (auto key : DI_KeyCollection())
+	{
+		_current_scan_result[key->KeyName()] = _no_delay_scan_result1[key->KeyName()] &&
+											   _no_delay_scan_result2[key->KeyName()];
+	}
 }
 
-bool KeyScanner::HasKeyDownEvent(int key_index)
+bool KeyScanner::HasKeyDownEvent(std::string key_name)
 {
-	if (key_index >= DI_KeyCollection().Count())
-	{
-		return false;
-	}
-
-	return _key_down_events[key_index];
+	return _current_scan_result[key_name] && (!_last_scan_result[key_name]);
 }
 
-bool KeyScanner::HasKeyUpEvent(int key_index)
+bool KeyScanner::HasKeyUpEvent(std::string key_name)
 {
-	if (key_index >= DI_KeyCollection().Count())
-	{
-		return false;
-	}
-
-	return _key_up_events[key_index];
+	return (!_current_scan_result[key_name]) && _last_scan_result[key_name];
 }
 
-bool KeyScanner::HasKeyPressedEvent(int key_index)
+bool KeyScanner::HasKeyPressedEvent(std::string key_name)
 {
-	if (key_index >= DI_KeyCollection().Count())
-	{
-		return false;
-	}
-
-	return _key_pressed_events[key_index];
+	return _current_scan_result[key_name];
 }

@@ -4,6 +4,7 @@
 #include <bsp-interface/di.h>
 #include <bsp-interface/key/IKey.h>
 #include <bsp-interface/key/IKeyScanner.h>
+#include <map>
 
 namespace bsp
 {
@@ -17,24 +18,17 @@ namespace bsp
 		: public bsp::IKeyScanner
 	{
 	private:
-		boost::dynamic_bitset<> _last_scan_result;
-		boost::dynamic_bitset<> _current_scan_result;
+		std::map<std::string, bool> _last_scan_result;
+		std::map<std::string, bool> _current_scan_result;
+		std::map<std::string, bool> _no_delay_scan_result1;
+		std::map<std::string, bool> _no_delay_scan_result2;
 
-		boost::dynamic_bitset<> _key_down_events;
-		boost::dynamic_bitset<> _key_up_events;
-		boost::dynamic_bitset<> _key_pressed_events;
-
-		boost::dynamic_bitset<> _no_delay_scan_result1;
-		boost::dynamic_bitset<> _no_delay_scan_result2;
-
-		void ScanKeysNoDelay(boost::dynamic_bitset<> &out);
+		void ScanKeysNoDelay(std::map<std::string, bool> &out);
 
 	public:
-		KeyScanner();
-
 		void ScanKeys() override;
-		bool HasKeyDownEvent(int key_index) override;
-		bool HasKeyUpEvent(int key_index) override;
-		bool HasKeyPressedEvent(int key_index) override;
+		bool HasKeyDownEvent(std::string key_name) override;
+		bool HasKeyUpEvent(std::string key_name) override;
+		bool HasKeyPressedEvent(std::string key_name) override;
 	};
 }

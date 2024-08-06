@@ -40,7 +40,7 @@ bsp::IExtiManager &DI_ExtiManager();
 #pragma region 按键
 /// @brief 按键集合。
 /// @return
-base::IReadOnlyCollection<int, bsp::IKey *> &DI_KeyCollection();
+base::IReadOnlyCollection<std::string, bsp::IKey *> &DI_KeyCollection();
 bsp::IKeyScanner &DI_KeyScanner();
 #pragma endregion
 
