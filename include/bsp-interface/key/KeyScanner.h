@@ -1,5 +1,4 @@
 #pragma once
-#include <boost/dynamic_bitset.hpp>
 #include <bsp-interface/IDelayer.h>
 #include <bsp-interface/di.h>
 #include <bsp-interface/key/IKey.h>
