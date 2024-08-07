@@ -1,4 +1,4 @@
-#include"ST7789LcdDriver.h"
+#include "ST7789LcdDriver.h"
 
 using namespace bsp;
 
@@ -7,24 +7,23 @@ uint32_t bsp::ST7789LcdDriver::LcdDriverChipId()
 {
 	uint16_t id = 0;
 	WriteCommand(0X04);
-	uint16_t temp = ReadData();	// 第一次读取会读取到刚刚写入的命令 0x04
+	uint16_t temp = ReadData(); // 第一次读取会读取到刚刚写入的命令 0x04
 	temp = ReadData();			// 读到 0x85
 	temp = ReadData();			// 读到 0x85
 	id = temp << 8;
-	temp = ReadData();			// 读到 0x52
+	temp = ReadData(); // 读到 0x52
 	id |= temp;
 	return id;
 }
 
 void bsp::ST7789LcdDriver::DisplayOn()
 {
-	_delayer.Delay(std::chrono::milliseconds { 50 });
+	_delayer.Delay(std::chrono::milliseconds{50});
 	WriteCommand(0x11);
-	_delayer.Delay(std::chrono::milliseconds { 120 });
+	_delayer.Delay(std::chrono::milliseconds{120});
 
 	WriteCommand(0x36);
 	WriteData(0x00);
-
 
 	WriteCommand(0x3A);
 	WriteData(0X05);
@@ -40,7 +39,7 @@ void bsp::ST7789LcdDriver::DisplayOn()
 	WriteData(0x35);
 
 	WriteCommand(0xBB); /* vcom */
-	WriteData(0x32);  /* 30 */
+	WriteData(0x32);	/* 30 */
 
 	WriteCommand(0xC0);
 	WriteData(0x0C);
@@ -49,10 +48,10 @@ void bsp::ST7789LcdDriver::DisplayOn()
 	WriteData(0x01);
 
 	WriteCommand(0xC3); /* vrh */
-	WriteData(0x10);  /* 17 0D */
+	WriteData(0x10);	/* 17 0D */
 
 	WriteCommand(0xC4); /* vdv */
-	WriteData(0x20);  /* 20 */
+	WriteData(0x20);	/* 20 */
 
 	WriteCommand(0xC6);
 	WriteData(0x0f);
@@ -77,8 +76,7 @@ void bsp::ST7789LcdDriver::DisplayOn()
 	WriteData(0x14);
 	WriteData(0x17);
 
-
-	WriteCommand(0XE1);  /* Set Gamma */
+	WriteCommand(0XE1); /* Set Gamma */
 	WriteData(0xd0);
 	WriteData(0x00);
 	WriteData(0x02);
@@ -93,7 +91,6 @@ void bsp::ST7789LcdDriver::DisplayOn()
 	WriteData(0x17);
 	WriteData(0x1b);
 	WriteData(0x1e);
-
 
 	WriteCommand(0x2A);
 	WriteData(0x00);
@@ -118,17 +115,13 @@ void bsp::ST7789LcdDriver::DisplayOff()
 	WriteCommand(0X28);
 }
 
-void bsp::ST7789LcdDriver::SetScanDirection(
-	bool horizontal_priority_scanning,
-	bsp::ILcd::HorizontalDirection hdir,
-	bsp::ILcd::VerticalDirection vdir
-)
+void bsp::ST7789LcdDriver::SetScanDirection(bool horizontal_priority_scanning,
+											bsp::ILcd::HorizontalDirection hdir,
+											bsp::ILcd::VerticalDirection vdir)
 {
-	auto direction_code = [](
-		bool horizontal_priority_scanning,
-		HorizontalDirection hdir,
-		VerticalDirection vdir
-		)
+	auto direction_code = [](bool horizontal_priority_scanning,
+							 HorizontalDirection hdir,
+							 VerticalDirection vdir)
 	{
 		if (horizontal_priority_scanning)
 		{
@@ -171,10 +164,8 @@ void bsp::ST7789LcdDriver::SetScanDirection(
 	_is_horizontal_priority_scanning = horizontal_priority_scanning;
 	_horizontal_direction = hdir;
 	_vertical_direction = vdir;
-	WriteCommand(
-		0X36,
-		direction_code(horizontal_priority_scanning, hdir, vdir) | 0x8
-	);
+	WriteCommand(0X36,
+				 direction_code(horizontal_priority_scanning, hdir, vdir) | 0x8);
 
 	SetWindow(0, 0, Width(), Height());
 }
