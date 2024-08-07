@@ -10,6 +10,8 @@ namespace bsp
 		: public base::Stream
 	{
 	public:
+		virtual ~ISerial() = default;
+
 		virtual std::string Name() = 0;
 
 		/// @brief 以指定的波特率启动串口。

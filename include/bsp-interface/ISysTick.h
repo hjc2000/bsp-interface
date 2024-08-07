@@ -14,6 +14,8 @@ namespace bsp
 		: public bsp::IDelayer
 	{
 	public:
+		virtual ~ISysTick() = default;
+
 		/// @brief 当前的实际频率
 		/// @return
 		virtual uint32_t Frequency() const = 0;

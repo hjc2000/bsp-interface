@@ -10,6 +10,8 @@ namespace bsp
 	class IGpioPin
 	{
 	public:
+		virtual ~IGpioPin() = default;
+
 		/// @brief 引脚名称
 		/// @return
 		virtual std::string PinName() const = 0;

@@ -7,6 +7,8 @@ namespace bsp
 	class IBaseTimer
 	{
 	public:
+		virtual ~IBaseTimer() = default;
+
 		/// @brief 初始化定时器
 		/// @param period 定时周期
 		virtual void Initialize(std::chrono::milliseconds period) = 0;

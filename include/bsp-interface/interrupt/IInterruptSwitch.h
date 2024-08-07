@@ -7,6 +7,8 @@ namespace bsp
 	class IInterruptSwitch
 	{
 	public:
+		virtual ~IInterruptSwitch() = default;
+
 		/// @brief 禁用 irq 指定的中断。
 		/// @param irq
 		virtual void DisableInterrupt(uint32_t irq) noexcept = 0;

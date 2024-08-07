@@ -8,6 +8,8 @@ namespace bsp
 	class IExtiManager
 	{
 	public:
+		virtual ~IExtiManager() = default;
+
 		/// @brief 注册使用一条外部中断线。
 		/// @param line_id 中断线的 id
 		/// @param callback 发生中断时的回调函数

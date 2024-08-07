@@ -7,6 +7,8 @@ namespace bsp
 	class IEventDrivenKey
 	{
 	public:
+		virtual ~IEventDrivenKey() = default;
+
 		virtual bool IsPressed() = 0;
 		virtual void ClearPressedFlag() = 0;
 	};

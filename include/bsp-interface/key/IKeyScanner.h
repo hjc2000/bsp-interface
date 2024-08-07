@@ -8,6 +8,8 @@ namespace bsp
 	class IKeyScanner
 	{
 	public:
+		virtual ~IKeyScanner() = default;
+
 		/// @brief 执行键盘扫描，更新内部状态。此函数应该被不断调用。
 		/// @note 此函数需要被循环调用，这样才能扫描到按键事件。
 		virtual void ScanKeys() = 0;

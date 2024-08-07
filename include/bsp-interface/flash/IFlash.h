@@ -9,6 +9,8 @@ namespace bsp
 		: public base::ILock
 	{
 	public:
+		virtual ~IFlash() = default;
+
 		/// @brief 获取此 flash 的 bank 数量。
 		/// @return
 		virtual int32_t BankCount() const = 0;

@@ -8,6 +8,8 @@ namespace bsp
 	class IDigitalLed
 	{
 	public:
+		virtual ~IDigitalLed() = default;
+
 		virtual void TurnOn() = 0;
 		virtual void TurnOff() = 0;
 		virtual void Toggle() = 0;

@@ -7,6 +7,8 @@ namespace bsp
 	class IIndependentWatchDog
 	{
 	public:
+		virtual ~IIndependentWatchDog() = default;
+
 		/// @brief 看门狗超时时间。
 		/// @return
 		virtual std::chrono::milliseconds WatchDogTimeoutDuration() const = 0;

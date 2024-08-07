@@ -1,6 +1,6 @@
 #pragma once
-#include<base/math/Fraction.h>
-#include<chrono>
+#include <base/math/Fraction.h>
+#include <chrono>
 
 namespace bsp
 {
@@ -10,7 +10,9 @@ namespace bsp
 	class IPwmOutputPort
 	{
 	public:
-		#pragma region 周期
+		virtual ~IPwmOutputPort() = default;
+
+#pragma region 周期
 		/// <summary>
 		///		支持的最小周期。设置周期时不能小于此值。
 		/// </summary>
@@ -36,7 +38,7 @@ namespace bsp
 		/// </summary>
 		/// <param name="value"></param>
 		virtual void SetPeriod(std::chrono::microseconds value) = 0;
-		#pragma endregion
+#pragma endregion
 
 		/// <summary>
 		///		占空比。

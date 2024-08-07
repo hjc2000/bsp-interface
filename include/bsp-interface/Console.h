@@ -6,7 +6,7 @@
 namespace bsp
 {
 	/// @brief 单例控制台
-	class Console
+	class Console final
 	{
 	private:
 		Console() = default;

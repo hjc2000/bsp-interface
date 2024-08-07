@@ -78,6 +78,8 @@ namespace bsp
 	class IGpioPinOptions
 	{
 	public:
+		virtual ~IGpioPinOptions() = default;
+
 		/// @brief 方向。
 		/// @return
 		virtual bsp::IGpioPinDirection Direction() const = 0;

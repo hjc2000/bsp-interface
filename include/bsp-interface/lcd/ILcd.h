@@ -1,6 +1,6 @@
 #pragma once
-#include<stdint.h>
-#include<string>
+#include <stdint.h>
+#include <string>
 
 namespace bsp
 {
@@ -17,6 +17,8 @@ namespace bsp
 	class ILcd
 	{
 	public:
+		virtual ~ILcd() = default;
+
 		virtual void TurnOnBackLight() = 0;
 		virtual void TurnOffBackLight() = 0;
 
@@ -51,11 +53,9 @@ namespace bsp
 		/// </param>
 		/// <param name="hdir"></param>
 		/// <param name="vdir"></param>
-		virtual void SetScanDirection(
-			bool horizontal_priority_scanning,
-			bsp::ILcd::HorizontalDirection hdir,
-			bsp::ILcd::VerticalDirection vdir
-		) = 0;
+		virtual void SetScanDirection(bool horizontal_priority_scanning,
+									  bsp::ILcd::HorizontalDirection hdir,
+									  bsp::ILcd::VerticalDirection vdir) = 0;
 
 		/// <summary>
 		///		清屏

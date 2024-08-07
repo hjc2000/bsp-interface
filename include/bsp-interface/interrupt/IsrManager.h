@@ -7,7 +7,7 @@
 namespace bsp
 {
 	/// @brief 中断服务函数管理器
-	class IsrManager
+	class IsrManager final
 	{
 	private:
 		IsrManager() = default;
