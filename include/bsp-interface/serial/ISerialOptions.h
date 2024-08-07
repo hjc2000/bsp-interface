@@ -53,6 +53,8 @@ namespace bsp
 	class ISerialOptions
 	{
 	public:
+		virtual ~ISerialOptions() = default;
+
 		/// @brief 将本对象设置为默认配置。
 		virtual void UseDefaultOptions() = 0;
 
