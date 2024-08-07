@@ -1,5 +1,5 @@
 #pragma once
-#include <bsp-interface/IDelayer.h>
+#include <bsp-interface/di.h>
 #include <bsp-interface/lcd/ILcd.h>
 
 namespace bsp
@@ -7,14 +7,7 @@ namespace bsp
 	class ST7789LcdDriver
 		: public bsp::ILcd
 	{
-	protected:
-		ST7789LcdDriver(bsp::IDelayer &delayer)
-			: _delayer(delayer)
-		{
-		}
-
 	private:
-		bsp::IDelayer &_delayer;
 		bool _is_horizontal_priority_scanning = true;
 		bsp::ILcd::HorizontalDirection _horizontal_direction = bsp::ILcd::HorizontalDirection::LeftToRight;
 		bsp::ILcd::VerticalDirection _vertical_direction = bsp::ILcd::VerticalDirection::TopToBottom;
