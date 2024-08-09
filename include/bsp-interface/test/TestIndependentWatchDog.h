@@ -13,7 +13,7 @@ namespace bsp
 		while (true)
 		{
 			DI_KeyScanner().ScanKeys();
-			if (DI_KeyScanner().HasKeyDownEvent(0))
+			if (DI_KeyScanner().HasKeyDownEvent("key0"))
 			{
 				DI_IndependentWatchDog().Feed();
 			}
