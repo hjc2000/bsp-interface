@@ -15,6 +15,10 @@
 /// @brief 复位单片机
 void DI_Reset();
 
+/// @brief 处理未捕获的异常
+/// @param msg
+void DI_UncaughtExcepton(std::string msg);
+
 #pragma region 时钟
 bsp::ISysTick &DI_SysTick();
 bsp::IDelayer &DI_Delayer();
