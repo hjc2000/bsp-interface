@@ -23,8 +23,6 @@ namespace bsp
 		}
 
 		/// @brief 获取指定的中断向量对应的中断服务函数。
-		/// @warning 注意，返回的可能是 nullptr
-		///
 		/// @param irq
 		/// @return
 		std::function<void()> &GetIsr(uint32_t irq) noexcept;
