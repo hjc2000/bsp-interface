@@ -3,5 +3,5 @@
 
 bsp::IsrManager &DI_IsrManager()
 {
-	return bsp::IsrManager::Instance();
+    return bsp::IsrManager::Instance();
 }
