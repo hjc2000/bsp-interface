@@ -19,6 +19,7 @@ namespace bsp
         VeryHigh,
     };
 
+    /// @brief DMA 选项。
     class IDmaOptions
     {
     public:
