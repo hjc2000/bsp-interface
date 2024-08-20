@@ -1,5 +1,6 @@
 #pragma once
 #include <base/container/ICollection.h>
+#include <bsp-interface/dma/IDmaOptions.h>
 #include <bsp-interface/gpio/IGpioPin.h>
 #include <bsp-interface/IDelayer.h>
 #include <bsp-interface/IDigitalLed.h>
@@ -78,4 +79,10 @@ bsp::ISerial &DI_Serial();
 /// @brief 包含所有可用串口的集合。
 /// @return
 base::IReadOnlyCollection<std::string, bsp::ISerial *> &DI_SerialCollection();
+#pragma endregion
+
+#pragma region DMA
+/// @brief 构造一个 bsp::IDmaOptions 对象并返回。它可以用来配置 DMA。
+/// @return bsp::IDmaOptions 对象
+std::shared_ptr<bsp::IDmaOptions> DICreate_DmaOptions();
 #pragma endregion
