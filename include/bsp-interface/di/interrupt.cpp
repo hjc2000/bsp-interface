@@ -1,4 +1,4 @@
-#include "di.h"
+#include "interrupt.h"
 #include <base/Initializer.h>
 
 bsp::IsrManager &DI_IsrManager()
