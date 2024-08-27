@@ -1,5 +1,6 @@
 #pragma once
 #include <bsp-interface/di/di.h>
+#include <bsp-interface/di/lcd.h>
 
 #ifndef No_Build_Test
 namespace bsp

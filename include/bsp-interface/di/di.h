@@ -9,7 +9,6 @@
 #include <bsp-interface/interrupt/IsrManager.h>
 #include <bsp-interface/ISysTick.h>
 #include <bsp-interface/key/IKeyScanner.h>
-#include <bsp-interface/lcd/ILcd.h>
 
 /// @brief 复位单片机
 void DI_Reset();
@@ -51,8 +50,4 @@ base::IReadOnlyCollection<std::string, bsp::IDigitalLed *> &DI_DigitalLedCollect
 bsp::IDigitalLed &DI_RedDigitalLed();
 bsp::IDigitalLed &DI_GreenDigitalLed();
 bsp::IDigitalLed &DI_BlueDigitalLed();
-#pragma endregion
-
-#pragma region LCD
-bsp::ILcd &DI_Lcd();
 #pragma endregion
