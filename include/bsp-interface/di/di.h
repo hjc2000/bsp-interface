@@ -60,16 +60,6 @@ bsp::IDigitalLed &DI_BlueDigitalLed();
 bsp::ILcd &DI_Lcd();
 #pragma endregion
 
-#pragma region GPIO
-/// @brief 创建一个 GPIO 引脚的配置对象。
-/// @return
-std::shared_ptr<bsp::IGpioPinOptions> DICreate_GpioPinOptions();
-
-/// @brief GPIO 引脚集合
-/// @return
-base::IReadOnlyCollection<std::string, bsp::IGpioPin *> &DI_GpioPinCollection();
-#pragma endregion
-
 #pragma region 串口
 std::shared_ptr<bsp::ISerialOptions> DICreate_ISerialOptions();
 

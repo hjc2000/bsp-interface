@@ -1,24 +1,24 @@
 #pragma once
-#include <bsp-interface/di.h>
+#include <bsp-interface/di/di.h>
 
 #ifndef No_Build_Test
 namespace bsp
 {
-	inline void TestIndependentWatchDog()
-	{
-		DI_Delayer().Delay(std::chrono::milliseconds{500});
-		DI_RedDigitalLed().TurnOn();
-		DI_IndependentWatchDog().SetWatchDogTimeoutDuration(std::chrono::milliseconds(1000));
+    inline void TestIndependentWatchDog()
+    {
+        DI_Delayer().Delay(std::chrono::milliseconds{500});
+        DI_RedDigitalLed().TurnOn();
+        DI_IndependentWatchDog().SetWatchDogTimeoutDuration(std::chrono::milliseconds(1000));
 
-		while (true)
-		{
-			DI_KeyScanner().ScanKeys();
-			if (DI_KeyScanner().HasKeyDownEvent("key0"))
-			{
-				DI_IndependentWatchDog().Feed();
-			}
-		}
-	}
+        while (true)
+        {
+            DI_KeyScanner().ScanKeys();
+            if (DI_KeyScanner().HasKeyDownEvent("key0"))
+            {
+                DI_IndependentWatchDog().Feed();
+            }
+        }
+    }
 
-}
+} // namespace bsp
 #endif

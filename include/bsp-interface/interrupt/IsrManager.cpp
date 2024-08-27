@@ -1,6 +1,6 @@
 #include "IsrManager.h"
 #include <base/Initializer.h>
-#include <bsp-interface/di.h>
+#include <bsp-interface/di/di.h>
 
 using namespace bsp;
 
