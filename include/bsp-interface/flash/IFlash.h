@@ -2,6 +2,7 @@
 #include <base/LockGuard.h>
 #include <cstddef>
 #include <stdint.h>
+#include <string>
 
 namespace bsp
 {
@@ -9,6 +10,10 @@ namespace bsp
         public base::ILock
     {
     public:
+        /// @brief flash 的名称。
+        /// @return
+        virtual std::string Name() = 0;
+
         /// @brief 获取此 flash 的 bank 数量。
         /// @return
         virtual int32_t BankCount() const = 0;
