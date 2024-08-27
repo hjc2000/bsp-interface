@@ -1,8 +1,6 @@
 #pragma once
 #include <base/container/ICollection.h>
-#include <bsp-interface/gpio/IGpioPin.h>
 #include <bsp-interface/IDelayer.h>
-#include <bsp-interface/IIndependentWatchDog.h>
 #include <bsp-interface/interrupt/IExtiManager.h>
 #include <bsp-interface/interrupt/IInterruptSwitch.h>
 #include <bsp-interface/interrupt/IsrManager.h>
@@ -16,9 +14,6 @@ void DI_Reset();
 bsp::ISysTick &DI_SysTick();
 bsp::IDelayer &DI_Delayer();
 
-/// @brief 独立看门狗。
-/// @return
-bsp::IIndependentWatchDog &DI_IndependentWatchDog();
 #pragma endregion
 
 #pragma region 中断

@@ -1,5 +1,6 @@
 #pragma once
 #include <bsp-interface/di/di.h>
+#include <bsp-interface/di/independent-watch-dog.h>
 #include <bsp-interface/di/led.h>
 
 #ifndef No_Build_Test
