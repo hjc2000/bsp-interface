@@ -5,11 +5,10 @@
 
 namespace bsp
 {
-    class IFlash : public base::ILock
+    class IFlash :
+        public base::ILock
     {
     public:
-        virtual ~IFlash() = default;
-
         /// @brief 获取此 flash 的 bank 数量。
         /// @return
         virtual int32_t BankCount() const = 0;
@@ -59,8 +58,8 @@ namespace bsp
         /// @brief 将 flash 的数据读取到缓冲区中
         /// @param bank_index
         /// @param addr 相对于此 bank 的起始地址的地址。
-        /// @param buffer
-        /// @param count
+        /// @param buffer 读出的数据放到此缓冲区。
+        /// @param count 要读取的字节数。
         virtual void ReadBuffer(int32_t bank_index, size_t addr, uint8_t *buffer, int32_t count) = 0;
 
         /// @brief 编程
@@ -69,8 +68,10 @@ namespace bsp
         /// @param addr 要写入的数据相对于此 bank 的起始地址的地址。
         /// @note 此地址必须能被 MinProgrammingUnit 整除。
         ///
-        /// @param buffer 要写入到 flash 的数据所在的缓冲区。
-        /// @warning buffer 的字节数必须 >= MinProgrammingUnit，否则将发生内存访问越界。
+        /// @param buffer 要写入到 flash 的数据所在的缓冲区。大小为 MinProgrammingUnit。
+        /// @note 底层在编程时，会读取并且只会读取 MinProgrammingUnit 个字节。
+        /// @warning buffer 的字节数必须 >= MinProgrammingUnit ，否则因为底层无论如何都会读取
+        /// MinProgrammingUnit 个字节，所以将发生内存访问越界。
         /// @note 不同平台对 buffer 有对齐要求。例如 stm32 的 HAL 要求 buffer 要 4 字节
         /// 对齐。这里使用 uint8_t const * ，接口的实现者自己计算 buffer 能否被对齐字节数整除，
         /// 不能整除抛出异常。
