@@ -1,5 +1,4 @@
 #pragma once
-#include <bsp-interface/di/di.h>
 #include <bsp-interface/di/led.h>
 #include <bsp-interface/di/serial.h>
 #include <stdexcept>

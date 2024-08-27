@@ -1,5 +1,4 @@
 #pragma once
-#include <bsp-interface/di/di.h>
 #include <bsp-interface/lcd/ILcd.h>
 
 namespace bsp

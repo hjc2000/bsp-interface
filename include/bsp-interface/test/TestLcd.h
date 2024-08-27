@@ -1,6 +1,5 @@
 #pragma once
 #include <bsp-interface/di/delayer.h>
-#include <bsp-interface/di/di.h>
 #include <bsp-interface/di/lcd.h>
 #include <bsp-interface/di/led.h>
 

@@ -1,5 +1,4 @@
 #pragma once
-#include <bsp-interface/di/di.h>
 #include <bsp-interface/IDelayer.h>
 #include <bsp-interface/key/IKey.h>
 #include <bsp-interface/key/IKeyScanner.h>
