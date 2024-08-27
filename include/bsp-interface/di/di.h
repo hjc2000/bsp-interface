@@ -5,7 +5,6 @@
 #include <bsp-interface/interrupt/IInterruptSwitch.h>
 #include <bsp-interface/interrupt/IsrManager.h>
 #include <bsp-interface/ISysTick.h>
-#include <bsp-interface/key/IKeyScanner.h>
 
 /// @brief 复位单片机
 void DI_Reset();
@@ -27,11 +26,4 @@ bsp::IsrManager &DI_IsrManager();
 /// @brief 外部中断管理器。
 /// @return
 bsp::IExtiManager &DI_ExtiManager();
-#pragma endregion
-
-#pragma region 按键
-/// @brief 按键集合。
-/// @return
-base::IReadOnlyCollection<std::string, bsp::IKey *> &DI_KeyCollection();
-bsp::IKeyScanner &DI_KeyScanner();
 #pragma endregion
