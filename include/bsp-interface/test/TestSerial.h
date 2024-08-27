@@ -1,5 +1,6 @@
 #pragma once
 #include <bsp-interface/di/di.h>
+#include <bsp-interface/di/serial.h>
 #include <stdexcept>
 
 namespace bsp

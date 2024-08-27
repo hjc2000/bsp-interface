@@ -12,7 +12,6 @@
 #include <bsp-interface/ISysTick.h>
 #include <bsp-interface/key/IKeyScanner.h>
 #include <bsp-interface/lcd/ILcd.h>
-#include <bsp-interface/serial/ISerial.h>
 
 /// @brief 复位单片机
 void DI_Reset();
@@ -58,18 +57,6 @@ bsp::IDigitalLed &DI_BlueDigitalLed();
 
 #pragma region LCD
 bsp::ILcd &DI_Lcd();
-#pragma endregion
-
-#pragma region 串口
-std::shared_ptr<bsp::ISerialOptions> DICreate_ISerialOptions();
-
-/// @brief 主串口。
-/// @return
-bsp::ISerial &DI_Serial();
-
-/// @brief 包含所有可用串口的集合。
-/// @return
-base::IReadOnlyCollection<std::string, bsp::ISerial *> &DI_SerialCollection();
 #pragma endregion
 
 #pragma region DMA
