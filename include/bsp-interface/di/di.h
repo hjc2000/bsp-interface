@@ -2,7 +2,6 @@
 #include <base/container/ICollection.h>
 #include <bsp-interface/gpio/IGpioPin.h>
 #include <bsp-interface/IDelayer.h>
-#include <bsp-interface/IDigitalLed.h>
 #include <bsp-interface/IIndependentWatchDog.h>
 #include <bsp-interface/interrupt/IExtiManager.h>
 #include <bsp-interface/interrupt/IInterruptSwitch.h>
@@ -40,14 +39,4 @@ bsp::IExtiManager &DI_ExtiManager();
 /// @return
 base::IReadOnlyCollection<std::string, bsp::IKey *> &DI_KeyCollection();
 bsp::IKeyScanner &DI_KeyScanner();
-#pragma endregion
-
-#pragma region LED
-/// @brief 数字 LED 灯集合。
-/// @return
-base::IReadOnlyCollection<std::string, bsp::IDigitalLed *> &DI_DigitalLedCollection();
-
-bsp::IDigitalLed &DI_RedDigitalLed();
-bsp::IDigitalLed &DI_GreenDigitalLed();
-bsp::IDigitalLed &DI_BlueDigitalLed();
 #pragma endregion
