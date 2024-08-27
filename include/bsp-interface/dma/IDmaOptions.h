@@ -3,7 +3,7 @@
 namespace bsp
 {
     /// @brief DMA 的数据传输方向。
-    enum class IDmaOptionsDirection
+    enum class IDmaOptions_Direction
     {
         PeripheralToMemory,
         MemoryToPeripheral,
@@ -11,7 +11,7 @@ namespace bsp
     };
 
     /// @brief DMA 优先级
-    enum class IDmaOptionsPriority
+    enum class IDmaOptions_Priority
     {
         Low,
         Medium,
@@ -25,8 +25,8 @@ namespace bsp
     public:
         /// @brief DMA 拷贝数据的方向。
         /// @return
-        virtual IDmaOptionsDirection Direction() const = 0;
-        virtual void SetDirection(IDmaOptionsDirection value) = 0;
+        virtual IDmaOptions_Direction Direction() const = 0;
+        virtual void SetDirection(IDmaOptions_Direction value) = 0;
 
         /// @brief DMA 拷贝数据的过程中，是否自动递增外设数据指针。
         /// @return 返回 true 表示递增，返回 false 表示不递增。
@@ -50,7 +50,7 @@ namespace bsp
 
         /// @brief DMA 优先级。
         /// @return
-        virtual IDmaOptionsPriority Priority() const = 0;
-        virtual void SetPriority(IDmaOptionsPriority value) = 0;
+        virtual IDmaOptions_Priority Priority() const = 0;
+        virtual void SetPriority(IDmaOptions_Priority value) = 0;
     };
 } // namespace bsp
