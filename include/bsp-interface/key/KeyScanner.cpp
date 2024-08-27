@@ -1,4 +1,5 @@
 #include "KeyScanner.h"
+#include <bsp-interface/di/delayer.h>
 #include <bsp-interface/di/key.h>
 
 using namespace bsp;

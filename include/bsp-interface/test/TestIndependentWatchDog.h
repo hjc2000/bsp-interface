@@ -1,4 +1,5 @@
 #pragma once
+#include <bsp-interface/di/delayer.h>
 #include <bsp-interface/di/di.h>
 #include <bsp-interface/di/independent-watch-dog.h>
 #include <bsp-interface/di/key.h>
