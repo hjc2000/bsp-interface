@@ -3,4 +3,4 @@
 #include <bsp-interface/flash/IFlash.h>
 #include <string>
 
-base::IReadOnlyCollection<std::string, bsp::IFlash> &DI_FlashCollection();
+base::IReadOnlyCollection<std::string, bsp::IFlash *> &DI_FlashCollection();
