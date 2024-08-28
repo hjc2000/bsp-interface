@@ -14,6 +14,6 @@ namespace bsp
 
         /// @brief 返回底层的句柄。
         /// @return
-        virtual void *Handle() const = 0;
+        virtual void *Handle() = 0;
     };
 } // namespace bsp
