@@ -1,5 +1,5 @@
 #pragma once
-#include <base/container/ICollection.h>
+#include <base/container/IDictionary.h>
 #include <bsp-interface/serial/ISerial.h>
 #include <memory>
 
@@ -11,4 +11,4 @@ bsp::ISerial &DI_Serial();
 
 /// @brief 包含所有可用串口的集合。
 /// @return
-base::IReadOnlyCollection<std::string, bsp::ISerial *> &DI_SerialCollection();
+base::IReadOnlyDictionary<std::string, bsp::ISerial *> &DI_SerialCollection();

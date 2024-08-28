@@ -1,9 +1,9 @@
 #pragma once
-#include <base/container/ICollection.h>
+#include <base/container/IDictionary.h>
 #include <bsp-interface/key/IKeyScanner.h>
 
 /// @brief 按键集合。
 /// @return
-base::IReadOnlyCollection<std::string, bsp::IKey *> &DI_KeyCollection();
+base::IReadOnlyDictionary<std::string, bsp::IKey *> &DI_KeyCollection();
 
 bsp::IKeyScanner &DI_KeyScanner();
