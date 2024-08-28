@@ -1,8 +1,8 @@
 #pragma once
-#include <base/container/IDictionary.h>
+#include <base/container/ICollection.h>
 #include <bsp-interface/flash/IFlash.h>
 #include <string>
 
 /// @brief flash 集合。
 /// @return
-base::IReadOnlyDictionary<std::string, bsp::IFlash *> &DI_FlashCollection();
+base::ICollection<std::string, bsp::IFlash *> const &DI_FlashCollection();

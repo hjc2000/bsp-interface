@@ -1,11 +1,11 @@
 #pragma once
-#include <base/container/IDictionary.h>
+#include <base/container/ICollection.h>
 #include <bsp-interface/IDigitalLed.h>
 #include <string>
 
 /// @brief 数字 LED 灯集合。
 /// @return
-base::IReadOnlyDictionary<std::string, bsp::IDigitalLed *> &DI_DigitalLedCollection();
+base::ICollection<std::string, bsp::IDigitalLed *> const &DI_DigitalLedCollection();
 
 bsp::IDigitalLed &DI_RedDigitalLed();
 bsp::IDigitalLed &DI_GreenDigitalLed();
