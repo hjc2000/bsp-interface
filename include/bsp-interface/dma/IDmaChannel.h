@@ -10,6 +10,7 @@ namespace bsp
     public:
         virtual std::string Name() = 0;
         virtual void Open(bsp::IDmaOptions const &options) = 0;
+        virtual bool IsOpen() = 0;
 
         /// @brief 返回底层的句柄。
         /// @return
