@@ -1,4 +1,5 @@
 #pragma once
+#include <functional>
 #include <stdint.h>
 
 namespace bsp
@@ -7,8 +8,6 @@ namespace bsp
     class IInterruptSwitch
     {
     public:
-        virtual ~IInterruptSwitch() = default;
-
         /// @brief 禁用 irq 指定的中断。
         /// @param irq
         virtual void DisableInterrupt(uint32_t irq) noexcept = 0;
@@ -27,5 +26,9 @@ namespace bsp
 
         /// @brief 启用全局中断
         virtual void EnableGlobalInterrupt() noexcept = 0;
+
+        /// @brief 执行临界区工作。会通过禁用全局中断来保证安全。
+        /// @param func
+        void DoGlobalCriticalWork(std::function<void()> func);
     };
 } // namespace bsp
