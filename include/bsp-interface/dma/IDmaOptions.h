@@ -1,4 +1,5 @@
 #pragma once
+#include <string>
 
 namespace bsp
 {
@@ -52,5 +53,13 @@ namespace bsp
         /// @return
         virtual IDmaOptions_Priority Priority() const = 0;
         virtual void SetPriority(IDmaOptions_Priority value) = 0;
+
+        /// @brief 此 DMA 要被连接到哪里
+        /// @return
+        virtual std::string Parent() const = 0;
+
+        /// @brief 此 DMA 要被连接到哪里
+        /// @param value
+        virtual void SetParent(std::string value) = 0;
     };
 } // namespace bsp
