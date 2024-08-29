@@ -1,8 +1,11 @@
 #pragma once
+#include <base/SingletonGetter.h>
 #include <bsp-interface/interrupt/IInterruptSwitch.h>
 #include <functional>
 #include <map>
 #include <stdint.h>
+
+bsp::IInterruptSwitch &DI_InterruptSwitch();
 
 namespace bsp
 {
@@ -21,8 +24,27 @@ namespace bsp
     public:
         static IsrManager &Instance()
         {
-            static IsrManager o;
-            return o;
+            class Getter : public base::SingletonGetter<IsrManager>
+            {
+            public:
+                std::unique_ptr<IsrManager> Create() override
+                {
+                    return std::unique_ptr<IsrManager>{new IsrManager{}};
+                }
+
+                void Lock() override
+                {
+                    DI_InterruptSwitch().DisableGlobalInterrupt();
+                }
+
+                void Unlock() override
+                {
+                    DI_InterruptSwitch().EnableGlobalInterrupt();
+                }
+            };
+
+            Getter g;
+            return g.Instance();
         }
 
         /// @brief 获取指定的中断向量对应的中断服务函数。
