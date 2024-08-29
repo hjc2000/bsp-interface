@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.20)
-include(${cpp_lib_build_scripts_path}/cmake-module/setup.cmake)
+include($ENV{cpp_lib_build_scripts_path}/cmake-module/setup.cmake)
 include(target_import_boost)
 include(target_import_nlohmann_json)
 include(target_import_base)
@@ -16,4 +16,4 @@ target_import_boost(${ProjectName} PUBLIC)
 target_import_nlohmann_json(${ProjectName} PUBLIC)
 target_import_base(${ProjectName} PUBLIC)
 
-set(CMAKE_INSTALL_PREFIX ${cpp_lib_build_scripts_path}/${platform}/.libs/${ProjectName}/)
+set(CMAKE_INSTALL_PREFIX $ENV{cpp_lib_build_scripts_path}/${platform}/.libs/${ProjectName}/)
