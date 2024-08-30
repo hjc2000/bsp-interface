@@ -61,10 +61,5 @@ namespace bsp
         /// @brief DMA 的用途。
         /// @param value
         virtual void SetRequest(std::string value) = 0;
-
-        /// @brief 返回底层的 DMA 句柄。
-        /// @note 注意，句柄不是指 IDmaOptions 或它的派生类的指针。
-        /// @return
-        virtual void *DmaHandle() = 0;
     };
 } // namespace bsp
