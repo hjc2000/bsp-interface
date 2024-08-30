@@ -9,4 +9,4 @@ std::shared_ptr<bsp::IDmaOptions> DICreate_DmaOptions();
 
 /// @brief DMA 通道集合。
 /// @return
-base::ICollection<std::string, bsp::IDmaChannel *> const &DI_DmaChannel();
+base::ICollection<std::string, bsp::IDmaChannel *> const &DI_DmaChannelCollection();
