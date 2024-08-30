@@ -18,5 +18,10 @@ namespace bsp
 
         virtual bool IsOpen() const = 0;
         virtual void Close() = 0;
+
+        /// @brief 剩余的未传输的字节数。
+        /// @note 将本次启动 DMA 所设置的目标传输字节数减去本属性，即可得到传输了多少个字节。
+        /// @return
+        virtual int RemainingUntransmittedBytes() = 0;
     };
 } // namespace bsp
