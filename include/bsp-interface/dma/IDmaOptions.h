@@ -61,5 +61,11 @@ namespace bsp
         /// @brief 此 DMA 要被连接到哪里
         /// @param value
         virtual void SetParent(std::string value) = 0;
+
+        /// @brief DMA 要被连接到的父设备的句柄。
+        /// @note 例如对于 HAL 的 USART，就是 UART_HandleTypeDef 类型的对象。
+        /// @return
+        virtual void *ParentHandle() const = 0;
+        virtual void SetParentHandle(void *value) = 0;
     };
 } // namespace bsp
