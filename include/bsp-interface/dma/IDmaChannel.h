@@ -9,12 +9,14 @@ namespace bsp
     {
     public:
         virtual std::string Name() const = 0;
-        virtual void Open(bsp::IDmaOptions const &options) = 0;
+
+        /// @brief 打开 DMA
+        /// @param options DMA 初始化选项。
+        /// @param parent DMA 要被连接到的父设备的句柄。例如对于 HAL 库的 USART，就是
+        /// UART_HandleTypeDef。
+        virtual void Open(bsp::IDmaOptions const &options, void *parent) = 0;
+
         virtual bool IsOpen() const = 0;
         virtual void Close() = 0;
-
-        /// @brief 返回底层的句柄。
-        /// @return
-        virtual void *Handle() = 0;
     };
 } // namespace bsp
