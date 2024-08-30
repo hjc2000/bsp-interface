@@ -56,7 +56,7 @@ namespace bsp
 
         /// @brief DMA 的用途。
         /// @return
-        virtual std::string Request() = 0;
+        virtual std::string Request() const = 0;
 
         /// @brief DMA 的用途。
         /// @param value
