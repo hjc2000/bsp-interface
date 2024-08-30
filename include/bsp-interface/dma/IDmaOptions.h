@@ -1,4 +1,5 @@
 #pragma once
+#include <string>
 
 namespace bsp
 {
@@ -52,6 +53,14 @@ namespace bsp
         /// @return
         virtual IDmaOptions_Priority Priority() const = 0;
         virtual void SetPriority(IDmaOptions_Priority value) = 0;
+
+        /// @brief DMA 的用途。
+        /// @return
+        virtual std::string Request() = 0;
+
+        /// @brief DMA 的用途。
+        /// @param value
+        virtual void SetRequest(std::string value) = 0;
 
         /// @brief 返回底层的 DMA 句柄。
         /// @note 注意，句柄不是指 IDmaOptions 或它的派生类的指针。
