@@ -1,5 +1,4 @@
 #pragma once
-#include <string>
 
 namespace bsp
 {
@@ -54,18 +53,9 @@ namespace bsp
         virtual IDmaOptions_Priority Priority() const = 0;
         virtual void SetPriority(IDmaOptions_Priority value) = 0;
 
-        /// @brief 此 DMA 要被连接到哪里
+        /// @brief 返回底层的 DMA 句柄。
+        /// @note 注意，句柄不是指 IDmaOptions 或它的派生类的指针。
         /// @return
-        virtual std::string Parent() const = 0;
-
-        /// @brief 此 DMA 要被连接到哪里
-        /// @param value
-        virtual void SetParent(std::string value) = 0;
-
-        /// @brief DMA 要被连接到的父设备的句柄。
-        /// @note 例如对于 HAL 的 USART，就是 UART_HandleTypeDef 类型的对象。
-        /// @return
-        virtual void *ParentHandle() const = 0;
-        virtual void SetParentHandle(void *value) = 0;
+        virtual void *DmaHandle() = 0;
     };
 } // namespace bsp
