@@ -1,5 +1,5 @@
 #pragma once
-#include <base/SingletonGetter.h>
+#include <base/di/SingletonGetter.h>
 #include <bsp-interface/interrupt/IInterruptSwitch.h>
 #include <functional>
 #include <map>
