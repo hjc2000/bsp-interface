@@ -1,5 +1,5 @@
 #pragma once
-#include <base/container/ICollection.h>
+#include <base/container/IDictionary.h>
 #include <bsp-interface/dma/IDmaChannel.h>
 #include <memory>
 
@@ -9,4 +9,4 @@ std::shared_ptr<bsp::IDmaOptions> DICreate_DmaOptions();
 
 /// @brief DMA 通道集合。
 /// @return
-base::ICollection<std::string, bsp::IDmaChannel *> const &DI_DmaChannelCollection();
+base::IDictionary<std::string, bsp::IDmaChannel *> const &DI_DmaChannelCollection();

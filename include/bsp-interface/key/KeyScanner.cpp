@@ -6,9 +6,9 @@ using namespace bsp;
 
 void KeyScanner::ScanKeysNoDelay(std::map<std::string, bool> &out)
 {
-    for (auto key : DI_KeyCollection())
+    for (auto &pair : DI_KeyCollection())
     {
-        out[key->KeyName()] = key->KeyIsDown();
+        out[pair.second->KeyName()] = pair.second->KeyIsDown();
     }
 }
 
@@ -18,11 +18,10 @@ void KeyScanner::ScanKeys()
     ScanKeysNoDelay(_no_delay_scan_result1);
     DI_Delayer().Delay(std::chrono::milliseconds{10});
     ScanKeysNoDelay(_no_delay_scan_result2);
-
-    for (auto key : DI_KeyCollection())
+    for (auto &pair : DI_KeyCollection())
     {
-        _current_scan_result[key->KeyName()] = _no_delay_scan_result1[key->KeyName()] &&
-                                               _no_delay_scan_result2[key->KeyName()];
+        _current_scan_result[pair.second->KeyName()] = _no_delay_scan_result1[pair.second->KeyName()] &&
+                                                       _no_delay_scan_result2[pair.second->KeyName()];
     }
 }
 
