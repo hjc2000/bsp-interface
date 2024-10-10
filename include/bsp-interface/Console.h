@@ -1,5 +1,6 @@
 #pragma once
 #include <base/stream/Stream.h>
+#include <bsp-interface/interrupt/IInterruptSwitch.h>
 #include <memory>
 #include <string>
 
@@ -18,11 +19,7 @@ namespace bsp
         std::shared_ptr<base::Stream> _out_stream;
 
     public:
-        static Console &Instance()
-        {
-            static Console o;
-            return o;
-        }
+        static Console &Instance();
 
         std::shared_ptr<base::Stream> OutStream();
 
