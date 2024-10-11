@@ -37,28 +37,28 @@ void bsp::IFlash::EraseSector(int32_t bank_index, int32_t start_sector_index, in
 uint8_t bsp::IFlash::ReadUInt8(int32_t bank_index, size_t addr)
 {
     uint8_t ret;
-    ReadBuffer(bank_index, addr, reinterpret_cast<uint8_t *>(&ret), sizeof(ret));
+    Read(bank_index, addr, reinterpret_cast<uint8_t *>(&ret), sizeof(ret));
     return ret;
 }
 
 uint16_t bsp::IFlash::ReadUInt16(int32_t bank_index, size_t addr)
 {
     uint16_t ret;
-    ReadBuffer(bank_index, addr, reinterpret_cast<uint8_t *>(&ret), sizeof(ret));
+    Read(bank_index, addr, reinterpret_cast<uint8_t *>(&ret), sizeof(ret));
     return ret;
 }
 
 uint32_t bsp::IFlash::ReadUInt32(int32_t bank_index, size_t addr)
 {
     uint32_t ret;
-    ReadBuffer(bank_index, addr, reinterpret_cast<uint8_t *>(&ret), sizeof(ret));
+    Read(bank_index, addr, reinterpret_cast<uint8_t *>(&ret), sizeof(ret));
     return ret;
 }
 
 uint64_t bsp::IFlash::ReadUInt64(int32_t bank_index, size_t addr)
 {
     uint64_t ret;
-    ReadBuffer(bank_index, addr, reinterpret_cast<uint8_t *>(&ret), sizeof(ret));
+    Read(bank_index, addr, reinterpret_cast<uint8_t *>(&ret), sizeof(ret));
     return ret;
 }
 
