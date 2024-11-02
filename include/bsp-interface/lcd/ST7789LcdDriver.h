@@ -1,9 +1,11 @@
 #pragma once
+#include <base/define.h>
 #include <bsp-interface/lcd/ILcd.h>
 
 namespace bsp
 {
-    class ST7789LcdDriver : public bsp::ILcd
+    class ST7789LcdDriver :
+        public bsp::ILcd
     {
     private:
         bool _is_horizontal_priority_scanning = true;
@@ -12,21 +14,21 @@ namespace bsp
 
         /// @brief 屏幕初始宽度。与屏幕旋转无关，无论屏幕怎么旋转，本属性都保持不变。
         /// @return
-        static consteval uint32_t OriginalWidth()
+        static_function consteval uint32_t OriginalWidth()
         {
             return 240;
         }
 
         /// @brief 屏幕初始高度。与屏幕旋转无关，无论屏幕怎么旋转，本属性都保持不变。
         /// @return
-        static consteval uint32_t OriginHeight()
+        static_function consteval uint32_t OriginHeight()
         {
             return 320;
         }
 
         /// @brief 屏幕总共有多少个点。
         /// @return
-        static consteval uint32_t PointCount()
+        static_function consteval uint32_t PointCount()
         {
             return OriginalWidth() * OriginHeight();
         }

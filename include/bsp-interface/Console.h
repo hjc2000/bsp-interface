@@ -1,4 +1,5 @@
 #pragma once
+#include <base/define.h>
 #include <base/stream/Stream.h>
 #include <bsp-interface/interrupt/IInterruptSwitch.h>
 #include <memory>
@@ -7,19 +8,15 @@
 namespace bsp
 {
     /// @brief 单例控制台
-    class Console final
+    class Console
     {
     private:
         Console() = default;
-        Console(Console const &o) = delete;
-        Console(Console const &&o) = delete;
-        Console &operator=(Console const &o) = delete;
-        Console &operator=(Console const &&o) = delete;
 
         std::shared_ptr<base::Stream> _out_stream;
 
     public:
-        static Console &Instance();
+        static_function Console &Instance();
 
         std::shared_ptr<base::Stream> OutStream();
 

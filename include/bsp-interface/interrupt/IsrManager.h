@@ -1,4 +1,5 @@
 #pragma once
+#include <base/define.h>
 #include <base/di/SingletonGetter.h>
 #include <bsp-interface/interrupt/IInterruptSwitch.h>
 #include <functional>
@@ -22,9 +23,10 @@ namespace bsp
         };
 
     public:
-        static IsrManager &Instance()
+        static_function IsrManager &Instance()
         {
-            class Getter : public base::SingletonGetter<IsrManager>
+            class Getter :
+                public base::SingletonGetter<IsrManager>
             {
             public:
                 std::unique_ptr<IsrManager> Create() override
