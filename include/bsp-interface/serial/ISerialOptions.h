@@ -3,6 +3,7 @@
 
 namespace bsp
 {
+#pragma region 选项枚举
     /// @brief 用来设置 ISerial 的校验方式
     enum class ISerialParity
     {
@@ -48,6 +49,7 @@ namespace bsp
         TX,
         RX_TX,
     };
+#pragma endregion
 
     /// @brief 串口选项。
     class ISerialOptions
