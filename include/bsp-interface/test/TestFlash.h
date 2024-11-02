@@ -7,7 +7,7 @@
 
 namespace bsp
 {
-    void TestFlash()
+    inline void TestFlash()
     {
         try
         {
