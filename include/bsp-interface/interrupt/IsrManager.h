@@ -23,31 +23,7 @@ namespace bsp
         };
 
     public:
-        static_function IsrManager &Instance()
-        {
-            class Getter :
-                public base::SingletonGetter<IsrManager>
-            {
-            public:
-                std::unique_ptr<IsrManager> Create() override
-                {
-                    return std::unique_ptr<IsrManager>{new IsrManager{}};
-                }
-
-                void Lock() override
-                {
-                    DI_InterruptSwitch().DisableGlobalInterrupt();
-                }
-
-                void Unlock() override
-                {
-                    DI_InterruptSwitch().EnableGlobalInterrupt();
-                }
-            };
-
-            Getter g;
-            return g.Instance();
-        }
+        static_function IsrManager &Instance();
 
         /// @brief 获取指定的中断向量对应的中断服务函数。
         /// @param irq

@@ -3,6 +3,32 @@
 
 using namespace bsp;
 
+IsrManager &bsp::IsrManager::Instance()
+{
+    class Getter :
+        public base::SingletonGetter<IsrManager>
+    {
+    public:
+        std::unique_ptr<IsrManager> Create() override
+        {
+            return std::unique_ptr<IsrManager>{new IsrManager{}};
+        }
+
+        void Lock() override
+        {
+            DI_InterruptSwitch().DisableGlobalInterrupt();
+        }
+
+        void Unlock() override
+        {
+            DI_InterruptSwitch().EnableGlobalInterrupt();
+        }
+    };
+
+    Getter g;
+    return g.Instance();
+}
+
 std::function<void()> &bsp::IsrManager::GetIsr(uint32_t irq) noexcept
 {
     auto it = _isr_map.find(irq);
