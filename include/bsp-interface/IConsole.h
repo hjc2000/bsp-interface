@@ -18,18 +18,18 @@ namespace bsp
         /// @param value
         virtual void SetOutStream(std::shared_ptr<base::Stream> value) = 0;
 
-        virtual void Write(std::string const &str) = 0;
-        virtual void Write(char const *str) = 0;
+        void Write(char const *str);
+        void Write(std::string const &str);
 
-        void WriteLine(std::string const &str);
         void WriteLine(char const *str);
+        void WriteLine(std::string const &str);
 
         /// @brief 错误汇报。
         /// @param str
-        void WriteError(char const *str) noexcept;
+        virtual void WriteError(char const *str) noexcept;
 
         /// @brief 错误汇报。
         /// @param str
-        void WriteError(std::string const &str) noexcept;
+        virtual void WriteError(std::string const &str) noexcept;
     };
 } // namespace bsp

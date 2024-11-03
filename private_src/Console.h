@@ -22,8 +22,5 @@ namespace bsp
         /// @note 如果没有设置过，则输出流为空，无法进行输出。
         /// @param value
         void SetOutStream(std::shared_ptr<base::Stream> value) override;
-
-        void Write(std::string const &str) override;
-        void Write(char const *str) override;
     };
 } // namespace bsp
