@@ -20,6 +20,8 @@ namespace bsp
 
         /// @brief 设置定时时间到触发的回调。
         /// @note 设置为 nullptr 可以取消回调。
+        /// @warning 实现者需要将本函数实现为线程安全和可重入。最简单的方法就是在本函数的
+        /// 操作期间禁用全局中断。
         /// @param func
         virtual void SetPeriodElapsedCallback(std::function<void()> func) = 0;
     };
