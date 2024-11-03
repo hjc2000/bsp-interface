@@ -1,7 +1,7 @@
 #pragma once
-#include <bsp-interface/IDelayer.h>
 #include <bsp-interface/key/IKey.h>
 #include <bsp-interface/key/IKeyScanner.h>
+#include <bsp-interface/timer/IDelayer.h>
 #include <map>
 
 namespace bsp

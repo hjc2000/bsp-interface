@@ -1,4 +1,4 @@
 #pragma once
-#include <bsp-interface/IDelayer.h>
+#include <bsp-interface/timer/IDelayer.h>
 
 bsp::IDelayer &DI_Delayer();
