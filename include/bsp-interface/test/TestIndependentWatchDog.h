@@ -11,8 +11,7 @@ namespace bsp
     {
         DI_Delayer().Delay(std::chrono::milliseconds{500});
         DI_RedDigitalLed().TurnOn();
-        DI_IndependentWatchDog().SetWatchDogTimeoutDuration(std::chrono::milliseconds(1000));
-
+        DI_IndependentWatchDog().Open(std::chrono::milliseconds(1000));
         while (true)
         {
             DI_KeyScanner().ScanKeys();

@@ -1,5 +1,5 @@
 #pragma once
-#include <bsp-interface/IIndependentWatchDog.h>
+#include <bsp-interface/timer/IIndependentWatchDog.h>
 
 /// @brief 独立看门狗。
 /// @return

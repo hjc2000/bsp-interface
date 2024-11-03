@@ -10,7 +10,8 @@ namespace bsp
     /// @note SysTick 是减计数的，所以如果用定时器模拟，需要配置定时器为减计数，或者将
     /// CurrentValue 方法实现为返回 “计数最大值 - 当前值” ，这样就能用增计数定时器模拟出
     /// 减计数定时器。
-    class ISysTick : public bsp::IDelayer
+    class ISysTick :
+        public bsp::IDelayer
     {
     public:
         virtual ~ISysTick() = default;
