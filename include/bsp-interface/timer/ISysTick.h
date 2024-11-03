@@ -1,6 +1,7 @@
 #pragma once
 #include <bsp-interface/timer/IDelayer.h>
 #include <chrono>
+#include <functional>
 #include <stdint.h>
 
 namespace bsp
@@ -14,8 +15,6 @@ namespace bsp
         public bsp::IDelayer
     {
     public:
-        virtual ~ISysTick() = default;
-
         /// @brief 当前的实际频率
         /// @return
         virtual uint32_t Frequency() const = 0;
@@ -27,6 +26,10 @@ namespace bsp
         /// @brief 当前的重装载值。
         /// @return
         virtual uint32_t ReloadValue() const = 0;
+
+        /// @brief 定时时间到处理函数。
+        /// @param func
+        virtual void SetElapsedHandler(std::function<void()> func) = 0;
 
         /// @brief 循环中检测 CurrentValue 的值来判断是否超时，从而进行延时。
         /// @param tick_count 要延时多少个 SysTick 的计数值。
