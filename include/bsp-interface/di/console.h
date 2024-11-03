@@ -1,4 +1,4 @@
 #pragma once
-#include <bsp-interface/Console.h>
+#include <bsp-interface/IConsole.h>
 
-bsp::Console &DI_Console();
+bsp::IConsole &DI_Console();

@@ -1,6 +1,7 @@
 #include "console.h"
+#include <Console.h>
 
-bsp::Console &DI_Console()
+bsp::IConsole &DI_Console()
 {
     return bsp::Console::Instance();
 }

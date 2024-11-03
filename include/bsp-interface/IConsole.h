@@ -1,33 +1,27 @@
 #pragma once
-#include <base/define.h>
 #include <base/stream/Stream.h>
-#include <bsp-interface/interrupt/IInterruptSwitch.h>
 #include <memory>
 #include <string>
 
 namespace bsp
 {
-    /// @brief 单例控制台
-    class Console
+    /// @brief 控制台接口
+    class IConsole
     {
-    private:
-        Console() = default;
-
-        std::shared_ptr<base::Stream> _out_stream;
-
     public:
-        static_function Console &Instance();
-
-        std::shared_ptr<base::Stream> OutStream();
+        /// @brief 控制台当前的输出流。
+        /// @return
+        virtual std::shared_ptr<base::Stream> OutStream() = 0;
 
         /// @brief 为本控制台设置用来输出的输出流。
         /// @note 如果没有设置过，则输出流为空，无法进行输出。
         /// @param value
-        void SetOutStream(std::shared_ptr<base::Stream> value);
+        virtual void SetOutStream(std::shared_ptr<base::Stream> value) = 0;
 
-        void Write(std::string const &str);
+        virtual void Write(std::string const &str) = 0;
+        virtual void Write(char const *str) = 0;
+
         void WriteLine(std::string const &str);
-        void Write(char const *str);
         void WriteLine(char const *str);
 
         /// @brief 错误汇报。
