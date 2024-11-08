@@ -44,7 +44,7 @@ namespace bsp
 
         /// @brief 设置为旁路。
         /// @note 输入分频和输出分频都设置为 1.
-        /// @param external_clock_frequency
+        /// @param external_clock_frequency 外部时钟频率。
         void SetAsBypass(base::Hz external_clock_frequency);
 
         /// @brief 本时钟源当前的状态。
