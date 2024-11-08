@@ -43,14 +43,18 @@ std::function<void()> &bsp::IsrManager::GetIsr(uint32_t irq) noexcept
 
 void bsp::IsrManager::AddIsr(uint32_t irq, std::function<void()> handler) noexcept
 {
-    DI_InterruptSwitch().DisableGlobalInterrupt();
-    _isr_map[irq] = handler;
-    DI_InterruptSwitch().EnableGlobalInterrupt();
+    DI_InterruptSwitch().DoGlobalCriticalWork(
+        [&]()
+        {
+            _isr_map[irq] = handler;
+        });
 }
 
 void bsp::IsrManager::RemoveIsr(uint32_t irq) noexcept
 {
-    DI_InterruptSwitch().DisableGlobalInterrupt();
-    _isr_map.erase(irq);
-    DI_InterruptSwitch().EnableGlobalInterrupt();
+    DI_InterruptSwitch().DoGlobalCriticalWork(
+        [&]()
+        {
+            _isr_map.erase(irq);
+        });
 }
