@@ -27,6 +27,10 @@ namespace bsp
         virtual void TurnOn(int32_t input_division,
                             int32_t output_division) = 0;
 
+        /// @brief 打开时钟源。
+        /// @note 输入分频和输出分频都设置为 1.
+        void TurnOn();
+
         /// @brief 关闭时钟源。
         virtual void TurnOff() = 0;
 
@@ -37,6 +41,11 @@ namespace bsp
         virtual void SetAsBypass(base::Hz external_clock_frequency,
                                  int32_t input_division,
                                  int32_t output_division) = 0;
+
+        /// @brief 设置为旁路。
+        /// @note 输入分频和输出分频都设置为 1.
+        /// @param external_clock_frequency
+        void SetAsBypass(base::Hz external_clock_frequency);
 
         /// @brief 本时钟源当前的状态。
         /// @return
