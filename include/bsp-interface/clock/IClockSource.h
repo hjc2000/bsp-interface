@@ -97,7 +97,7 @@ namespace bsp
 
 #pragma region SetAsBypass
         /// @brief 设置为旁路。
-        /// @param external_clock_frequency
+        /// @param external_clock_frequency 外部时钟频率。
         virtual void SetAsBypass(base::Hz external_clock_frequency);
 
         /// @brief 设置为旁路。
