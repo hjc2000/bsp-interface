@@ -5,4 +5,4 @@
 
 /// @brief 时钟源集合。
 /// @return
-base::IDictionary<std::string, bsp::IClockSource *> DI_ClockSourceCollection();
+base::IDictionary<std::string, bsp::IClockSource *> const &DI_ClockSourceCollection();
