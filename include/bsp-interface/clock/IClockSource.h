@@ -41,7 +41,9 @@ namespace bsp
 
 #pragma endregion
 
-    /// @brief 时钟源接口
+    /// @brief 时钟源接口。
+    /// @note 时钟源各种各样，每种时钟源适合不同的 Open 函数。实现者应该给用户一个文档，文档中列出了所有时钟源的名称，
+    /// 以及它们适用的 Open 函数。
     class IClockSource
     {
     public:
@@ -62,23 +64,23 @@ namespace bsp
         virtual void Open(base::Hz const &crystal_frequency);
 
         /// @brief 打开时钟源。
-        /// @param input_channel_name
+        /// @param input_channel_name 输入通道名称。有的时钟源可能具有多个输入通道，例如可以从多个晶振中选择一个。
         virtual void Open(std::string const &input_channel_name);
 
         /// @brief 打开时钟源。
-        /// @param target_output_frequency 目标输出频率
+        /// @param target_output_frequency 目标输出频率。
         virtual void Open(IClockSource_TargetOutputFrequency const &target_output_frequency);
 
         /// @brief 打开时钟源。
         /// @param target_output_frequencies 想让本时钟源输出的目标频率列表。因为有的时钟源可能有多个输出
-        /// 通道，所以就采用了列表的形式。
+        /// 通道，所以就采用了字典的形式。输出通道名为 key，目标频率为 value.
         virtual void Open(base::IDictionary<std::string, base::Hz> const &target_output_frequencies);
 
         /// @brief 打开时钟源。
         /// @param input_channel_name 输入通道名。因为有的时钟源可能有多个输入通道，所以使用字符串指定
         /// 输入通道名。
         /// @param target_output_frequencies 想让本时钟源输出的目标频率列表。因为有的时钟源可能有多个输出
-        /// 通道，所以就采用了列表的形式。
+        /// 通道，所以就采用了字典的形式。输出通道名为 key，目标频率为 value.
         virtual void Open(std::string const &input_channel_name,
                           base::IDictionary<std::string, base::Hz> const &target_output_frequencies);
 
@@ -88,8 +90,8 @@ namespace bsp
         /// @param crystal_frequency 外部晶振频率。有的时钟源需要外部晶振，且晶振允许的频率是一个范围，
         /// 此时需要告诉本对象该晶振的频率才能打开本时钟源。这种情况下必须使用本 TurnOn 重载，
         /// 否则会抛出异常。
-        /// @param target_output_frequencies 想让本时钟源输出的目标频率的字典。因为有的时钟源可能有多个
-        /// 输出通道，所以就采用字典来指定每个通道，key 为输出通道名，value 为输出通道目标频率。
+        /// @param target_output_frequencies 想让本时钟源输出的目标频率列表。因为有的时钟源可能有多个输出
+        /// 通道，所以就采用了字典的形式。输出通道名为 key，目标频率为 value.
         virtual void Open(std::string const &input_channel_name,
                           base::Hz const &crystal_frequency,
                           base::IDictionary<std::string, base::Hz> const &target_output_frequencies);
