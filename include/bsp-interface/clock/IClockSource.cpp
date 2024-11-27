@@ -53,3 +53,13 @@ void bsp::IClockSource::SetAsBypass(base::Hz external_clock_frequency, base::IDi
 }
 
 #pragma endregion
+
+base::Hz bsp::IClockSource::Frequency() const
+{
+    throw std::runtime_error{"不支持此重载版本。"};
+}
+
+base::Hz bsp::IClockSource::Frequency(std::string const &output_channel_name) const
+{
+    throw std::runtime_error{"不支持此重载版本。"};
+}

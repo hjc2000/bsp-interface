@@ -117,8 +117,13 @@ namespace bsp
         /// @return
         virtual IClockSource_State State() const = 0;
 
-        /// @brief 本时钟源当前频率。
+        /// @brief 本时钟源当前频率。这个重载版本适用于只有单个输出通道的时钟源。
         /// @return
-        virtual base::Hz Frequency() const = 0;
+        virtual base::Hz Frequency() const;
+
+        /// @brief 查看某一个输出通道的频率。有的时钟源会有多个输出通道。
+        /// @param output_channel_name 输出通道名。
+        /// @return
+        virtual base::Hz Frequency(std::string const &output_channel_name) const;
     };
 } // namespace bsp
