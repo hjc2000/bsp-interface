@@ -71,35 +71,6 @@ namespace bsp
         /// @param input_channel_name 输入通道名。
         /// @param factor 分频、倍频系数都放在这个字典里，使用不同的名称来区分是什么。
         virtual void Open(std::string const &input_channel_name, base::IDictionary<std::string, int> const &factor);
-
-        /// @brief 打开时钟源。
-        /// @param target_output_frequency 目标输出频率。
-        virtual void Open(IClockSource_TargetOutputFrequency const &target_output_frequency);
-
-        /// @brief 打开时钟源。
-        /// @param target_output_frequencies 想让本时钟源输出的目标频率列表。因为有的时钟源可能有多个输出
-        /// 通道，所以就采用了字典的形式。输出通道名为 key，目标频率为 value.
-        virtual void Open(base::IDictionary<std::string, base::Hz> const &target_output_frequencies);
-
-        /// @brief 打开时钟源。
-        /// @param input_channel_name 输入通道名称。有的时钟源可能具有多个输入通道，例如可以从多个晶振中选择一个，
-        /// 或者 PLL 可以从多个时钟源中选择一个。
-        /// @param target_output_frequencies 想让本时钟源输出的目标频率列表。因为有的时钟源可能有多个输出
-        /// 通道，所以就采用了字典的形式。输出通道名为 key，目标频率为 value.
-        virtual void Open(std::string const &input_channel_name,
-                          base::IDictionary<std::string, base::Hz> const &target_output_frequencies);
-
-        /// @brief 打开时钟源。
-        /// @param input_channel_name 输入通道名称。有的时钟源可能具有多个输入通道，例如可以从多个晶振中选择一个，
-        /// 或者 PLL 可以从多个时钟源中选择一个。
-        /// @param crystal_frequency 外部晶振频率。有的时钟源需要外部晶振，且晶振允许的频率是一个范围，
-        /// 此时需要告诉本对象该晶振的频率才能打开本时钟源。这种情况下必须使用本 TurnOn 重载，
-        /// 否则会抛出异常。
-        /// @param target_output_frequencies 想让本时钟源输出的目标频率列表。因为有的时钟源可能有多个输出
-        /// 通道，所以就采用了字典的形式。输出通道名为 key，目标频率为 value.
-        virtual void Open(std::string const &input_channel_name,
-                          base::Hz const &crystal_frequency,
-                          base::IDictionary<std::string, base::Hz> const &target_output_frequencies);
 #pragma endregion
 
 #pragma region SetAsBypass
