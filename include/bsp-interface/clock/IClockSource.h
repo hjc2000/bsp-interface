@@ -7,6 +7,7 @@
 
 namespace bsp
 {
+#pragma region 参数类
     /// @brief 时钟源状态
     enum class IClockSource_State
     {
@@ -14,8 +15,6 @@ namespace bsp
         Off,
         Bypass,
     };
-
-#pragma region 参数类
 
     class IClockSource_TargetOutputFrequency
     {
