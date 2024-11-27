@@ -67,6 +67,11 @@ namespace bsp
         /// 或者 PLL 可以从多个时钟源中选择一个。
         virtual void Open(std::string const &input_channel_name);
 
+        /// @brief 用户自己决定输入通道和各个分频、倍频系数。
+        /// @param input_channel_name 输入通道名。
+        /// @param factor 分频、倍频系数都放在这个字典里，使用不同的名称来区分是什么。
+        virtual void Open(std::string const &input_channel_name, base::IDictionary<std::string, int> const &factor);
+
         /// @brief 打开时钟源。
         /// @param target_output_frequency 目标输出频率。
         virtual void Open(IClockSource_TargetOutputFrequency const &target_output_frequency);

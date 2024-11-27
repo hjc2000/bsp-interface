@@ -17,6 +17,11 @@ void bsp::IClockSource::Open(std::string const &input_channel_name)
     throw std::runtime_error{"不支持此重载版本。"};
 }
 
+void bsp::IClockSource::Open(std::string const &input_channel_name, base::IDictionary<std::string, int> const &factor)
+{
+    throw std::runtime_error{"不支持此重载版本。"};
+}
+
 void bsp::IClockSource::Open(IClockSource_TargetOutputFrequency const &target_output_frequency)
 {
     throw std::runtime_error{"不支持此重载版本。"};
