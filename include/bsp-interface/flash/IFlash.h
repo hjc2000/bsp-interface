@@ -24,10 +24,6 @@ namespace bsp
         /// @return
         virtual int32_t SectorCount() const = 0;
 
-        /// @brief 本 flash 映射到内存中的区域的基地址。
-        /// @return
-        virtual size_t BaseAddress() const = 0;
-
         /// @brief flash 的最小编程单位。单位：字节。
         /// @note 最小单位是一次编程必须写入这么多字节，即使要写入的数据没有这么多，在一次
         /// 写入后，整个单位大小的区域都无法再次写入了，除非擦除整个扇区。
