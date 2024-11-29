@@ -28,7 +28,7 @@ void bsp::IConsole::Write(char const *str)
         return;
     }
 
-    OutStream()->Write((uint8_t const *)(str), 0, index_of_white_char);
+    OutStream()->Write(reinterpret_cast<uint8_t const *>(str), 0, index_of_white_char);
 }
 
 void bsp::IConsole::Write(std::string const &str)
@@ -38,7 +38,7 @@ void bsp::IConsole::Write(std::string const &str)
         return;
     }
 
-    OutStream()->Write((uint8_t *)(str.c_str()), 0, str.length());
+    OutStream()->Write(reinterpret_cast<uint8_t const *>(str.c_str()), 0, str.length());
 }
 
 void bsp::IConsole::WriteLine(char const *str)
