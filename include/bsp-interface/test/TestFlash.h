@@ -20,7 +20,6 @@ namespace bsp
                 if (DI_KeyScanner().HasKeyDownEvent("key0"))
                 {
                     DI_Console().WriteLine("检测到 key0 按下，开始操作");
-                    base::UnlockGuard ul{*flash};
                     flash->EraseSector(1, 5);
                     uint32_t value = flash->ReadUInt32(5, 0);
                     if (value == static_cast<uint32_t>(-1))

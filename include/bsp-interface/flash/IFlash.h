@@ -7,8 +7,7 @@
 namespace bsp
 {
     /// @brief flash 接口。
-    class IFlash :
-        public base::ILock
+    class IFlash
     {
     public:
 #pragma region flash 信息，规格参数
