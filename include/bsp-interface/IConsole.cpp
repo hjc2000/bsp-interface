@@ -23,6 +23,11 @@ void bsp::IConsole::Write(char const *str)
         index_of_white_char++;
     }
 
+    if (index_of_white_char <= 0)
+    {
+        return;
+    }
+
     OutStream()->Write((uint8_t const *)(str), 0, index_of_white_char);
 }
 
