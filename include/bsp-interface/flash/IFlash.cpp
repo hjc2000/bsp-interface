@@ -22,13 +22,28 @@ void bsp::IFlash::EraseSector(int32_t start_sector_index, int32_t sector_count)
     }
 }
 
+void bsp::IFlash::Program(int32_t sector_index, size_t addr, uint8_t const *buffer)
+{
+    Program(SectorSize() * sector_index + addr, buffer);
+}
+
 #pragma region 读取
+
+void bsp::IFlash::Read(int32_t sector_index, size_t addr, uint8_t *buffer, int32_t count)
+{
+    Read(SectorSize() * sector_index + addr, buffer, count);
+}
 
 uint8_t bsp::IFlash::ReadUInt8(size_t addr)
 {
     uint8_t ret;
     Read(addr, reinterpret_cast<uint8_t *>(&ret), sizeof(ret));
     return ret;
+}
+
+uint8_t bsp::IFlash::ReadUInt8(int32_t sector_index, size_t addr)
+{
+    return ReadUInt8(SectorSize() * sector_index + addr);
 }
 
 uint16_t bsp::IFlash::ReadUInt16(size_t addr)
@@ -38,6 +53,11 @@ uint16_t bsp::IFlash::ReadUInt16(size_t addr)
     return ret;
 }
 
+uint16_t bsp::IFlash::ReadUInt16(int32_t sector_index, size_t addr)
+{
+    return ReadUInt16(SectorSize() * sector_index + addr);
+}
+
 uint32_t bsp::IFlash::ReadUInt32(size_t addr)
 {
     uint32_t ret;
@@ -45,11 +65,21 @@ uint32_t bsp::IFlash::ReadUInt32(size_t addr)
     return ret;
 }
 
+uint32_t bsp::IFlash::ReadUInt32(int32_t sector_index, size_t addr)
+{
+    return ReadUInt32(SectorSize() * sector_index + addr);
+}
+
 uint64_t bsp::IFlash::ReadUInt64(size_t addr)
 {
     uint64_t ret;
     Read(addr, reinterpret_cast<uint8_t *>(&ret), sizeof(ret));
     return ret;
+}
+
+uint64_t bsp::IFlash::ReadUInt64(int32_t sector_index, size_t addr)
+{
+    return ReadUInt64(SectorSize() * sector_index + addr);
 }
 
 #pragma endregion
