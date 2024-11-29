@@ -1,5 +1,4 @@
 #pragma once
-#include <base/LockGuard.h>
 #include <cstddef>
 #include <stdint.h>
 #include <string>
