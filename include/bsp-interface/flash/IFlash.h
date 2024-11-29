@@ -84,7 +84,7 @@ namespace bsp
 
 #pragma region 读取
         /// @brief 将 flash 的数据读取到缓冲区中
-        /// @param addr 相对于此 bank 的起始地址的地址。
+        /// @param addr 在此 flash 中的地址。
         /// @param buffer 读出的数据放到此缓冲区。
         /// @param count 要读取的字节数。
         ///
@@ -93,14 +93,14 @@ namespace bsp
         virtual void Read(size_t addr, uint8_t *buffer, int32_t count) = 0;
 
         /// @brief 将 flash 的数据读取到缓冲区中。
-        /// @param sector_index 相对于此 bank 的扇区索引。
+        /// @param sector_index 扇区索引。
         /// @param addr 相对于此扇区的地址。
         /// @param buffer 将 flash 中的数据读到该缓冲区中。
         /// @param count 要读取的字节数。
         void Read(int32_t sector_index, size_t addr, uint8_t *buffer, int32_t count);
 
         /// @brief 读取指定地址的 1 字节数据。
-        /// @param addr 相对于此 bank 的起始地址的地址。
+        /// @param addr 在此 flash 中的地址。
         /// @return
         uint8_t ReadUInt8(size_t addr);
 
@@ -110,34 +110,34 @@ namespace bsp
         /// @return
         uint8_t ReadUInt8(int32_t sector_index, size_t addr);
 
-        /// @brief 读取指定 bank 的指定地址的 2 字节数据。
-        /// @param addr 相对于此 bank 的起始地址的地址。
+        /// @brief 读取指定地址的 2 字节数据。
+        /// @param addr 在此 flash 中的地址。
         /// @return
         uint16_t ReadUInt16(size_t addr);
 
-        /// @brief 读取指定 bank 的指定地址的 2 字节数据。
+        /// @brief 读取指定地址的 2 字节数据。
         /// @param sector_index 扇区索引。
         /// @param addr 相对于该扇区的地址。
         /// @return
         uint16_t ReadUInt16(int32_t sector_index, size_t addr);
 
-        /// @brief 读取指定 bank 的指定地址的 4 字节数据。
-        /// @param addr 相对于此 bank 的起始地址的地址。
+        /// @brief 读取指定地址的 4 字节数据。
+        /// @param addr 在此 flash 中的地址。
         /// @return
         uint32_t ReadUInt32(size_t addr);
 
-        /// @brief 读取指定 bank 的指定地址的 4 字节数据。
+        /// @brief 读取指定地址的 4 字节数据。
         /// @param sector_index 扇区索引。
         /// @param addr 相对于该扇区的地址。
         /// @return
         uint32_t ReadUInt32(int32_t sector_index, size_t addr);
 
-        /// @brief 读取指定 bank 的指定地址的 8 字节数据。
-        /// @param addr 相对于此 bank 的起始地址的地址。
+        /// @brief 读取指定地址的 8 字节数据。
+        /// @param addr 在此 flash 中的地址。
         /// @return
         uint64_t ReadUInt64(size_t addr);
 
-        /// @brief 读取指定 bank 的指定地址的 8 字节数据。
+        /// @brief 读取指定地址的 8 字节数据。
         /// @param sector_index 扇区索引。
         /// @param addr 相对于该扇区的地址。
         /// @return
