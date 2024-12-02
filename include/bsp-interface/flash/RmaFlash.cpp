@@ -13,17 +13,17 @@ std::string bsp::RmaFlash::Name()
 
 size_t bsp::RmaFlash::SectorSize() const
 {
-    return 1;
+    return 256;
 }
 
 int32_t bsp::RmaFlash::SectorCount() const
 {
-    return _span.Size();
+    return _span.Size() / SectorSize();
 }
 
 int32_t bsp::RmaFlash::ProgrammingSize() const
 {
-    return 1;
+    return 4;
 }
 
 void bsp::RmaFlash::Erase()
@@ -33,12 +33,14 @@ void bsp::RmaFlash::Erase()
 
 void bsp::RmaFlash::EraseSector(int32_t sector_index)
 {
-    _span[sector_index] = 0xff;
+    _span.Slice(SectorSize() * sector_index, SectorSize()).FillWith(0xff);
 }
 
 void bsp::RmaFlash::Program(size_t addr, uint8_t const *buffer)
 {
-    _span[addr] = *buffer;
+    std::copy(buffer,
+              buffer + ProgrammingSize(),
+              _span.Buffer() + addr);
 }
 
 void bsp::RmaFlash::Read(size_t addr, uint8_t *buffer, int32_t count)
