@@ -1,5 +1,7 @@
 #pragma once
+#include <base/stream/ReadOnlySpan.h>
 #include <base/stream/Stream.h>
+#include <base/string/ICanToString.h>
 #include <memory>
 #include <string>
 
@@ -26,6 +28,10 @@ namespace bsp
         /// @param str
         void Write(std::string const &str);
 
+        /// @brief 将 ReadOnlySpan 逐个字节打印出来。每 20 个数一行。
+        /// @param o
+        void Write(base::ReadOnlySpan const &o);
+
         /// @brief 打印一条空行。
         void WriteLine();
 
@@ -37,8 +43,12 @@ namespace bsp
         /// @param str
         void WriteLine(std::string const &str);
 
+        /// @brief 打印一行。
+        /// @param o
+        void WriteLine(base::ICanToString const &o);
+
         /// @brief 打印一条空行。
-        void WriteError();
+        void WriteError() noexcept;
 
         /// @brief 错误汇报。
         /// @param str
@@ -47,5 +57,9 @@ namespace bsp
         /// @brief 错误汇报。
         /// @param str
         virtual void WriteError(std::string const &str) noexcept;
+
+        /// @brief 错误汇报。
+        /// @param o
+        virtual void WriteError(base::ICanToString const &o) noexcept;
     };
 } // namespace bsp

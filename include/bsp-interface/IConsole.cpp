@@ -45,6 +45,19 @@ void bsp::IConsole::Write(std::string const &str)
                        str.length());
 }
 
+void bsp::IConsole::Write(base::ReadOnlySpan const &o)
+{
+    for (int i = 0; i < o.Size(); i++)
+    {
+        Write(std::to_string(o[i]));
+        Write("  ");
+        if (i % 20 == 0 && i != 0)
+        {
+            WriteLine();
+        }
+    }
+}
+
 void bsp::IConsole::WriteLine()
 {
     Write("\n");
@@ -62,7 +75,12 @@ void bsp::IConsole::WriteLine(std::string const &str)
     Write("\n");
 }
 
-void bsp::IConsole::WriteError()
+void bsp::IConsole::WriteLine(base::ICanToString const &o)
+{
+    WriteLine(o.ToString());
+}
+
+void bsp::IConsole::WriteError() noexcept
 {
     try
     {
@@ -89,6 +107,17 @@ void bsp::IConsole::WriteError(std::string const &str) noexcept
     try
     {
         WriteLine(str);
+    }
+    catch (...)
+    {
+    }
+}
+
+void bsp::IConsole::WriteError(base::ICanToString const &o) noexcept
+{
+    try
+    {
+        WriteLine(o);
     }
     catch (...)
     {
