@@ -28,7 +28,7 @@ int32_t bsp::RmaFlash::ProgrammingSize() const
 
 void bsp::RmaFlash::Erase()
 {
-    _span.FillWithZero();
+    _span.FillWith(0xff);
 }
 
 void bsp::RmaFlash::EraseSector(int32_t sector_index)
