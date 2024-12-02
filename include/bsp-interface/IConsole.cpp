@@ -41,6 +41,11 @@ void bsp::IConsole::Write(std::string const &str)
     OutStream()->Write(reinterpret_cast<uint8_t const *>(str.c_str()), 0, str.length());
 }
 
+void bsp::IConsole::WriteLine()
+{
+    Write("\n");
+}
+
 void bsp::IConsole::WriteLine(char const *str)
 {
     Write(str);
@@ -51,6 +56,17 @@ void bsp::IConsole::WriteLine(std::string const &str)
 {
     Write(str);
     Write("\n");
+}
+
+void bsp::IConsole::WriteError()
+{
+    try
+    {
+        WriteLine();
+    }
+    catch (...)
+    {
+    }
 }
 
 void bsp::IConsole::WriteError(char const *str) noexcept
