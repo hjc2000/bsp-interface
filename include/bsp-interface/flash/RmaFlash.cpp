@@ -33,7 +33,7 @@ void bsp::RmaFlash::Erase()
 
 void bsp::RmaFlash::EraseSector(int32_t sector_index)
 {
-    _span[sector_index] = 0;
+    _span[sector_index] = 0xff;
 }
 
 void bsp::RmaFlash::Program(size_t addr, uint8_t const *buffer)
