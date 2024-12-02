@@ -13,7 +13,7 @@ std::string bsp::RmaFlash::Name()
 
 size_t bsp::RmaFlash::SectorSize() const
 {
-    return 256;
+    return 1;
 }
 
 int32_t bsp::RmaFlash::SectorCount() const
@@ -23,7 +23,7 @@ int32_t bsp::RmaFlash::SectorCount() const
 
 int32_t bsp::RmaFlash::ProgrammingSize() const
 {
-    return 4;
+    return 1;
 }
 
 void bsp::RmaFlash::Erase()
