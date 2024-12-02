@@ -20,6 +20,8 @@ namespace bsp
         /// @param value
         virtual void SetOutStream(std::shared_ptr<base::Stream> value) = 0;
 
+        void Write(char c);
+
         /// @brief 打印字符串。
         /// @param str
         void Write(char const *str);

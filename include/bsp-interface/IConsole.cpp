@@ -1,5 +1,17 @@
 #include "IConsole.h"
 
+void bsp::IConsole::Write(char c)
+{
+    if (OutStream() == nullptr)
+    {
+        return;
+    }
+
+    OutStream()->Write(reinterpret_cast<uint8_t const *>(&c),
+                       0,
+                       1);
+}
+
 void bsp::IConsole::Write(char const *str)
 {
     if (OutStream() == nullptr)
@@ -35,14 +47,7 @@ void bsp::IConsole::Write(char const *str)
 
 void bsp::IConsole::Write(std::string const &str)
 {
-    if (OutStream() == nullptr)
-    {
-        return;
-    }
-
-    OutStream()->Write(reinterpret_cast<uint8_t const *>(str.c_str()),
-                       0,
-                       str.length());
+    Write(str.c_str());
 }
 
 void bsp::IConsole::Write(base::ReadOnlySpan const &o)
