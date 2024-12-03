@@ -15,14 +15,9 @@ namespace bsp
         /// @return
         virtual base::Hz Frequency() const = 0;
 
-        /// @brief 设置输入分频系数。
-        /// @note 有些时钟信号不支持。
-        /// @param value
-        virtual void SetInputDivisionFactor(uint32_t value) = 0;
-
-        /// @brief 设置输出分频系数。
-        /// @note 有些时钟信号不支持。
-        /// @param value
-        virtual void SetOutputDivisionFactor(uint32_t value) = 0;
+        /// @brief 打开时钟信号。
+        /// @param input_division_factor
+        /// @param output_division_factor
+        virtual void Open(uint32_t input_division_factor, uint32_t output_division_factor) = 0;
     };
 } // namespace bsp
