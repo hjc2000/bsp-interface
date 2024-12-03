@@ -54,14 +54,17 @@ namespace bsp
         virtual base::Hz Frequency() const = 0;
 
         /// @brief 打开时钟信号。
+        /// @note 有的时钟信号只有输入分频，没有输出分频，就使用本重载。
         /// @param input_division_factor
         virtual void Open(bsp::IClockSignal_InputDivisionFactor input_division_factor);
 
         /// @brief 打开时钟信号。
+        /// @note 有的时钟信号只有输出分频，没有输入分频，就使用本重载。
         /// @param output_division_factor
         virtual void Open(bsp::IClockSignal_OutputDivisionFactor output_division_factor);
 
         /// @brief 打开时钟信号。
+        /// @note 有的时钟信号既有输入分频，又有输出分频，就使用本重载。
         /// @param input_division_factor
         /// @param output_division_factor
         virtual void Open(bsp::IClockSignal_InputDivisionFactor input_division_factor,
