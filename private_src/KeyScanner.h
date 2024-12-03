@@ -12,7 +12,8 @@ namespace bsp
     /// @note 要求调用一次本函数后，内部储存扫描结果，接下来无论多少次检查按键事件，
     /// 结果都一样，即检查事件的函数是幂等的。只有再次调用本函数，按键事件的有无
     /// 才会被更新。
-    class KeyScanner final : public bsp::IKeyScanner
+    class KeyScanner final :
+        public bsp::IKeyScanner
     {
     private:
         std::map<std::string, bool> _last_scan_result;
