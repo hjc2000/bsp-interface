@@ -42,10 +42,10 @@ namespace bsp
     class IClockSignal_ClockSource
     {
     private:
-        std::string _value = 0;
+        std::string _value;
 
     public:
-        explicit IClockSignal_ClockSource(std::string value)
+        explicit IClockSignal_ClockSource(std::string const &value)
         {
             _value = value;
         }
