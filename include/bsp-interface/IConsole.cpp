@@ -45,6 +45,28 @@ void bsp::IConsole::Write(char const *str)
                        index_of_white_char);
 }
 
+void bsp::IConsole::Write(char const *str, int length)
+{
+    if (OutStream() == nullptr)
+    {
+        return;
+    }
+
+    if (str == nullptr)
+    {
+        return;
+    }
+
+    if (length <= 0)
+    {
+        return;
+    }
+
+    OutStream()->Write(reinterpret_cast<uint8_t const *>(str),
+                       0,
+                       length);
+}
+
 void bsp::IConsole::Write(std::string const &str)
 {
     Write(str.c_str());

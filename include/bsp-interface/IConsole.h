@@ -26,6 +26,11 @@ namespace bsp
         /// @param str
         void Write(char const *str);
 
+        /// @brief 打印指定长度的字符缓冲区。
+        /// @param str
+        /// @param length
+        void Write(char const *str, int length);
+
         /// @brief 打印字符串。
         /// @param str
         void Write(std::string const &str);
