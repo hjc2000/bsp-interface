@@ -41,6 +41,7 @@ void bsp::Console::SetOutStream(std::shared_ptr<base::Stream> value)
 }
 
 #include <bsp-interface/di/console.h>
+#include <errno.h>
 #include <stdio.h>
 
 extern "C"
