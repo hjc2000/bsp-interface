@@ -91,7 +91,7 @@ void bsp::ISoftwareIicHost::SendStoppingSignal()
     DI_Delayer().Delay(std::chrono::microseconds{4});
 }
 
-bool bsp::ISoftwareIicHost::SendByte(uint8_t value)
+void bsp::ISoftwareIicHost::SendByte(uint8_t value)
 {
     for (int i = 0; i < 8; i++)
     {
@@ -103,7 +103,11 @@ bool bsp::ISoftwareIicHost::SendByte(uint8_t value)
         value <<= 1;
     }
 
-    return WaitForAcknowledgment();
+    bool ack = WaitForAcknowledgment();
+    if (!ack)
+    {
+        throw std::runtime_error{"IIC 接口 " + Name() + " 发送数据时未收到从机的应答信号"};
+    }
 }
 
 uint8_t bsp::ISoftwareIicHost::ReceiveByte(bool send_nack)

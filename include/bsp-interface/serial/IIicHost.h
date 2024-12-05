@@ -23,8 +23,7 @@ namespace bsp
 
         /// @brief 发送一个字节。
         /// @param value
-        /// @return 发送出去后，成功等到应答信号返回 true，没有等到应答信号返回 false.
-        virtual bool SendByte(uint8_t value) = 0;
+        virtual void SendByte(uint8_t value) = 0;
 
         /// @brief 读取 1 个字节。
         /// @param send_nack 读取完这个字节后是否发送 nack 信号终止读取。传入 true 则发送 nack 信号，
