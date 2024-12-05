@@ -94,3 +94,39 @@ bool bsp::ISoftwareIicHost::SendByte(uint8_t value)
 
     return WaitForAcknowledgment();
 }
+
+bool bsp::ISoftwareIicHost::ReceiveBit()
+{
+    ChangeSDADirection(bsp::ISoftwareIicHost_SDADirection::Input);
+    WriteSCL(false);
+    DI_Delayer().Delay(std::chrono::microseconds{2});
+    WriteSCL(true);
+    bool bit = ReadSDA();
+    DI_Delayer().Delay(std::chrono::microseconds{1});
+    return bit;
+}
+
+uint8_t bsp::ISoftwareIicHost::ReceiveByte(bool send_nack)
+{
+    uint8_t data = 0;
+    for (int i = 0; i < 8; i++)
+    {
+        bool bit = ReceiveBit();
+        data <<= 1;
+        if (bit)
+        {
+            data |= 0x1;
+        }
+    }
+
+    if (send_nack)
+    {
+        SendNotAcknowledgment();
+    }
+    else
+    {
+        SendAcknowledgment();
+    }
+
+    return data;
+}

@@ -62,5 +62,15 @@ namespace bsp
         /// @param value
         /// @return 发送出去后，成功等到应答信号返回 true，没有等到应答信号返回 false.
         bool SendByte(uint8_t value);
+
+        /// @brief 接收一个位。
+        /// @return
+        bool ReceiveBit();
+
+        /// @brief 读取 1 个字节。
+        /// @param send_nack 读取完这个字节后是否发送 nack 信号终止读取。传入 true 则发送 nack 信号，
+        /// 传入 false 则发送 ack 信号，表示希望继续读取。
+        /// @return
+        uint8_t ReceiveByte(bool send_nack);
     };
 } // namespace bsp
