@@ -1,6 +1,5 @@
 #pragma once
-#include <stdint.h>
-#include <string>
+#include <bsp-interface/serial/IIicHost.h>
 
 namespace bsp
 {
@@ -12,7 +11,8 @@ namespace bsp
     };
 
     /// @brief 通过软件模拟的 IIC 总线主机接口。
-    class ISoftwareIicHost
+    class ISoftwareIicHost :
+        public bsp::IIicHost
     {
     private:
         /// @brief 发送应答信号。
@@ -60,20 +60,20 @@ namespace bsp
 #pragma endregion
 
         /// @brief 发送 IIC 启动信号。
-        void SendStartingSignal();
+        void SendStartingSignal() override;
 
         /// @brief 发送 IIC 停止信号。
-        void SendStoppingSignal();
+        void SendStoppingSignal() override;
 
         /// @brief 发送一个字节。
         /// @param value
         /// @return 发送出去后，成功等到应答信号返回 true，没有等到应答信号返回 false.
-        bool SendByte(uint8_t value);
+        bool SendByte(uint8_t value) override;
 
         /// @brief 读取 1 个字节。
         /// @param send_nack 读取完这个字节后是否发送 nack 信号终止读取。传入 true 则发送 nack 信号，
         /// 传入 false 则发送 ack 信号，表示希望继续读取。
         /// @return
-        uint8_t ReceiveByte(bool send_nack);
+        uint8_t ReceiveByte(bool send_nack) override;
     };
 } // namespace bsp
