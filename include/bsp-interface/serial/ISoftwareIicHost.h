@@ -14,6 +14,17 @@ namespace bsp
     /// @brief 通过软件模拟的 IIC 总线主机接口。
     class ISoftwareIicHost
     {
+    private:
+        /// @brief 发送应答信号。
+        void SendAcknowledgment();
+
+        /// @brief 发送非应答信号。
+        void SendNotAcknowledgment();
+
+        /// @brief 等待应答信号。
+        /// @return 成功等到应答信号返回 true，没有等到返回 false.
+        bool WaitForAcknowledgment();
+
     public:
         /// @brief 此 IIC 接口的名称。
         /// @return
@@ -43,16 +54,6 @@ namespace bsp
 
         /// @brief 发送 IIC 停止信号。
         void SendStoppingSignal();
-
-        /// @brief 发送应答信号。
-        void SendAcknowledgment();
-
-        /// @brief 发送非应答信号。
-        void SendNotAcknowledgment();
-
-        /// @brief 等待应答信号。
-        /// @return 成功等到应答信号返回 true，没有等到返回 false.
-        bool WaitForAcknowledgment();
 
         /// @brief 发送一位数据。
         /// @param value

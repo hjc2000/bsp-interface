@@ -1,28 +1,6 @@
 #include "ISoftwareIicHost.h"
 #include <bsp-interface/di/delayer.h>
 
-void bsp::ISoftwareIicHost::SendStartingSignal()
-{
-    ChangeSDADirection(bsp::ISoftwareIicHost_SDADirection::Output);
-    WriteSDA(true);
-    WriteSCL(true);
-    DI_Delayer().Delay(std::chrono::microseconds{4});
-    WriteSDA(false);
-    DI_Delayer().Delay(std::chrono::microseconds{4});
-    WriteSCL(false);
-}
-
-void bsp::ISoftwareIicHost::SendStoppingSignal()
-{
-    ChangeSDADirection(bsp::ISoftwareIicHost_SDADirection::Output);
-    WriteSCL(false);
-    WriteSDA(false);
-    DI_Delayer().Delay(std::chrono::microseconds{4});
-    WriteSCL(true);
-    WriteSDA(true);
-    DI_Delayer().Delay(std::chrono::microseconds{4});
-}
-
 void bsp::ISoftwareIicHost::SendAcknowledgment()
 {
     WriteSCL(false);
@@ -66,6 +44,28 @@ bool bsp::ISoftwareIicHost::WaitForAcknowledgment()
 
     WriteSCL(0);
     return true;
+}
+
+void bsp::ISoftwareIicHost::SendStartingSignal()
+{
+    ChangeSDADirection(bsp::ISoftwareIicHost_SDADirection::Output);
+    WriteSDA(true);
+    WriteSCL(true);
+    DI_Delayer().Delay(std::chrono::microseconds{4});
+    WriteSDA(false);
+    DI_Delayer().Delay(std::chrono::microseconds{4});
+    WriteSCL(false);
+}
+
+void bsp::ISoftwareIicHost::SendStoppingSignal()
+{
+    ChangeSDADirection(bsp::ISoftwareIicHost_SDADirection::Output);
+    WriteSCL(false);
+    WriteSDA(false);
+    DI_Delayer().Delay(std::chrono::microseconds{4});
+    WriteSCL(true);
+    WriteSDA(true);
+    DI_Delayer().Delay(std::chrono::microseconds{4});
 }
 
 void bsp::ISoftwareIicHost::SendBit(bool value)
