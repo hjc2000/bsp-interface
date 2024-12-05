@@ -62,6 +62,7 @@ void bsp::GpioSoftwareIicHost::WriteSCL(bool value)
 
 void bsp::GpioSoftwareIicHost::ChangeSDADirection(ISoftwareIicHost_SDADirection value)
 {
+    // 要先关闭才能重新以新的配置打开引脚。
     _sda_pin->Close();
     if (value == bsp::ISoftwareIicHost_SDADirection::Input)
     {
