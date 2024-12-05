@@ -35,14 +35,15 @@ bool bsp::ISoftwareIicHost::WaitForAcknowledgment()
     while (ReadSDA())
     {
         retry_times++;
-        if (retry_times > 250)
+        DI_Delayer().Delay(std::chrono::microseconds{1});
+        if (retry_times > 100)
         {
             SendStoppingSignal();
             return false;
         }
     }
 
-    WriteSCL(0);
+    WriteSCL(false);
     return true;
 }
 
