@@ -47,6 +47,12 @@ void bsp::GpioSoftwareIicHost::Open()
         _scl_pin->Open(*_output_pin_options);
         _sda_pin->Open(*_output_pin_options);
     }
+
+    // 空闲状态输出高电平
+    {
+        _scl_pin->WritePin(true);
+        _sda_pin->WritePin(true);
+    }
 }
 
 void bsp::GpioSoftwareIicHost::WriteSCL(bool value)
