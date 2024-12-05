@@ -16,6 +16,8 @@ namespace bsp
     public:
         static_function Console &Instance();
 
+        /// @brief 控制台当前的输出流。
+        /// @return
         std::shared_ptr<base::Stream> OutStream() override;
 
         /// @brief 为本控制台设置用来输出的输出流。

@@ -4,6 +4,7 @@
 
 namespace bsp
 {
+    /// @brief 通过 IGpioPin 实现的软件 IIC 主机接口。
     class GpioSoftwareIicHost :
         public bsp::ISoftwareIicHost
     {
@@ -18,31 +19,35 @@ namespace bsp
         bsp::IGpioPin *_sda_pin = nullptr;
 
     public:
+        /// @brief 构造函数。
+        /// @param name IIC 端口名。
+        /// @param scl_pin_name SCL 对应的 IGpioPin 的名称。
+        /// @param sda_pin_name SDA 对应的 IGpioPin 的名称。
         GpioSoftwareIicHost(std::string name,
                             std::string scl_pin_name,
                             std::string sda_pin_name);
 
         /// @brief 此 IIC 接口的名称。
         /// @return
-        virtual std::string Name() const override;
+        std::string Name() const override;
 
         /// @brief 打开 IIC 接口。
-        virtual void Open() override;
+        void Open() override;
 
         /// @brief 写 SCL 引脚的值。
         /// @param value
-        virtual void WriteSCL(bool value) override;
+        void WriteSCL(bool value) override;
 
         /// @brief 更改 SDA 引脚的 IO 方向。
         /// @param value
-        virtual void ChangeSDADirection(ISoftwareIicHost_SDADirection value) override;
+        void ChangeSDADirection(ISoftwareIicHost_SDADirection value) override;
 
         /// @brief 写 SDA 引脚的值。
         /// @param value
-        virtual void WriteSDA(bool value) override;
+        void WriteSDA(bool value) override;
 
         /// @brief 读 SDA 引脚的值。
         /// @return
-        virtual bool ReadSDA() const override;
+        bool ReadSDA() const override;
     };
 } // namespace bsp

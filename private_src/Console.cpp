@@ -2,9 +2,7 @@
 #include <base/di/SingletonGetter.h>
 #include <bsp-interface/di/interrupt.h>
 
-using namespace bsp;
-
-Console &bsp::Console::Instance()
+bsp::Console &bsp::Console::Instance()
 {
     class Getter :
         public base::SingletonGetter<Console>
