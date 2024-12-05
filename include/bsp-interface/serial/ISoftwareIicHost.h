@@ -25,7 +25,16 @@ namespace bsp
         /// @return 成功等到应答信号返回 true，没有等到返回 false.
         bool WaitForAcknowledgment();
 
+        /// @brief 发送一位数据。
+        /// @param value
+        void SendBit(bool value);
+
+        /// @brief 接收一个位。
+        /// @return
+        bool ReceiveBit();
+
     public:
+#pragma region 接口
         /// @brief 此 IIC 接口的名称。
         /// @return
         virtual std::string Name() const = 0;
@@ -48,6 +57,7 @@ namespace bsp
         /// @brief 读 SDA 引脚的值。
         /// @return
         virtual bool ReadSDA() const = 0;
+#pragma endregion
 
         /// @brief 发送 IIC 启动信号。
         void SendStartingSignal();
@@ -55,18 +65,10 @@ namespace bsp
         /// @brief 发送 IIC 停止信号。
         void SendStoppingSignal();
 
-        /// @brief 发送一位数据。
-        /// @param value
-        void SendBit(bool value);
-
         /// @brief 发送一个字节。
         /// @param value
         /// @return 发送出去后，成功等到应答信号返回 true，没有等到应答信号返回 false.
         bool SendByte(uint8_t value);
-
-        /// @brief 接收一个位。
-        /// @return
-        bool ReceiveBit();
 
         /// @brief 读取 1 个字节。
         /// @param send_nack 读取完这个字节后是否发送 nack 信号终止读取。传入 true 则发送 nack 信号，

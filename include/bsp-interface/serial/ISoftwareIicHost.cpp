@@ -46,6 +46,29 @@ bool bsp::ISoftwareIicHost::WaitForAcknowledgment()
     return true;
 }
 
+void bsp::ISoftwareIicHost::SendBit(bool value)
+{
+    ChangeSDADirection(bsp::ISoftwareIicHost_SDADirection::Output);
+    WriteSCL(false);
+    WriteSDA(value);
+    DI_Delayer().Delay(std::chrono::microseconds{2});
+    WriteSCL(true);
+    DI_Delayer().Delay(std::chrono::microseconds{2});
+    WriteSCL(false);
+    DI_Delayer().Delay(std::chrono::microseconds{2});
+}
+
+bool bsp::ISoftwareIicHost::ReceiveBit()
+{
+    ChangeSDADirection(bsp::ISoftwareIicHost_SDADirection::Input);
+    WriteSCL(false);
+    DI_Delayer().Delay(std::chrono::microseconds{2});
+    WriteSCL(true);
+    bool bit = ReadSDA();
+    DI_Delayer().Delay(std::chrono::microseconds{1});
+    return bit;
+}
+
 void bsp::ISoftwareIicHost::SendStartingSignal()
 {
     ChangeSDADirection(bsp::ISoftwareIicHost_SDADirection::Output);
@@ -68,18 +91,6 @@ void bsp::ISoftwareIicHost::SendStoppingSignal()
     DI_Delayer().Delay(std::chrono::microseconds{4});
 }
 
-void bsp::ISoftwareIicHost::SendBit(bool value)
-{
-    ChangeSDADirection(bsp::ISoftwareIicHost_SDADirection::Output);
-    WriteSCL(false);
-    WriteSDA(value);
-    DI_Delayer().Delay(std::chrono::microseconds{2});
-    WriteSCL(true);
-    DI_Delayer().Delay(std::chrono::microseconds{2});
-    WriteSCL(false);
-    DI_Delayer().Delay(std::chrono::microseconds{2});
-}
-
 bool bsp::ISoftwareIicHost::SendByte(uint8_t value)
 {
     for (int i = 0; i < 8; i++)
@@ -93,17 +104,6 @@ bool bsp::ISoftwareIicHost::SendByte(uint8_t value)
     }
 
     return WaitForAcknowledgment();
-}
-
-bool bsp::ISoftwareIicHost::ReceiveBit()
-{
-    ChangeSDADirection(bsp::ISoftwareIicHost_SDADirection::Input);
-    WriteSCL(false);
-    DI_Delayer().Delay(std::chrono::microseconds{2});
-    WriteSCL(true);
-    bool bit = ReadSDA();
-    DI_Delayer().Delay(std::chrono::microseconds{1});
-    return bit;
 }
 
 uint8_t bsp::ISoftwareIicHost::ReceiveByte(bool send_nack)
