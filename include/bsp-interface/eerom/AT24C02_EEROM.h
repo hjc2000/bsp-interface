@@ -26,13 +26,15 @@ namespace bsp
         /// @return 读取到的字节。
         uint8_t ReadByte(int32_t addr);
 
-        void Read(int32_t addr, uint8_t *buffer, int32_t offset, int32_t count);
-
         void Read(int32_t addr, base::Span const &span);
+        void Read(int32_t addr, uint8_t *buffer, int32_t offset, int32_t count);
 
         /// @brief 写 1 个字节的数据。
         /// @param addr 数据地址。
         /// @param data 数据。
         void WriteByte(int32_t addr, uint8_t data);
+
+        void Write(int32_t addr, base::ReadOnlySpan const &span);
+        void Write(int32_t addr, uint8_t const *buffer, int32_t offset, int32_t count);
     };
 } // namespace bsp

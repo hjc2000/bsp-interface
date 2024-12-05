@@ -24,11 +24,6 @@ uint8_t bsp::AT24C02_EEROM::ReadByte(int32_t addr)
     return data;
 }
 
-void bsp::AT24C02_EEROM::Read(int32_t addr, uint8_t *buffer, int32_t offset, int32_t count)
-{
-    Read(addr, base::Span{buffer + offset, count});
-}
-
 void bsp::AT24C02_EEROM::Read(int32_t addr, base::Span const &span)
 {
     if (addr + span.Size() > Size())
@@ -42,6 +37,11 @@ void bsp::AT24C02_EEROM::Read(int32_t addr, base::Span const &span)
     }
 }
 
+void bsp::AT24C02_EEROM::Read(int32_t addr, uint8_t *buffer, int32_t offset, int32_t count)
+{
+    Read(addr, base::Span{buffer + offset, count});
+}
+
 void bsp::AT24C02_EEROM::WriteByte(int32_t addr, uint8_t data)
 {
     _iic_host->SendStartingSignal();
@@ -50,4 +50,22 @@ void bsp::AT24C02_EEROM::WriteByte(int32_t addr, uint8_t data)
     _iic_host->SendByte(data);                       // 发送字节
     _iic_host->SendStoppingSignal();                 // 产生一个停止条件
     DI_Delayer().Delay(std::chrono::milliseconds{10});
+}
+
+void bsp::AT24C02_EEROM::Write(int32_t addr, base::ReadOnlySpan const &span)
+{
+    if (addr + span.Size() > Size())
+    {
+        throw std::out_of_range{"要写入到 EEROM 的数据超出储存器范围。"};
+    }
+
+    for (int i = 0; i < span.Size(); i++)
+    {
+        WriteByte(addr + i, span[i]);
+    }
+}
+
+void bsp::AT24C02_EEROM::Write(int32_t addr, uint8_t const *buffer, int32_t offset, int32_t count)
+{
+    Write(addr, base::ReadOnlySpan{buffer + offset, count});
 }
