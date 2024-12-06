@@ -16,12 +16,12 @@ IsrManager &bsp::IsrManager::Instance()
 
         void Lock() override
         {
-            DI_InterruptSwitch().DisableGlobalInterrupt();
+            DI_DisableGlobalInterrupt();
         }
 
         void Unlock() override
         {
-            DI_InterruptSwitch().EnableGlobalInterrupt();
+            DI_EnableGlobalInterrupt();
         }
     };
 
@@ -43,7 +43,7 @@ std::function<void()> &bsp::IsrManager::GetIsr(uint32_t irq) noexcept
 
 void bsp::IsrManager::AddIsr(uint32_t irq, std::function<void()> handler) noexcept
 {
-    DI_InterruptSwitch().DoGlobalCriticalWork(
+    DI_DoGlobalCriticalWork(
         [&]()
         {
             _isr_map[irq] = handler;
@@ -52,7 +52,7 @@ void bsp::IsrManager::AddIsr(uint32_t irq, std::function<void()> handler) noexce
 
 void bsp::IsrManager::RemoveIsr(uint32_t irq) noexcept
 {
-    DI_InterruptSwitch().DoGlobalCriticalWork(
+    DI_DoGlobalCriticalWork(
         [&]()
         {
             _isr_map.erase(irq);

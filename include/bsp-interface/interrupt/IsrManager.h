@@ -1,12 +1,9 @@
 #pragma once
 #include <base/define.h>
 #include <base/di/SingletonGetter.h>
-#include <bsp-interface/interrupt/IInterruptSwitch.h>
 #include <functional>
 #include <map>
 #include <stdint.h>
-
-bsp::IInterruptSwitch &DI_InterruptSwitch();
 
 namespace bsp
 {
