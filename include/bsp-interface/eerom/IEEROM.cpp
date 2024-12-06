@@ -1,20 +1,20 @@
 #include "IEEROM.h"
 
-uint16_t bsp::IEEROM::ReadUint16(int32_t addr)
+uint16_t bsp::IEEROM::ReadUInt16(int32_t addr)
 {
     uint16_t data;
     Read(addr, base::Span{reinterpret_cast<uint8_t *>(&data), sizeof(data)});
     return data;
 }
 
-uint32_t bsp::IEEROM::ReadUint32(int32_t addr)
+uint32_t bsp::IEEROM::ReadUInt32(int32_t addr)
 {
     uint32_t data;
     Read(addr, base::Span{reinterpret_cast<uint8_t *>(&data), sizeof(data)});
     return data;
 }
 
-uint64_t bsp::IEEROM::ReadUint64(int32_t addr)
+uint64_t bsp::IEEROM::ReadUInt64(int32_t addr)
 {
     uint64_t data;
     Read(addr, base::Span{reinterpret_cast<uint8_t *>(&data), sizeof(data)});
@@ -37,6 +37,21 @@ void bsp::IEEROM::Read(int32_t addr, base::Span const &span)
 void bsp::IEEROM::Read(int32_t addr, uint8_t *buffer, int32_t offset, int32_t count)
 {
     Read(addr, base::Span{buffer + offset, count});
+}
+
+void bsp::IEEROM::WriteUInt16(int32_t addr, uint16_t data)
+{
+    Write(addr, base::ReadOnlySpan{reinterpret_cast<uint8_t *>(&data), sizeof(data)});
+}
+
+void bsp::IEEROM::WriteUInt32(int32_t addr, uint32_t data)
+{
+    Write(addr, base::ReadOnlySpan{reinterpret_cast<uint8_t *>(&data), sizeof(data)});
+}
+
+void bsp::IEEROM::WriteUInt64(int32_t addr, uint64_t data)
+{
+    Write(addr, base::ReadOnlySpan{reinterpret_cast<uint8_t *>(&data), sizeof(data)});
 }
 
 void bsp::IEEROM::Write(int32_t addr, base::ReadOnlySpan const &span)

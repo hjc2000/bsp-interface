@@ -25,17 +25,17 @@ namespace bsp
         /// @brief 读取 uint16_t.
         /// @param addr
         /// @return
-        uint16_t ReadUint16(int32_t addr);
+        uint16_t ReadUInt16(int32_t addr);
 
         /// @brief 读取 uint32_t.
         /// @param addr
         /// @return
-        uint32_t ReadUint32(int32_t addr);
+        uint32_t ReadUInt32(int32_t addr);
 
         /// @brief 读取 uint64_t.
         /// @param addr
         /// @return
-        uint64_t ReadUint64(int32_t addr);
+        uint64_t ReadUInt64(int32_t addr);
 
         /// @brief 连续将 EEROM 的一段区域读取到 span 中。
         /// @param addr
@@ -53,6 +53,21 @@ namespace bsp
         /// @param addr 数据地址。
         /// @param data 数据。
         virtual void WriteByte(int32_t addr, uint8_t data) = 0;
+
+        /// @brief 写入 uint16_t.
+        /// @param addr
+        /// @param data
+        void WriteUInt16(int32_t addr, uint16_t data);
+
+        /// @brief 写入 uint32_t.
+        /// @param addr
+        /// @param data
+        void WriteUInt32(int32_t addr, uint32_t data);
+
+        /// @brief 写入 uint64_t.
+        /// @param addr
+        /// @param data
+        void WriteUInt64(int32_t addr, uint64_t data);
 
         /// @brief 将 span 写入 EEROM 的 addr 开始的连续区域。
         /// @param addr
