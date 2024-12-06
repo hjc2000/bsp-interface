@@ -14,8 +14,7 @@ namespace bsp
 
     public:
         /// @brief 构造函数。
-        /// @param host 连接着本芯片的 IIC 主机接口对象。传进来的 IIicHost 不要自行
-        /// 调用 Open 方法，本对象会负责打开。
+        /// @param host 连接着本芯片的 IIC 主机接口对象。
         AT24C02_EEROM(bsp::IIicHost *host);
 
         /// @brief EEROM 的容量。单位：字节。

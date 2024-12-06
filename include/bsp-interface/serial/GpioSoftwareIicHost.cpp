@@ -7,15 +7,7 @@ bsp::GpioSoftwareIicHost::GpioSoftwareIicHost(std::string name,
     _name = name;
     _scl_pin_name = scl_pin_name;
     _sda_pin_name = sda_pin_name;
-}
 
-std::string bsp::GpioSoftwareIicHost::Name() const
-{
-    return _name;
-}
-
-void bsp::GpioSoftwareIicHost::Open()
-{
     // 查找引脚
     {
         _scl_pin = DI_GpioPinCollection().Get(_scl_pin_name);
@@ -53,6 +45,11 @@ void bsp::GpioSoftwareIicHost::Open()
         _scl_pin->WritePin(true);
         _sda_pin->WritePin(true);
     }
+}
+
+std::string bsp::GpioSoftwareIicHost::Name() const
+{
+    return _name;
 }
 
 void bsp::GpioSoftwareIicHost::WriteSCL(bool value)

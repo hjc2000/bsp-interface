@@ -4,7 +4,6 @@
 bsp::AT24C02_EEROM::AT24C02_EEROM(bsp::IIicHost *host)
 {
     _iic_host = host;
-    _iic_host->Open();
 }
 
 int32_t bsp::AT24C02_EEROM::Size() const

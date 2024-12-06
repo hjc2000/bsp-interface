@@ -35,9 +35,6 @@ namespace bsp
         /// @return
         std::string Name() const override;
 
-        /// @brief 打开 IIC 接口。
-        void Open() override;
-
         /// @brief 写 SCL 引脚的值。
         /// @param value
         void WriteSCL(bool value) override;

@@ -12,9 +12,6 @@ namespace bsp
         /// @return
         virtual std::string Name() const = 0;
 
-        /// @brief 打开 IIC 接口。
-        virtual void Open() = 0;
-
         /// @brief 发送 IIC 启动信号。
         virtual void SendStartingSignal() = 0;
 

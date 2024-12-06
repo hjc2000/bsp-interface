@@ -39,9 +39,6 @@ namespace bsp
         /// @return
         virtual std::string Name() const = 0;
 
-        /// @brief 打开 IIC 接口。
-        virtual void Open() = 0;
-
         /// @brief 写 SCL 引脚的值。
         /// @param value
         virtual void WriteSCL(bool value) = 0;
