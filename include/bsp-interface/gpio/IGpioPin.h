@@ -10,8 +10,6 @@ namespace bsp
     class IGpioPin
     {
     public:
-        virtual ~IGpioPin() = default;
-
         /// @brief 引脚名称
         /// @return
         virtual std::string PinName() const = 0;
@@ -27,7 +25,28 @@ namespace bsp
         /// @return
         virtual bool IsOpen() = 0;
 
+#pragma region 打开
         virtual void Open(bsp::IGpioPinOptions const &options) = 0;
+
+        /// @brief 将引脚打开为输入模式。
+        /// @param pull_mode 拉模式。可以选择上拉、下拉、不拉。
+        /// @param trigger_edge 中断触发边沿。
+        virtual void OpenAsInputMode(bsp::IGpioPinPullMode pull_mode, bsp::IGpioPinTriggerEdge trigger_edge);
+
+        /// @brief 将引脚打开为输出模式。
+        /// @param pull_mode 拉模式。
+        /// @param driver_mode 驱动模式。
+        virtual void OpenAsOutputMode(bsp::IGpioPinPullMode pull_mode, bsp::IGpioPinDriver driver_mode);
+
+        /// @brief 将引脚打开为复用功能。
+        /// @param function_name 复用功能名称。
+        /// @param pull_mode 拉模式。
+        /// @param driver_mode 驱动模式。
+        virtual void OpenAsAlternateFunctionMode(std::string function_name,
+                                                 bsp::IGpioPinPullMode pull_mode,
+                                                 bsp::IGpioPinDriver driver_mode);
+#pragma endregion
+
         virtual void Close() = 0;
 
         virtual bool ReadPin() = 0;
