@@ -13,11 +13,17 @@ namespace bsp
     {
     private:
         bsp::IIicHost *_iic_host = nullptr;
+        std::string _name;
 
     public:
         /// @brief 构造函数。
+        /// @param name 本 EEROM 的名称。
         /// @param host 连接着本芯片的 IIC 主机接口对象。
-        AT24C02_EEROM(bsp::IIicHost *host);
+        AT24C02_EEROM(std::string const &name, bsp::IIicHost *host);
+
+        /// @brief EEROM 的名称。
+        /// @return
+        std::string Name() const override;
 
         /// @brief EEROM 的容量。单位：字节。
         /// @return

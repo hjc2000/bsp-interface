@@ -1,6 +1,7 @@
 #pragma once
 #include <base/stream/ReadOnlySpan.h>
 #include <stdint.h>
+#include <string>
 
 namespace bsp
 {
@@ -8,6 +9,10 @@ namespace bsp
     class IEEROM
     {
     public:
+        /// @brief EEROM 的名称。
+        /// @return
+        virtual std::string Name() const = 0;
+
         /// @brief EEROM 的容量。单位：字节。
         /// @return
         virtual int32_t Size() const = 0;

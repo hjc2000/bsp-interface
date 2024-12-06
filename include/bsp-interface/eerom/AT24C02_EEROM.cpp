@@ -1,9 +1,15 @@
 #include "AT24C02_EEROM.h"
 #include <bsp-interface/di/delayer.h>
 
-bsp::AT24C02_EEROM::AT24C02_EEROM(bsp::IIicHost *host)
+bsp::AT24C02_EEROM::AT24C02_EEROM(std::string const &name, bsp::IIicHost *host)
 {
+    _name = name;
     _iic_host = host;
+}
+
+std::string bsp::AT24C02_EEROM::Name() const
+{
+    return _name;
 }
 
 int32_t bsp::AT24C02_EEROM::Size() const
