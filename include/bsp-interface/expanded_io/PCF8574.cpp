@@ -13,15 +13,8 @@ bsp::PCF8574::PCF8574(std::string const &name,
     _address = address;
 
     // 打开中断引脚
-    {
-        auto option = DICreate_GpioPinOptions();
-        option->SetWorkMode(bsp::IGpioPinWorkMode::Gpio);
-        option->SetDirection(bsp::IGpioPinDirection::Input);
-        option->SetTriggerEdge(bsp::IGpioPinTriggerEdge::FallingEdge);
-        option->SetPullMode(bsp::IGpioPinPullMode::PullUp);
-        option->SetSpeedLevel(3);
-        _interrupt_pin->Open(*option);
-    }
+    _interrupt_pin->OpenAsInputMode(bsp::IGpioPinPullMode::PullUp,
+                                    bsp::IGpioPinTriggerEdge::FallingEdge);
 }
 
 void bsp::PCF8574::RegisterInterruptCallback(std::function<void()> func)

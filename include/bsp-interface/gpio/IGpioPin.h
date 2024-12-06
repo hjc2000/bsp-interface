@@ -1,11 +1,81 @@
 #pragma once
 #include <base/container/iterator/IEnumerable.h>
-#include <bsp-interface/gpio/IGpioPinOptions.h>
 #include <functional>
 #include <string>
 
 namespace bsp
 {
+#pragma region 枚举
+    /// @brief 引脚方向
+    enum class IGpioPinDirection
+    {
+        /// @brief 输入
+        Input,
+
+        /// @brief 输出
+        Output,
+
+        /// @brief 双向
+        TwoWay,
+
+        /// @brief 高阻态。
+        HighResistanceState,
+    };
+
+    /// @brief 引脚工作模式。
+    enum class IGpioPinWorkMode
+    {
+        /// @brief 通用输入输出功能。
+        Gpio,
+
+        /// @brief 事件功能。
+        Event,
+
+        /// @brief 模拟量功能。
+        Analog,
+
+        /// @brief 复用功能。
+        AlternateFunction,
+    };
+
+    /// @brief 触发边沿。
+    enum class IGpioPinTriggerEdge
+    {
+        /// @brief 禁用中断
+        Disable,
+
+        /// @brief 上升沿
+        RisingEdge,
+
+        /// @brief 下降沿
+        FallingEdge,
+
+        /// @brief 双边沿
+        BothEdge,
+    };
+
+    /// @brief 引脚上下拉模式。
+    enum class IGpioPinPullMode
+    {
+        /// @brief 不拉
+        NoPull,
+
+        /// @brief 上拉
+        PullUp,
+
+        /// @brief 下拉
+        PullDown,
+    };
+
+    /// @brief 引脚驱动模式。
+    /// @note 引脚方向为输出时才有效。
+    enum class IGpioPinDriver
+    {
+        PushPull,
+        OpenDrain,
+    };
+#pragma endregion
+
     /// @brief 管理单个 GPIO 引脚。
     class IGpioPin
     {
@@ -26,8 +96,6 @@ namespace bsp
         virtual bool IsOpen() = 0;
 
 #pragma region 打开
-        virtual void Open(bsp::IGpioPinOptions const &options) = 0;
-
         /// @brief 将引脚打开为输入模式。
         /// @param pull_mode 拉模式。可以选择上拉、下拉、不拉。
         /// @param trigger_edge 中断触发边沿。

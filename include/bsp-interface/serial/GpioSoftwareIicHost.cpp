@@ -14,26 +14,6 @@ bsp::GpioSoftwareIicHost::GpioSoftwareIicHost(std::string name,
         _sda_pin = DI_GpioPinCollection().Get(_sda_pin_name);
     }
 
-    // 输入引脚选项
-    {
-        _input_pin_options = DICreate_GpioPinOptions();
-        _input_pin_options->SetWorkMode(bsp::IGpioPinWorkMode::Gpio);
-        _input_pin_options->SetDirection(bsp::IGpioPinDirection::Input);
-        _input_pin_options->SetTriggerEdge(bsp::IGpioPinTriggerEdge::Disable);
-        _input_pin_options->SetPullMode(bsp::IGpioPinPullMode::PullUp);
-        _input_pin_options->SetSpeedLevel(3);
-    }
-
-    // 输出引脚选项
-    {
-        _output_pin_options = DICreate_GpioPinOptions();
-        _output_pin_options->SetWorkMode(bsp::IGpioPinWorkMode::Gpio);
-        _output_pin_options->SetDirection(bsp::IGpioPinDirection::Output);
-        _output_pin_options->SetDriver(bsp::IGpioPinDriver::PushPull);
-        _output_pin_options->SetPullMode(bsp::IGpioPinPullMode::PullUp);
-        _output_pin_options->SetSpeedLevel(3);
-    }
-
     // 打开引脚
     {
         _scl_pin->OpenAsOutputMode(bsp::IGpioPinPullMode::PullUp, bsp::IGpioPinDriver::PushPull);

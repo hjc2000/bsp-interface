@@ -12,13 +12,6 @@ namespace bsp
         std::string _name;
         std::string _scl_pin_name;
         std::string _sda_pin_name;
-
-        /// @brief 用来将引脚配置为输入模式的选项。
-        std::shared_ptr<bsp::IGpioPinOptions> _input_pin_options;
-
-        /// @brief 用来将引脚配置为输出模式的选项。
-        std::shared_ptr<bsp::IGpioPinOptions> _output_pin_options;
-
         bsp::IGpioPin *_scl_pin = nullptr;
         bsp::IGpioPin *_sda_pin = nullptr;
 
