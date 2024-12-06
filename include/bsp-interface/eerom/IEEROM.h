@@ -17,6 +17,7 @@ namespace bsp
         /// @return
         virtual int32_t Size() const = 0;
 
+#pragma region 读
         /// @brief 读取 1 个字节的数据。
         /// @param addr 数据地址。
         /// @return 读取到的字节。
@@ -48,7 +49,9 @@ namespace bsp
         /// @param offset
         /// @param count
         void Read(int32_t addr, uint8_t *buffer, int32_t offset, int32_t count);
+#pragma endregion
 
+#pragma region 写
         /// @brief 写 1 个字节的数据。
         /// @param addr 数据地址。
         /// @param data 数据。
@@ -80,5 +83,6 @@ namespace bsp
         /// @param offset
         /// @param count
         void Write(int32_t addr, uint8_t const *buffer, int32_t offset, int32_t count);
+#pragma endregion
     };
 } // namespace bsp
