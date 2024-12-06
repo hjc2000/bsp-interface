@@ -23,7 +23,13 @@ void DI_DisableGlobalInterrupt() noexcept;
 /// @brief 启用全局中断
 void DI_EnableGlobalInterrupt() noexcept;
 
+/// @brief 外部中断管理器。
+/// @return
+bsp::IExtiManager &DI_ExtiManager();
+
+#pragma region 已经实现
 /// @brief 执行临界区工作。会通过禁用全局中断来保证安全。
+/// @note 此函数已经实现。
 /// @param func
 void DI_DoGlobalCriticalWork(std::function<void()> func);
 
@@ -31,7 +37,4 @@ void DI_DoGlobalCriticalWork(std::function<void()> func);
 /// @note 此依赖本库已经提供了，不需要实现此函数了。
 /// @return
 bsp::IsrManager &DI_IsrManager();
-
-/// @brief 外部中断管理器。
-/// @return
-bsp::IExtiManager &DI_ExtiManager();
+#pragma endregion
