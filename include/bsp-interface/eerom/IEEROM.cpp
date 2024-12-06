@@ -1,5 +1,26 @@
 #include "IEEROM.h"
 
+uint16_t bsp::IEEROM::ReadUint16(int32_t addr)
+{
+    uint16_t data;
+    Read(addr, base::Span{reinterpret_cast<uint8_t *>(&data), sizeof(data)});
+    return data;
+}
+
+uint32_t bsp::IEEROM::ReadUint32(int32_t addr)
+{
+    uint32_t data;
+    Read(addr, base::Span{reinterpret_cast<uint8_t *>(&data), sizeof(data)});
+    return data;
+}
+
+uint64_t bsp::IEEROM::ReadUint64(int32_t addr)
+{
+    uint64_t data;
+    Read(addr, base::Span{reinterpret_cast<uint8_t *>(&data), sizeof(data)});
+    return data;
+}
+
 void bsp::IEEROM::Read(int32_t addr, base::Span const &span)
 {
     if (addr + span.Size() > Size())

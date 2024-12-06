@@ -22,6 +22,21 @@ namespace bsp
         /// @return 读取到的字节。
         virtual uint8_t ReadByte(int32_t addr) = 0;
 
+        /// @brief 读取 uint16_t.
+        /// @param addr
+        /// @return
+        uint16_t ReadUint16(int32_t addr);
+
+        /// @brief 读取 uint32_t.
+        /// @param addr
+        /// @return
+        uint32_t ReadUint32(int32_t addr);
+
+        /// @brief 读取 uint64_t.
+        /// @param addr
+        /// @return
+        uint64_t ReadUint64(int32_t addr);
+
         /// @brief 连续将 EEROM 的一段区域读取到 span 中。
         /// @param addr
         /// @param span
