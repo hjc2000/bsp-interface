@@ -5,6 +5,8 @@ bsp::AT24C02_EEROM::AT24C02_EEROM(std::string const &name, bsp::IIicHost *host)
 {
     _name = name;
     _iic_host = host;
+    _iic_host->SetSclCycleWhenGreater(std::chrono::microseconds{4});
+    _iic_host->SetWaitingForAckTimeoutCycleCountWhenGreater(100);
 }
 
 std::string bsp::AT24C02_EEROM::Name() const
