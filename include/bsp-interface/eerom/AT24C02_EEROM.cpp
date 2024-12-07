@@ -3,12 +3,18 @@
 
 bsp::AT24C02_EEROM::AT24C02_EEROM(std::string const &name, bsp::IIicHost *host)
 {
+    /* IIC 设备类不能自己去调用 IIicHost 的打开方法或初始化方法，因为一个 IIicHost
+     * 对象可能给多个 IIC 设备类对象共用，如果每个 IIC 设备类对象都要 Open 一次，那就
+     * 乱套了。而且 IIC 接口各种各样，可能有很多 Open 的重载版本和初始化方式。
+     *
+     * 综上，Open 的工作应该在 IIC 设备类外部完成。
+     */
+
     _name = name;
     _iic_host = host;
 
-    /* 这里暂时这么定
-     * 每个基于 IIC 的设备类都需要根据自己的能力设置 SCL 周期和 ACK 信号的等待超时
-     * 周期数。
+    /* 虽然 IIC 设备类不能调用 IIicHost 的 Open 方法，但是还是需要一些途径来改变 IIicHost
+     * 的时钟频率、等待超时周期数。因为每个 IIC 设备类都有自己的响应速度上限。
      */
     _iic_host->SetSclCycleWhenGreater(std::chrono::microseconds{4});
     _iic_host->SetWaitingForAckTimeoutCycleCountWhenGreater(100);
