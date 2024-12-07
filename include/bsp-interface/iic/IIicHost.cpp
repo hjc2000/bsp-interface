@@ -7,3 +7,11 @@ void bsp::IIicHost::SetSclCycleWhenGreater(std::chrono::microseconds value)
         SetSclCycle(value);
     }
 }
+
+void bsp::IIicHost::SetWaitingForAckTimeoutCycleCountWhenGreater(int value)
+{
+    if (value > WaitingForAckTimeoutCycleCount())
+    {
+        SetWaitingForAckTimeoutCycleCount(value);
+    }
+}

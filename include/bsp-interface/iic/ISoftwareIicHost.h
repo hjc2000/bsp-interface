@@ -15,6 +15,9 @@ namespace bsp
         public bsp::IIicHost
     {
     private:
+        std::chrono::microseconds _scl_cycle{4};
+        int _waiting_for_ack_timeout_cycle = 100;
+
         /// @brief 发送应答信号。
         void SendAcknowledgment();
 
@@ -71,5 +74,21 @@ namespace bsp
         /// 传入 false 则发送 ack 信号，表示希望继续读取。
         /// @return
         uint8_t ReceiveByte(bool send_nack) override;
+
+        /// @brief SCL 的周期。
+        /// @return
+        std::chrono::microseconds SclCycle() const override;
+
+        /// @brief 设置 SCL 的周期。
+        /// @param value
+        void SetSclCycle(std::chrono::microseconds value) override;
+
+        /// @brief 等待从机的 ACK 信号的超时周期数。单位： SCL 的周期。
+        /// @return
+        int WaitingForAckTimeoutCycleCount() const override;
+
+        /// @brief 设置等待从机的 ACK 信号的超时周期数。单位： SCL 的周期。
+        /// @param value
+        void SetWaitingForAckTimeoutCycleCount(int value) override;
     };
 } // namespace bsp
