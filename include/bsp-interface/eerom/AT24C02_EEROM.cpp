@@ -5,6 +5,11 @@ bsp::AT24C02_EEROM::AT24C02_EEROM(std::string const &name, bsp::IIicHost *host)
 {
     _name = name;
     _iic_host = host;
+
+    /* 这里暂时这么定
+     * 每个基于 IIC 的设备类都需要根据自己的能力设置 SCL 周期和 ACK 信号的等待超时
+     * 周期数。
+     */
     _iic_host->SetSclCycleWhenGreater(std::chrono::microseconds{4});
     _iic_host->SetWaitingForAckTimeoutCycleCountWhenGreater(100);
 }
