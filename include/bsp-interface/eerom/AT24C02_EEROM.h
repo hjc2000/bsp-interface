@@ -1,7 +1,7 @@
 #pragma once
 #include <base/stream/ReadOnlySpan.h>
 #include <bsp-interface/eerom/IEEROM.h>
-#include <bsp-interface/serial/IIicHost.h>
+#include <bsp-interface/iic/IIicHost.h>
 #include <stdint.h>
 
 namespace bsp

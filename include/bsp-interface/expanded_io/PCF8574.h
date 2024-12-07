@@ -1,6 +1,6 @@
 #pragma once
 #include <bsp-interface/gpio/IGpioPin.h>
-#include <bsp-interface/serial/IIicHost.h>
+#include <bsp-interface/iic/IIicHost.h>
 #include <functional>
 
 namespace bsp

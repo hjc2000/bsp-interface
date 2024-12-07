@@ -1,6 +1,6 @@
 #pragma once
 #include <bsp-interface/di/gpio.h>
-#include <bsp-interface/serial/ISoftwareIicHost.h>
+#include <bsp-interface/iic/ISoftwareIicHost.h>
 
 namespace bsp
 {

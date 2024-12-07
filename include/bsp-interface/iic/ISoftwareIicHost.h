@@ -1,5 +1,5 @@
 #pragma once
-#include <bsp-interface/serial/IIicHost.h>
+#include <bsp-interface/iic/IIicHost.h>
 
 namespace bsp
 {
