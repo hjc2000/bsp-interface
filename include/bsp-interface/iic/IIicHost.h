@@ -9,6 +9,7 @@ namespace bsp
     class IIicHost
     {
     public:
+#pragma region 接口
         /// @brief 此 IIC 接口的名称。
         /// @return
         virtual std::string Name() const = 0;
@@ -37,10 +38,6 @@ namespace bsp
         /// @param value
         virtual void SetSclCycle(std::chrono::microseconds value) = 0;
 
-        /// @brief 如果传入的值比现有的 SCL 周期更大，则设置 SCL 的周期，否则不设置。
-        /// @param value
-        void SetSclCycleWhenGreater(std::chrono::microseconds value);
-
         /// @brief 等待从机的 ACK 信号的超时周期数。单位： SCL 的周期。
         /// @return
         virtual int WaitingForAckTimeoutCycleCount() const = 0;
@@ -48,6 +45,11 @@ namespace bsp
         /// @brief 设置等待从机的 ACK 信号的超时周期数。单位： SCL 的周期。
         /// @param value
         virtual void SetWaitingForAckTimeoutCycleCount(int value) = 0;
+#pragma endregion
+
+        /// @brief 如果传入的值比现有的 SCL 周期更大，则设置 SCL 的周期，否则不设置。
+        /// @param value
+        void SetSclCycleWhenGreater(std::chrono::microseconds value);
 
         /// @brief 设置等待从机的 ACK 信号的超时周期数。但是本方法只有在新的值比旧的值
         /// 更大时才会设置。
