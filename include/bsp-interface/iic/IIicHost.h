@@ -1,4 +1,5 @@
 #pragma once
+#include <chrono>
 #include <stdint.h>
 #include <string>
 
@@ -27,5 +28,17 @@ namespace bsp
         /// 传入 false 则发送 ack 信号，表示希望继续读取。
         /// @return
         virtual uint8_t ReceiveByte(bool send_nack) = 0;
+
+        /// @brief SCL 的周期。
+        /// @return
+        virtual std::chrono::microseconds SclCycle() const = 0;
+
+        /// @brief 设置 SCL 的周期。
+        /// @param value
+        virtual void SetSclCycle(std::chrono::microseconds value) = 0;
+
+        /// @brief 如果传入的值比现有的 SCL 周期更大，则设置 SCL 的周期，否则不设置。
+        /// @param value
+        void SetSclCycleWhenGreater(std::chrono::microseconds value);
     };
 } // namespace bsp
