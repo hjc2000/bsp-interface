@@ -12,7 +12,7 @@ namespace bsp
         std::string _name;
         bsp::IGpioPin *_interrupt_pin = nullptr;
         bsp::IIicHost *_iic_host = nullptr;
-        uint8_t _address = 0;
+        uint8_t _address = 0x40;
 
     public:
         /// @brief 构造函数。
@@ -32,5 +32,25 @@ namespace bsp
 
         /// @brief 取消注册中断回调函数。
         void UnregisterInterruptCallback();
+
+        /// @brief 读取一个字节。这是一个 8 位的 IO 扩展芯片，读取 1 个字节意味着读取
+        /// 所有 IO 端子的电平。
+        /// @return
+        uint8_t ReadByte();
+
+        /// @brief 写 1 个字节。这是 1 个 8 位的 IO 扩展芯片，写 1 个字节意味着设置所有
+        /// IO 端子的电平。
+        /// @param value
+        void WriteByte(uint8_t value);
+
+        /// @brief 读取一个位。即读取指定索引的 IO 端子的电平。
+        /// @param index IO 端子的索引。
+        /// @return
+        bool ReadBit(int index);
+
+        /// @brief 写 1 个位。即写指定索引的 IO 端子的电平。
+        /// @param index IO 端子的索引。
+        /// @param value IO 端子的电平。
+        void WriteBit(int index, bool value);
     };
 } // namespace bsp
