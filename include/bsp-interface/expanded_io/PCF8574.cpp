@@ -11,7 +11,13 @@ bsp::PCF8574::PCF8574(std::string const &name,
     _name = name;
     _interrupt_pin = interrupt_pin;
     _iic_host = iic_host;
-    _address = address;
+
+    if (address > 0b111)
+    {
+        throw std::out_of_range{"地址超出范围。允许的地址范围为 [0, 7]"};
+    }
+
+    _address_register = 0b01000000 | (address << 1);
 
     /* 虽然 IIC 设备类不能调用 IIicHost 的 Open 方法，但是还是需要一些途径来改变 IIicHost
      * 的时钟频率、等待超时周期数。因为每个 IIC 设备类都有自己的响应速度上限。
@@ -37,7 +43,7 @@ void bsp::PCF8574::UnregisterInterruptCallback()
 uint8_t bsp::PCF8574::ReadByte(int index)
 {
     _iic_host->SendStartingSignal();
-    _iic_host->SendByte(_address | 0x01);
+    _iic_host->SendByte(_address_register | 0x01);
     uint8_t data = _iic_host->ReceiveByte(true);
     _iic_host->SendStoppingSignal();
     return data;
@@ -46,7 +52,7 @@ uint8_t bsp::PCF8574::ReadByte(int index)
 void bsp::PCF8574::WriteByte(int index, uint8_t value)
 {
     _iic_host->SendStartingSignal();
-    _iic_host->SendByte(_address | 0x00);
+    _iic_host->SendByte(_address_register | 0x00);
     _iic_host->SendByte(value);
     _iic_host->SendStoppingSignal();
     DI_Delayer().Delay(std::chrono::milliseconds{10});

@@ -17,7 +17,10 @@ namespace bsp
         std::string _name;
         bsp::IGpioPin *_interrupt_pin = nullptr;
         bsp::IIicHost *_iic_host = nullptr;
-        uint8_t _address = 0x40;
+
+        /// @brief 地址寄存器。高 4 位固定为 0b0100，低 4 位中的高 3 位是地址，最低位用来表示
+        /// 读操作还是写操作。最低位为 1 表示读操作，最低位为 0 表示写操作。
+        uint8_t _address_register = 0b01000000;
 
     public:
         /// @brief 构造函数。
@@ -25,7 +28,8 @@ namespace bsp
         /// @param interrupt_pin PCF8574 具有中断功能，需要一个中断输入引脚。
         /// @param iic_host 本对象需要一个 IIC 主机接口来控制 PCF8574 芯片。
         /// @param address PCF8574 芯片有一个地址，操作时需要用地址来指定芯片，一个 IIC 总线上可以挂
-        /// 多个 PCF8574 芯片。
+        /// 多个 PCF8574 芯片。允许的地址范围为 [0, 7]，因为芯片上总共有 3 个引脚，用来接低电平或高电平
+        /// 表示地址。
         PCF8574(std::string const &name,
                 bsp::IGpioPin *interrupt_pin,
                 bsp::IIicHost *iic_host,
