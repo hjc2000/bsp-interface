@@ -1,6 +1,6 @@
 #pragma once
 #include <base/container/IDictionary.h>
-#include <bsp-interface/ExpandedIO/IExpandedIoPort.h>
+#include <bsp-interface/Expanded_IO/IExpandedIoPort.h>
 #include <string>
 
 /// @brief 扩展 IO 集合。
