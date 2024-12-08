@@ -5,6 +5,9 @@
 namespace bsp
 {
     /// @brief 包装 IIicHost 并转发操作。转发时会使用互斥量进行保护。
+    /// @note IIC 主机接口是共享的，会挂载多个 IIC 设备，然后在多个地方操作这些设备，
+    /// 并且很可能是在多线程中。这种情况下就需要使用本类包装裸的 IIicHost 对象，从而
+    /// 使用互斥量进行保护。
     class MutexIicHost :
         public bsp::IIicHost
     {
