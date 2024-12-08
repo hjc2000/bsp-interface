@@ -28,6 +28,9 @@ bsp::PCF8574::PCF8574(std::string const &name,
     // 打开中断引脚
     _interrupt_pin->OpenAsInputMode(bsp::IGpioPinPullMode::PullUp,
                                     bsp::IGpioPinTriggerEdge::FallingEdge);
+
+    // 初始化后将所有引脚置为高电平。即让芯片内每个引脚的开关管关断。
+    WriteByte(0, 0xff);
 }
 
 std::string bsp::PCF8574::Name() const
