@@ -56,18 +56,26 @@ namespace bsp
         virtual bool ReadSDA() const = 0;
 
         /// @brief SCL 的周期。
+        /// @note 实现的例子见 GpioSoftwareIicHost 类。GpioSoftwareIicHost 类只是简单地
+        /// 用字段来储存本属性。
         /// @return
         virtual std::chrono::microseconds SclCycle() const = 0;
 
         /// @brief 设置 SCL 的周期。
+        /// @note 实现的例子见 GpioSoftwareIicHost 类。GpioSoftwareIicHost 类只是简单地
+        /// 用字段来储存本属性。
         /// @param value
         virtual void SetSclCycle(std::chrono::microseconds value) = 0;
 
         /// @brief 等待从机的 ACK 信号的超时周期数。单位： SCL 的周期。
+        /// @note 实现的例子见 GpioSoftwareIicHost 类。GpioSoftwareIicHost 类只是简单地
+        /// 用字段来储存本属性。
         /// @return
         virtual int WaitingForAckTimeoutCycleCount() const = 0;
 
         /// @brief 设置等待从机的 ACK 信号的超时周期数。单位： SCL 的周期。
+        /// @note 实现的例子见 GpioSoftwareIicHost 类。GpioSoftwareIicHost 类只是简单地
+        /// 用字段来储存本属性。
         /// @param value
         virtual void SetWaitingForAckTimeoutCycleCount(int value) = 0;
 #pragma endregion
