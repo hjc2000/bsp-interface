@@ -1,5 +1,5 @@
 #pragma once
-#include <bsp-interface/expanded_io_port/IExpandedIoPort.h>
+#include <bsp-interface/expanded_io/IExpandedIoPort.h>
 #include <bsp-interface/gpio/IGpioPin.h>
 #include <bsp-interface/iic/IIicHost.h>
 #include <functional>
