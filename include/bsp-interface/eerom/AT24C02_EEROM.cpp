@@ -17,7 +17,7 @@ bsp::AT24C02_EEROM::AT24C02_EEROM(std::string const &name, bsp::IIicHost *host)
      * 的时钟频率、等待超时周期数。因为每个 IIC 设备类都有自己的响应速度上限。
      */
     _iic_host->SetSclCycleWhenGreater(std::chrono::microseconds{4});
-    _iic_host->SetWaitingForAckTimeoutCycleCountWhenGreater(100);
+    _iic_host->SetWaitingForAckTimeoutCycleCountWhenGreater(10);
 }
 
 std::string bsp::AT24C02_EEROM::Name() const

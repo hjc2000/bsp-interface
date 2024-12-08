@@ -16,8 +16,11 @@ bsp::GpioSoftwareIicHost::GpioSoftwareIicHost(std::string name,
 
     // 打开引脚
     {
-        _scl_pin->OpenAsOutputMode(bsp::IGpioPinPullMode::PullUp, bsp::IGpioPinDriver::PushPull);
-        _sda_pin->OpenAsOutputMode(bsp::IGpioPinPullMode::PullUp, bsp::IGpioPinDriver::PushPull);
+        _scl_pin->OpenAsOutputMode(bsp::IGpioPinPullMode::PullUp,
+                                   bsp::IGpioPinDriver::PushPull);
+
+        _sda_pin->OpenAsOutputMode(bsp::IGpioPinPullMode::PullUp,
+                                   bsp::IGpioPinDriver::PushPull);
     }
 
     // 空闲状态输出高电平
@@ -43,11 +46,13 @@ void bsp::GpioSoftwareIicHost::ChangeSDADirection(ISoftwareIicHost_SDADirection 
     _sda_pin->Close();
     if (value == bsp::ISoftwareIicHost_SDADirection::Input)
     {
-        _sda_pin->OpenAsInputMode(bsp::IGpioPinPullMode::PullUp, bsp::IGpioPinTriggerEdge::Disable);
+        _sda_pin->OpenAsInputMode(bsp::IGpioPinPullMode::PullUp,
+                                  bsp::IGpioPinTriggerEdge::Disable);
     }
     else
     {
-        _sda_pin->OpenAsOutputMode(bsp::IGpioPinPullMode::PullUp, bsp::IGpioPinDriver::PushPull);
+        _sda_pin->OpenAsOutputMode(bsp::IGpioPinPullMode::PullUp,
+                                   bsp::IGpioPinDriver::PushPull);
     }
 }
 
