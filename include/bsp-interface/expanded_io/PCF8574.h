@@ -1,4 +1,5 @@
 #pragma once
+#include <bsp-interface/expanded_io/IExpandedIoPort.h>
 #include <bsp-interface/gpio/IGpioPin.h>
 #include <bsp-interface/iic/IIicHost.h>
 #include <functional>
@@ -9,7 +10,8 @@ namespace bsp
     /// @note 每个引脚内部是一个开关管，所谓的写 1 就是将开关管关断，写 0 就是将开关管打开。
     /// 所以引脚外部需要使用上拉的方式进行接线。例如接 LED 时，需要将阴极连接到本芯片的引脚，
     /// 阳极连接着电源。
-    class PCF8574
+    class PCF8574 :
+        public bsp::IExpandedIoPort
     {
     private:
         std::string _name;
@@ -31,29 +33,21 @@ namespace bsp
 
         /// @brief 注册中断回调函数。
         /// @param func
-        void RegisterInterruptCallback(std::function<void()> func);
+        void RegisterInterruptCallback(std::function<void()> func) override;
 
         /// @brief 取消注册中断回调函数。
-        void UnregisterInterruptCallback();
+        void UnregisterInterruptCallback() override;
 
         /// @brief 读取一个字节。这是一个 8 位的 IO 扩展芯片，读取 1 个字节意味着读取
         /// 所有 IO 端子的电平。
+        /// @param index 索引。要读取第几个字节。
         /// @return
-        uint8_t ReadByte();
+        uint8_t ReadByte(int index) override;
 
         /// @brief 写 1 个字节。这是 1 个 8 位的 IO 扩展芯片，写 1 个字节意味着设置所有
         /// IO 端子的电平。
+        /// @param index 索引。要写入第几个字节。
         /// @param value
-        void WriteByte(uint8_t value);
-
-        /// @brief 读取一个位。即读取指定索引的 IO 端子的电平。
-        /// @param index IO 端子的索引。
-        /// @return
-        bool ReadBit(int index);
-
-        /// @brief 写 1 个位。即写指定索引的 IO 端子的电平。
-        /// @param index IO 端子的索引。
-        /// @param value IO 端子的电平。
-        void WriteBit(int index, bool value);
+        void WriteByte(int index, uint8_t value) override;
     };
 } // namespace bsp
