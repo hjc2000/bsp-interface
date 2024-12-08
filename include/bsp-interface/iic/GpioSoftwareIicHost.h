@@ -14,6 +14,8 @@ namespace bsp
         std::string _sda_pin_name;
         bsp::IGpioPin *_scl_pin = nullptr;
         bsp::IGpioPin *_sda_pin = nullptr;
+        std::chrono::microseconds _scl_cycle{4};
+        int _waiting_for_ack_timeout_cycle = 100;
 
     public:
         /// @brief 构造函数。
@@ -43,5 +45,21 @@ namespace bsp
         /// @brief 读 SDA 引脚的值。
         /// @return
         bool ReadSDA() const override;
+
+        /// @brief SCL 的周期。
+        /// @return
+        std::chrono::microseconds SclCycle() const override;
+
+        /// @brief 设置 SCL 的周期。
+        /// @param value
+        void SetSclCycle(std::chrono::microseconds value) override;
+
+        /// @brief 等待从机的 ACK 信号的超时周期数。单位： SCL 的周期。
+        /// @return
+        int WaitingForAckTimeoutCycleCount() const override;
+
+        /// @brief 设置等待从机的 ACK 信号的超时周期数。单位： SCL 的周期。
+        /// @param value
+        void SetWaitingForAckTimeoutCycleCount(int value) override;
     };
 } // namespace bsp

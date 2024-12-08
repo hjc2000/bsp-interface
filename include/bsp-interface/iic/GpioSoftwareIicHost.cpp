@@ -65,3 +65,23 @@ bool bsp::GpioSoftwareIicHost::ReadSDA() const
 {
     return _sda_pin->ReadPin();
 }
+
+std::chrono::microseconds bsp::GpioSoftwareIicHost::SclCycle() const
+{
+    return _scl_cycle;
+}
+
+void bsp::GpioSoftwareIicHost::SetSclCycle(std::chrono::microseconds value)
+{
+    _scl_cycle = value;
+}
+
+int bsp::GpioSoftwareIicHost::WaitingForAckTimeoutCycleCount() const
+{
+    return _waiting_for_ack_timeout_cycle;
+}
+
+void bsp::GpioSoftwareIicHost::SetWaitingForAckTimeoutCycleCount(int value)
+{
+    _waiting_for_ack_timeout_cycle = value;
+}
