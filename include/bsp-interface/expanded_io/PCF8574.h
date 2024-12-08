@@ -41,6 +41,8 @@ namespace bsp
                 bsp::IIicHost *iic_host,
                 uint8_t address);
 
+        std::string Name() const override;
+
         /// @brief 注册中断回调函数。
         /// @param func
         void RegisterInterruptCallback(std::function<void()> func) override;

@@ -30,6 +30,11 @@ bsp::PCF8574::PCF8574(std::string const &name,
                                     bsp::IGpioPinTriggerEdge::FallingEdge);
 }
 
+std::string bsp::PCF8574::Name() const
+{
+    return _name;
+}
+
 void bsp::PCF8574::RegisterInterruptCallback(std::function<void()> func)
 {
     _interrupt_pin->RegisterInterruptCallback(func);

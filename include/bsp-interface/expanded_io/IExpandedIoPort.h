@@ -2,6 +2,7 @@
 #include <base/stream/Span.h>
 #include <functional>
 #include <stdint.h>
+#include <string>
 
 namespace bsp
 {
@@ -9,6 +10,8 @@ namespace bsp
     {
     public:
 #pragma region 接口
+        virtual std::string Name() const = 0;
+
         /// @brief 注册中断回调函数。
         /// @param func
         virtual void RegisterInterruptCallback(std::function<void()> func) = 0;
