@@ -1,4 +1,5 @@
 #include "IConsole.h"
+#include <base/string/ToHexString.h>
 
 void bsp::IConsole::Write(char c)
 {
@@ -85,6 +86,11 @@ void bsp::IConsole::Write(base::ReadOnlySpan const &o)
     }
 }
 
+void bsp::IConsole::Write(void *p)
+{
+    Write(base::ToHexString(p));
+}
+
 void bsp::IConsole::WriteLine()
 {
     Write("\n");
@@ -93,18 +99,24 @@ void bsp::IConsole::WriteLine()
 void bsp::IConsole::WriteLine(char const *str)
 {
     Write(str);
-    Write("\n");
+    WriteLine();
 }
 
 void bsp::IConsole::WriteLine(std::string const &str)
 {
     Write(str);
-    Write("\n");
+    WriteLine();
 }
 
 void bsp::IConsole::WriteLine(base::ICanToString const &o)
 {
     WriteLine(o.ToString());
+}
+
+void bsp::IConsole::WriteLine(void *p)
+{
+    Write(p);
+    WriteLine();
 }
 
 void bsp::IConsole::WriteError() noexcept

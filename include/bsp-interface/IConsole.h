@@ -41,6 +41,8 @@ namespace bsp
         /// @param o
         void Write(base::ReadOnlySpan const &o);
 
+        void Write(void *p);
+
         /// @brief 打印一条空行。
         void WriteLine();
 
@@ -55,6 +57,8 @@ namespace bsp
         /// @brief 打印一行。
         /// @param o
         void WriteLine(base::ICanToString const &o);
+
+        void WriteLine(void *p);
 
         /// @brief 打印一条空行。
         void WriteError() noexcept;
