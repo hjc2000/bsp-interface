@@ -1,6 +1,6 @@
 #pragma once
 #include <bsp-interface/interrupt/IExtiManager.h>
-#include <bsp-interface/interrupt/IsrManager.h>
+#include <bsp-interface/interrupt/IIsrManager.h>
 #include <functional>
 #include <stdint.h>
 
@@ -36,5 +36,5 @@ void DI_DoGlobalCriticalWork(std::function<void()> func);
 /// @brief 中断管理器。
 /// @note 此依赖本库已经提供了，不需要实现此函数了。
 /// @return
-bsp::IsrManager &DI_IsrManager();
+bsp::IIsrManager &DI_IsrManager();
 #pragma endregion

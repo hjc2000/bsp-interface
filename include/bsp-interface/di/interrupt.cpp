@@ -1,4 +1,5 @@
 #include "interrupt.h"
+#include <IsrManager.h>
 
 void DI_DoGlobalCriticalWork(std::function<void()> func)
 {
@@ -17,7 +18,7 @@ void DI_DoGlobalCriticalWork(std::function<void()> func)
     }
 }
 
-bsp::IsrManager &DI_IsrManager()
+bsp::IIsrManager &DI_IsrManager()
 {
     return bsp::IsrManager::Instance();
 }
