@@ -28,5 +28,8 @@ namespace bsp
         /// @param register_index 寄存器索引。
         /// @param value
         virtual void WritePHYRegister(uint32_t register_index, uint32_t value) = 0;
+
+        /// @brief 复位 PHY 芯片。
+        virtual void ResetPHY() = 0;
     };
 } // namespace bsp
