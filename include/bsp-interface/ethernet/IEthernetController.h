@@ -41,6 +41,9 @@ namespace bsp
 
         /// @brief 获取此接口的连接速率。
         /// @return
-        virtual base::Bps Bitrate() = 0;
+        virtual base::Bps Bitrate()
+        {
+            throw std::runtime_error{"不支持获取连接速率"};
+        }
     };
 } // namespace bsp
