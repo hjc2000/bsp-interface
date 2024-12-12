@@ -1,5 +1,6 @@
 #pragma once
 #include <base/net/Mac.h>
+#include <base/unit/Bps.h>
 
 namespace bsp
 {
@@ -43,5 +44,9 @@ namespace bsp
         /// @param register_index 寄存器索引。
         /// @param value
         virtual void WritePHYRegister(uint32_t phy_address, uint32_t register_index, uint32_t value) = 0;
+
+        /// @brief 获取此接口的连接速率。
+        /// @return
+        virtual base::Bps Bitrate() = 0;
     };
 } // namespace bsp
