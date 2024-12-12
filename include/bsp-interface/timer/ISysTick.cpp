@@ -1,8 +1,6 @@
 #include "ISysTick.h"
 
-using namespace bsp;
-
-void ISysTick::DelayForTicks(uint32_t tick_count)
+void bsp::ISysTick::DelayForTicks(uint32_t tick_count)
 {
     uint32_t old_tick = CurrentValue();
     uint32_t total_tick = 0;
@@ -39,7 +37,7 @@ void ISysTick::DelayForTicks(uint32_t tick_count)
     }
 }
 
-void ISysTick::Delay(std::chrono::microseconds microseconds)
+void bsp::ISysTick::Delay(std::chrono::microseconds microseconds)
 {
     uint32_t freq = Frequency();
 
@@ -52,15 +50,15 @@ void ISysTick::Delay(std::chrono::microseconds microseconds)
      *	N = freq / 1e6 * microseconds
      * 这样可避免溢出
      */
-    DelayForTicks(freq / (uint32_t)1e6 * microseconds.count());
+    DelayForTicks(freq / static_cast<uint32_t>(1e6) * microseconds.count());
 }
 
-void ISysTick::Delay(std::chrono::milliseconds milliseconds)
+void bsp::ISysTick::Delay(std::chrono::milliseconds milliseconds)
 {
     Delay(std::chrono::microseconds{milliseconds});
 }
 
-void ISysTick::Delay(std::chrono::seconds seconds)
+void bsp::ISysTick::Delay(std::chrono::seconds seconds)
 {
     Delay(std::chrono::milliseconds{seconds});
 }
