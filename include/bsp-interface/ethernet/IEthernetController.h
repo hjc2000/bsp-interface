@@ -33,6 +33,21 @@ namespace bsp
                           uint32_t phy_address,
                           base::Mac const &mac) = 0;
 
+        /// @brief 获取本控制器当前使用的接口类型。
+        /// @note 要打开本控制器后本属性才有效。
+        /// @return
+        virtual bsp::IEthernetController_InterfaceType InterfaceType() const = 0;
+
+        /// @brief 获取本控制器绑定的 PHY 地址。
+        /// @note 要打开本控制器后本属性才有效。
+        /// @return
+        virtual uint32_t PhyAddress() const = 0;
+
+        /// @brief 获取本控制器绑定的 MAC 地址。
+        /// @note 要打开本控制器后本属性才有效。
+        /// @return
+        virtual base::Mac Mac() const = 0;
+
         /// @brief 读 PHY 的寄存器
         /// @param register_index 寄存器索引。
         /// @return
