@@ -31,5 +31,8 @@ namespace bsp
 
         /// @brief 复位 PHY 芯片。
         virtual void ResetPHY() = 0;
+
+        /// @brief 使能自动协商。
+        virtual void EnableAutoNegotiation() = 0;
     };
 } // namespace bsp
