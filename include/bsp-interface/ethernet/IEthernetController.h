@@ -1,6 +1,6 @@
 #pragma once
 #include <base/net/Mac.h>
-#include <base/unit/Bps.h>
+#include <string>
 
 namespace bsp
 {
@@ -21,6 +21,10 @@ namespace bsp
     class IEthernetController
     {
     public:
+        /// @brief 以太网控制器的名称。
+        /// @return
+        virtual std::string Name() const = 0;
+
         /// @brief 打开以太网控制器。
         /// @param interface_type 连接着 PHY 的接口类型。（使用的是 MII 还是 RMII）
         /// @param phy_address PHY 的地址。
