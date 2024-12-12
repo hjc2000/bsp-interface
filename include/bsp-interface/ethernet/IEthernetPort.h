@@ -15,6 +15,10 @@ namespace bsp
         /// @return
         virtual std::string Name() const = 0;
 
+        /// @brief 打开以太网端口。
+        /// @param mac MAC 地址。
+        virtual void Open(base::Mac const &mac) = 0;
+
         /// @brief 读 PHY 的寄存器
         /// @param register_index 寄存器索引。
         /// @return
