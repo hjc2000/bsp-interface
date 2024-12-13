@@ -1,20 +1,8 @@
 #pragma once
-#include <base/unit/Bps.h>
-#include <base/unit/Mbps.h>
 #include <bsp-interface/ethernet/IEthernetController.h>
 
 namespace bsp
 {
-	/// @brief 双工模式
-	enum class IEthernetPort_DuplexMode
-	{
-		/// @brief 全双工
-		FullDuplex,
-
-		/// @brief 半双工
-		HalfDuplex,
-	};
-
 	/// @brief 以太网端口。
 	/// @note 端口就是以太网控制器 + PHY 芯片。
 	/// @note 鉴于 PHY 芯片各品牌，各型号都不一样，各个 PHY 芯片都要定义一个类，继承本接口，
@@ -54,7 +42,7 @@ namespace bsp
 
 		/// @brief 获取此网口的双工模式。
 		/// @return
-		virtual bsp::IEthernetPort_DuplexMode DuplexMode() = 0;
+		virtual bsp::Ethernet_DuplexMode DuplexMode() = 0;
 
 		/// @brief 获取此网口的速度。
 		/// @return
