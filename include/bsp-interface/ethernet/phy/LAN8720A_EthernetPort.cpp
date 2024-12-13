@@ -1,4 +1,24 @@
 #include "LAN8720A_EthernetPort.h"
+#include <bsp-interface/di/system_time.h>
+
+void bsp::LAN8720A_EthernetPort::SoftwareResetPHY()
+{
+	WritePHYRegister(0, 0x8000U);
+	base::Seconds now = DI_SystemTime();
+	while (true)
+	{
+		if (static_cast<int64_t>(DI_SystemTime() - now) > 2)
+		{
+			throw std::runtime_error{"软件复位 PHY 超时"};
+		}
+
+		uint32_t register_value = ReadPHYRegister(0);
+		if (!(register_value & 0x8000U))
+		{
+			break;
+		}
+	}
+}
 
 void bsp::LAN8720A_EthernetPort::EnableAutoNegotiation()
 {

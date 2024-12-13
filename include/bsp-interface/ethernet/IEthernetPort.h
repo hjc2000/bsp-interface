@@ -28,8 +28,11 @@ namespace bsp
 		/// @param value
 		virtual void WritePHYRegister(uint32_t register_index, uint32_t value) = 0;
 
-		/// @brief 复位 PHY 芯片。
+		/// @brief 硬件复位 PHY 芯片。
 		virtual void ResetPHY() = 0;
+
+		/// @brief 软件复位 PHY.
+		virtual void SoftwareResetPHY() = 0;
 
 		/// @brief 使能自动协商。
 		virtual void EnableAutoNegotiation() = 0;
