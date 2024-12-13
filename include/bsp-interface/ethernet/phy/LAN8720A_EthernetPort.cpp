@@ -34,3 +34,27 @@ void bsp::LAN8720A_EthernetPort::DisableLoopbackMode()
 	register_value &= ~0x4000U;
 	WritePHYRegister(0, register_value);
 }
+
+bsp::Ethernet_DuplexMode bsp::LAN8720A_EthernetPort::DuplexMode()
+{
+	uint32_t register_value = ReadPHYRegister(0x1F);
+	uint32_t const mask = 0b10000;
+	if (register_value & mask)
+	{
+		return bsp::Ethernet_DuplexMode::FullDuplex;
+	}
+
+	return bsp::Ethernet_DuplexMode::HalfDuplex;
+}
+
+base::Bps bsp::LAN8720A_EthernetPort::Speed()
+{
+	uint32_t register_value = ReadPHYRegister(0x1F);
+	uint32_t const mask = 0b01000;
+	if (register_value & mask)
+	{
+		return base::Mbps{100};
+	}
+
+	return base::Mbps{10};
+}
