@@ -12,6 +12,29 @@ namespace bsp
 		public bsp::IEthernetPort
 	{
 	public:
+#pragma region 未实现
+		/// @brief 以太网控制器的名称。
+		/// @return
+		virtual std::string Name() const = 0;
+
+		/// @brief 打开以太网端口。
+		/// @param mac MAC 地址。
+		virtual void Open(base::Mac const &mac) = 0;
+
+		/// @brief 读 PHY 的寄存器
+		/// @param register_index 寄存器索引。
+		/// @return
+		virtual uint32_t ReadPHYRegister(uint32_t register_index) = 0;
+
+		/// @brief 写 PHY 的寄存器。
+		/// @param register_index 寄存器索引。
+		/// @param value
+		virtual void WritePHYRegister(uint32_t register_index, uint32_t value) = 0;
+
+		/// @brief 复位 PHY 芯片。
+		virtual void ResetPHY() = 0;
+#pragma endregion
+
 		/// @brief 自动协商。
 		void EnableAutoNegotiation() override;
 
