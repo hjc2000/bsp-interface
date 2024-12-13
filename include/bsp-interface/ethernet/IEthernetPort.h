@@ -1,5 +1,6 @@
 #pragma once
 #include <base/unit/Bps.h>
+#include <base/unit/Mbps.h>
 #include <bsp-interface/ethernet/IEthernetController.h>
 
 namespace bsp
