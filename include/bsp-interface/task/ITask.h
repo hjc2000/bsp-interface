@@ -2,8 +2,8 @@
 
 namespace bsp
 {
-    class ITask
-    {
-    public:
-    };
+	class ITask
+	{
+	public:
+	};
 } // namespace bsp

@@ -3,9 +3,9 @@
 
 namespace bsp
 {
-    class IMutex :
-        public base::ILock
-    {
-    public:
-    };
+	class IMutex :
+		public base::ILock
+	{
+	public:
+	};
 } // namespace bsp
