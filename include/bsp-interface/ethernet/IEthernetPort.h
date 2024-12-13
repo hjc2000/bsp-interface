@@ -50,5 +50,13 @@ namespace bsp
 
 		virtual void EnableLoopbackMode() = 0;
 		virtual void DisableLoopbackMode() = 0;
+
+		/// @brief 获取此网口的双工模式。
+		/// @return
+		virtual bsp::IEthernetPort_DuplexMode DuplexMode() = 0;
+
+		/// @brief 获取此网口的速度。
+		/// @return
+		virtual base::Bps Speed() = 0;
 	};
 } // namespace bsp
