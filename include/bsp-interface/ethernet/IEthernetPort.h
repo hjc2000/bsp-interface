@@ -34,13 +34,6 @@ namespace bsp
 		/// @brief 软件复位 PHY.
 		virtual void SoftwareResetPHY() = 0;
 
-		/// @brief 检查本网口是否支持自动协商。
-		/// @return 支持则返回 true，不支持则返回 false.
-		bool SupportAutoNegotiation();
-
-		/// @brief 使能自动协商。
-		void EnableAutoNegotiation();
-
 		virtual void EnablePowerDownMode() = 0;
 		virtual void DisablePowerDownMode() = 0;
 
@@ -54,5 +47,16 @@ namespace bsp
 		/// @brief 获取此网口的速度。
 		/// @return
 		virtual base::Bps Speed() = 0;
+
+		/// @brief 检查本网口是否支持自动协商。
+		/// @return 支持则返回 true，不支持则返回 false.
+		bool SupportAutoNegotiation();
+
+		/// @brief 使能自动协商。
+		void EnableAutoNegotiation();
+
+		/// @brief 自动协商完成。
+		/// @return
+		bool AutoNegotiationCompleted();
 	};
 } // namespace bsp
