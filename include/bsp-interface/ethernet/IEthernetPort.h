@@ -54,6 +54,8 @@ namespace bsp
 		bool SupportAutoNegotiation();
 
 		/// @brief 使能自动协商。
+		/// @note 会先判断 PHY 是否支持自动协商，不支持自动协商会抛出异常。
+		/// @note 使能自动协商后会等待 PHY 自动协商完成。等待超时后会抛出异常。
 		void EnableAutoNegotiation();
 
 		/// @brief 自动协商完成。
