@@ -64,11 +64,7 @@ namespace bsp
 		void DisableLoopbackMode();
 
 		/// @brief 发送。
-		/// @param span
-		virtual void Write(base::ReadOnlySpan const &span) = 0;
-
-		/// @brief 将 Write 写入流中的数据实际发送出去。不调用本方法的话，这些数据可能仅仅是
-		/// 存在于缓冲区中。
-		virtual void Flush() = 0;
+		/// @param spans
+		virtual void Send(base::IEnumerable<base::ReadOnlySpan> const &spans) = 0;
 	};
 } // namespace bsp
