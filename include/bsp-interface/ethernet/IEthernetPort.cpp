@@ -40,8 +40,11 @@ void bsp::IEthernetPort::EnableAutoNegotiation()
 		DI_Delayer().Delay(std::chrono::milliseconds{10});
 		delay_times++;
 
-		// 最多等待 1000 次，也就是 10000 毫秒，也就是 10 秒。
-		if (delay_times > 1000)
+		/* 根据 IEEE 的规定，自动协商不应该超过 500ms，这里放宽松一点，最多
+		 * 等待 1s.
+		 * 等待 1 次是 10ms，也就是最多等待 100 次。
+		 */
+		if (delay_times > 100)
 		{
 			DI_Console().WriteError("等待自动协商完成超时");
 			throw std::runtime_error{"等待自动协商完成超时"};
