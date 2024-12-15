@@ -48,6 +48,7 @@ namespace bsp
 		/// @return
 		virtual base::Bps Speed() = 0;
 
+#pragma region 自动协商
 		/// @brief 检查本网口是否支持自动协商。
 		/// @return 支持则返回 true，不支持则返回 false.
 		bool SupportAutoNegotiation();
@@ -58,5 +59,6 @@ namespace bsp
 		/// @brief 自动协商完成。
 		/// @return
 		bool AutoNegotiationCompleted();
+#pragma endregion
 	};
 } // namespace bsp

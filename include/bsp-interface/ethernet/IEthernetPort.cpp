@@ -2,6 +2,8 @@
 #include <bsp-interface/di/console.h>
 #include <bsp-interface/di/delayer.h>
 
+#pragma region 自动协商
+
 bool bsp::IEthernetPort::SupportAutoNegotiation()
 {
 	/* BSR bit3 指示是否支持自动协商。
@@ -63,3 +65,5 @@ bool bsp::IEthernetPort::AutoNegotiationCompleted()
 	uint32_t value = (bcr & mask) >> 5;
 	return value;
 }
+
+#pragma endregion
