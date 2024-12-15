@@ -38,9 +38,6 @@ namespace bsp
 		/// @brief 软件复位 PHY.
 		void SoftwareResetPHY() override;
 
-		/// @brief 自动协商。
-		void EnableAutoNegotiation() override;
-
 		void EnablePowerDownMode() override;
 		void DisablePowerDownMode() override;
 

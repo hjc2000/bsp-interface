@@ -21,13 +21,6 @@ void bsp::LAN8720A_EthernetPort::SoftwareResetPHY()
 	}
 }
 
-void bsp::LAN8720A_EthernetPort::EnableAutoNegotiation()
-{
-	uint32_t bcr = ReadPHYRegister(0);
-	bcr |= 0x1000U;
-	WritePHYRegister(0, bcr);
-}
-
 void bsp::LAN8720A_EthernetPort::EnablePowerDownMode()
 {
 	uint32_t register_value = ReadPHYRegister(0);

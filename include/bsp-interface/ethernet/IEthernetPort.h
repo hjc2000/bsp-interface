@@ -35,7 +35,7 @@ namespace bsp
 		virtual void SoftwareResetPHY() = 0;
 
 		/// @brief 使能自动协商。
-		virtual void EnableAutoNegotiation() = 0;
+		void EnableAutoNegotiation();
 
 		virtual void EnablePowerDownMode() = 0;
 		virtual void DisablePowerDownMode() = 0;

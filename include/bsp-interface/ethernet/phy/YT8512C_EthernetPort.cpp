@@ -21,13 +21,6 @@ void bsp::YT8512C_EthernetPort::SoftwareResetPHY()
 	}
 }
 
-void bsp::YT8512C_EthernetPort::EnableAutoNegotiation()
-{
-	uint32_t bcr = ReadPHYRegister(0);
-	bcr |= 0x1000U;
-	WritePHYRegister(0, bcr);
-}
-
 void bsp::YT8512C_EthernetPort::EnablePowerDownMode()
 {
 	uint32_t register_value = ReadPHYRegister(0);
