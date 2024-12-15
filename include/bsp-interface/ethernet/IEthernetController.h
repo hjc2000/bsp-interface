@@ -75,5 +75,9 @@ namespace bsp
 		/// @param speed
 		virtual void Start(bsp::Ethernet_DuplexMode duplex_mode,
 						   base::Bps const &speed) = 0;
+
+		/// @brief 发送。
+		/// @param span
+		virtual void Send(base::ReadOnlySpan const &span) = 0;
 	};
 } // namespace bsp

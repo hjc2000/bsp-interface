@@ -33,6 +33,10 @@ namespace bsp
 
 		/// @brief 复位 PHY 芯片。
 		virtual void ResetPHY() = 0;
+
+		/// @brief 发送。
+		/// @param span
+		virtual void Send(base::ReadOnlySpan const &span) = 0;
 #pragma endregion
 
 		/// @brief 获取此网口的双工模式。

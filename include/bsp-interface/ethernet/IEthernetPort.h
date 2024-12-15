@@ -62,5 +62,9 @@ namespace bsp
 
 		void EnableLoopbackMode();
 		void DisableLoopbackMode();
+
+		/// @brief 发送。
+		/// @param span
+		virtual void Send(base::ReadOnlySpan const &span) = 0;
 	};
 } // namespace bsp
