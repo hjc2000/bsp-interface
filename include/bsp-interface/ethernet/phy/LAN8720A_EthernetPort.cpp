@@ -7,7 +7,7 @@ void bsp::LAN8720A_EthernetPort::SoftwareResetPHY()
 	base::Seconds now = DI_SystemTime();
 	while (true)
 	{
-		if (static_cast<int64_t>(DI_SystemTime() - now) > 2)
+		if (DI_SystemTime() - now > base::Seconds{std::chrono::milliseconds{1000}})
 		{
 			throw std::runtime_error{"软件复位 PHY 超时"};
 		}
