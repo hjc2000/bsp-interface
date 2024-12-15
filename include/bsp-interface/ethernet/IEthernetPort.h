@@ -34,6 +34,10 @@ namespace bsp
 		/// @brief 软件复位 PHY.
 		virtual void SoftwareResetPHY() = 0;
 
+		/// @brief 检查本网口是否支持自动协商。
+		/// @return 支持则返回 true，不支持则返回 false.
+		bool SupportAutoNegotiation();
+
 		/// @brief 使能自动协商。
 		void EnableAutoNegotiation();
 
