@@ -4,6 +4,37 @@
 
 #pragma region 自动协商
 
+void bsp::IEthernetPort::SoftwareResetPHY()
+{
+	/* BCR 的 bit15 用来软件复位。写入 1 立刻进行软件复位。
+	 * 复位过程中，bit15 会保持为 1，复位完成后自动清 0. 所以可以通过检查自动清 0
+	 * 来判断复位结束。
+	 */
+	uint32_t const mask = 0b1 << 15;
+	WritePHYRegister(0, mask);
+
+	int delay_times = 0;
+	while (true)
+	{
+		uint32_t bcr = ReadPHYRegister(0);
+		uint32_t value = bcr & mask;
+		if (!value)
+		{
+			// 自动请 0，复位完成。
+			DI_Console().WriteError("软件复位完成。");
+			return;
+		}
+
+		DI_Delayer().Delay(std::chrono::milliseconds{10});
+		delay_times++;
+		if (delay_times > 1000)
+		{
+			DI_Console().WriteError("软件复位超时。");
+			throw std::runtime_error{"软件复位超时。"};
+		}
+	}
+}
+
 bool bsp::IEthernetPort::SupportAutoNegotiation()
 {
 	/* BSR bit3 指示是否支持自动协商。
@@ -36,17 +67,15 @@ void bsp::IEthernetPort::EnableAutoNegotiation()
 	{
 		if (AutoNegotiationCompleted())
 		{
+			DI_Console().WriteError("自动协商完成。");
 			return;
 		}
 
 		DI_Delayer().Delay(std::chrono::milliseconds{10});
 		delay_times++;
 
-		/* 根据 IEEE 的规定，自动协商不应该超过 500ms，这里放宽松一点，最多
-		 * 等待 1s.
-		 * 等待 1 次是 10ms，也就是最多等待 100 次。
-		 */
-		if (delay_times > 100)
+		// 根据 IEEE 的规定，自动协商不应该超过 500ms，这里放宽松一点。
+		if (delay_times > 1000)
 		{
 			DI_Console().WriteError("等待自动协商完成超时");
 			throw std::runtime_error{"等待自动协商完成超时"};

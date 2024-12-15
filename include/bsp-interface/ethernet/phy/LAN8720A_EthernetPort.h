@@ -35,9 +35,6 @@ namespace bsp
 		virtual void ResetPHY() = 0;
 #pragma endregion
 
-		/// @brief 软件复位 PHY.
-		void SoftwareResetPHY() override;
-
 		void EnablePowerDownMode() override;
 		void DisablePowerDownMode() override;
 
