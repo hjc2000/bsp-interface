@@ -35,12 +35,6 @@ namespace bsp
 		virtual void ResetPHY() = 0;
 #pragma endregion
 
-		void EnablePowerDownMode() override;
-		void DisablePowerDownMode() override;
-
-		void EnableLoopbackMode() override;
-		void DisableLoopbackMode() override;
-
 		/// @brief 获取此网口的双工模式。
 		/// @return
 		bsp::Ethernet_DuplexMode DuplexMode() override;

@@ -2,34 +2,6 @@
 #include <bsp-interface/di/console.h>
 #include <bsp-interface/di/system_time.h>
 
-void bsp::YT8512C_EthernetPort::EnablePowerDownMode()
-{
-	uint32_t register_value = ReadPHYRegister(0);
-	register_value |= 0x0800U;
-	WritePHYRegister(0, register_value);
-}
-
-void bsp::YT8512C_EthernetPort::DisablePowerDownMode()
-{
-	uint32_t register_value = ReadPHYRegister(0);
-	register_value &= ~0x0800U;
-	WritePHYRegister(0, register_value);
-}
-
-void bsp::YT8512C_EthernetPort::EnableLoopbackMode()
-{
-	uint32_t register_value = ReadPHYRegister(0);
-	register_value |= 0x4000U;
-	WritePHYRegister(0, register_value);
-}
-
-void bsp::YT8512C_EthernetPort::DisableLoopbackMode()
-{
-	uint32_t register_value = ReadPHYRegister(0);
-	register_value &= ~0x4000U;
-	WritePHYRegister(0, register_value);
-}
-
 bsp::Ethernet_DuplexMode bsp::YT8512C_EthernetPort::DuplexMode()
 {
 	uint32_t register_value = ReadPHYRegister(0x11);

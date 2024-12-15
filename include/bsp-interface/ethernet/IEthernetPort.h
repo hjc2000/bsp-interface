@@ -31,12 +31,6 @@ namespace bsp
 		/// @brief 硬件复位 PHY 芯片。
 		virtual void ResetPHY() = 0;
 
-		virtual void EnablePowerDownMode() = 0;
-		virtual void DisablePowerDownMode() = 0;
-
-		virtual void EnableLoopbackMode() = 0;
-		virtual void DisableLoopbackMode() = 0;
-
 		/// @brief 获取此网口的双工模式。
 		/// @return
 		virtual bsp::Ethernet_DuplexMode DuplexMode() = 0;
@@ -62,5 +56,11 @@ namespace bsp
 		/// @return
 		bool AutoNegotiationCompleted();
 #pragma endregion
+
+		void EnablePowerDownMode();
+		void DisablePowerDownMode();
+
+		void EnableLoopbackMode();
+		void DisableLoopbackMode();
 	};
 } // namespace bsp

@@ -96,3 +96,31 @@ bool bsp::IEthernetPort::AutoNegotiationCompleted()
 }
 
 #pragma endregion
+
+void bsp::IEthernetPort::EnablePowerDownMode()
+{
+	uint32_t bcr = ReadPHYRegister(0);
+	bcr |= 0x0800U;
+	WritePHYRegister(0, bcr);
+}
+
+void bsp::IEthernetPort::DisablePowerDownMode()
+{
+	uint32_t bcr = ReadPHYRegister(0);
+	bcr &= ~0x0800U;
+	WritePHYRegister(0, bcr);
+}
+
+void bsp::IEthernetPort::EnableLoopbackMode()
+{
+	uint32_t register_value = ReadPHYRegister(0);
+	register_value |= 0x4000U;
+	WritePHYRegister(0, register_value);
+}
+
+void bsp::IEthernetPort::DisableLoopbackMode()
+{
+	uint32_t register_value = ReadPHYRegister(0);
+	register_value &= ~0x4000U;
+	WritePHYRegister(0, register_value);
+}
