@@ -40,7 +40,7 @@ namespace bsp
 
 		/// @brief 接收。
 		/// @return
-		virtual base::IEnumerable<base::ReadOnlySpan> const &Receive() = 0;
+		virtual base::IEnumerable<base::ReadOnlySpan> const *Receive() = 0;
 #pragma endregion
 
 		/// @brief 获取此网口的双工模式。
