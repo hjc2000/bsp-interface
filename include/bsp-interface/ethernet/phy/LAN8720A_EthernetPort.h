@@ -37,6 +37,10 @@ namespace bsp
 		/// @brief 发送。
 		/// @param spans
 		virtual void Send(base::IEnumerable<base::ReadOnlySpan> const &spans) = 0;
+
+		/// @brief 接收。
+		/// @return
+		virtual base::IEnumerable<base::ReadOnlySpan> const &Receive() = 0;
 #pragma endregion
 
 		/// @brief 获取此网口的双工模式。
