@@ -84,6 +84,6 @@ namespace bsp
 
 		/// @brief 接收。
 		/// @return
-		virtual base::IEnumerable<base::ReadOnlySpan> const *Receive() = 0;
+		virtual base::IEnumerable<base::ReadOnlySpan> const &Receive() = 0;
 	};
 } // namespace bsp
