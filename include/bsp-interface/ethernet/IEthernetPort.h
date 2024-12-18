@@ -10,6 +10,7 @@ namespace bsp
 	class IEthernetPort
 	{
 	public:
+#pragma region 接口
 		/// @brief 以太网控制器的名称。
 		/// @return
 		virtual std::string Name() const = 0;
@@ -45,6 +46,15 @@ namespace bsp
 		/// @return
 		virtual base::Bps Speed() = 0;
 
+		/// @brief 发送。
+		/// @param spans
+		virtual void Send(base::IEnumerable<base::ReadOnlySpan> const &spans) = 0;
+
+		/// @brief 接收。
+		/// @return
+		virtual base::IEnumerable<base::ReadOnlySpan> const &Receive() = 0;
+#pragma endregion
+
 		/// @brief 软件复位 PHY.
 		void SoftwareResetPHY();
 
@@ -69,12 +79,8 @@ namespace bsp
 		void EnableLoopbackMode();
 		void DisableLoopbackMode();
 
-		/// @brief 发送。
-		/// @param spans
-		virtual void Send(base::IEnumerable<base::ReadOnlySpan> const &spans) = 0;
-
-		/// @brief 接收。
+		/// @brief 网线当前处于链接状态。
 		/// @return
-		virtual base::IEnumerable<base::ReadOnlySpan> const &Receive() = 0;
+		bool IsLinked();
 	};
 } // namespace bsp

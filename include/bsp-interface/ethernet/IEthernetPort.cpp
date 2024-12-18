@@ -124,3 +124,10 @@ void bsp::IEthernetPort::DisableLoopbackMode()
 	register_value &= ~0x4000U;
 	WritePHYRegister(0, register_value);
 }
+
+bool bsp::IEthernetPort::IsLinked()
+{
+	uint32_t regval = ReadPHYRegister(1);
+	bool is_linked = regval & 0x0004U;
+	return is_linked;
+}
