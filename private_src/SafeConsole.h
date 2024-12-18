@@ -1,20 +1,17 @@
 #pragma once
-#include <base/define.h>
-#include <bsp-interface/IConsole.h>
+#include <bsp-interface/di/task.h>
+#include <Console.h>
 
 namespace bsp
 {
-	/// @brief 单例控制台
-	class Console :
+	class SafeConsole :
 		public bsp::IConsole
 	{
 	private:
-		Console() = default;
-
-		std::shared_ptr<base::Stream> _out_stream;
+		std::shared_ptr<bsp::IMutex> _lock = DICreate_Mutex();
 
 	public:
-		static_function Console &Instance();
+		static_function SafeConsole &Instance();
 
 		/// @brief 控制台当前的输出流。
 		/// @return

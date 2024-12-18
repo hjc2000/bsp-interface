@@ -22,61 +22,61 @@ namespace bsp
 
 		/// @brief 写一个字符。
 		/// @param c
-		void Write(char c);
+		virtual void Write(char c) = 0;
 
 		/// @brief 打印字符串。
 		/// @param str
-		void Write(char const *str);
+		virtual void Write(char const *str) = 0;
 
 		/// @brief 打印指定长度的字符缓冲区。
 		/// @param str
 		/// @param length
-		void Write(char const *str, int length);
+		virtual void Write(char const *str, int length) = 0;
 
 		/// @brief 打印字符串。
 		/// @param str
-		void Write(std::string const &str);
+		virtual void Write(std::string const &str) = 0;
 
 		/// @brief 将 ReadOnlySpan 逐个字节打印出来。每 20 个数一行。
 		/// @param o
-		void Write(base::ReadOnlySpan const &o);
+		virtual void Write(base::ReadOnlySpan const &o) = 0;
 
 		/// @brief 打印指针。
 		/// @param p
-		void Write(void *p);
+		virtual void Write(void *p) = 0;
 
 		/// @brief 打印一条空行。
-		void WriteLine();
+		virtual void WriteLine() = 0;
 
 		/// @brief 打印一行。
 		/// @param str
-		void WriteLine(char const *str);
+		virtual void WriteLine(char const *str) = 0;
 
 		/// @brief 打印一行。
 		/// @param str
-		void WriteLine(std::string const &str);
+		virtual void WriteLine(std::string const &str) = 0;
 
 		/// @brief 打印一行。
 		/// @param o
-		void WriteLine(base::ICanToString const &o);
+		virtual void WriteLine(base::ICanToString const &o) = 0;
 
 		/// @brief 打印指针。
 		/// @param p
-		void WriteLine(void *p);
+		virtual void WriteLine(void *p) = 0;
 
 		/// @brief 打印一条空行。
-		void WriteError() noexcept;
+		virtual void WriteError() noexcept = 0;
 
 		/// @brief 错误汇报。
 		/// @param str
-		virtual void WriteError(char const *str) noexcept;
+		virtual void WriteError(char const *str) noexcept = 0;
 
 		/// @brief 错误汇报。
 		/// @param str
-		virtual void WriteError(std::string const &str) noexcept;
+		virtual void WriteError(std::string const &str) noexcept = 0;
 
 		/// @brief 错误汇报。
 		/// @param o
-		virtual void WriteError(base::ICanToString const &o) noexcept;
+		virtual void WriteError(base::ICanToString const &o) noexcept = 0;
 	};
 } // namespace bsp

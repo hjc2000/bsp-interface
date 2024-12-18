@@ -1,7 +1,7 @@
 #include "console.h"
-#include <Console.h>
+#include <SafeConsole.h>
 
 bsp::IConsole &DI_Console()
 {
-    return bsp::Console::Instance();
+	return bsp::SafeConsole::Instance();
 }
