@@ -9,6 +9,17 @@ namespace bsp
 	/// 基于 bsp::IEthernetController 对象来实现以太网端口的功能。
 	class IEthernetPort
 	{
+	protected:
+		/// @brief 读 PHY 的寄存器
+		/// @param register_index 寄存器索引。
+		/// @return
+		virtual uint32_t ReadPHYRegister(uint32_t register_index) = 0;
+
+		/// @brief 写 PHY 的寄存器。
+		/// @param register_index 寄存器索引。
+		/// @param value
+		virtual void WritePHYRegister(uint32_t register_index, uint32_t value) = 0;
+
 	public:
 #pragma region 接口
 		/// @brief 以太网控制器的名称。
@@ -24,16 +35,6 @@ namespace bsp
 		/// @note 会重新进行自动协商的过程。断线重连后可以调用本方法，防止 MAC 控制器
 		/// 所使用的速率、双工等配置与新插入的网线不符。
 		virtual void Restart() = 0;
-
-		/// @brief 读 PHY 的寄存器
-		/// @param register_index 寄存器索引。
-		/// @return
-		virtual uint32_t ReadPHYRegister(uint32_t register_index) = 0;
-
-		/// @brief 写 PHY 的寄存器。
-		/// @param register_index 寄存器索引。
-		/// @param value
-		virtual void WritePHYRegister(uint32_t register_index, uint32_t value) = 0;
 
 		/// @brief 硬件复位 PHY 芯片。
 		virtual void ResetPHY() = 0;
