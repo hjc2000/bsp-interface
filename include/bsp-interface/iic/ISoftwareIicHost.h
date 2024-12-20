@@ -1,5 +1,5 @@
 #pragma once
-#include <bsp-interface/iic/IicHostBase.h>
+#include <bsp-interface/iic/IIicHost.h>
 
 namespace bsp
 {
@@ -12,7 +12,7 @@ namespace bsp
 
 	/// @brief 通过软件模拟的 IIC 总线主机接口。
 	class ISoftwareIicHost :
-		public bsp::IicHostBase
+		public bsp::IIicHost
 	{
 	private:
 		/// @brief 发送应答信号。
