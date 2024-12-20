@@ -6,12 +6,12 @@
 bsp::SafeConsole &bsp::SafeConsole::Instance()
 {
 	class Getter :
-		public base::SingletonGetter<SafeConsole>
+		public base::SingletonGetter<bsp::SafeConsole>
 	{
 	public:
-		std::unique_ptr<SafeConsole> Create() override
+		std::unique_ptr<bsp::SafeConsole> Create() override
 		{
-			return std::unique_ptr<SafeConsole>{new bsp::SafeConsole{}};
+			return std::unique_ptr<bsp::SafeConsole>{new bsp::SafeConsole{}};
 		}
 
 		void Lock() override

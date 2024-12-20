@@ -22,61 +22,61 @@ namespace bsp
 
 		/// @brief 写一个字符。
 		/// @param c
-		virtual void Write(char c) = 0;
+		virtual void Write(char c);
 
 		/// @brief 打印字符串。
 		/// @param str
-		virtual void Write(char const *str) = 0;
+		virtual void Write(char const *str);
 
 		/// @brief 打印指定长度的字符缓冲区。
 		/// @param str
 		/// @param length
-		virtual void Write(char const *str, int length) = 0;
+		virtual void Write(char const *str, int length);
 
 		/// @brief 打印字符串。
 		/// @param str
-		virtual void Write(std::string const &str) = 0;
+		virtual void Write(std::string const &str);
 
 		/// @brief 将 ReadOnlySpan 逐个字节打印出来。每 20 个数一行。
 		/// @param o
-		virtual void Write(base::ReadOnlySpan const &o) = 0;
+		virtual void Write(base::ReadOnlySpan const &o);
 
 		/// @brief 打印指针。
 		/// @param p
-		virtual void Write(void *p) = 0;
+		virtual void Write(void *p);
 
 		/// @brief 打印一条空行。
-		virtual void WriteLine() = 0;
+		virtual void WriteLine();
 
 		/// @brief 打印一行。
 		/// @param str
-		virtual void WriteLine(char const *str) = 0;
+		virtual void WriteLine(char const *str);
 
 		/// @brief 打印一行。
 		/// @param str
-		virtual void WriteLine(std::string const &str) = 0;
+		virtual void WriteLine(std::string const &str);
 
 		/// @brief 打印一行。
 		/// @param o
-		virtual void WriteLine(base::ICanToString const &o) = 0;
+		virtual void WriteLine(base::ICanToString const &o);
 
 		/// @brief 打印指针。
 		/// @param p
-		virtual void WriteLine(void *p) = 0;
+		virtual void WriteLine(void *p);
 
 		/// @brief 打印一条空行。
-		virtual void WriteError() noexcept = 0;
+		virtual void WriteError() noexcept;
 
 		/// @brief 错误汇报。
 		/// @param str
-		virtual void WriteError(char const *str) noexcept = 0;
+		virtual void WriteError(char const *str) noexcept;
 
 		/// @brief 错误汇报。
 		/// @param str
-		virtual void WriteError(std::string const &str) noexcept = 0;
+		virtual void WriteError(std::string const &str) noexcept;
 
 		/// @brief 错误汇报。
 		/// @param o
-		virtual void WriteError(base::ICanToString const &o) noexcept = 0;
+		virtual void WriteError(base::ICanToString const &o) noexcept;
 	};
 } // namespace bsp
