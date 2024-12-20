@@ -1,5 +1,5 @@
 #pragma once
-#include <bsp-interface/ethernet/StandardEthernetPort.h>
+#include <bsp-interface/ethernet/IEthernetPort.h>
 
 namespace bsp
 {
@@ -9,7 +9,7 @@ namespace bsp
 	/// 都是具体的电路板去实现的。这部分实现要交给板级开发。板级开发继承本类，继续实现
 	/// bsp::StandardEthernetPort 接口。
 	class YT8512C_EthernetPort :
-		public bsp::StandardEthernetPort
+		public bsp::IEthernetPort
 	{
 	public:
 		/// @brief 获取此网口的双工模式。

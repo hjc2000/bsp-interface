@@ -54,31 +54,31 @@ namespace bsp
 		virtual base::IEnumerable<base::ReadOnlySpan> const &Receive() = 0;
 
 		/// @brief 软件复位 PHY.
-		virtual void SoftwareResetPHY() = 0;
+		virtual void SoftwareResetPHY();
 
 #pragma region 自动协商
 		/// @brief 检查本网口是否支持自动协商。
 		/// @return 支持则返回 true，不支持则返回 false.
-		virtual bool SupportAutoNegotiation() = 0;
+		virtual bool SupportAutoNegotiation();
 
 		/// @brief 使能自动协商。
 		/// @note 会先判断 PHY 是否支持自动协商，不支持自动协商会抛出异常。
 		/// @note 使能自动协商后会等待 PHY 自动协商完成。等待超时后会抛出异常。
-		virtual void EnableAutoNegotiation() = 0;
+		virtual void EnableAutoNegotiation();
 
 		/// @brief 自动协商完成。
 		/// @return
-		virtual bool AutoNegotiationCompleted() = 0;
+		virtual bool AutoNegotiationCompleted();
 #pragma endregion
 
-		virtual void EnablePowerDownMode() = 0;
-		virtual void DisablePowerDownMode() = 0;
+		virtual void EnablePowerDownMode();
+		virtual void DisablePowerDownMode();
 
-		virtual void EnableLoopbackMode() = 0;
-		virtual void DisableLoopbackMode() = 0;
+		virtual void EnableLoopbackMode();
+		virtual void DisableLoopbackMode();
 
 		/// @brief 网线当前处于链接状态。
 		/// @return
-		virtual bool IsLinked() = 0;
+		virtual bool IsLinked();
 	};
 } // namespace bsp
