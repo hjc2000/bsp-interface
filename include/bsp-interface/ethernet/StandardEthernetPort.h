@@ -1,64 +1,56 @@
 #pragma once
-#include <bsp-interface/di/task.h>
 #include <bsp-interface/ethernet/IEthernetPort.h>
 
 namespace bsp
 {
-	/// @brief 对 bsp::IEthernetPort 的互斥量包装器。
-	class MutexEthernetPort :
+	/// @brief 根据 IEEE 标准，实现部分 bsp::IEthernetPort 功能。这部分功能只要是遵循 IEEE
+	/// 标准的 PHY 都一样。
+	class StandardEthernetPort :
 		public bsp::IEthernetPort
 	{
-	private:
-		std::shared_ptr<bsp::IMutex> _lock = DICreate_Mutex();
-		std::shared_ptr<bsp::IMutex> _receiving_lock = DICreate_Mutex();
-		std::shared_ptr<bsp::IMutex> _sending_lock = DICreate_Mutex();
-		bsp::IEthernetPort *_port = nullptr;
-
 	public:
-		MutexEthernetPort(bsp::IEthernetPort *port);
-
 		/// @brief 以太网控制器的名称。
 		/// @return
-		std::string Name() const override;
+		virtual std::string Name() const = 0;
 
 		/// @brief 打开以太网端口。
 		/// @param mac MAC 地址。
-		void Open(base::Mac const &mac) override;
+		virtual void Open(base::Mac const &mac) = 0;
 
 		/// @brief 读 PHY 的寄存器
 		/// @param register_index 寄存器索引。
 		/// @return
-		uint32_t ReadPHYRegister(uint32_t register_index) override;
+		virtual uint32_t ReadPHYRegister(uint32_t register_index) = 0;
 
 		/// @brief 写 PHY 的寄存器。
 		/// @param register_index 寄存器索引。
 		/// @param value
-		void WritePHYRegister(uint32_t register_index, uint32_t value) override;
+		virtual void WritePHYRegister(uint32_t register_index, uint32_t value) = 0;
 
 		/// @brief 重启网口。
 		/// @note 会保留 MAC 地址等配置。
 		/// @note 会重新进行自动协商的过程。断线重连后可以调用本方法，防止 MAC 控制器
 		/// 所使用的速率、双工等配置与新插入的网线不符。
-		void Restart() override;
+		virtual void Restart() = 0;
 
 		/// @brief 硬件复位 PHY 芯片。
-		void ResetPHY() override;
+		virtual void ResetPHY() = 0;
 
 		/// @brief 获取此网口的双工模式。
 		/// @return
-		bsp::Ethernet_DuplexMode DuplexMode() override;
+		virtual bsp::Ethernet_DuplexMode DuplexMode() = 0;
 
 		/// @brief 获取此网口的速度。
 		/// @return
-		base::Bps Speed() override;
+		virtual base::Bps Speed() = 0;
 
 		/// @brief 发送。
 		/// @param spans
-		void Send(base::IEnumerable<base::ReadOnlySpan> const &spans) override;
+		virtual void Send(base::IEnumerable<base::ReadOnlySpan> const &spans) = 0;
 
 		/// @brief 接收。
 		/// @return
-		base::IEnumerable<base::ReadOnlySpan> const &Receive() override;
+		virtual base::IEnumerable<base::ReadOnlySpan> const &Receive() = 0;
 
 		/// @brief 软件复位 PHY.
 		virtual void SoftwareResetPHY() override;

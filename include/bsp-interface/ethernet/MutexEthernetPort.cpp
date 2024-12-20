@@ -1,5 +1,10 @@
 #include "MutexEthernetPort.h"
 
+bsp::MutexEthernetPort::MutexEthernetPort(bsp::IEthernetPort *port)
+{
+	_port = port;
+}
+
 std::string bsp::MutexEthernetPort::Name() const
 {
 	base::LockGuard l{*_lock};
@@ -50,18 +55,66 @@ base::Bps bsp::MutexEthernetPort::Speed()
 
 void bsp::MutexEthernetPort::Send(base::IEnumerable<base::ReadOnlySpan> const &spans)
 {
-	base::LockGuard l{*_lock};
+	base::LockGuard l{*_sending_lock};
 	_port->Send(spans);
 }
 
 base::IEnumerable<base::ReadOnlySpan> const &bsp::MutexEthernetPort::Receive()
 {
-	base::LockGuard l{*_lock};
+	base::LockGuard l{*_receiving_lock};
 	return _port->Receive();
 }
 
-bsp::MutexEthernetPort::MutexEthernetPort(bsp::IEthernetPort *port)
+void bsp::MutexEthernetPort::SoftwareResetPHY()
 {
 	base::LockGuard l{*_lock};
-	_port = port;
+	_port->SoftwareResetPHY();
+}
+
+bool bsp::MutexEthernetPort::SupportAutoNegotiation()
+{
+	base::LockGuard l{*_lock};
+	return _port->SupportAutoNegotiation();
+}
+
+void bsp::MutexEthernetPort::EnableAutoNegotiation()
+{
+	base::LockGuard l{*_lock};
+	_port->EnableAutoNegotiation();
+}
+
+bool bsp::MutexEthernetPort::AutoNegotiationCompleted()
+{
+	base::LockGuard l{*_lock};
+	return _port->AutoNegotiationCompleted();
+}
+
+void bsp::MutexEthernetPort::EnablePowerDownMode()
+{
+	base::LockGuard l{*_lock};
+	_port->EnablePowerDownMode();
+}
+
+void bsp::MutexEthernetPort::DisablePowerDownMode()
+{
+	base::LockGuard l{*_lock};
+	_port->DisablePowerDownMode();
+}
+
+void bsp::MutexEthernetPort::EnableLoopbackMode()
+{
+	base::LockGuard l{*_lock};
+	_port->EnableLoopbackMode();
+}
+
+void bsp::MutexEthernetPort::DisableLoopbackMode()
+{
+	base::LockGuard l{*_lock};
+	_port->DisableLoopbackMode();
+}
+
+bool bsp::MutexEthernetPort::IsLinked()
+{
+	base::LockGuard l{*_lock};
+	return _port->IsLinked();
 }

@@ -10,7 +10,6 @@ namespace bsp
 	class IEthernetPort
 	{
 	public:
-#pragma region 接口
 		/// @brief 以太网控制器的名称。
 		/// @return
 		virtual std::string Name() const = 0;
@@ -53,34 +52,33 @@ namespace bsp
 		/// @brief 接收。
 		/// @return
 		virtual base::IEnumerable<base::ReadOnlySpan> const &Receive() = 0;
-#pragma endregion
 
 		/// @brief 软件复位 PHY.
-		void SoftwareResetPHY();
+		virtual void SoftwareResetPHY() = 0;
 
 #pragma region 自动协商
 		/// @brief 检查本网口是否支持自动协商。
 		/// @return 支持则返回 true，不支持则返回 false.
-		bool SupportAutoNegotiation();
+		virtual bool SupportAutoNegotiation() = 0;
 
 		/// @brief 使能自动协商。
 		/// @note 会先判断 PHY 是否支持自动协商，不支持自动协商会抛出异常。
 		/// @note 使能自动协商后会等待 PHY 自动协商完成。等待超时后会抛出异常。
-		void EnableAutoNegotiation();
+		virtual void EnableAutoNegotiation() = 0;
 
 		/// @brief 自动协商完成。
 		/// @return
-		bool AutoNegotiationCompleted();
+		virtual bool AutoNegotiationCompleted() = 0;
 #pragma endregion
 
-		void EnablePowerDownMode();
-		void DisablePowerDownMode();
+		virtual void EnablePowerDownMode() = 0;
+		virtual void DisablePowerDownMode() = 0;
 
-		void EnableLoopbackMode();
-		void DisableLoopbackMode();
+		virtual void EnableLoopbackMode() = 0;
+		virtual void DisableLoopbackMode() = 0;
 
 		/// @brief 网线当前处于链接状态。
 		/// @return
-		bool IsLinked();
+		virtual bool IsLinked() = 0;
 	};
 } // namespace bsp
