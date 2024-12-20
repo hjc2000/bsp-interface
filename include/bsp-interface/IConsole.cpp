@@ -88,7 +88,7 @@ void bsp::IConsole::Write(base::ReadOnlySpan const &o)
 
 void bsp::IConsole::Write(void *p)
 {
-	WriteLine(base::ToHexString(p));
+	Write(base::ToHexString(p));
 }
 
 void bsp::IConsole::WriteLine()
