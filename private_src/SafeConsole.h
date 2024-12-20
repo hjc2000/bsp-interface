@@ -9,6 +9,7 @@ namespace bsp
 	{
 	private:
 		std::shared_ptr<bsp::IMutex> _lock = DICreate_Mutex();
+		bsp::IConsole *_console = &Console::Instance();
 
 	public:
 		static_function SafeConsole &Instance();

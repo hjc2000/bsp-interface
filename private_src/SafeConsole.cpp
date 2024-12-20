@@ -31,100 +31,100 @@ bsp::SafeConsole &bsp::SafeConsole::Instance()
 
 std::shared_ptr<base::Stream> bsp::SafeConsole::OutStream()
 {
-	return Console::Instance().OutStream();
+	return _console->OutStream();
 }
 
 void bsp::SafeConsole::SetOutStream(std::shared_ptr<base::Stream> value)
 {
-	Console::Instance().SetOutStream(value);
+	_console->SetOutStream(value);
 }
 
 void bsp::SafeConsole::Write(char c)
 {
 	base::LockGuard g{*_lock};
-	Console::Instance().Write(c);
+	_console->Write(c);
 }
 
 void bsp::SafeConsole::Write(char const *str)
 {
 	base::LockGuard g{*_lock};
-	Console::Instance().Write(str);
+	_console->Write(str);
 }
 
 void bsp::SafeConsole::Write(char const *str, int length)
 {
 	base::LockGuard g{*_lock};
-	Console::Instance().Write(str, length);
+	_console->Write(str, length);
 }
 
 void bsp::SafeConsole::Write(std::string const &str)
 {
 	base::LockGuard g{*_lock};
-	Console::Instance().Write(str);
+	_console->Write(str);
 }
 
 void bsp::SafeConsole::Write(base::ReadOnlySpan const &o)
 {
 	base::LockGuard g{*_lock};
-	Console::Instance().Write(o);
+	_console->Write(o);
 }
 
 void bsp::SafeConsole::Write(void *p)
 {
 	base::LockGuard g{*_lock};
-	Console::Instance().Write(p);
+	_console->Write(p);
 }
 
 void bsp::SafeConsole::WriteLine()
 {
 	base::LockGuard g{*_lock};
-	Console::Instance().WriteLine();
+	_console->WriteLine();
 }
 
 void bsp::SafeConsole::WriteLine(char const *str)
 {
 	base::LockGuard g{*_lock};
-	Console::Instance().WriteLine(str);
+	_console->WriteLine(str);
 }
 
 void bsp::SafeConsole::WriteLine(std::string const &str)
 {
 	base::LockGuard g{*_lock};
-	Console::Instance().WriteLine(str);
+	_console->WriteLine(str);
 }
 
 void bsp::SafeConsole::WriteLine(base::ICanToString const &o)
 {
 	base::LockGuard g{*_lock};
-	Console::Instance().WriteLine(o);
+	_console->WriteLine(o);
 }
 
 void bsp::SafeConsole::WriteLine(void *p)
 {
 	base::LockGuard g{*_lock};
-	Console::Instance().WriteLine(p);
+	_console->WriteLine(p);
 }
 
 void bsp::SafeConsole::WriteError() noexcept
 {
 	base::LockGuard g{*_lock};
-	Console::Instance().WriteError();
+	_console->WriteError();
 }
 
 void bsp::SafeConsole::WriteError(char const *str) noexcept
 {
 	base::LockGuard g{*_lock};
-	Console::Instance().WriteError(str);
+	_console->WriteError(str);
 }
 
 void bsp::SafeConsole::WriteError(std::string const &str) noexcept
 {
 	base::LockGuard g{*_lock};
-	Console::Instance().WriteError(str);
+	_console->WriteError(str);
 }
 
 void bsp::SafeConsole::WriteError(base::ICanToString const &o) noexcept
 {
 	base::LockGuard g{*_lock};
-	Console::Instance().WriteError(o);
+	_console->WriteError(o);
 }
