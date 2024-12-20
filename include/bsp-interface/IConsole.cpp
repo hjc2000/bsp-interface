@@ -86,7 +86,7 @@ void bsp::IConsole::Write(base::ReadOnlySpan const &o)
 	}
 }
 
-void bsp::IConsole::Write(void *p)
+void bsp::IConsole::Write(void const *p)
 {
 	Write(base::ToHexString(p));
 }
@@ -113,7 +113,7 @@ void bsp::IConsole::WriteLine(base::ICanToString const &o)
 	WriteLine(o.ToString());
 }
 
-void bsp::IConsole::WriteLine(void *p)
+void bsp::IConsole::WriteLine(void const *p)
 {
 	WriteLine(base::ToHexString(p));
 }

@@ -69,7 +69,7 @@ void bsp::SafeConsole::Write(base::ReadOnlySpan const &o)
 	_console->Write(o);
 }
 
-void bsp::SafeConsole::Write(void *p)
+void bsp::SafeConsole::Write(void const *p)
 {
 	base::LockGuard g{*_lock};
 	_console->Write(p);
@@ -99,7 +99,7 @@ void bsp::SafeConsole::WriteLine(base::ICanToString const &o)
 	_console->WriteLine(o);
 }
 
-void bsp::SafeConsole::WriteLine(void *p)
+void bsp::SafeConsole::WriteLine(void const *p)
 {
 	base::LockGuard g{*_lock};
 	_console->WriteLine(p);

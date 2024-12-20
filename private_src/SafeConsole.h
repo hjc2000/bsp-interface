@@ -46,7 +46,7 @@ namespace bsp
 
 		/// @brief 打印指针。
 		/// @param p
-		void Write(void *p) override;
+		void Write(void const *p) override;
 
 		/// @brief 打印一条空行。
 		void WriteLine() override;
@@ -65,7 +65,7 @@ namespace bsp
 
 		/// @brief 打印指针。
 		/// @param p
-		void WriteLine(void *p) override;
+		void WriteLine(void const *p) override;
 
 		/// @brief 打印一条空行。
 		void WriteError() noexcept override;

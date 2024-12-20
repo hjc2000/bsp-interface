@@ -43,7 +43,7 @@ namespace bsp
 
 		/// @brief 打印指针。
 		/// @param p
-		virtual void Write(void *p);
+		virtual void Write(void const *p);
 
 		/// @brief 打印一条空行。
 		virtual void WriteLine();
@@ -62,7 +62,7 @@ namespace bsp
 
 		/// @brief 打印指针。
 		/// @param p
-		virtual void WriteLine(void *p);
+		virtual void WriteLine(void const *p);
 
 		/// @brief 打印一条空行。
 		virtual void WriteError() noexcept;
