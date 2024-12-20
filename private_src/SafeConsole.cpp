@@ -31,13 +31,11 @@ bsp::SafeConsole &bsp::SafeConsole::Instance()
 
 std::shared_ptr<base::Stream> bsp::SafeConsole::OutStream()
 {
-	base::LockGuard g{*_lock};
 	return Console::Instance().OutStream();
 }
 
 void bsp::SafeConsole::SetOutStream(std::shared_ptr<base::Stream> value)
 {
-	base::LockGuard g{*_lock};
 	Console::Instance().SetOutStream(value);
 }
 
