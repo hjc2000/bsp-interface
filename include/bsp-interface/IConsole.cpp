@@ -93,7 +93,7 @@ void bsp::IConsole::Write(void *p)
 
 void bsp::IConsole::WriteLine()
 {
-	Write("\n");
+	Write('\n');
 }
 
 void bsp::IConsole::WriteLine(char const *str)
