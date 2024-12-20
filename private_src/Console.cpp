@@ -58,30 +58,30 @@ void bsp::Console::Write(char const *str)
 		return;
 	}
 
-	int32_t index_of_white_char = 0;
+	int32_t end_index = 0;
 	while (true)
 	{
-		if (str[index_of_white_char] == '\0')
+		if (str[end_index] == '\0')
 		{
 			break;
 		}
 
-		if (index_of_white_char == INT32_MAX)
+		if (end_index == INT32_MAX)
 		{
 			break;
 		}
 
-		index_of_white_char++;
+		end_index++;
 	}
 
-	if (index_of_white_char <= 0)
+	if (end_index <= 0)
 	{
 		return;
 	}
 
 	OutStream()->Write(reinterpret_cast<uint8_t const *>(str),
 					   0,
-					   index_of_white_char);
+					   end_index);
 }
 
 void bsp::Console::Write(char const *str, int length)
@@ -153,8 +153,7 @@ void bsp::Console::WriteLine(base::ICanToString const &o)
 
 void bsp::Console::WriteLine(void *p)
 {
-	Write(p);
-	WriteLine();
+	WriteLine(base::ToHexString(p));
 }
 
 void bsp::Console::WriteError() noexcept
