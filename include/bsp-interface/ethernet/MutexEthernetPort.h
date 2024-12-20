@@ -9,9 +9,18 @@ namespace bsp
 		public bsp::IEthernetPort
 	{
 	private:
+		/// @brief 控制用的锁。
+		/// @note 控制与收发无关，所以要使用另外的一个锁。
 		std::shared_ptr<bsp::IMutex> _lock = DICreate_Mutex();
+
+		/// @brief 接收用的锁。
+		/// @note 以太网是双工的，接收和发送不能使用同一个锁。
 		std::shared_ptr<bsp::IMutex> _receiving_lock = DICreate_Mutex();
+
+		/// @brief 发送用的锁。
+		/// @note 以太网是双工的，接收和发送不能使用同一个锁。
 		std::shared_ptr<bsp::IMutex> _sending_lock = DICreate_Mutex();
+
 		bsp::IEthernetPort *_port = nullptr;
 
 	public:
