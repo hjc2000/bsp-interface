@@ -115,7 +115,8 @@ void bsp::IConsole::WriteLine(base::ICanToString const &o)
 
 void bsp::IConsole::WriteLine(void const *p)
 {
-	WriteLine(base::ToHexString(p));
+	Write(p);
+	WriteLine();
 }
 
 void bsp::IConsole::WriteError() noexcept
