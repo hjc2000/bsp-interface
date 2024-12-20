@@ -6,12 +6,12 @@
 bsp::Console &bsp::Console::Instance()
 {
 	class Getter :
-		public base::SingletonGetter<Console>
+		public base::SingletonGetter<bsp::Console>
 	{
 	public:
-		std::unique_ptr<Console> Create() override
+		std::unique_ptr<bsp::Console> Create() override
 		{
-			return std::unique_ptr<Console>{new bsp::Console{}};
+			return std::unique_ptr<bsp::Console>{new bsp::Console{}};
 		}
 
 		void Lock() override
