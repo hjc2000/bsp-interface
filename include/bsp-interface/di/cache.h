@@ -3,9 +3,11 @@
 #include <stdint.h>
 
 /// @brief 使能缓存。
+/// @note 会同时使能 D-Cache 和 I-Cache.
 void DI_EnableCache();
 
 /// @brief 失能缓存。
+/// @note 会同时失能 D-Cache 和 I-Cache.
 void DI_DisableCache();
 
 /// @brief 是 D-Cache 无效。
