@@ -69,10 +69,21 @@ namespace bsp
 						   base::Bps const &speed) = 0;
 
 		/// @brief 发送。
+		/// @note 现代的单片机的以太网控制器使用多个 DMA 描述符来控制数据传输。每个 DMA
+		/// 描述符控制一个缓冲区的传输。一个或多个 DMA 描述符传输的缓冲区组成一个以太网帧。
+		/// 即一个以太网帧可以被多个 DMA 描述符分成多个缓冲区进行传输。但是一个 DMA 描述符
+		/// 不能传输多个以太网帧。这里使用 base::IEnumerable<base::ReadOnlySpan> 就是
+		/// 为了适应这种多个缓冲区组成一个以太网帧的模式。spans 中的所有 span 共同组成一个
+		/// 完整的以太网帧。spans 中不能放置多个以太网帧的 span.
 		/// @param spans
 		virtual void Send(base::IEnumerable<base::ReadOnlySpan> const &spans) = 0;
 
 		/// @brief 接收。
+		/// @note 与发送相同，接收时一个以太网帧也可能被多个 DMA 描述符共同完成接收，接收
+		/// 的数据被放到多个缓冲区中。
+		/// @note 返回的 base::IEnumerable<base::ReadOnlySpan> 对象中的所有
+		/// base::ReadOnlySpan 共同组成一个完整的以太网帧。不能将多个以太网帧放到返回的
+		/// base::IEnumerable<base::ReadOnlySpan> 中。
 		/// @return
 		virtual base::IEnumerable<base::ReadOnlySpan> const &Receive() = 0;
 	};
