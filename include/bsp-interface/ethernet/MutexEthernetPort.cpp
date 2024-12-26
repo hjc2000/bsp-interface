@@ -59,7 +59,7 @@ void bsp::MutexEthernetPort::Send(base::IEnumerable<base::ReadOnlySpan> const &s
 	_port->Send(spans);
 }
 
-base::IEnumerable<base::ReadOnlySpan> const &bsp::MutexEthernetPort::Receive()
+base::ReadOnlySpan bsp::MutexEthernetPort::Receive()
 {
 	base::LockGuard l{*_receiving_lock};
 	return _port->Receive();

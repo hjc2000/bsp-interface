@@ -67,7 +67,7 @@ namespace bsp
 
 		/// @brief 接收。
 		/// @return
-		base::IEnumerable<base::ReadOnlySpan> const &Receive() override;
+		base::ReadOnlySpan Receive() override;
 
 		/// @brief 软件复位 PHY.
 		virtual void SoftwareResetPHY() override;

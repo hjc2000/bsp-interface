@@ -51,7 +51,7 @@ namespace bsp
 
 		/// @brief 接收。
 		/// @return
-		virtual base::IEnumerable<base::ReadOnlySpan> const &Receive() = 0;
+		virtual base::ReadOnlySpan Receive() = 0;
 
 		/// @brief 软件复位 PHY.
 		virtual void SoftwareResetPHY();

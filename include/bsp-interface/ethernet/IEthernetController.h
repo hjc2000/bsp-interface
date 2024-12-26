@@ -79,12 +79,9 @@ namespace bsp
 		virtual void Send(base::IEnumerable<base::ReadOnlySpan> const &spans) = 0;
 
 		/// @brief 接收。
-		/// @note 与发送相同，接收时一个以太网帧也可能被多个 DMA 描述符共同完成接收，接收
-		/// 的数据被放到多个缓冲区中。
-		/// @note 返回的 base::IEnumerable<base::ReadOnlySpan> 对象中的所有
-		/// base::ReadOnlySpan 共同组成一个完整的以太网帧。不能将多个以太网帧放到返回的
-		/// base::IEnumerable<base::ReadOnlySpan> 中。
+		/// @note 因为接收后需要解析，而解析需要数据完整且连续，所以必须接收一整个完整的以太网帧，
+		/// 放到一个 span 中。
 		/// @return
-		virtual base::IEnumerable<base::ReadOnlySpan> const &Receive() = 0;
+		virtual base::ReadOnlySpan Receive() = 0;
 	};
 } // namespace bsp
