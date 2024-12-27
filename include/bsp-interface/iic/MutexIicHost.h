@@ -1,4 +1,5 @@
 #pragma once
+#include <base/task/IMutex.h>
 #include <bsp-interface/di/task.h>
 #include <bsp-interface/iic/IIicHost.h>
 
@@ -12,7 +13,7 @@ namespace bsp
 		public bsp::IIicHost
 	{
 	private:
-		std::shared_ptr<bsp::IMutex> _lock = DICreate_Mutex();
+		std::shared_ptr<base::IMutex> _lock = base::di::CreateMutex();
 		bsp::IIicHost *_host = nullptr;
 
 	public:

@@ -1,4 +1,5 @@
 #pragma once
+#include <base/task/IMutex.h>
 #include <bsp-interface/di/task.h>
 #include <bsp-interface/ethernet/IEthernetPort.h>
 
@@ -11,15 +12,15 @@ namespace bsp
 	private:
 		/// @brief 控制用的锁。
 		/// @note 控制与收发无关，所以要使用另外的一个锁。
-		std::shared_ptr<bsp::IMutex> _lock = DICreate_Mutex();
+		std::shared_ptr<base::IMutex> _lock = base::di::CreateMutex();
 
 		/// @brief 接收用的锁。
 		/// @note 以太网是双工的，接收和发送不能使用同一个锁。
-		std::shared_ptr<bsp::IMutex> _receiving_lock = DICreate_Mutex();
+		std::shared_ptr<base::IMutex> _receiving_lock = base::di::CreateMutex();
 
 		/// @brief 发送用的锁。
 		/// @note 以太网是双工的，接收和发送不能使用同一个锁。
-		std::shared_ptr<bsp::IMutex> _sending_lock = DICreate_Mutex();
+		std::shared_ptr<base::IMutex> _sending_lock = base::di::CreateMutex();
 
 		bsp::IEthernetPort *_port = nullptr;
 
