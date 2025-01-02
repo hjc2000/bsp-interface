@@ -65,10 +65,10 @@ void bsp::MutexEthernetPort::Send(base::ReadOnlySpan const &span)
 	_port->Send(span);
 }
 
-base::ReadOnlySpan bsp::MutexEthernetPort::Receive()
+base::IEvent<base::ReadOnlySpan> &bsp::MutexEthernetPort::ReceivintEhternetFrameEvent()
 {
 	base::LockGuard l{*_receiving_lock};
-	return _port->Receive();
+	return _port->ReceivintEhternetFrameEvent();
 }
 
 void bsp::MutexEthernetPort::SoftwareResetPHY()
