@@ -41,7 +41,7 @@ void bsp::MutexEthernetPort::ResetPHY()
 	_port->ResetPHY();
 }
 
-bsp::Ethernet_DuplexMode bsp::MutexEthernetPort::DuplexMode()
+bsp::EthernetDuplexMode bsp::MutexEthernetPort::DuplexMode()
 {
 	base::LockGuard l{*_lock};
 	return _port->DuplexMode();

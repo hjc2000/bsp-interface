@@ -2,7 +2,7 @@
 #include <bsp-interface/di/console.h>
 #include <bsp-interface/di/system_time.h>
 
-bsp::Ethernet_DuplexMode bsp::YT8512C_EthernetPort::DuplexMode()
+bsp::EthernetDuplexMode bsp::YT8512C_EthernetPort::DuplexMode()
 {
 	uint32_t register_value = ReadPHYRegister(0x11);
 	uint32_t const mask = 0b1 << 13;
@@ -11,11 +11,11 @@ bsp::Ethernet_DuplexMode bsp::YT8512C_EthernetPort::DuplexMode()
 	if (duplex_register)
 	{
 		DI_Console().WriteLine("全双工");
-		return bsp::Ethernet_DuplexMode::FullDuplex;
+		return bsp::EthernetDuplexMode::FullDuplex;
 	}
 
 	DI_Console().WriteLine("半双工");
-	return bsp::Ethernet_DuplexMode::HalfDuplex;
+	return bsp::EthernetDuplexMode::HalfDuplex;
 }
 
 base::Bps bsp::YT8512C_EthernetPort::Speed()

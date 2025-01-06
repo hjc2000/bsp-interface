@@ -40,7 +40,7 @@ namespace bsp
 
 		/// @brief 获取此网口的双工模式。
 		/// @return
-		virtual bsp::Ethernet_DuplexMode DuplexMode() = 0;
+		virtual bsp::EthernetDuplexMode DuplexMode() = 0;
 
 		/// @brief 获取此网口的速度。
 		/// @return
