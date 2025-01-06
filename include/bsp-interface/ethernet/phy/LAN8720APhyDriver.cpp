@@ -1,10 +1,10 @@
-#include "ILAN8720APhyDriver.h"
+#include "LAN8720APhyDriver.h"
 #include <base/container/Array.h>
 #include <base/unit/Mbps.h>
 #include <bsp-interface/di/console.h>
 #include <bsp-interface/di/delayer.h>
 
-bsp::EthernetDuplexMode bsp::ILAN8720APhyDriver::DuplexMode()
+bsp::EthernetDuplexMode bsp::LAN8720APhyDriver::DuplexMode()
 {
 	uint32_t register_value = ReadRegister(0x1F);
 	uint32_t const mask = 0b10000;
@@ -18,7 +18,7 @@ bsp::EthernetDuplexMode bsp::ILAN8720APhyDriver::DuplexMode()
 	return bsp::EthernetDuplexMode::HalfDuplex;
 }
 
-base::Bps bsp::ILAN8720APhyDriver::Speed()
+base::Bps bsp::LAN8720APhyDriver::Speed()
 {
 	uint32_t register_value = ReadRegister(0x1F);
 	uint32_t const mask = 0b01000;

@@ -3,11 +3,22 @@
 
 namespace bsp
 {
-	class ILAN8720APhyDriver :
+	class LAN8720APhyDriver :
 		public bsp::IPhyDriver
 	{
+	private:
+		bsp::IPhyController &_phy_controller;
+
 	public:
-		virtual bsp::IPhyController &PhyController() = 0;
+		LAN8720APhyDriver(bsp::IPhyController &phy_controller)
+			: _phy_controller(phy_controller)
+		{
+		}
+
+		virtual bsp::IPhyController &PhyController() override
+		{
+			return _phy_controller;
+		}
 
 		/// @brief 获取此网口的双工模式。
 		/// @return
