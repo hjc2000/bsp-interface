@@ -11,10 +11,10 @@ namespace bsp
 
 		/// @brief 获取此网口的双工模式。
 		/// @return
-		bsp::EthernetDuplexMode DuplexMode() override;
+		virtual bsp::EthernetDuplexMode DuplexMode() override;
 
 		/// @brief 获取此网口的速度。
 		/// @return
-		base::Bps Speed() override;
+		virtual base::Bps Speed() override;
 	};
 } // namespace bsp
