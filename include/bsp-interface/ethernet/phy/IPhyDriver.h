@@ -22,6 +22,12 @@ namespace bsp
 		/// @brief 软件复位 PHY.
 		virtual void SoftwareReset();
 
+		/// @brief 通过 PHY 的复位引脚将 PHY 复位。
+		void HardwareReset()
+		{
+			PhyController().HardwareReset();
+		}
+
 #pragma region 自动协商
 		/// @brief 检查本网口是否支持自动协商。
 		/// @return 支持则返回 true，不支持则返回 false.
@@ -61,12 +67,6 @@ namespace bsp
 		void WriteRegister(uint32_t register_index, uint32_t value)
 		{
 			PhyController().WriteRegister(register_index, value);
-		}
-
-		/// @brief 通过 PHY 的复位引脚将 PHY 复位。
-		void HardwareReset()
-		{
-			PhyController().HardwareReset();
 		}
 	};
 } // namespace bsp
