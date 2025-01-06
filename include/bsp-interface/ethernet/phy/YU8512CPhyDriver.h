@@ -4,14 +4,14 @@
 
 namespace bsp
 {
-	class LAN8720APhyDriver :
+	class YU8512CPhyDriver :
 		public bsp::IPhyDriver
 	{
 	private:
 		std::shared_ptr<bsp::IPhyController> _phy_controller;
 
 	public:
-		LAN8720APhyDriver(std::shared_ptr<bsp::IPhyController> phy_controller);
+		YU8512CPhyDriver(std::shared_ptr<bsp::IPhyController> phy_controller);
 
 		virtual bsp::IPhyController &PhyController() override;
 

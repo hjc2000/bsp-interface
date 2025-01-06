@@ -1,8 +1,24 @@
 #include "LAN8720APhyDriver.h"
 #include <base/container/Array.h>
+#include <base/string/define.h>
 #include <base/unit/Mbps.h>
 #include <bsp-interface/di/console.h>
 #include <bsp-interface/di/delayer.h>
+
+bsp::LAN8720APhyDriver::LAN8720APhyDriver(std::shared_ptr<bsp::IPhyController> phy_controller)
+{
+	if (phy_controller == nullptr)
+	{
+		throw std::invalid_argument{CODE_POS_STR + "不能是空指针。"};
+	}
+
+	_phy_controller = phy_controller;
+}
+
+bsp::IPhyController &bsp::LAN8720APhyDriver::PhyController()
+{
+	return *_phy_controller;
+}
 
 bsp::EthernetDuplexMode bsp::LAN8720APhyDriver::DuplexMode()
 {
