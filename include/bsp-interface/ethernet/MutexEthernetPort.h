@@ -55,6 +55,16 @@ namespace bsp
 		/// @return
 		virtual base::IEvent<base::ReadOnlySpan> &ReceivintEhternetFrameEvent() override;
 
+		/// @brief 连接事件。
+		/// @note 链路层连接建立后会触发事件。
+		/// @return
+		virtual base::IEvent<> &ConnectionEvent() override;
+
+		/// @brief 断开连接事件。
+		/// @note 链路层连接断开后会触发事件。
+		/// @return
+		virtual base::IEvent<> &DisconnectionEvent() override;
+
 		/// @brief 网线当前处于链接状态。
 		/// @return
 		virtual bool IsLinked() override;

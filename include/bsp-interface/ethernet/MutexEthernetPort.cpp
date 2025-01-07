@@ -37,8 +37,20 @@ void bsp::MutexEthernetPort::Send(base::ReadOnlySpan const &span)
 
 base::IEvent<base::ReadOnlySpan> &bsp::MutexEthernetPort::ReceivintEhternetFrameEvent()
 {
-	base::LockGuard l{*_receiving_lock};
+	base::LockGuard l{*_sending_lock};
 	return _port->ReceivintEhternetFrameEvent();
+}
+
+base::IEvent<> &bsp::MutexEthernetPort::ConnectionEvent()
+{
+	base::LockGuard l{*_sending_lock};
+	return _port->ConnectionEvent();
+}
+
+base::IEvent<> &bsp::MutexEthernetPort::DisconnectionEvent()
+{
+	base::LockGuard l{*_sending_lock};
+	return _port->DisconnectionEvent();
 }
 
 bool bsp::MutexEthernetPort::IsLinked()
