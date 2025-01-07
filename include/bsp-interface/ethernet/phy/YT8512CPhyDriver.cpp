@@ -1,11 +1,11 @@
-#include "YU8512CPhyDriver.h"
+#include "YT8512CPhyDriver.h"
 #include <base/container/Array.h>
 #include <base/string/define.h>
 #include <base/unit/Mbps.h>
 #include <bsp-interface/di/console.h>
 #include <bsp-interface/di/delayer.h>
 
-bsp::YU8512CPhyDriver::YU8512CPhyDriver(std::shared_ptr<bsp::IPhyController> phy_controller)
+bsp::YT8512CPhyDriver::YT8512CPhyDriver(std::shared_ptr<bsp::IPhyController> phy_controller)
 {
 	if (phy_controller == nullptr)
 	{
@@ -15,12 +15,12 @@ bsp::YU8512CPhyDriver::YU8512CPhyDriver(std::shared_ptr<bsp::IPhyController> phy
 	_phy_controller = phy_controller;
 }
 
-bsp::IPhyController &bsp::YU8512CPhyDriver::PhyController()
+bsp::IPhyController &bsp::YT8512CPhyDriver::PhyController()
 {
 	return *_phy_controller;
 }
 
-bsp::EthernetDuplexMode bsp::YU8512CPhyDriver::DuplexMode()
+bsp::EthernetDuplexMode bsp::YT8512CPhyDriver::DuplexMode()
 {
 	uint32_t register_value = ReadRegister(0x11);
 	uint32_t const mask = 0b1 << 13;
@@ -36,7 +36,7 @@ bsp::EthernetDuplexMode bsp::YU8512CPhyDriver::DuplexMode()
 	return bsp::EthernetDuplexMode::HalfDuplex;
 }
 
-base::Bps bsp::YU8512CPhyDriver::Speed()
+base::Bps bsp::YT8512CPhyDriver::Speed()
 {
 	uint32_t register_value = ReadRegister(0x11);
 	uint32_t const mask = 0b11 << 14;
