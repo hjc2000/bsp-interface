@@ -29,10 +29,10 @@ void bsp::MutexEthernetPort::Send(base::ReadOnlySpan const &span)
 	_port->Send(span);
 }
 
-base::IEvent<base::ReadOnlySpan> &bsp::MutexEthernetPort::ReceivintEhternetFrameEvent()
+base::IEvent<base::ReadOnlySpan> &bsp::MutexEthernetPort::ReceivingEhternetFrameEvent()
 {
 	base::LockGuard l{*_sending_lock};
-	return _port->ReceivintEhternetFrameEvent();
+	return _port->ReceivingEhternetFrameEvent();
 }
 
 base::IEvent<> &bsp::MutexEthernetPort::ConnectionEvent()
