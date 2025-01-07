@@ -6,6 +6,7 @@
 
 namespace bsp
 {
+	/// @brief 通过 IPhyController 驱动 PHY 芯片。
 	class IPhyDriver
 	{
 	public:
