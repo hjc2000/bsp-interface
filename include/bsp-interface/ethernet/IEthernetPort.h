@@ -16,12 +16,6 @@ namespace bsp
 		/// @param mac MAC 地址。
 		virtual void Open(base::Mac const &mac) = 0;
 
-		/// @brief 重启网口。
-		/// @note 会保留 MAC 地址等配置。
-		/// @note 会重新进行自动协商的过程。断线重连后可以调用本方法，防止 MAC 控制器
-		/// 所使用的速率、双工等配置与新插入的网线不符。
-		virtual void Restart() = 0;
-
 		/// @brief 发送。
 		/// @param spans
 		virtual void Send(base::IEnumerable<base::ReadOnlySpan> const &spans) = 0;
@@ -45,9 +39,5 @@ namespace bsp
 		/// @note 链路层连接断开后会触发事件。
 		/// @return
 		virtual base::IEvent<> &DisconnectionEvent() = 0;
-
-		/// @brief 网线当前处于链接状态。
-		/// @return
-		virtual bool IsLinked() = 0;
 	};
 } // namespace bsp

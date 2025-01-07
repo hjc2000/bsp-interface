@@ -17,12 +17,6 @@ void bsp::MutexEthernetPort::Open(base::Mac const &mac)
 	_port->Open(mac);
 }
 
-void bsp::MutexEthernetPort::Restart()
-{
-	base::LockGuard l{*_lock};
-	_port->Restart();
-}
-
 void bsp::MutexEthernetPort::Send(base::IEnumerable<base::ReadOnlySpan> const &spans)
 {
 	base::LockGuard l{*_sending_lock};
@@ -51,10 +45,4 @@ base::IEvent<> &bsp::MutexEthernetPort::DisconnectionEvent()
 {
 	base::LockGuard l{*_sending_lock};
 	return _port->DisconnectionEvent();
-}
-
-bool bsp::MutexEthernetPort::IsLinked()
-{
-	base::LockGuard l{*_lock};
-	return _port->IsLinked();
 }
