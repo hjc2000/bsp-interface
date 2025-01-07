@@ -5,7 +5,7 @@
 #include <bsp-interface/di/console.h>
 #include <bsp-interface/di/delayer.h>
 
-bsp::LAN8720APhyDriver::LAN8720APhyDriver(std::shared_ptr<bsp::IPhyController> phy_controller)
+bsp::LAN8720APhyDriver::LAN8720APhyDriver(std::shared_ptr<bsp::IPhyController> const &phy_controller)
 {
 	if (phy_controller == nullptr)
 	{

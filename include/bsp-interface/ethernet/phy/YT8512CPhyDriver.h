@@ -11,7 +11,7 @@ namespace bsp
 		std::shared_ptr<bsp::IPhyController> _phy_controller;
 
 	public:
-		YT8512CPhyDriver(std::shared_ptr<bsp::IPhyController> phy_controller);
+		YT8512CPhyDriver(std::shared_ptr<bsp::IPhyController> const &phy_controller);
 
 		virtual bsp::IPhyController &PhyController() override;
 

@@ -5,7 +5,7 @@
 #include <bsp-interface/di/console.h>
 #include <bsp-interface/di/delayer.h>
 
-bsp::YT8512CPhyDriver::YT8512CPhyDriver(std::shared_ptr<bsp::IPhyController> phy_controller)
+bsp::YT8512CPhyDriver::YT8512CPhyDriver(std::shared_ptr<bsp::IPhyController> const &phy_controller)
 {
 	if (phy_controller == nullptr)
 	{
