@@ -5,7 +5,7 @@
 
 namespace
 {
-	std::vector<std::shared_ptr<bsp::IHeap>> *_heap_vector = nullptr;
+	std::vector<std::shared_ptr<bsp::IHeap>> *volatile _heap_vector = nullptr;
 }
 
 void *operator new(size_t size)
@@ -222,14 +222,17 @@ void DI_AddHeap(std::shared_ptr<bsp::IHeap> const &heap)
 	if (_heap_vector == nullptr)
 	{
 		std::vector<std::shared_ptr<bsp::IHeap>> *vec = new std::vector<std::shared_ptr<bsp::IHeap>>{};
+		vec->push_back(heap);
 		vec->push_back(base::RentedPtrFactory::Create(&DI_Heap()));
-		// _heap_vector = vec;
+		_heap_vector = vec;
+		return;
 	}
 
-	// _heap_vector->push_back(heap);
+	_heap_vector->push_back(heap);
 }
 
 void DI_AddHeap(uint8_t *buffer, size_t size)
 {
+	bsp::GlobalInterruptGuard g;
 	DI_AddHeap(DI_CreateHeap(buffer, size));
 }
