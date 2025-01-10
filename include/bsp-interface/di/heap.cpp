@@ -1,5 +1,12 @@
 #include "heap.h"
+#include <base/RentedPtrFactory.h>
 #include <bsp-interface/di/interrupt.h>
+#include <vector>
+
+namespace
+{
+	std::vector<std::shared_ptr<bsp::IHeap>> *_heap_vector = nullptr;
+}
 
 void *operator new(size_t size)
 {
@@ -81,4 +88,16 @@ void operator delete[](void *ptr, size_t size) noexcept
 {
 	bsp::GlobalInterruptGuard g;
 	DI_Heap().Free(ptr);
+}
+
+void DI_AddHeap(std::shared_ptr<bsp::IHeap> const &heap)
+{
+	bsp::GlobalInterruptGuard g;
+	if (_heap_vector == nullptr)
+	{
+		_heap_vector = new std::vector<std::shared_ptr<bsp::IHeap>>{};
+		_heap_vector->push_back(base::RentedPtrFactory::Create(&DI_Heap()));
+	}
+
+	_heap_vector->push_back(heap);
 }
