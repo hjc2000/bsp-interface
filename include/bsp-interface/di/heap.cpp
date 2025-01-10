@@ -11,83 +11,209 @@ namespace
 void *operator new(size_t size)
 {
 	bsp::GlobalInterruptGuard g;
-	void *ptr = DI_Heap().Malloc(size);
-	if (ptr == nullptr)
+	if (_heap_vector == nullptr)
 	{
-		throw std::bad_alloc{};
+		void *ptr = DI_Heap().Malloc(size);
+		if (ptr == nullptr)
+		{
+			throw std::bad_alloc{};
+		}
+
+		return ptr;
 	}
 
-	return ptr;
+	for (std::shared_ptr<bsp::IHeap> &heap : *_heap_vector)
+	{
+		void *ptr = heap->Malloc(size);
+		if (ptr != nullptr)
+		{
+			return ptr;
+		}
+	}
+
+	throw std::bad_alloc{};
 }
 
 void *operator new[](size_t size)
 {
 	bsp::GlobalInterruptGuard g;
-	void *ptr = DI_Heap().Malloc(size);
-	if (ptr == nullptr)
+	if (_heap_vector == nullptr)
 	{
-		throw std::bad_alloc{};
+		void *ptr = DI_Heap().Malloc(size);
+		if (ptr == nullptr)
+		{
+			throw std::bad_alloc{};
+		}
+
+		return ptr;
 	}
 
-	return ptr;
+	for (std::shared_ptr<bsp::IHeap> &heap : *_heap_vector)
+	{
+		void *ptr = heap->Malloc(size);
+		if (ptr != nullptr)
+		{
+			return ptr;
+		}
+	}
+
+	throw std::bad_alloc{};
 }
 
 void *operator new(size_t size, std::nothrow_t const &) noexcept
 {
 	bsp::GlobalInterruptGuard g;
-	void *p = DI_Heap().Malloc(size);
-	if (p == nullptr)
+	if (_heap_vector == nullptr)
 	{
+		void *p = DI_Heap().Malloc(size);
+		return p;
 	}
 
-	return p;
+	for (std::shared_ptr<bsp::IHeap> &heap : *_heap_vector)
+	{
+		void *ptr = heap->Malloc(size);
+		if (ptr != nullptr)
+		{
+			return ptr;
+		}
+	}
+
+	return nullptr;
 }
 
 void *operator new[](size_t size, std::nothrow_t const &) noexcept
 {
 	bsp::GlobalInterruptGuard g;
-	void *p = DI_Heap().Malloc(size);
-	if (p == nullptr)
+	if (_heap_vector == nullptr)
 	{
+		void *p = DI_Heap().Malloc(size);
+		return p;
 	}
 
-	return p;
+	for (std::shared_ptr<bsp::IHeap> &heap : *_heap_vector)
+	{
+		void *ptr = heap->Malloc(size);
+		if (ptr != nullptr)
+		{
+			return ptr;
+		}
+	}
+
+	return nullptr;
 }
 
 void operator delete(void *ptr) noexcept
 {
 	bsp::GlobalInterruptGuard g;
-	DI_Heap().Free(ptr);
+	if (_heap_vector == nullptr)
+	{
+		DI_Heap().Free(ptr);
+		return;
+	}
+
+	for (std::shared_ptr<bsp::IHeap> &heap : *_heap_vector)
+	{
+		if (ptr >= heap->begin() && ptr < heap->end())
+		{
+			heap->Free(ptr);
+			return;
+		}
+	}
 }
 
 void operator delete[](void *ptr) noexcept
 {
 	bsp::GlobalInterruptGuard g;
-	DI_Heap().Free(ptr);
+	if (_heap_vector == nullptr)
+	{
+		DI_Heap().Free(ptr);
+		return;
+	}
+
+	for (std::shared_ptr<bsp::IHeap> &heap : *_heap_vector)
+	{
+		if (ptr >= heap->begin() && ptr < heap->end())
+		{
+			heap->Free(ptr);
+			return;
+		}
+	}
 }
 
 void operator delete(void *ptr, std::nothrow_t const &) noexcept
 {
 	bsp::GlobalInterruptGuard g;
-	DI_Heap().Free(ptr);
+	if (_heap_vector == nullptr)
+	{
+		DI_Heap().Free(ptr);
+		return;
+	}
+
+	for (std::shared_ptr<bsp::IHeap> &heap : *_heap_vector)
+	{
+		if (ptr >= heap->begin() && ptr < heap->end())
+		{
+			heap->Free(ptr);
+			return;
+		}
+	}
 }
 
 void operator delete[](void *ptr, std::nothrow_t const &) noexcept
 {
 	bsp::GlobalInterruptGuard g;
-	DI_Heap().Free(ptr);
+	if (_heap_vector == nullptr)
+	{
+		DI_Heap().Free(ptr);
+		return;
+	}
+
+	for (std::shared_ptr<bsp::IHeap> &heap : *_heap_vector)
+	{
+		if (ptr >= heap->begin() && ptr < heap->end())
+		{
+			heap->Free(ptr);
+			return;
+		}
+	}
 }
 
 void operator delete(void *ptr, size_t size) noexcept
 {
 	bsp::GlobalInterruptGuard g;
-	DI_Heap().Free(ptr);
+	if (_heap_vector == nullptr)
+	{
+		DI_Heap().Free(ptr);
+		return;
+	}
+
+	for (std::shared_ptr<bsp::IHeap> &heap : *_heap_vector)
+	{
+		if (ptr >= heap->begin() && ptr < heap->end())
+		{
+			heap->Free(ptr);
+			return;
+		}
+	}
 }
 
 void operator delete[](void *ptr, size_t size) noexcept
 {
 	bsp::GlobalInterruptGuard g;
-	DI_Heap().Free(ptr);
+	if (_heap_vector == nullptr)
+	{
+		DI_Heap().Free(ptr);
+		return;
+	}
+
+	for (std::shared_ptr<bsp::IHeap> &heap : *_heap_vector)
+	{
+		if (ptr >= heap->begin() && ptr < heap->end())
+		{
+			heap->Free(ptr);
+			return;
+		}
+	}
 }
 
 void DI_AddHeap(std::shared_ptr<bsp::IHeap> const &heap)
@@ -95,9 +221,15 @@ void DI_AddHeap(std::shared_ptr<bsp::IHeap> const &heap)
 	bsp::GlobalInterruptGuard g;
 	if (_heap_vector == nullptr)
 	{
-		_heap_vector = new std::vector<std::shared_ptr<bsp::IHeap>>{};
-		_heap_vector->push_back(base::RentedPtrFactory::Create(&DI_Heap()));
+		std::vector<std::shared_ptr<bsp::IHeap>> *vec = new std::vector<std::shared_ptr<bsp::IHeap>>{};
+		vec->push_back(base::RentedPtrFactory::Create(&DI_Heap()));
+		// _heap_vector = vec;
 	}
 
-	_heap_vector->push_back(heap);
+	// _heap_vector->push_back(heap);
+}
+
+void DI_AddHeap(uint8_t *buffer, size_t size)
+{
+	DI_AddHeap(DI_CreateHeap(buffer, size));
 }
