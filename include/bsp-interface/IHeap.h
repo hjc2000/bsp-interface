@@ -11,7 +11,12 @@ namespace bsp
 		virtual void *Malloc(size_t size) = 0;
 		virtual void Free(void *p) = 0;
 
+		/// @brief 堆的起点。
+		/// @return
 		virtual uint8_t *begin() = 0;
+
+		/// @brief 堆的最后一个字节再 +1.
+		/// @return
 		virtual uint8_t *end() = 0;
 
 		/// @brief 堆的总大小。
