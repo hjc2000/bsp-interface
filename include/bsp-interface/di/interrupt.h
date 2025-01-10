@@ -1,7 +1,6 @@
 #pragma once
 #include <bsp-interface/interrupt/IExtiManager.h>
 #include <bsp-interface/interrupt/IIsrManager.h>
-#include <functional>
 #include <stdint.h>
 
 /// @brief 禁用 irq 指定的中断。
@@ -28,13 +27,26 @@ void DI_EnableGlobalInterrupt() noexcept;
 bsp::IExtiManager &DI_ExtiManager();
 
 #pragma region 已经实现
-/// @brief 执行临界区工作。会通过禁用全局中断来保证安全。
-/// @note 此函数已经实现。
-/// @param func
-void DI_DoGlobalCriticalWork(std::function<void()> func);
-
 /// @brief 中断管理器。
 /// @note 此依赖本库已经提供了，不需要实现此函数了。
 /// @return
 bsp::IIsrManager &DI_IsrManager();
 #pragma endregion
+
+namespace bsp
+{
+	/// @brief 构造时禁用全局中断，析构时使能全局中断。
+	class GlobalInterruptGuard
+	{
+	public:
+		GlobalInterruptGuard()
+		{
+			DI_DisableGlobalInterrupt();
+		}
+
+		~GlobalInterruptGuard()
+		{
+			DI_EnableGlobalInterrupt();
+		}
+	};
+} // namespace bsp
