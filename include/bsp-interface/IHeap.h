@@ -19,11 +19,11 @@ namespace bsp
 
 		/// @brief 堆的起点。
 		/// @return
-		virtual uint8_t *begin() = 0;
+		virtual uint8_t *begin() const = 0;
 
 		/// @brief 堆的最后一个字节再 +1.
 		/// @return
-		virtual uint8_t *end() = 0;
+		virtual uint8_t *end() const = 0;
 
 		/// @brief 剩余的自由空间。单位：字节。
 		/// @note 不一定是一整块连续的，有可能是碎片化的。
@@ -34,8 +34,7 @@ namespace bsp
 		/// @return
 		size_t TotalSize() const
 		{
-			IHeap *self = const_cast<IHeap *>(this);
-			return self->end() - self->begin();
+			return end() - begin();
 		}
 	};
 } // namespace bsp
