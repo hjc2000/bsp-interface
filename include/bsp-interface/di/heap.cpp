@@ -105,6 +105,11 @@ void *operator new[](size_t size, std::nothrow_t const &) noexcept
 
 void operator delete(void *ptr) noexcept
 {
+	if (ptr == nullptr)
+	{
+		return;
+	}
+
 	bsp::TaskAndGlobalInterruptGuard g;
 	if (_heap_vector == nullptr)
 	{
@@ -124,6 +129,11 @@ void operator delete(void *ptr) noexcept
 
 void operator delete[](void *ptr) noexcept
 {
+	if (ptr == nullptr)
+	{
+		return;
+	}
+
 	bsp::TaskAndGlobalInterruptGuard g;
 	if (_heap_vector == nullptr)
 	{
@@ -143,6 +153,11 @@ void operator delete[](void *ptr) noexcept
 
 void operator delete(void *ptr, std::nothrow_t const &) noexcept
 {
+	if (ptr == nullptr)
+	{
+		return;
+	}
+
 	bsp::TaskAndGlobalInterruptGuard g;
 	if (_heap_vector == nullptr)
 	{
@@ -162,6 +177,11 @@ void operator delete(void *ptr, std::nothrow_t const &) noexcept
 
 void operator delete[](void *ptr, std::nothrow_t const &) noexcept
 {
+	if (ptr == nullptr)
+	{
+		return;
+	}
+
 	bsp::TaskAndGlobalInterruptGuard g;
 	if (_heap_vector == nullptr)
 	{
@@ -181,6 +201,11 @@ void operator delete[](void *ptr, std::nothrow_t const &) noexcept
 
 void operator delete(void *ptr, size_t size) noexcept
 {
+	if (ptr == nullptr)
+	{
+		return;
+	}
+
 	bsp::TaskAndGlobalInterruptGuard g;
 	if (_heap_vector == nullptr)
 	{
@@ -200,6 +225,11 @@ void operator delete(void *ptr, size_t size) noexcept
 
 void operator delete[](void *ptr, size_t size) noexcept
 {
+	if (ptr == nullptr)
+	{
+		return;
+	}
+
 	bsp::TaskAndGlobalInterruptGuard g;
 	if (_heap_vector == nullptr)
 	{
