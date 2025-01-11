@@ -224,8 +224,10 @@ void DI_AddHeap(std::shared_ptr<bsp::IHeap> const &heap)
 	{
 		std::vector<std::shared_ptr<bsp::IHeap>> *vec = new std::vector<std::shared_ptr<bsp::IHeap>>{};
 		vec->reserve(10);
+		vec->push_back(heap);
 		vec->push_back(base::RentedPtrFactory::Create(&DI_Heap()));
 		_heap_vector = vec;
+		return;
 	}
 
 	if (_heap_vector->size() == 10)
