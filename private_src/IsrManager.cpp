@@ -1,17 +1,27 @@
 #include "IsrManager.h"
-#include <bsp-interface/di/task.h>
+#include <bsp-interface/di/interrupt.h>
 
 using namespace bsp;
 
 IsrManager &bsp::IsrManager::Instance()
 {
 	class Getter :
-		public bsp::TaskSingletonGetter<IsrManager>
+		public base::SingletonGetter<IsrManager>
 	{
 	public:
 		std::unique_ptr<IsrManager> Create() override
 		{
 			return std::unique_ptr<IsrManager>{new IsrManager{}};
+		}
+
+		void Lock() override
+		{
+			DI_DisableGlobalInterrupt();
+		}
+
+		void Unlock() override
+		{
+			DI_EnableGlobalInterrupt();
 		}
 	};
 
@@ -33,12 +43,12 @@ std::function<void()> &bsp::IsrManager::GetIsr(uint32_t irq) noexcept
 
 void bsp::IsrManager::AddIsr(uint32_t irq, std::function<void()> handler) noexcept
 {
-	bsp::TaskGuard g;
+	bsp::GlobalInterruptGuard g;
 	_isr_map[irq] = handler;
 }
 
 void bsp::IsrManager::RemoveIsr(uint32_t irq) noexcept
 {
-	bsp::TaskGuard g;
+	bsp::GlobalInterruptGuard g;
 	_isr_map.erase(irq);
 }

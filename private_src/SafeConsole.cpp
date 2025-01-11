@@ -1,17 +1,27 @@
 #include "SafeConsole.h"
 #include <base/di/SingletonGetter.h>
 #include <base/string/ToHexString.h>
-#include <bsp-interface/di/task.h>
+#include <bsp-interface/di/interrupt.h>
 
 bsp::SafeConsole &bsp::SafeConsole::Instance()
 {
 	class Getter :
-		public bsp::TaskSingletonGetter<bsp::SafeConsole>
+		public base::SingletonGetter<bsp::SafeConsole>
 	{
 	public:
 		std::unique_ptr<bsp::SafeConsole> Create() override
 		{
 			return std::unique_ptr<bsp::SafeConsole>{new bsp::SafeConsole{}};
+		}
+
+		void Lock() override
+		{
+			DI_DisableGlobalInterrupt();
+		}
+
+		void Unlock() override
+		{
+			DI_EnableGlobalInterrupt();
 		}
 	};
 
