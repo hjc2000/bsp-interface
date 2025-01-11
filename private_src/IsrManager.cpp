@@ -1,5 +1,6 @@
 #include "IsrManager.h"
 #include <bsp-interface/di/interrupt.h>
+#include <bsp-interface/di/task.h>
 
 bsp::IsrManager &bsp::IsrManager::Instance()
 {
@@ -41,12 +42,12 @@ std::function<void()> &bsp::IsrManager::GetIsr(uint32_t irq) noexcept
 
 void bsp::IsrManager::AddIsr(uint32_t irq, std::function<void()> handler) noexcept
 {
-	bsp::GlobalInterruptGuard g;
+	bsp::TaskAndGlobalInterruptGuard g;
 	_isr_map[irq] = handler;
 }
 
 void bsp::IsrManager::RemoveIsr(uint32_t irq) noexcept
 {
-	bsp::GlobalInterruptGuard g;
+	bsp::TaskAndGlobalInterruptGuard g;
 	_isr_map.erase(irq);
 }
