@@ -11,7 +11,7 @@ namespace
 
 void *operator new(size_t size)
 {
-	bsp::TaskAndGlobalInterruptGuard g;
+	bsp::TaskGuard g;
 	if (_heap_vector == nullptr)
 	{
 		void *ptr = DI_Heap().Malloc(size);
@@ -37,7 +37,7 @@ void *operator new(size_t size)
 
 void *operator new[](size_t size)
 {
-	bsp::TaskAndGlobalInterruptGuard g;
+	bsp::TaskGuard g;
 	if (_heap_vector == nullptr)
 	{
 		void *ptr = DI_Heap().Malloc(size);
@@ -63,7 +63,7 @@ void *operator new[](size_t size)
 
 void *operator new(size_t size, std::nothrow_t const &) noexcept
 {
-	bsp::TaskAndGlobalInterruptGuard g;
+	bsp::TaskGuard g;
 	if (_heap_vector == nullptr)
 	{
 		void *p = DI_Heap().Malloc(size);
@@ -84,7 +84,7 @@ void *operator new(size_t size, std::nothrow_t const &) noexcept
 
 void *operator new[](size_t size, std::nothrow_t const &) noexcept
 {
-	bsp::TaskAndGlobalInterruptGuard g;
+	bsp::TaskGuard g;
 	if (_heap_vector == nullptr)
 	{
 		void *p = DI_Heap().Malloc(size);
@@ -110,7 +110,7 @@ void operator delete(void *ptr) noexcept
 		return;
 	}
 
-	bsp::TaskAndGlobalInterruptGuard g;
+	bsp::TaskGuard g;
 	if (_heap_vector == nullptr)
 	{
 		DI_Heap().Free(ptr);
@@ -134,7 +134,7 @@ void operator delete[](void *ptr) noexcept
 		return;
 	}
 
-	bsp::TaskAndGlobalInterruptGuard g;
+	bsp::TaskGuard g;
 	if (_heap_vector == nullptr)
 	{
 		DI_Heap().Free(ptr);
@@ -158,7 +158,7 @@ void operator delete(void *ptr, std::nothrow_t const &) noexcept
 		return;
 	}
 
-	bsp::TaskAndGlobalInterruptGuard g;
+	bsp::TaskGuard g;
 	if (_heap_vector == nullptr)
 	{
 		DI_Heap().Free(ptr);
@@ -182,7 +182,7 @@ void operator delete[](void *ptr, std::nothrow_t const &) noexcept
 		return;
 	}
 
-	bsp::TaskAndGlobalInterruptGuard g;
+	bsp::TaskGuard g;
 	if (_heap_vector == nullptr)
 	{
 		DI_Heap().Free(ptr);
@@ -206,7 +206,7 @@ void operator delete(void *ptr, size_t size) noexcept
 		return;
 	}
 
-	bsp::TaskAndGlobalInterruptGuard g;
+	bsp::TaskGuard g;
 	if (_heap_vector == nullptr)
 	{
 		DI_Heap().Free(ptr);
@@ -230,7 +230,7 @@ void operator delete[](void *ptr, size_t size) noexcept
 		return;
 	}
 
-	bsp::TaskAndGlobalInterruptGuard g;
+	bsp::TaskGuard g;
 	if (_heap_vector == nullptr)
 	{
 		DI_Heap().Free(ptr);
@@ -249,7 +249,7 @@ void operator delete[](void *ptr, size_t size) noexcept
 
 void DI_AddHeap(std::shared_ptr<bsp::IHeap> const &heap)
 {
-	bsp::TaskAndGlobalInterruptGuard g;
+	bsp::TaskGuard g;
 	if (_heap_vector == nullptr)
 	{
 		std::vector<std::shared_ptr<bsp::IHeap>> *vec = new std::vector<std::shared_ptr<bsp::IHeap>>{};
@@ -270,6 +270,6 @@ void DI_AddHeap(std::shared_ptr<bsp::IHeap> const &heap)
 
 void DI_AddHeap(uint8_t *buffer, size_t size)
 {
-	bsp::TaskAndGlobalInterruptGuard g;
+	bsp::TaskGuard g;
 	DI_AddHeap(DI_CreateHeap(buffer, size));
 }

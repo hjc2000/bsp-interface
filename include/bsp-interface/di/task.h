@@ -44,13 +44,4 @@ namespace bsp
 			DI_ResumeAllTask();
 		}
 	};
-
-	/// @brief 构造时暂停所有任务的调度，并且禁用全局中断。
-	/// 析构时恢复所有任务的调度并且使能全局中断。
-	class TaskAndGlobalInterruptGuard
-	{
-	public:
-		TaskAndGlobalInterruptGuard();
-		~TaskAndGlobalInterruptGuard();
-	};
 } // namespace bsp
