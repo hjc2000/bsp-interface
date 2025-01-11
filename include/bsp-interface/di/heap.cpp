@@ -254,16 +254,10 @@ void DI_AddHeap(std::shared_ptr<bsp::IHeap> const &heap)
 	if (_heap_vector == nullptr)
 	{
 		std::vector<std::shared_ptr<bsp::IHeap>> *vec = new std::vector<std::shared_ptr<bsp::IHeap>>{};
-		vec->reserve(10);
 		vec->push_back(heap);
 		vec->push_back(base::RentedPtrFactory::Create(&DI_Heap()));
 		_heap_vector = vec;
 		return;
-	}
-
-	if (_heap_vector->size() == 10)
-	{
-		throw std::runtime_error{CODE_POS_STR + "最多只能有 10 个堆。"};
 	}
 
 	_heap_vector->push_back(heap);
