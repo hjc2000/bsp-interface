@@ -16,12 +16,6 @@ void DI_EnableInterrupt(uint32_t irq) noexcept;
 /// @param priority 优先级。
 void DI_EnableInterrupt(uint32_t irq, uint32_t priority) noexcept;
 
-/// @brief 禁止全局中断
-void DI_DisableGlobalInterrupt() noexcept;
-
-/// @brief 启用全局中断
-void DI_EnableGlobalInterrupt() noexcept;
-
 /// @brief 外部中断管理器。
 /// @return
 bsp::IExtiManager &DI_ExtiManager();
@@ -32,21 +26,3 @@ bsp::IExtiManager &DI_ExtiManager();
 /// @return
 bsp::IIsrManager &DI_IsrManager();
 #pragma endregion
-
-namespace bsp
-{
-	/// @brief 构造时禁用全局中断，析构时使能全局中断。
-	class GlobalInterruptGuard
-	{
-	public:
-		GlobalInterruptGuard()
-		{
-			DI_DisableGlobalInterrupt();
-		}
-
-		~GlobalInterruptGuard()
-		{
-			DI_EnableGlobalInterrupt();
-		}
-	};
-} // namespace bsp

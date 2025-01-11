@@ -1,4 +1,5 @@
 #pragma once
+#include <base/di/SingletonGetter.h>
 #include <bsp-interface/task/IBinarySemaphore.h>
 #include <bsp-interface/task/ITaskManager.h>
 #include <memory>
@@ -22,6 +23,22 @@ namespace bsp
 		}
 
 		~TaskGuard()
+		{
+			DI_TaskManager().ResumeAllTask();
+		}
+	};
+
+	template <typename T>
+	class TaskSingletonGetter :
+		public base::SingletonGetter<T>
+	{
+	public:
+		void Lock() override
+		{
+			DI_TaskManager().SuspendAllTask();
+		}
+
+		void Unlock() override
 		{
 			DI_TaskManager().ResumeAllTask();
 		}
