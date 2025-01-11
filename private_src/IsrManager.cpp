@@ -1,9 +1,7 @@
 #include "IsrManager.h"
 #include <bsp-interface/di/interrupt.h>
 
-using namespace bsp;
-
-IsrManager &bsp::IsrManager::Instance()
+bsp::IsrManager &bsp::IsrManager::Instance()
 {
 	class Getter :
 		public base::SingletonGetter<IsrManager>
