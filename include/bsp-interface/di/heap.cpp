@@ -228,6 +228,11 @@ void DI_AddHeap(std::shared_ptr<bsp::IHeap> const &heap)
 		_heap_vector = vec;
 	}
 
+	if (_heap_vector->size() == 10)
+	{
+		throw std::runtime_error{"最多只能放 10 个堆。"};
+	}
+
 	_heap_vector->push_back(heap);
 }
 
