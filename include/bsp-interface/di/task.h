@@ -11,6 +11,13 @@ std::shared_ptr<bsp::IBinarySemaphore> DICreate_BinarySemaphore();
 /// @return
 bsp::ITaskManager &DI_TaskManager();
 
+/// @brief 暂停所有调度。
+void DI_SuspendAllTask();
+
+/// @brief 恢复所有调度。
+/// @note 如果调度器没有启动，本函数不会启动调度器。
+void DI_ResumeAllTask();
+
 namespace bsp
 {
 	/// @brief 任务守卫。
@@ -20,12 +27,12 @@ namespace bsp
 	public:
 		TaskGuard()
 		{
-			DI_TaskManager().SuspendAllTask();
+			DI_SuspendAllTask();
 		}
 
 		~TaskGuard()
 		{
-			DI_TaskManager().ResumeAllTask();
+			DI_ResumeAllTask();
 		}
 	};
 

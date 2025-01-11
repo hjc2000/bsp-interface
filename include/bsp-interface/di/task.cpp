@@ -3,12 +3,12 @@
 
 bsp::TaskAndGlobalInterruptGuard::TaskAndGlobalInterruptGuard()
 {
-	DI_TaskManager().SuspendAllTask();
+	DI_SuspendAllTask();
 	DI_DisableGlobalInterrupt();
 }
 
 bsp::TaskAndGlobalInterruptGuard::~TaskAndGlobalInterruptGuard()
 {
-	DI_TaskManager().ResumeAllTask();
+	DI_ResumeAllTask();
 	DI_EnableGlobalInterrupt();
 }
