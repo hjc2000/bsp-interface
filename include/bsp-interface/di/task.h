@@ -13,6 +13,8 @@ bsp::ITaskManager &DI_TaskManager();
 
 namespace bsp
 {
+	/// @brief 任务守卫。
+	/// @note 构造时暂停所有任务的调度，析构时恢复所有任务的调度。
 	class TaskGuard
 	{
 	public:
@@ -25,5 +27,14 @@ namespace bsp
 		{
 			DI_TaskManager().ResumeAllTask();
 		}
+	};
+
+	/// @brief 构造时暂停所有任务的调度，并且禁用全局中断。
+	/// 析构时恢复所有任务的调度并且使能全局中断。
+	class TaskAndGlobalInterruptGuard
+	{
+	public:
+		TaskAndGlobalInterruptGuard();
+		~TaskAndGlobalInterruptGuard();
 	};
 } // namespace bsp
