@@ -22,6 +22,10 @@ void DI_DisableGlobalInterrupt() noexcept;
 /// @brief 启用全局中断
 void DI_EnableGlobalInterrupt() noexcept;
 
+/// @brief 全局中断是否被禁止了。
+/// @return
+bool DI_GlobalInterruptIsDisabled() noexcept;
+
 /// @brief 外部中断管理器。
 /// @return
 bsp::IExtiManager &DI_ExtiManager();
