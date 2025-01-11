@@ -1,5 +1,6 @@
 #include "heap.h"
 #include <base/RentedPtrFactory.h>
+#include <base/string/define.h>
 #include <bsp-interface/di/interrupt.h>
 #include <bsp-interface/di/task.h>
 #include <vector>
@@ -262,7 +263,7 @@ void DI_AddHeap(std::shared_ptr<bsp::IHeap> const &heap)
 
 	if (_heap_vector->size() == 10)
 	{
-		throw std::runtime_error{"最多只能放 10 个堆。"};
+		throw std::runtime_error{CODE_POS_STR + "最多只能有 10 个堆。"};
 	}
 
 	_heap_vector->push_back(heap);
