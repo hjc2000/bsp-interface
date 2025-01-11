@@ -223,10 +223,9 @@ void DI_AddHeap(std::shared_ptr<bsp::IHeap> const &heap)
 	if (_heap_vector == nullptr)
 	{
 		std::vector<std::shared_ptr<bsp::IHeap>> *vec = new std::vector<std::shared_ptr<bsp::IHeap>>{};
-		vec->push_back(heap);
+		vec->reserve(10);
 		vec->push_back(base::RentedPtrFactory::Create(&DI_Heap()));
 		_heap_vector = vec;
-		return;
 	}
 
 	_heap_vector->push_back(heap);
