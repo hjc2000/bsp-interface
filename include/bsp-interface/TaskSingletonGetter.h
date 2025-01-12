@@ -5,7 +5,8 @@
 
 namespace bsp
 {
-	/// @brief 通过暂停所有任务的调度来保证单例构造的安全。
+	/// @brief 在任务函数中适用的单例获取器，避免多个任务同时获取一个单例造成
+	/// 多次调用其构造函数。
 	/// @tparam T
 	template <typename T>
 	class TaskSingletonGetter :
