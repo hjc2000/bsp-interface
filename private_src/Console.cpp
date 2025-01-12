@@ -1,12 +1,12 @@
 #include "Console.h"
-#include <base/di/SingletonGetter.h>
 #include <base/string/ToHexString.h>
 #include <bsp-interface/di/interrupt.h>
+#include <bsp-interface/TaskSingletonGetter.h>
 
 bsp::Console &bsp::Console::Instance()
 {
 	class Getter :
-		public base::SingletonGetter<bsp::Console>
+		public bsp::TaskSingletonGetter<bsp::Console>
 	{
 	public:
 		std::unique_ptr<bsp::Console> Create() override
