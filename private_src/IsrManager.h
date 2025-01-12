@@ -1,6 +1,4 @@
 #pragma once
-#include <base/define.h>
-#include <base/di/SingletonGetter.h>
 #include <bsp-interface/interrupt/IIsrManager.h>
 #include <map>
 
