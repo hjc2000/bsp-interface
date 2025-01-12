@@ -13,16 +13,6 @@ bsp::Console &bsp::Console::Instance()
 		{
 			return std::unique_ptr<bsp::Console>{new bsp::Console{}};
 		}
-
-		void Lock() override
-		{
-			DI_DisableGlobalInterrupt();
-		}
-
-		void Unlock() override
-		{
-			DI_EnableGlobalInterrupt();
-		}
 	};
 
 	Getter g;
