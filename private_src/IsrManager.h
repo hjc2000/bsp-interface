@@ -10,6 +10,8 @@ namespace bsp
 		public bsp::IIsrManager
 	{
 	private:
+		IsrManager() = default;
+
 		std::map<uint32_t, std::function<void()>> _isr_map;
 
 		std::function<void()> _empty_func = []()
@@ -17,6 +19,8 @@ namespace bsp
 		};
 
 	public:
+		static_function bsp::IIsrManager &Instance();
+
 		/// @brief 获取指定的中断向量对应的中断服务函数。
 		/// @warning 禁止在非中断服务函数的地方调用。
 		/// @param irq
