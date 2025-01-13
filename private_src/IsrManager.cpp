@@ -1,6 +1,7 @@
 #include "IsrManager.h"
 #include <bsp-interface/di/interrupt.h>
 #include <bsp-interface/di/task.h>
+#include <bsp-interface/TaskSingletonGetter.h>
 
 std::function<void()> &bsp::IsrManager::GetIsr(uint32_t irq) noexcept
 {

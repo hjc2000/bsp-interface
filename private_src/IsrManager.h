@@ -1,4 +1,5 @@
 #pragma once
+#include <base/define.h>
 #include <bsp-interface/interrupt/IIsrManager.h>
 #include <map>
 
