@@ -41,9 +41,9 @@ base::Bps bsp::LAN8720APhyDriver::Speed()
 	if (register_value & mask)
 	{
 		DI_Console().WriteLine("连接速率：100 Mbps");
-		return base::Mbps{100};
+		return base::Bps{base::Mbps{100}};
 	}
 
 	DI_Console().WriteLine("连接速率：10 Mbps");
-	return base::Mbps{10};
+	return base::Bps{base::Mbps{10}};
 }

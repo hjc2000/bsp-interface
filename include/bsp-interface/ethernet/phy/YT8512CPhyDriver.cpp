@@ -45,17 +45,17 @@ base::Bps bsp::YT8512CPhyDriver::Speed()
 	if (duplex_register == 0b00)
 	{
 		DI_Console().WriteLine("连接速率：10 Mbps");
-		return base::Mbps{10};
+		return base::Bps{base::Mbps{10}};
 	}
 	else if (duplex_register == 0b01)
 	{
 		DI_Console().WriteLine("连接速率：100 Mbps");
-		return base::Mbps{100};
+		return base::Bps{base::Mbps{100}};
 	}
 	else if (duplex_register == 0b01)
 	{
 		DI_Console().WriteLine("连接速率：1000 Mbps");
-		return base::Mbps{1000};
+		return base::Bps{base::Mbps{1000}};
 	}
 	else
 	{
