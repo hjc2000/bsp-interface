@@ -4,10 +4,19 @@
 #include <bsp-interface/clock/IClockSource.h>
 #include <string>
 
-/// @brief 时钟源集合。
-/// @return
-base::IDictionary<std::string, bsp::IClockSource *> const &DI_ClockSourceCollection();
+namespace bsp
+{
+	namespace di
+	{
+		namespace clock
+		{
+			/// @brief 时钟源集合。
+			/// @return
+			base::IDictionary<std::string, bsp::IClockSource *> const &ClockSourceCollection();
 
-/// @brief 时钟信号集合。
-/// @return
-base::IDictionary<std::string, bsp::IClockSignal *> const &DI_ClockSignalCollection();
+			/// @brief 时钟信号集合。
+			/// @return
+			base::IDictionary<std::string, bsp::IClockSignal *> const &ClockSignalCollection();
+		} // namespace clock
+	} // namespace di
+} // namespace bsp
