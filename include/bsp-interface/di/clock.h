@@ -1,6 +1,5 @@
 #pragma once
 #include <base/container/IDictionary.h>
-#include <base/unit/Hz.h>
 #include <bsp-interface/clock/IClockSignal.h>
 #include <bsp-interface/clock/IClockSource.h>
 #include <string>
