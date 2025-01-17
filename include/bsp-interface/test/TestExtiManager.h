@@ -6,7 +6,7 @@ namespace bsp
 {
 	inline void TestExtiManager(int line_id)
 	{
-		DI_ExtiManager().Register(
+		bsp::di::interrupt::ExtiManager().Register(
 			line_id,
 			[]()
 			{
