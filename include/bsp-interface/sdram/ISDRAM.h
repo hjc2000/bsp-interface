@@ -14,6 +14,6 @@ namespace bsp
 
 		/// @brief 此 SDRAM 的内存段。
 		/// @return
-		virtual base::Span Span() = 0;
+		virtual base::Span Span() const = 0;
 	};
 } // namespace bsp
