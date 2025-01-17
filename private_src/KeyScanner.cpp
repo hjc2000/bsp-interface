@@ -16,7 +16,7 @@ void KeyScanner::ScanKeys()
 {
 	_last_scan_result = _current_scan_result;
 	ScanKeysNoDelay(_no_delay_scan_result1);
-	DI_Delayer().Delay(std::chrono::milliseconds{10});
+	bsp::di::Delayer().Delay(std::chrono::milliseconds{10});
 	ScanKeysNoDelay(_no_delay_scan_result2);
 	for (auto &pair : bsp::di::key::KeyCollection())
 	{

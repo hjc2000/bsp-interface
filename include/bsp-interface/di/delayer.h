@@ -1,4 +1,10 @@
 #pragma once
 #include <bsp-interface/timer/IDelayer.h>
 
-bsp::IDelayer &DI_Delayer();
+namespace bsp
+{
+	namespace di
+	{
+		bsp::IDelayer &Delayer();
+	}
+} // namespace bsp

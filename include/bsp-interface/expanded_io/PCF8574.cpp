@@ -63,5 +63,5 @@ void bsp::PCF8574::WriteByte(int index, uint8_t value)
 	_iic_host->SendByte(_address_register | 0x00);
 	_iic_host->SendByte(value);
 	_iic_host->SendStoppingSignal();
-	DI_Delayer().Delay(std::chrono::milliseconds{10});
+	bsp::di::Delayer().Delay(std::chrono::milliseconds{10});
 }
