@@ -48,7 +48,7 @@ void bsp::IPhyDriver::EnableAutoNegotiation()
 {
 	if (!SupportAutoNegotiation())
 	{
-		DI_Console().WriteError("本网口不支持自动协商。");
+		bsp::di::Console().WriteError("本网口不支持自动协商。");
 		throw std::runtime_error{"本网口不支持自动协商。"};
 	}
 
@@ -64,7 +64,7 @@ void bsp::IPhyDriver::EnableAutoNegotiation()
 	{
 		if (AutoNegotiationCompleted())
 		{
-			DI_Console().WriteError("自动协商完成。");
+			bsp::di::Console().WriteError("自动协商完成。");
 			return;
 		}
 
@@ -74,7 +74,7 @@ void bsp::IPhyDriver::EnableAutoNegotiation()
 		// 根据 IEEE 的规定，自动协商不应该超过 500ms，这里放宽松一点。
 		if (delay_times > 1000)
 		{
-			DI_Console().WriteError("等待自动协商完成超时");
+			bsp::di::Console().WriteError("等待自动协商完成超时");
 			throw std::runtime_error{"等待自动协商完成超时"};
 		}
 	}

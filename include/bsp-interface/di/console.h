@@ -2,5 +2,13 @@
 #include <bsp-interface/IConsole.h>
 
 #pragma region 已经实现
-bsp::IConsole &DI_Console();
+
+namespace bsp
+{
+	namespace di
+	{
+		bsp::IConsole &Console();
+	}
+} // namespace bsp
+
 #pragma endregion
