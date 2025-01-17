@@ -19,7 +19,7 @@ namespace bsp
 		virtual void Lock() override
 		{
 			{
-				bsp::TaskGuard g;
+				bsp::di::task::TaskGuard g;
 				if (_lock == nullptr)
 				{
 					_lock = base::di::CreateMutex();
