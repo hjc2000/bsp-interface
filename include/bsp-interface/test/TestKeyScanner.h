@@ -4,21 +4,21 @@
 
 namespace bsp
 {
-    inline void TestKeyScanner()
-    {
-        while (true)
-        {
-            DI_KeyScanner().ScanKeys();
-            if (DI_KeyScanner().HasKeyDownEvent("key0"))
-            {
-                DI_RedDigitalLed().Toggle();
-            }
+	inline void TestKeyScanner()
+	{
+		while (true)
+		{
+			bsp::di::key::KeyScanner().ScanKeys();
+			if (bsp::di::key::KeyScanner().HasKeyDownEvent("key0"))
+			{
+				DI_RedDigitalLed().Toggle();
+			}
 
-            if (DI_KeyScanner().HasKeyDownEvent("key1"))
-            {
-                DI_GreenDigitalLed().Toggle();
-            }
-        }
-    }
+			if (bsp::di::key::KeyScanner().HasKeyDownEvent("key1"))
+			{
+				DI_GreenDigitalLed().Toggle();
+			}
+		}
+	}
 
 } // namespace bsp

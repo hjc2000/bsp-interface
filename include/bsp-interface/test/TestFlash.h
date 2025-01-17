@@ -16,8 +16,8 @@ namespace bsp
 			std::array<uint32_t, 8> buffer{666, 2, 3};
 			while (true)
 			{
-				DI_KeyScanner().ScanKeys();
-				if (DI_KeyScanner().HasKeyDownEvent("key0"))
+				bsp::di::key::KeyScanner().ScanKeys();
+				if (bsp::di::key::KeyScanner().HasKeyDownEvent("key0"))
 				{
 					bsp::di::Console().WriteLine("检测到 key0 按下，开始操作");
 					flash->EraseSector(1, 5);
