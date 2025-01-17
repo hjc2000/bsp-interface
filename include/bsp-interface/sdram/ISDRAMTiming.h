@@ -70,10 +70,7 @@ namespace bsp
 
 		/// @brief 发送自动刷新命令的时间间隔。
 		/// @return
-		base::Nanoseconds T_AutoRefreshCommand() const
-		{
-			return T_REF() / RowCount();
-		}
+		base::Nanoseconds T_AutoRefreshCommand() const;
 
 		/// @brief 序列化为 json
 		/// @return
