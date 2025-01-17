@@ -1,10 +1,12 @@
 #pragma once
+#include <base/string/Json.h>
 #include <base/unit/Nanoseconds.h>
 
 namespace bsp
 {
 	/// @brief SDRAM 时序。
-	class ISDRAMTiming
+	class ISDRAMTiming :
+		public base::IJsonSerializable
 	{
 	public:
 		/// @brief 时钟信号周期。
@@ -72,5 +74,9 @@ namespace bsp
 		{
 			return T_REF() / RowCount();
 		}
+
+		/// @brief 序列化为 json
+		/// @return
+		virtual base::Json ToJson() const override;
 	};
 } // namespace bsp

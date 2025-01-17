@@ -4,6 +4,7 @@
 namespace bsp
 {
 	/// @brief W9825G6KH-6 SDRAM 芯片的时序。
+	/// @note 最大时钟频率：133MHz.
 	class W9825G6KH_6_Timing :
 		public bsp::ISDRAMTiming
 	{
