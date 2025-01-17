@@ -248,7 +248,7 @@ void operator delete[](void *ptr, size_t size) noexcept
 	}
 }
 
-void DI_AddHeap(std::shared_ptr<bsp::IHeap> const &heap)
+void bsp::di::heap::AddHeap(std::shared_ptr<bsp::IHeap> const &heap)
 {
 	bsp::di::task::TaskGuard g;
 	if (_heap_vector == nullptr)
@@ -263,8 +263,8 @@ void DI_AddHeap(std::shared_ptr<bsp::IHeap> const &heap)
 	_heap_vector->push_back(heap);
 }
 
-void DI_AddHeap(uint8_t *buffer, size_t size)
+void bsp::di::heap::AddHeap(uint8_t *buffer, size_t size)
 {
 	bsp::di::task::TaskGuard g;
-	DI_AddHeap(bsp::di::heap::CreateHeap(buffer, size));
+	bsp::di::heap::AddHeap(bsp::di::heap::CreateHeap(buffer, size));
 }
