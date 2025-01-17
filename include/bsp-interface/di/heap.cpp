@@ -15,7 +15,7 @@ void *operator new(size_t size)
 	bsp::di::task::TaskGuard g;
 	if (_heap_vector == nullptr)
 	{
-		void *ptr = DI_Heap().Malloc(size);
+		void *ptr = bsp::di::heap::Heap().Malloc(size);
 		if (ptr == nullptr)
 		{
 			throw std::bad_alloc{};
@@ -41,7 +41,7 @@ void *operator new[](size_t size)
 	bsp::di::task::TaskGuard g;
 	if (_heap_vector == nullptr)
 	{
-		void *ptr = DI_Heap().Malloc(size);
+		void *ptr = bsp::di::heap::Heap().Malloc(size);
 		if (ptr == nullptr)
 		{
 			throw std::bad_alloc{};
@@ -67,7 +67,7 @@ void *operator new(size_t size, std::nothrow_t const &) noexcept
 	bsp::di::task::TaskGuard g;
 	if (_heap_vector == nullptr)
 	{
-		void *p = DI_Heap().Malloc(size);
+		void *p = bsp::di::heap::Heap().Malloc(size);
 		return p;
 	}
 
@@ -88,7 +88,7 @@ void *operator new[](size_t size, std::nothrow_t const &) noexcept
 	bsp::di::task::TaskGuard g;
 	if (_heap_vector == nullptr)
 	{
-		void *p = DI_Heap().Malloc(size);
+		void *p = bsp::di::heap::Heap().Malloc(size);
 		return p;
 	}
 
@@ -114,7 +114,7 @@ void operator delete(void *ptr) noexcept
 	bsp::di::task::TaskGuard g;
 	if (_heap_vector == nullptr)
 	{
-		DI_Heap().Free(ptr);
+		bsp::di::heap::Heap().Free(ptr);
 		return;
 	}
 
@@ -138,7 +138,7 @@ void operator delete[](void *ptr) noexcept
 	bsp::di::task::TaskGuard g;
 	if (_heap_vector == nullptr)
 	{
-		DI_Heap().Free(ptr);
+		bsp::di::heap::Heap().Free(ptr);
 		return;
 	}
 
@@ -162,7 +162,7 @@ void operator delete(void *ptr, std::nothrow_t const &) noexcept
 	bsp::di::task::TaskGuard g;
 	if (_heap_vector == nullptr)
 	{
-		DI_Heap().Free(ptr);
+		bsp::di::heap::Heap().Free(ptr);
 		return;
 	}
 
@@ -186,7 +186,7 @@ void operator delete[](void *ptr, std::nothrow_t const &) noexcept
 	bsp::di::task::TaskGuard g;
 	if (_heap_vector == nullptr)
 	{
-		DI_Heap().Free(ptr);
+		bsp::di::heap::Heap().Free(ptr);
 		return;
 	}
 
@@ -210,7 +210,7 @@ void operator delete(void *ptr, size_t size) noexcept
 	bsp::di::task::TaskGuard g;
 	if (_heap_vector == nullptr)
 	{
-		DI_Heap().Free(ptr);
+		bsp::di::heap::Heap().Free(ptr);
 		return;
 	}
 
@@ -234,7 +234,7 @@ void operator delete[](void *ptr, size_t size) noexcept
 	bsp::di::task::TaskGuard g;
 	if (_heap_vector == nullptr)
 	{
-		DI_Heap().Free(ptr);
+		bsp::di::heap::Heap().Free(ptr);
 		return;
 	}
 
@@ -255,7 +255,7 @@ void DI_AddHeap(std::shared_ptr<bsp::IHeap> const &heap)
 	{
 		std::vector<std::shared_ptr<bsp::IHeap>> *vec = new std::vector<std::shared_ptr<bsp::IHeap>>{};
 		vec->push_back(heap);
-		vec->push_back(base::RentedPtrFactory::Create(&DI_Heap()));
+		vec->push_back(base::RentedPtrFactory::Create(&bsp::di::heap::Heap()));
 		_heap_vector = vec;
 		return;
 	}
@@ -266,5 +266,5 @@ void DI_AddHeap(std::shared_ptr<bsp::IHeap> const &heap)
 void DI_AddHeap(uint8_t *buffer, size_t size)
 {
 	bsp::di::task::TaskGuard g;
-	DI_AddHeap(DI_CreateHeap(buffer, size));
+	DI_AddHeap(bsp::di::heap::CreateHeap(buffer, size));
 }
