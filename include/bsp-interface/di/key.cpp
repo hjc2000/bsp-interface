@@ -16,7 +16,7 @@ namespace
 	};
 } // namespace
 
-bsp::IKeyScanner &DI_KeyScanner()
+bsp::IKeyScanner &bsp::di::key::KeyScanner()
 {
 	Getter g;
 	return g.Instance();
