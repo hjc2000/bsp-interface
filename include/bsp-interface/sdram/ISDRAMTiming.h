@@ -40,6 +40,18 @@ namespace bsp
 		/// @return
 		virtual base::Nanoseconds T_WR() = 0;
 
+		/// @brief 预充电命令后的延迟。
+		/// @note 发送预充电命令后要等待 T_RP 才可以进行下一个命令。如果使用了自动预充电读写模式，也是要在 SDRAM
+		/// 内部自动预充电后再继续等待 T_RP.
+		/// @return
+		virtual base::Nanoseconds T_RP() = 0;
+
+		/// @brief 行到列时间。
+		/// @note 读写数据需要先发送行激活命令激活其中一行，然后发送读写命令选中其中一列（列地址信号是读写命令的一部分）。
+		/// 发送行激活命令后要 T_RCD 后才能发送读写命令。
+		/// @return
+		virtual base::Nanoseconds T_RCD() = 0;
+
 		/// @brief 自动刷新时间。
 		/// @note 至少这么长时间刷新一次所有行。如果超过这么长时间没有刷新完所有行，数据有可能丢失。
 		/// @note T_REF 指示了 SDRAM 内部电容能够将电压保持在安全范围的时间。
