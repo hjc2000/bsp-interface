@@ -2,7 +2,7 @@
 
 namespace bsp
 {
-	class SDRAMTiming
+	class ISDRAMTiming
 	{
 	public:
 	};
