@@ -1,7 +1,7 @@
 #include "interrupt.h"
 #include <IsrManager.h>
 
-bsp::IIsrManager &DI_IsrManager()
+bsp::IIsrManager &bsp::di::interrupt::IsrManager()
 {
 	return bsp::IsrManager::Instance();
 }
