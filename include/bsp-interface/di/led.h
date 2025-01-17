@@ -3,10 +3,19 @@
 #include <bsp-interface/IDigitalLed.h>
 #include <string>
 
-/// @brief 数字 LED 灯集合。
-/// @return
-base::IDictionary<std::string, bsp::IDigitalLed *> const &DI_DigitalLedCollection();
+namespace bsp
+{
+	namespace di
+	{
+		namespace led
+		{
+			/// @brief 数字 LED 灯集合。
+			/// @return
+			base::IDictionary<std::string, bsp::IDigitalLed *> const &DigitalLedCollection();
 
-bsp::IDigitalLed &DI_RedDigitalLed();
-bsp::IDigitalLed &DI_GreenDigitalLed();
-bsp::IDigitalLed &DI_BlueDigitalLed();
+			bsp::IDigitalLed &RedDigitalLed();
+			bsp::IDigitalLed &GreenDigitalLed();
+			bsp::IDigitalLed &BlueDigitalLed();
+		} // namespace led
+	} // namespace di
+} // namespace bsp

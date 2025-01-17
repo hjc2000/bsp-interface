@@ -11,12 +11,12 @@ namespace bsp
 			bsp::di::key::KeyScanner().ScanKeys();
 			if (bsp::di::key::KeyScanner().HasKeyDownEvent("key0"))
 			{
-				DI_RedDigitalLed().Toggle();
+				bsp::di::led::RedDigitalLed().Toggle();
 			}
 
 			if (bsp::di::key::KeyScanner().HasKeyDownEvent("key1"))
 			{
-				DI_GreenDigitalLed().Toggle();
+				bsp::di::led::GreenDigitalLed().Toggle();
 			}
 		}
 	}

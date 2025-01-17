@@ -4,17 +4,17 @@
 
 namespace bsp
 {
-    inline void TestExtiManager(int line_id)
-    {
-        DI_ExtiManager().Register(
-            line_id,
-            []()
-            {
-                DI_RedDigitalLed().Toggle();
-            });
+	inline void TestExtiManager(int line_id)
+	{
+		DI_ExtiManager().Register(
+			line_id,
+			[]()
+			{
+				bsp::di::led::RedDigitalLed().Toggle();
+			});
 
-        while (true)
-        {
-        }
-    }
+		while (true)
+		{
+		}
+	}
 } // namespace bsp
