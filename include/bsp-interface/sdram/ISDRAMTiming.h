@@ -14,7 +14,7 @@ namespace bsp
 		/// @brief 模式寄存器设置延迟。
 		/// @note 设置模式寄存器后要等待这么长时间才可以进行下一个命令。
 		/// 	@li 设置模式寄存器后要等待 T_RSC 后才可以进行下一次的设置模式寄存器。
-		/// 	@li 设置模式寄存器后要等待 T_RSC 后才可以激活一行。
+		/// 	@li 设置模式寄存器后要等待 T_RSC 后才可以发送行激活命令。
 		/// 	@li 设置模式寄存器后要等待 T_RSC 后才可以发送自动刷新命令。
 		/// @return
 		virtual base::Nanoseconds T_RSC() = 0;
@@ -24,8 +24,9 @@ namespace bsp
 		/// @return
 		virtual base::Nanoseconds T_XSR() = 0;
 
-		/// @brief 从激活到预充电的时间。
-		/// @note 激活一行后，至少保持 T_RAS 后才能发送预充电命令关闭这行。
+		/// @brief 从行激活到预充电的时间。
+		/// @note 激活一行后，至少保持 T_RAS 后才能发送预充电命令关闭这行。例如在写的时候，如果 SDRAM
+		/// 还没来得及储存好写入的数据，就直接发送预充电命令关闭这行，数据可能会写失败。
 		/// @return
 		virtual base::Nanoseconds T_RAS() = 0;
 
