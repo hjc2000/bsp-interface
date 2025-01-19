@@ -7,7 +7,7 @@ namespace bsp
 {
 	inline void TestSerial()
 	{
-		bsp::serial::ISerial *serial = DI_SerialCollection().Get("serial");
+		bsp::serial::ISerial *serial = bsp::di::serial::SerialCollection().Get("serial");
 		if (serial == nullptr)
 		{
 			throw std::runtime_error{"找不到名为 serial 的串口"};
