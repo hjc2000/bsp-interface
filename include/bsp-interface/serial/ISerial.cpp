@@ -1,6 +1,6 @@
 #include "ISerial.h"
 
-uint32_t bsp::ISerial::FramesBaudCount(uint32_t frame_count) const
+uint32_t bsp::serial::ISerial::FramesBaudCount(uint32_t frame_count) const
 {
 	uint32_t baud_count = 0;
 
@@ -10,7 +10,7 @@ uint32_t bsp::ISerial::FramesBaudCount(uint32_t frame_count) const
 	// DataBits().Value() 位数据位
 	baud_count += DataBits() * frame_count;
 
-	if (Parity() != bsp::serial_property::Parity::None)
+	if (Parity() != bsp::serial::property::Parity::None)
 	{
 		// 1 位校验位
 		baud_count += 1 * frame_count;
@@ -19,7 +19,7 @@ uint32_t bsp::ISerial::FramesBaudCount(uint32_t frame_count) const
 	// 停止位
 	switch (StopBits())
 	{
-	case bsp::serial_property::StopBits::ZeroPointFive:
+	case bsp::serial::property::StopBits::ZeroPointFive:
 		{
 			// 每 2 个帧占用 1 个位。
 			baud_count += frame_count / 2;
@@ -33,12 +33,12 @@ uint32_t bsp::ISerial::FramesBaudCount(uint32_t frame_count) const
 			break;
 		}
 	default:
-	case bsp::serial_property::StopBits::One:
+	case bsp::serial::property::StopBits::One:
 		{
 			baud_count += 1 * frame_count;
 			break;
 		}
-	case bsp::serial_property::StopBits::OnePointFive:
+	case bsp::serial::property::StopBits::OnePointFive:
 		{
 			// 每 2 个帧占用 3 个位。
 			baud_count += (frame_count / 2) * 3;
@@ -51,7 +51,7 @@ uint32_t bsp::ISerial::FramesBaudCount(uint32_t frame_count) const
 
 			break;
 		}
-	case bsp::serial_property::StopBits::Tow:
+	case bsp::serial::property::StopBits::Tow:
 		{
 			baud_count += 2 * frame_count;
 			break;
@@ -61,64 +61,64 @@ uint32_t bsp::ISerial::FramesBaudCount(uint32_t frame_count) const
 	return baud_count;
 }
 
-void bsp::ISerial::Open()
+void bsp::serial::ISerial::Open()
 {
-	Open(bsp::serial_property::Direction::RX_TX,
-		 bsp::serial_property::BaudRate{115200},
-		 bsp::serial_property::DataBits{8},
-		 bsp::serial_property::Parity::None,
-		 bsp::serial_property::StopBits::One,
-		 bsp::serial_property::HardwareFlowControl::None);
+	Open(bsp::serial::property::Direction::RX_TX,
+		 bsp::serial::property::BaudRate{115200},
+		 bsp::serial::property::DataBits{8},
+		 bsp::serial::property::Parity::None,
+		 bsp::serial::property::StopBits::One,
+		 bsp::serial::property::HardwareFlowControl::None);
 }
 
-void bsp::ISerial::Open(bsp::serial_property::BaudRate const &baud_rate)
+void bsp::serial::ISerial::Open(bsp::serial::property::BaudRate const &baud_rate)
 {
-	Open(bsp::serial_property::Direction::RX_TX,
+	Open(bsp::serial::property::Direction::RX_TX,
 		 baud_rate,
-		 bsp::serial_property::DataBits{8},
-		 bsp::serial_property::Parity::None,
-		 bsp::serial_property::StopBits::One,
-		 bsp::serial_property::HardwareFlowControl::None);
+		 bsp::serial::property::DataBits{8},
+		 bsp::serial::property::Parity::None,
+		 bsp::serial::property::StopBits::One,
+		 bsp::serial::property::HardwareFlowControl::None);
 }
 
 #pragma region Stream
 
-bool bsp::ISerial::CanRead()
+bool bsp::serial::ISerial::CanRead()
 {
 	return true;
 }
 
-bool bsp::ISerial::CanWrite()
+bool bsp::serial::ISerial::CanWrite()
 {
 	return true;
 }
 
-bool bsp::ISerial::CanSeek()
+bool bsp::serial::ISerial::CanSeek()
 {
 	return false;
 }
 
-int64_t bsp::ISerial::Length()
+int64_t bsp::serial::ISerial::Length()
 {
 	return 0;
 }
 
-void bsp::ISerial::SetLength(int64_t value)
+void bsp::serial::ISerial::SetLength(int64_t value)
 {
 	// 不支持的操作
 }
 
-void bsp::ISerial::Flush()
+void bsp::serial::ISerial::Flush()
 {
 	// Write 方法利用 DMA 直接发送缓冲区，本类没有内部缓冲区，不需要冲洗。
 }
 
-int64_t bsp::ISerial::Position()
+int64_t bsp::serial::ISerial::Position()
 {
 	return 0;
 }
 
-void bsp::ISerial::SetPosition(int64_t value)
+void bsp::serial::ISerial::SetPosition(int64_t value)
 {
 	// 不支持的操作。
 }

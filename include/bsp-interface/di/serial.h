@@ -5,8 +5,8 @@
 
 /// @brief 主串口。
 /// @return
-bsp::ISerial &DI_Serial();
+bsp::serial::ISerial &DI_Serial();
 
 /// @brief 包含所有可用串口的集合。
 /// @return
-base::IDictionary<std::string, bsp::ISerial *> const &DI_SerialCollection();
+base::IDictionary<std::string, bsp::serial::ISerial *> const &DI_SerialCollection();
