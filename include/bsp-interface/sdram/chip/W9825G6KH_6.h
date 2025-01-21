@@ -8,7 +8,7 @@ namespace bsp
 	{
 		namespace chip
 		{
-			/// @brief 帮助通过 bsp::ISDRAMController 初始化 SDRAM 芯片。
+			/// @brief 帮助通过 bsp::ISDRAMController 初始化 W9825G6KH_6 SDRAM 芯片。
 			class W9825G6KH_6 :
 				bsp::sdram::ISDRAM
 			{
