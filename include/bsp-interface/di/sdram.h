@@ -9,7 +9,7 @@ namespace bsp
 		{
 			/// @brief 获取 ISDRAM 单例。
 			/// @return
-			bsp::ISDRAMController &SDRAMController();
+			bsp::sdram::ISDRAMController &SDRAMController();
 		} // namespace sdram
 	} // namespace di
 } // namespace bsp
