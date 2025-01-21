@@ -13,7 +13,7 @@ namespace bsp
 		/// @param timing
 		virtual void Open(bsp::ISDRAMTiming const &timing) = 0;
 
-		/// @brief 此 SDRAM 的内存段。
+		/// @brief 此 SDRAM 控制器所管理的内存段。
 		/// @return
 		virtual base::Span Span() const = 0;
 	};
