@@ -4,7 +4,8 @@
 
 namespace bsp
 {
-	/// @brief SDRAM 接口。
+	/// @brief SDRAM 控制器接口。
+	/// @note 这个接口用来封装类似于 stm32 的 FMC 接口的 SDRAM 控制器。
 	class ISDRAMController
 	{
 	public:
