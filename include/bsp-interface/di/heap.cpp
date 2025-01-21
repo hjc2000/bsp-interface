@@ -268,3 +268,9 @@ void bsp::di::heap::AddHeap(uint8_t *buffer, size_t size)
 	bsp::di::task::TaskGuard g;
 	bsp::di::heap::AddHeap(bsp::di::heap::CreateHeap(buffer, size));
 }
+
+void bsp::di::heap::AddHeap(base::Span const &span)
+{
+	bsp::di::task::TaskGuard g;
+	AddHeap(span.Buffer(), span.Size());
+}
