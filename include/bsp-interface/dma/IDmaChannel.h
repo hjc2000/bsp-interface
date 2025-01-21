@@ -1,4 +1,6 @@
 #pragma once
+#include <base/string/define.h>
+#include <stdexcept>
 #include <string>
 
 namespace bsp
@@ -105,7 +107,10 @@ namespace bsp
 													  bsp::dma::property::PeripheralDataAlignment const &peripheral_data_alignment,
 													  bsp::dma::property::MemoryDataAlignment const &memory_data_alignment,
 													  bsp::dma::property::Priority priority,
-													  std::string const &request) = 0;
+													  std::string const &request)
+			{
+				throw std::runtime_error{CODE_POS_STR + "不支持此模式"};
+			}
 
 			/// @brief 打开 DMA，模式为将数据从内存拷贝到外设。
 			/// @param parent DMA 要被连接到的父设备的句柄。例如对于 HAL 库的 USART，就是 UART_HandleTypeDef。
@@ -121,7 +126,10 @@ namespace bsp
 													  bsp::dma::property::PeripheralDataAlignment const &peripheral_data_alignment,
 													  bsp::dma::property::MemoryDataAlignment const &memory_data_alignment,
 													  bsp::dma::property::Priority priority,
-													  std::string const &request) = 0;
+													  std::string const &request)
+			{
+				throw std::runtime_error{CODE_POS_STR + "不支持此模式"};
+			}
 
 			/// @brief 打开 DMA，模式为将数据从内存拷贝到内存。
 			/// @param parent DMA 要被连接到的父设备的句柄。例如对于 HAL 库的 USART，就是 UART_HandleTypeDef。
@@ -137,7 +145,10 @@ namespace bsp
 												  bsp::dma::property::PeripheralDataAlignment const &peripheral_data_alignment,
 												  bsp::dma::property::MemoryDataAlignment const &memory_data_alignment,
 												  bsp::dma::property::Priority priority,
-												  std::string const &request) = 0;
+												  std::string const &request)
+			{
+				throw std::runtime_error{CODE_POS_STR + "不支持此模式"};
+			}
 
 			virtual bool IsOpen() const = 0;
 			virtual void Close() = 0;
