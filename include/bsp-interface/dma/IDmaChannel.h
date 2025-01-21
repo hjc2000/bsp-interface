@@ -63,7 +63,7 @@ namespace bsp
 					_value = value;
 				}
 
-				bool Value() const
+				int Value() const
 				{
 					return _value;
 				}
@@ -80,7 +80,7 @@ namespace bsp
 					_value = value;
 				}
 
-				bool Value() const
+				int Value() const
 				{
 					return _value;
 				}
