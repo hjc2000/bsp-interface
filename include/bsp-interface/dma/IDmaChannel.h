@@ -7,6 +7,7 @@ namespace bsp
 {
 	namespace dma
 	{
+		/// @brief DMA 属性
 		namespace property
 		{
 			/// @brief DMA 优先级
@@ -18,6 +19,8 @@ namespace bsp
 				VeryHigh,
 			};
 
+			/// @brief DMA 在读写外设地址空间时，是否自动递增地址。即每读取 1 个字节，
+			/// 就将地址递增 1.
 			class PeripheralIncrement
 			{
 			private:
@@ -35,6 +38,8 @@ namespace bsp
 				}
 			};
 
+			/// @brief DMA 在读写内存地址空间时是否自动递增地址。即每读取 1 个字节，
+			/// 就将地址递增 1.
 			class MemoryIncrement
 			{
 			private:
@@ -52,6 +57,7 @@ namespace bsp
 				}
 			};
 
+			/// @brief DMA 读写外设时采用的数据对齐字节数。例如 1 字节对齐或 4 字节对齐。
 			class PeripheralDataAlignment
 			{
 			private:
@@ -69,6 +75,7 @@ namespace bsp
 				}
 			};
 
+			/// @brief DMA 读写内存时采用的数据对齐字节数。例如 1 字节对齐或 4 字节对齐。
 			class MemoryDataAlignment
 			{
 			private:
@@ -101,13 +108,14 @@ namespace bsp
 			/// @param memory_data_alignment
 			/// @param priority
 			/// @param request
-			virtual void OpenAsPeripheralToMemoryMode(void *parent,
-													  bsp::dma::property::PeripheralIncrement const &peripheral_increment,
-													  bsp::dma::property::MemoryIncrement const &memory_increment,
-													  bsp::dma::property::PeripheralDataAlignment const &peripheral_data_alignment,
-													  bsp::dma::property::MemoryDataAlignment const &memory_data_alignment,
-													  bsp::dma::property::Priority priority,
-													  std::string const &request)
+			virtual void OpenAsPeripheralToMemoryMode(
+				void *parent,
+				bsp::dma::property::PeripheralIncrement const &peripheral_increment,
+				bsp::dma::property::MemoryIncrement const &memory_increment,
+				bsp::dma::property::PeripheralDataAlignment const &peripheral_data_alignment,
+				bsp::dma::property::MemoryDataAlignment const &memory_data_alignment,
+				bsp::dma::property::Priority priority,
+				std::string const &request)
 			{
 				throw std::runtime_error{CODE_POS_STR + "不支持此模式"};
 			}
@@ -120,13 +128,14 @@ namespace bsp
 			/// @param memory_data_alignment
 			/// @param priority
 			/// @param request
-			virtual void OpenAsMemoryToPeripheralMode(void *parent,
-													  bsp::dma::property::PeripheralIncrement const &peripheral_increment,
-													  bsp::dma::property::MemoryIncrement const &memory_increment,
-													  bsp::dma::property::PeripheralDataAlignment const &peripheral_data_alignment,
-													  bsp::dma::property::MemoryDataAlignment const &memory_data_alignment,
-													  bsp::dma::property::Priority priority,
-													  std::string const &request)
+			virtual void OpenAsMemoryToPeripheralMode(
+				void *parent,
+				bsp::dma::property::PeripheralIncrement const &peripheral_increment,
+				bsp::dma::property::MemoryIncrement const &memory_increment,
+				bsp::dma::property::PeripheralDataAlignment const &peripheral_data_alignment,
+				bsp::dma::property::MemoryDataAlignment const &memory_data_alignment,
+				bsp::dma::property::Priority priority,
+				std::string const &request)
 			{
 				throw std::runtime_error{CODE_POS_STR + "不支持此模式"};
 			}
@@ -139,13 +148,14 @@ namespace bsp
 			/// @param memory_data_alignment
 			/// @param priority
 			/// @param request
-			virtual void OpenAsMomoryToMemoryMode(void *parent,
-												  bsp::dma::property::PeripheralIncrement const &peripheral_increment,
-												  bsp::dma::property::MemoryIncrement const &memory_increment,
-												  bsp::dma::property::PeripheralDataAlignment const &peripheral_data_alignment,
-												  bsp::dma::property::MemoryDataAlignment const &memory_data_alignment,
-												  bsp::dma::property::Priority priority,
-												  std::string const &request)
+			virtual void OpenAsMomoryToMemoryMode(
+				void *parent,
+				bsp::dma::property::PeripheralIncrement const &peripheral_increment,
+				bsp::dma::property::MemoryIncrement const &memory_increment,
+				bsp::dma::property::PeripheralDataAlignment const &peripheral_data_alignment,
+				bsp::dma::property::MemoryDataAlignment const &memory_data_alignment,
+				bsp::dma::property::Priority priority,
+				std::string const &request)
 			{
 				throw std::runtime_error{CODE_POS_STR + "不支持此模式"};
 			}
