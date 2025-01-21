@@ -5,10 +5,10 @@
 namespace bsp
 {
 	/// @brief SDRAM 接口。
-	class ISDRAM
+	class ISDRAMController
 	{
 	public:
-		/// @brief 打开 SDRAM.
+		/// @brief 打开 SDRAM 控制器。
 		/// @param timing
 		virtual void Open(bsp::ISDRAMTiming const &timing) = 0;
 
