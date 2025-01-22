@@ -122,11 +122,15 @@ namespace bsp
 			/// @return
 			base::Nanoseconds T_AutoRefreshCommand() const;
 
+			/// @brief 每隔多少个 CLK 周期要发送一次自动刷新命令。
+			/// @return
 			int T_AutoRefreshCommand_CLK_Count() const
 			{
 				return static_cast<base::Fraction>(T_AutoRefreshCommand() / T_CLK()).Ceil();
 			}
 
+			/// @brief 发送读命令后要等待多少个 CLK 信号的周期 SDRAM 才能将数据输出到数据总线上。
+			/// @return
 			virtual int CASLatency() const = 0;
 
 			/// @brief 序列化为 json

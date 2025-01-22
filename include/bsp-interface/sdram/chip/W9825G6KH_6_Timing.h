@@ -81,6 +81,8 @@ namespace bsp
 				/// @return
 				virtual int64_t RowCount() const override;
 
+				/// @brief 发送读命令后要等待多少个 CLK 信号的周期 SDRAM 才能将数据输出到数据总线上。
+				/// @return
 				virtual int CASLatency() const override;
 			};
 		} // namespace chip
