@@ -10,15 +10,15 @@ base::Json bsp::sdram::ISDRAMTiming::ToJson() const
 	base::Json root{
 		{"RowCount", RowCount()},
 		{"T_CLK", T_CLK().ToString()},
-		{"T_RSC", T_RSC_CLK_Count()},
-		{"T_XSR", T_XSR_CLK_Count()},
-		{"T_RAS", T_RAS_CLK_Count()},
-		{"T_RC", T_RC_CLK_Count()},
-		{"T_WR", T_WR_CLK_Count()},
-		{"T_RP", T_RP_CLK_Count()},
-		{"T_RCD", T_RCD_CLK_Count()},
-		{"T_REF", T_REF_CLK_Count()},
-		{"T_AutoRefreshCommand", T_AutoRefreshCommand_CLK_Count()},
+		{"T_RSC_CLK_Count", T_RSC_CLK_Count()},
+		{"T_XSR_CLK_Count", T_XSR_CLK_Count()},
+		{"T_RAS_CLK_Count", T_RAS_CLK_Count()},
+		{"T_RC_CLK_Count", T_RC_CLK_Count()},
+		{"T_WR_CLK_Count", T_WR_CLK_Count()},
+		{"T_RP_CLK_Count", T_RP_CLK_Count()},
+		{"T_RCD_CLK_Count", T_RCD_CLK_Count()},
+		{"T_REF_CLK_Count", T_REF_CLK_Count()},
+		{"T_AutoRefreshCommand_CLK_Count", T_AutoRefreshCommand_CLK_Count()},
 	};
 
 	return root;
