@@ -9,6 +9,10 @@ namespace bsp
 		class ISDRAMTimingProvider
 		{
 		public:
+			/// @brief 允许的最大 CLK 频率。
+			/// @return
+			virtual base::MHz MaxClkFrequency() const = 0;
+
 			/// @brief 获取指定 CLK 频率下的时序。
 			/// @param clk_frequency
 			/// @return
