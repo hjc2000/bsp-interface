@@ -20,6 +20,7 @@ base::Json bsp::sdram::ISDRAMTiming::ToJson() const
 		{"T_RCD_CLK_Count", T_RCD_CLK_Count()},
 		{"T_REF_CLK_Count", T_REF_CLK_Count()},
 		{"T_AutoRefreshCommand_CLK_Count", T_AutoRefreshCommand_CLK_Count()},
+		{"CASLatency", CASLatency()},
 	};
 
 	return root;

@@ -83,6 +83,10 @@ namespace bsp
 			/// @brief 写模式寄存器。
 			/// @param value
 			virtual void WriteModeRegister(uint32_t value) = 0;
+
+			/// @brief 控制器被打开后所使用的时序。
+			/// @return
+			virtual bsp::sdram::ISDRAMTiming const &Timing() const = 0;
 		};
 	} // namespace sdram
 } // namespace bsp
