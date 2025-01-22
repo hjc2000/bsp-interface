@@ -73,6 +73,16 @@ namespace bsp
 											 bsp::sdram::property::ColumnBitCount const &column_bit_count,
 											 bsp::sdram::property::DataWidth const &data_width,
 											 bsp::sdram::property::ReadBurstLength const &read_burst_length) = 0;
+
+			/// @brief 发送：“预充电所有 BANK” 的命令。
+			virtual void PrechargeAll() = 0;
+
+			/// @brief 发送自动刷新命令。
+			virtual void AutoRefresh() = 0;
+
+			/// @brief 写模式寄存器。
+			/// @param value
+			virtual void WriteModeRegister(uint32_t value) = 0;
 		};
 	} // namespace sdram
 } // namespace bsp
