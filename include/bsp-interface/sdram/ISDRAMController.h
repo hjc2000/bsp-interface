@@ -96,13 +96,7 @@ namespace bsp
 
 			/// @brief 发送指定次数的自动刷新命令。
 			/// @param refresh_times
-			void AutoRefresh(int refresh_times)
-			{
-				for (int i = 0; i < refresh_times; i++)
-				{
-					AutoRefresh();
-				}
-			}
+			void AutoRefresh(int refresh_times);
 
 			/// @brief 写模式寄存器。
 			/// @param value
