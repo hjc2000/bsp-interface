@@ -60,5 +60,5 @@ void bsp::sdram::chip::W9825G6KH_6::Open()
 
 base::Span bsp::sdram::chip::W9825G6KH_6::Span() const
 {
-	return base::Span();
+	return base::Span{_controller.StartAddress(), 32 * 1024 * 1024};
 }
