@@ -63,5 +63,6 @@ int bsp::sdram::chip::W9825G6KH_6_Timing::CASLatency() const
 		return 3;
 	}
 
-	return 2;
+	// 为了保险，始终使用 3，不知道怎么回事，家里的开发板用 2 一跑就崩。
+	return 3;
 }
