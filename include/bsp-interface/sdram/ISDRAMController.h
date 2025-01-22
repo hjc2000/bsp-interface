@@ -94,6 +94,16 @@ namespace bsp
 			/// @brief 发送自动刷新命令。
 			virtual void AutoRefresh() = 0;
 
+			/// @brief 发送指定次数的自动刷新命令。
+			/// @param refresh_times
+			void AutoRefresh(int refresh_times)
+			{
+				for (int i = 0; i < refresh_times; i++)
+				{
+					AutoRefresh();
+				}
+			}
+
 			/// @brief 写模式寄存器。
 			/// @param value
 			virtual void WriteModeRegister(uint32_t value) = 0;
