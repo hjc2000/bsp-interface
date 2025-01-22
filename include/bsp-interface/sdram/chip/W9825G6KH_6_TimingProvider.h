@@ -6,17 +6,20 @@ namespace bsp
 {
 	namespace sdram
 	{
-		class W9825G6KH_6_TimingProvider :
-			public bsp::sdram::ISDRAMTimingProvider
+		namespace chip
 		{
-		public:
-			/// @brief 获取指定 CLK 频率下的时序。
-			/// @param clk_frequency
-			/// @return
-			virtual std::shared_ptr<bsp::sdram::ISDRAMTiming> GetTiming(base::MHz const &clk_frequency) const override
+			class W9825G6KH_6_TimingProvider :
+				public bsp::sdram::ISDRAMTimingProvider
 			{
-				return std::shared_ptr<bsp::sdram::ISDRAMTiming>{new bsp::sdram::chip::W9825G6KH_6_Timing{clk_frequency}};
-			}
-		};
+			public:
+				/// @brief 获取指定 CLK 频率下的时序。
+				/// @param clk_frequency
+				/// @return
+				virtual std::shared_ptr<bsp::sdram::ISDRAMTiming> GetTiming(base::MHz const &clk_frequency) const override
+				{
+					return std::shared_ptr<bsp::sdram::ISDRAMTiming>{new bsp::sdram::chip::W9825G6KH_6_Timing{clk_frequency}};
+				}
+			};
+		} // namespace chip
 	} // namespace sdram
 } // namespace bsp
