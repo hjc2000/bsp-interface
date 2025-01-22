@@ -12,6 +12,9 @@ namespace bsp
 			class W9825G6KH_6 :
 				bsp::sdram::ISDRAM
 			{
+			private:
+				bsp::sdram::ISDRAMController &_controller;
+
 			public:
 				/// @brief 构造函数。
 				/// @param controller 需要一个控制器来控制 SDRAM 芯片。
