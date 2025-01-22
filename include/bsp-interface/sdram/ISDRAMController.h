@@ -8,10 +8,11 @@ namespace bsp
 	{
 		namespace property
 		{
-			class RowCount
+			/// @brief 行地址的位数。
+			class RowBitCount
 			{
 			public:
-				explicit RowCount(int value)
+				explicit RowBitCount(int value)
 					: _value(value)
 				{
 				}
@@ -19,10 +20,11 @@ namespace bsp
 				int _value = 0;
 			};
 
-			class ColumnCount
+			/// @brief 列地址的位数。
+			class ColumnBitCount
 			{
 			public:
-				explicit ColumnCount(int value)
+				explicit ColumnBitCount(int value)
 					: _value(value)
 				{
 				}
@@ -30,6 +32,7 @@ namespace bsp
 				int _value = 0;
 			};
 
+			/// @brief 数据宽度，或者说数据总线位数。
 			class DataWidth
 			{
 			public:
@@ -61,13 +64,13 @@ namespace bsp
 		public:
 			/// @brief 将 SDRAM 控制器以读突发的模式打开。写不突发。
 			/// @param timing
-			/// @param row_count
-			/// @param column_count
+			/// @param row_bit_count
+			/// @param column_bit_count
 			/// @param data_width
 			/// @param read_burst_length
 			virtual void OpenAsReadBurstMode(bsp::sdram::ISDRAMTiming const &timing,
-											 bsp::sdram::property::RowCount const &row_count,
-											 bsp::sdram::property::ColumnCount const &column_count,
+											 bsp::sdram::property::RowBitCount const &row_bit_count,
+											 bsp::sdram::property::ColumnBitCount const &column_bit_count,
 											 bsp::sdram::property::DataWidth const &data_width,
 											 bsp::sdram::property::ReadBurstLength const &read_burst_length) = 0;
 		};
