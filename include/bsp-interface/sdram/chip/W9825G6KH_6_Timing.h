@@ -14,14 +14,17 @@ namespace bsp
 			{
 			private:
 				/// @brief 时钟周期。
-				base::Nanoseconds _t_clk;
+				base::MHz _f_clk;
 
 			public:
-				W9825G6KH_6_Timing(base::Nanoseconds const &t_clk);
+				W9825G6KH_6_Timing(base::MHz const &f_clk);
 
-				/// @brief 时钟信号周期。
+				/// @brief 时钟信号频率。
 				/// @return
-				virtual base::Nanoseconds T_CLK() const override;
+				virtual base::MHz CLKFrequency() const override
+				{
+					return _f_clk;
+				}
 
 				/// @brief 模式寄存器设置延迟。
 				/// @note 设置模式寄存器后要等待这么长时间才可以进行下一个命令。
@@ -77,6 +80,8 @@ namespace bsp
 				/// @brief SDRAM 的行数。
 				/// @return
 				virtual int64_t RowCount() const override;
+
+				virtual int CASLatency() const override;
 			};
 		} // namespace chip
 	} // namespace sdram

@@ -1,5 +1,6 @@
 #pragma once
 #include <base/string/Json.h>
+#include <base/unit/MHz.h>
 #include <base/unit/Nanoseconds.h>
 
 namespace bsp
@@ -11,9 +12,16 @@ namespace bsp
 			public base::IJsonSerializable
 		{
 		public:
+			/// @brief 时钟信号频率。
+			/// @return
+			virtual base::MHz CLKFrequency() const = 0;
+
 			/// @brief 时钟信号周期。
 			/// @return
-			virtual base::Nanoseconds T_CLK() const = 0;
+			base::Nanoseconds T_CLK() const
+			{
+				return base::Nanoseconds{CLKFrequency()};
+			}
 
 			/// @brief 模式寄存器设置延迟。
 			/// @note 设置模式寄存器后要等待这么长时间才可以进行下一个命令。
@@ -118,6 +126,8 @@ namespace bsp
 			{
 				return static_cast<base::Fraction>(T_AutoRefreshCommand() / T_CLK()).Ceil();
 			}
+
+			virtual int CASLatency() const = 0;
 
 			/// @brief 序列化为 json
 			/// @return

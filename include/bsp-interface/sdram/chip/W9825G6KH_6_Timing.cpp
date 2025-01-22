@@ -2,23 +2,18 @@
 #include <base/string/define.h>
 #include <stdexcept>
 
-bsp::sdram::chip::W9825G6KH_6_Timing::W9825G6KH_6_Timing(base::Nanoseconds const &t_clk)
+bsp::sdram::chip::W9825G6KH_6_Timing::W9825G6KH_6_Timing(base::MHz const &f_clk)
 {
-	_t_clk = t_clk;
-	if (_t_clk <= base::Nanoseconds{0})
+	_f_clk = f_clk;
+	if (T_CLK() <= base::Nanoseconds{0})
 	{
 		throw std::invalid_argument{CODE_POS_STR + "t_clk 不能为 0."};
 	}
 }
 
-base::Nanoseconds bsp::sdram::chip::W9825G6KH_6_Timing::T_CLK() const
-{
-	return _t_clk;
-}
-
 base::Nanoseconds bsp::sdram::chip::W9825G6KH_6_Timing::T_RSC() const
 {
-	return 2 * _t_clk;
+	return 2 * T_CLK();
 }
 
 base::Nanoseconds bsp::sdram::chip::W9825G6KH_6_Timing::T_XSR() const
@@ -38,7 +33,7 @@ base::Nanoseconds bsp::sdram::chip::W9825G6KH_6_Timing::T_RC() const
 
 base::Nanoseconds bsp::sdram::chip::W9825G6KH_6_Timing::T_WR() const
 {
-	return 2 * _t_clk;
+	return 2 * T_CLK();
 }
 
 base::Nanoseconds bsp::sdram::chip::W9825G6KH_6_Timing::T_RP() const
@@ -59,4 +54,14 @@ base::Nanoseconds bsp::sdram::chip::W9825G6KH_6_Timing::T_REF() const
 int64_t bsp::sdram::chip::W9825G6KH_6_Timing::RowCount() const
 {
 	return 8192;
+}
+
+int bsp::sdram::chip::W9825G6KH_6_Timing::CASLatency() const
+{
+	if (CLKFrequency() > base::MHz{133})
+	{
+		return 3;
+	}
+
+	return 2;
 }

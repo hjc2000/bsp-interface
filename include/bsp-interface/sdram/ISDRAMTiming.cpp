@@ -9,6 +9,7 @@ base::Json bsp::sdram::ISDRAMTiming::ToJson() const
 {
 	base::Json root{
 		{"RowCount", RowCount()},
+		{"CLKFrequency", CLKFrequency().ToString()},
 		{"T_CLK", T_CLK().ToString()},
 		{"T_RSC_CLK_Count", T_RSC_CLK_Count()},
 		{"T_XSR_CLK_Count", T_XSR_CLK_Count()},
