@@ -13,42 +13,50 @@ bsp::sdram::chip::W9825G6KH_6_Timing::W9825G6KH_6_Timing(base::MHz const &f_clk)
 
 base::Nanoseconds bsp::sdram::chip::W9825G6KH_6_Timing::T_RSC() const
 {
-	return 2 * T_CLK();
+	// 额外加一个 T_CLK() 采用保守的时序
+	return 2 * T_CLK() + T_CLK();
 }
 
 base::Nanoseconds bsp::sdram::chip::W9825G6KH_6_Timing::T_XSR() const
 {
-	return base::Nanoseconds{72};
+	// 额外加一个 T_CLK() 采用保守的时序
+	return base::Nanoseconds{72} + T_CLK();
 }
 
 base::Nanoseconds bsp::sdram::chip::W9825G6KH_6_Timing::T_RAS() const
 {
-	return base::Nanoseconds{42};
+	// 额外加一个 T_CLK() 采用保守的时序
+	return base::Nanoseconds{42} + T_CLK();
 }
 
 base::Nanoseconds bsp::sdram::chip::W9825G6KH_6_Timing::T_RC() const
 {
-	return base::Nanoseconds{60};
+	// 额外加一个 T_CLK() 采用保守的时序
+	return base::Nanoseconds{60} + T_CLK();
 }
 
 base::Nanoseconds bsp::sdram::chip::W9825G6KH_6_Timing::T_WR() const
 {
-	return 2 * T_CLK();
+	// 额外加一个 T_CLK() 采用保守的时序
+	return 2 * T_CLK() + T_CLK();
 }
 
 base::Nanoseconds bsp::sdram::chip::W9825G6KH_6_Timing::T_RP() const
 {
-	return base::Nanoseconds{15};
+	// 额外加一个 T_CLK() 采用保守的时序
+	return base::Nanoseconds{15} + T_CLK();
 }
 
 base::Nanoseconds bsp::sdram::chip::W9825G6KH_6_Timing::T_RCD() const
 {
-	return base::Nanoseconds{15};
+	// 额外加一个 T_CLK() 采用保守的时序
+	return base::Nanoseconds{15} + T_CLK();
 }
 
 base::Nanoseconds bsp::sdram::chip::W9825G6KH_6_Timing::T_REF() const
 {
-	return base::Nanoseconds{std::chrono::milliseconds{64}};
+	// 提前 10ms 刷新
+	return base::Nanoseconds{std::chrono::milliseconds{64}} - base::Nanoseconds{std::chrono::milliseconds{10}};
 }
 
 int64_t bsp::sdram::chip::W9825G6KH_6_Timing::RowCount() const
