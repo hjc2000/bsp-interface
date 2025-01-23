@@ -30,7 +30,7 @@ void bsp::sdram::chip::W9825G6KH_6::Open()
 									bsp::sdram::property::RowBitCount{13},
 									bsp::sdram::property::ColumnBitCount{9},
 									bsp::sdram::property::DataWidth{16},
-									bsp::sdram::property::ReadBurstLength{8});
+									bsp::sdram::property::ReadBurstLength{1});
 
 	// SDRAM控制器初始化完成以后还需要按照如下顺序初始化SDRAM
 	bsp::di::Delayer().Delay(std::chrono::microseconds{500});
@@ -49,7 +49,7 @@ void bsp::sdram::chip::W9825G6KH_6::Open()
 	 * 		@li bit3为指定突发访问的类型，bit4~bit6为CAS值，bit7和bit8为运行模式
 	 * 		@li bit9为指定的写突发模式，bit10和bit11位保留位
 	 */
-	uint32_t sdram_mod_register = (uint32_t)SDRAM_MODEREG_BURST_LENGTH_8 | // 设置突发长度:1(可以是1/2/4/8)
+	uint32_t sdram_mod_register = (uint32_t)SDRAM_MODEREG_BURST_LENGTH_1 | // 设置突发长度:1(可以是1/2/4/8)
 								  SDRAM_MODEREG_BURST_TYPE_SEQUENTIAL |    // 设置突发类型:连续(可以是连续/交错)
 								  cas_letency |                            // 设置CAS值:3(可以是2/3)
 								  SDRAM_MODEREG_OPERATING_MODE_STANDARD |  // 设置操作模式:0,标准模式
