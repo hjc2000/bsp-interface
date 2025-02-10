@@ -83,22 +83,22 @@ void bsp::serial::ISerial::Open(bsp::serial::property::BaudRate const &baud_rate
 
 #pragma region Stream
 
-bool bsp::serial::ISerial::CanRead()
+bool bsp::serial::ISerial::CanRead() const
 {
 	return true;
 }
 
-bool bsp::serial::ISerial::CanWrite()
+bool bsp::serial::ISerial::CanWrite() const
 {
 	return true;
 }
 
-bool bsp::serial::ISerial::CanSeek()
+bool bsp::serial::ISerial::CanSeek() const
 {
 	return false;
 }
 
-int64_t bsp::serial::ISerial::Length()
+int64_t bsp::serial::ISerial::Length() const
 {
 	return 0;
 }
@@ -113,7 +113,7 @@ void bsp::serial::ISerial::Flush()
 	// Write 方法利用 DMA 直接发送缓冲区，本类没有内部缓冲区，不需要冲洗。
 }
 
-int64_t bsp::serial::ISerial::Position()
+int64_t bsp::serial::ISerial::Position() const
 {
 	return 0;
 }

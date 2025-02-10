@@ -152,16 +152,16 @@ namespace bsp
 #pragma endregion
 
 #pragma region Stream
-			bool CanRead() override;
-			bool CanWrite() override;
-			bool CanSeek() override;
+			bool CanRead() const override;
+			bool CanWrite() const override;
+			bool CanSeek() const override;
 
-			int64_t Length() override;
+			int64_t Length() const override;
 			void SetLength(int64_t value) override;
 
 			void Flush() override;
 
-			int64_t Position() override;
+			int64_t Position() const override;
 			void SetPosition(int64_t value) override;
 #pragma endregion
 		};
