@@ -13,7 +13,7 @@ namespace bsp
 		public bsp::IIicHost
 	{
 	private:
-		std::shared_ptr<base::IMutex> _lock = base::di::CreateMutex();
+		std::shared_ptr<base::IMutex> _lock = base::di::CreateIMutex();
 		bsp::IIicHost *_host = nullptr;
 
 	public:

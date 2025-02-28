@@ -22,7 +22,7 @@ namespace bsp
 				bsp::di::task::TaskGuard g;
 				if (_lock == nullptr)
 				{
-					_lock = base::di::CreateMutex();
+					_lock = base::di::CreateIMutex();
 				}
 			}
 
