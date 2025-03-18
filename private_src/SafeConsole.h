@@ -9,7 +9,7 @@ namespace bsp
 		public bsp::IConsole
 	{
 	private:
-		std::shared_ptr<base::IMutex> _lock = base::di::CreateIMutex();
+		std::shared_ptr<base::IMutex> _lock = base::CreateIMutex();
 		bsp::IConsole *_console = &Console::Instance();
 
 	public:
