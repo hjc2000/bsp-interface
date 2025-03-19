@@ -1,6 +1,4 @@
 #pragma once
-#include <bsp-interface/key/IKey.h>
-#include <stdint.h>
 
 namespace bsp
 {
@@ -35,4 +33,4 @@ namespace bsp
 		/// @return 指定的按键正被按着则返回 true，否则返回 false。
 		virtual bool HasKeyPressedEvent(std::string key_name) = 0;
 	};
-}
+} // namespace bsp

@@ -12,4 +12,4 @@ namespace bsp
 		virtual bool IsPressed() = 0;
 		virtual void ClearPressedFlag() = 0;
 	};
-}
+} // namespace bsp

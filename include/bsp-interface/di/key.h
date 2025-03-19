@@ -1,6 +1,7 @@
 #pragma once
-#include <base/container/IDictionary.h>
-#include <bsp-interface/key/IKeyScanner.h>
+#include "base/container/IDictionary.h"
+#include "bsp-interface/key/IKey.h"
+#include "bsp-interface/key/IKeyScanner.h"
 
 namespace bsp
 {

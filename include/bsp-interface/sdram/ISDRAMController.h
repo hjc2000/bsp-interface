@@ -1,6 +1,5 @@
 #pragma once
-#include <base/stream/Span.h>
-#include <bsp-interface/sdram/ISDRAMTimingProvider.h>
+#include "bsp-interface/sdram/ISDRAMTimingProvider.h"
 
 namespace bsp
 {

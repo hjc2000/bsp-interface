@@ -1,7 +1,6 @@
 #include "key.h"
-#include <bsp-interface/di/interrupt.h>
-#include <bsp-interface/TaskSingletonGetter.h>
-#include <KeyScanner.h>
+#include "bsp-interface/TaskSingletonGetter.h"
+#include "KeyScanner.h"
 
 namespace
 {
