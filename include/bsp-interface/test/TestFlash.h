@@ -1,10 +1,8 @@
 #pragma once
+#include "bsp-interface/di/console.h"
+#include "bsp-interface/di/flash.h"
+#include "bsp-interface/di/key.h"
 #include <array>
-#include <bsp-interface/di/console.h>
-#include <bsp-interface/di/delayer.h>
-#include <bsp-interface/di/flash.h>
-#include <bsp-interface/di/key.h>
-#include <bsp-interface/di/led.h>
 
 namespace bsp
 {
