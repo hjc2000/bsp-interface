@@ -1,7 +1,7 @@
 #include "IsrManager.h"
-#include <bsp-interface/di/interrupt.h>
-#include <bsp-interface/di/task.h>
-#include <bsp-interface/TaskSingletonGetter.h>
+#include "bsp-interface/di/interrupt.h"
+#include "bsp-interface/di/task.h"
+#include "bsp-interface/TaskSingletonGetter.h"
 
 bsp::IIsrManager &bsp::IsrManager::Instance()
 {
