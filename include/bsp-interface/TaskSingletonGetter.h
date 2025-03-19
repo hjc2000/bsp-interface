@@ -1,4 +1,5 @@
 #pragma once
+#include "base/define.h"
 #include "base/LockGuard.h"
 #include "base/task/IMutex.h"
 #include "bsp-interface/di/task.h"
