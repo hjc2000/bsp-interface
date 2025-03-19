@@ -1,6 +1,5 @@
 #pragma once
 #include "base/define.h"
-#include "base/LockGuard.h"
 #include "base/task/IMutex.h"
 #include "bsp-interface/di/task.h"
 
@@ -13,14 +12,13 @@ namespace bsp
 	/// @tparam T
 	///
 	template <typename T>
-	class TaskSingletonGetter :
-		protected base::ILock
+	class TaskSingletonGetter
 	{
 	private:
 		inline static_field std::shared_ptr<base::IMutex> _lock = nullptr;
 		inline static_field std::unique_ptr<T> _p;
 
-		virtual void Lock() override
+		void Lock()
 		{
 			{
 				bsp::di::task::TaskGuard g;
@@ -33,10 +31,28 @@ namespace bsp
 			_lock->Lock();
 		}
 
-		virtual void Unlock() override
+		void Unlock()
 		{
 			_lock->Unlock();
 		}
+
+		class Guard
+		{
+		private:
+			TaskSingletonGetter<T> &_getter;
+
+		public:
+			Guard(TaskSingletonGetter<T> &getter)
+				: _getter(getter)
+			{
+				_getter.Lock();
+			}
+
+			~Guard()
+			{
+				_getter.Unlock();
+			}
+		};
 
 	protected:
 		virtual std::unique_ptr<T> Create() = 0;
@@ -54,7 +70,7 @@ namespace bsp
 				return *_p;
 			}
 
-			base::LockGuard l{*this};
+			Guard l{*this};
 			if (_p != nullptr)
 			{
 				return *_p;
