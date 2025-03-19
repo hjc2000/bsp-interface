@@ -1,7 +1,6 @@
 #pragma once
-#include <base/task/IMutex.h>
-#include <bsp-interface/di/task.h>
-#include <bsp-interface/iic/IIicHost.h>
+#include "base/task/IMutex.h"
+#include "bsp-interface/iic/IIicHost.h"
 
 namespace bsp
 {
