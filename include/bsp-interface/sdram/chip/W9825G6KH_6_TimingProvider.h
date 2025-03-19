@@ -1,6 +1,5 @@
 #pragma once
-#include <bsp-interface/sdram/ISDRAMTimingProvider.h>
-#include <stdexcept>
+#include "bsp-interface/sdram/ISDRAMTimingProvider.h"
 
 namespace bsp
 {

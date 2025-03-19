@@ -61,6 +61,8 @@ uint32_t bsp::serial::ISerial::FramesBaudCount(uint32_t frame_count) const
 	return baud_count;
 }
 
+/* #region Open */
+
 void bsp::serial::ISerial::Open()
 {
 	Open(bsp::serial::property::Direction::RX_TX,
@@ -81,7 +83,9 @@ void bsp::serial::ISerial::Open(bsp::serial::property::BaudRate const &baud_rate
 		 bsp::serial::property::HardwareFlowControl::None);
 }
 
-#pragma region Stream
+/* #endregion */
+
+/* #region Stream */
 
 bool bsp::serial::ISerial::CanRead() const
 {
@@ -123,4 +127,4 @@ void bsp::serial::ISerial::SetPosition(int64_t value)
 	// 不支持的操作。
 }
 
-#pragma endregion
+/* #endregion */

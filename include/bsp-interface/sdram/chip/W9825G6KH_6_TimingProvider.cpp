@@ -1,5 +1,5 @@
 #include "W9825G6KH_6_TimingProvider.h"
-#include <W9825G6KH_6_Timing.h>
+#include "W9825G6KH_6_Timing.h"
 
 std::shared_ptr<bsp::sdram::ISDRAMTiming> bsp::sdram::chip::W9825G6KH_6_TimingProvider::GetTiming(base::MHz const &clk_frequency) const
 {
