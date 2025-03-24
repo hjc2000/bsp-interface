@@ -1,5 +1,5 @@
 #include "KeyScanner.h"
-#include <bsp-interface/di/delayer.h>
+#include "base/task/delay.h"
 #include <bsp-interface/di/key.h>
 
 using namespace bsp;
@@ -16,7 +16,7 @@ void KeyScanner::ScanKeys()
 {
 	_last_scan_result = _current_scan_result;
 	ScanKeysNoDelay(_no_delay_scan_result1);
-	bsp::di::Delayer().Delay(std::chrono::milliseconds{10});
+	base::Delay(std::chrono::milliseconds{10});
 	ScanKeysNoDelay(_no_delay_scan_result2);
 	for (auto &pair : bsp::di::key::KeyCollection())
 	{

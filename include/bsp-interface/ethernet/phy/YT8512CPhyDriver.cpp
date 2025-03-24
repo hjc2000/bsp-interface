@@ -3,7 +3,6 @@
 #include <base/string/define.h>
 #include <base/unit/Mbps.h>
 #include <bsp-interface/di/console.h>
-#include <bsp-interface/di/delayer.h>
 
 bsp::YT8512CPhyDriver::YT8512CPhyDriver(std::shared_ptr<bsp::IPhyController> const &phy_controller)
 {

@@ -1,14 +1,14 @@
 #include "ISoftwareIicHost.h"
-#include <bsp-interface/di/delayer.h>
+#include "base/task/delay.h"
 
 void bsp::ISoftwareIicHost::SendAcknowledgment()
 {
 	WriteSCL(false);
 	ChangeSDADirection(bsp::ISoftwareIicHost_SDADirection::Output);
 	WriteSDA(false);
-	bsp::di::Delayer().Delay(SclCycle() / 2);
+	base::Delay(SclCycle() / 2);
 	WriteSCL(true);
-	bsp::di::Delayer().Delay(SclCycle() / 2);
+	base::Delay(SclCycle() / 2);
 	WriteSCL(false);
 }
 
@@ -17,9 +17,9 @@ void bsp::ISoftwareIicHost::SendNotAcknowledgment()
 	WriteSCL(false);
 	ChangeSDADirection(bsp::ISoftwareIicHost_SDADirection::Output);
 	WriteSDA(true);
-	bsp::di::Delayer().Delay(SclCycle() / 2);
+	base::Delay(SclCycle() / 2);
 	WriteSCL(true);
-	bsp::di::Delayer().Delay(SclCycle() / 2);
+	base::Delay(SclCycle() / 2);
 	WriteSCL(false);
 }
 
@@ -27,15 +27,15 @@ bool bsp::ISoftwareIicHost::WaitForAcknowledgment()
 {
 	ChangeSDADirection(bsp::ISoftwareIicHost_SDADirection::Input);
 	WriteSDA(true);
-	bsp::di::Delayer().Delay(SclCycle() / 2);
+	base::Delay(SclCycle() / 2);
 	WriteSCL(true);
-	bsp::di::Delayer().Delay(SclCycle() / 2);
+	base::Delay(SclCycle() / 2);
 
 	int retry_times = 0;
 	while (ReadSDA())
 	{
 		retry_times++;
-		bsp::di::Delayer().Delay(SclCycle() / 2);
+		base::Delay(SclCycle() / 2);
 		if (retry_times > WaitingForAckTimeoutCycleCount())
 		{
 			SendStoppingSignal();
@@ -52,21 +52,21 @@ void bsp::ISoftwareIicHost::SendBit(bool value)
 	ChangeSDADirection(bsp::ISoftwareIicHost_SDADirection::Output);
 	WriteSCL(false);
 	WriteSDA(value);
-	bsp::di::Delayer().Delay(SclCycle() / 2);
+	base::Delay(SclCycle() / 2);
 	WriteSCL(true);
-	bsp::di::Delayer().Delay(SclCycle() / 2);
+	base::Delay(SclCycle() / 2);
 	WriteSCL(false);
-	bsp::di::Delayer().Delay(SclCycle() / 2);
+	base::Delay(SclCycle() / 2);
 }
 
 bool bsp::ISoftwareIicHost::ReceiveBit()
 {
 	ChangeSDADirection(bsp::ISoftwareIicHost_SDADirection::Input);
 	WriteSCL(false);
-	bsp::di::Delayer().Delay(SclCycle() / 2);
+	base::Delay(SclCycle() / 2);
 	WriteSCL(true);
 	bool bit = ReadSDA();
-	bsp::di::Delayer().Delay(SclCycle() / 2);
+	base::Delay(SclCycle() / 2);
 	return bit;
 }
 
@@ -75,9 +75,9 @@ void bsp::ISoftwareIicHost::SendStartingSignal()
 	ChangeSDADirection(bsp::ISoftwareIicHost_SDADirection::Output);
 	WriteSDA(true);
 	WriteSCL(true);
-	bsp::di::Delayer().Delay(SclCycle());
+	base::Delay(SclCycle());
 	WriteSDA(false);
-	bsp::di::Delayer().Delay(SclCycle());
+	base::Delay(SclCycle());
 	WriteSCL(false);
 }
 
@@ -86,10 +86,10 @@ void bsp::ISoftwareIicHost::SendStoppingSignal()
 	ChangeSDADirection(bsp::ISoftwareIicHost_SDADirection::Output);
 	WriteSCL(false);
 	WriteSDA(false);
-	bsp::di::Delayer().Delay(SclCycle());
+	base::Delay(SclCycle());
 	WriteSCL(true);
 	WriteSDA(true);
-	bsp::di::Delayer().Delay(SclCycle());
+	base::Delay(SclCycle());
 }
 
 void bsp::ISoftwareIicHost::SendByte(uint8_t value)

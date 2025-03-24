@@ -1,5 +1,5 @@
 #pragma once
-#include <bsp-interface/di/delayer.h>
+#include "base/task/delay.h"
 #include <bsp-interface/di/lcd.h>
 #include <bsp-interface/di/led.h>
 
@@ -13,7 +13,7 @@ namespace bsp
 
 		while (true)
 		{
-			bsp::di::Delayer().Delay(std::chrono::seconds{1});
+			base::Delay(std::chrono::seconds{1});
 			for (uint32_t x = 0; x < DI_Lcd().Width(); x++)
 			{
 				for (uint32_t y = 0; y < DI_Lcd().Height(); y++)
@@ -22,10 +22,10 @@ namespace bsp
 				}
 			}
 
-			bsp::di::Delayer().Delay(std::chrono::seconds{1});
+			base::Delay(std::chrono::seconds{1});
 			DI_Lcd().Clear(bsp::Color::Black);
 			bsp::di::led::RedDigitalLed().Toggle();
-			bsp::di::Delayer().Delay(std::chrono::seconds{1});
+			base::Delay(std::chrono::seconds{1});
 		}
 	}
 } // namespace bsp

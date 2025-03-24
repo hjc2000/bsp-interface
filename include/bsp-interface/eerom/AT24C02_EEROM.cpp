@@ -1,5 +1,5 @@
 #include "AT24C02_EEROM.h"
-#include <bsp-interface/di/delayer.h>
+#include "base/task/delay.h"
 
 bsp::AT24C02_EEROM::AT24C02_EEROM(std::string const &name, bsp::IIicHost *host)
 {
@@ -49,5 +49,5 @@ void bsp::AT24C02_EEROM::WriteByte(int32_t addr, uint8_t data)
 	_iic_host->SendByte(addr % 256);                 // 发送低地址
 	_iic_host->SendByte(data);                       // 发送字节
 	_iic_host->SendStoppingSignal();                 // 产生一个停止条件
-	bsp::di::Delayer().Delay(std::chrono::milliseconds{10});
+	base::Delay(std::chrono::milliseconds{10});
 }

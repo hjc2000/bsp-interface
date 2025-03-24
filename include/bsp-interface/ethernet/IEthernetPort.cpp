@@ -1,7 +1,6 @@
 #include "IEthernetPort.h"
 #include <base/container/Array.h>
 #include <bsp-interface/di/console.h>
-#include <bsp-interface/di/delayer.h>
 
 void bsp::IEthernetPort::Send(base::ReadOnlySpan const &span)
 {

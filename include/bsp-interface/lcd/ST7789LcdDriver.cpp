@@ -1,7 +1,5 @@
 #include "ST7789LcdDriver.h"
-#include <bsp-interface/di/delayer.h>
-
-using namespace bsp;
+#include "base/task/delay.h"
 
 #pragma region ILcd
 
@@ -20,9 +18,9 @@ uint32_t bsp::ST7789LcdDriver::LcdDriverChipId()
 
 void bsp::ST7789LcdDriver::DisplayOn()
 {
-	bsp::di::Delayer().Delay(std::chrono::milliseconds{50});
+	base::Delay(std::chrono::milliseconds{50});
 	WriteCommand(0x11);
-	bsp::di::Delayer().Delay(std::chrono::milliseconds{120});
+	base::Delay(std::chrono::milliseconds{120});
 
 	WriteCommand(0x36);
 	WriteData(0x00);

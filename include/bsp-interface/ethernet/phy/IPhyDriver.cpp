@@ -1,7 +1,7 @@
 #include "IPhyDriver.h"
+#include "base/task/delay.h"
 #include <base/container/Array.h>
 #include <bsp-interface/di/console.h>
-#include <bsp-interface/di/delayer.h>
 
 void bsp::IPhyDriver::SoftwareReset()
 {
@@ -23,7 +23,7 @@ void bsp::IPhyDriver::SoftwareReset()
 			return;
 		}
 
-		bsp::di::Delayer().Delay(std::chrono::milliseconds{10});
+		base::Delay(std::chrono::milliseconds{10});
 		delay_times++;
 		if (delay_times > 1000)
 		{
@@ -68,7 +68,7 @@ void bsp::IPhyDriver::EnableAutoNegotiation()
 			return;
 		}
 
-		bsp::di::Delayer().Delay(std::chrono::milliseconds{10});
+		base::Delay(std::chrono::milliseconds{10});
 		delay_times++;
 
 		// 根据 IEEE 的规定，自动协商不应该超过 500ms，这里放宽松一点。

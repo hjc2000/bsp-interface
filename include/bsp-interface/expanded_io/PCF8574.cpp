@@ -1,5 +1,5 @@
 #include "PCF8574.h"
-#include <bsp-interface/di/delayer.h>
+#include "base/task/delay.h"
 #include <bsp-interface/di/gpio.h>
 #include <bsp-interface/di/interrupt.h>
 
@@ -63,5 +63,5 @@ void bsp::PCF8574::WriteByte(int index, uint8_t value)
 	_iic_host->SendByte(_address_register | 0x00);
 	_iic_host->SendByte(value);
 	_iic_host->SendStoppingSignal();
-	bsp::di::Delayer().Delay(std::chrono::milliseconds{10});
+	base::Delay(std::chrono::milliseconds{10});
 }
