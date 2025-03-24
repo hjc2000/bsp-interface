@@ -1,5 +1,4 @@
 #pragma once
-#include <bsp-interface/task/IBinarySemaphore.h>
 #include <bsp-interface/task/ITask.h>
 #include <cstdint>
 #include <functional>
@@ -11,12 +10,6 @@ namespace bsp
 	{
 		namespace task
 		{
-			///
-			/// @brief 构造一个二进制信号量。
-			/// @return
-			///
-			std::shared_ptr<bsp::IBinarySemaphore> CreateBinarySemaphore();
-
 			///
 			/// @brief 创建一个任务
 			/// @param stack_size 任务栈大小。单位：字。
