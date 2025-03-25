@@ -20,6 +20,7 @@ namespace bsp
 
 		void Lock()
 		{
+			if (_lock == nullptr)
 			{
 				bsp::di::task::TaskGuard g;
 				if (_lock == nullptr)
