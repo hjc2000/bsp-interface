@@ -9,7 +9,7 @@ namespace bsp
 {
 	inline void TestIndependentWatchDog()
 	{
-		base::Delay(std::chrono::milliseconds{500});
+		base::task::Delay(std::chrono::milliseconds{500});
 		bsp::di::led::RedDigitalLed().TurnOn();
 		DI_IndependentWatchDog().Open(std::chrono::milliseconds(1000));
 		while (true)

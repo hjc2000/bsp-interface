@@ -49,5 +49,5 @@ void bsp::AT24C02_EEROM::WriteByte(int32_t addr, uint8_t data)
 	_iic_host->SendByte(addr % 256);                 // 发送低地址
 	_iic_host->SendByte(data);                       // 发送字节
 	_iic_host->SendStoppingSignal();                 // 产生一个停止条件
-	base::Delay(std::chrono::milliseconds{10});
+	base::task::Delay(std::chrono::milliseconds{10});
 }

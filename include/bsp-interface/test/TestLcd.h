@@ -13,7 +13,7 @@ namespace bsp
 
 		while (true)
 		{
-			base::Delay(std::chrono::seconds{1});
+			base::task::Delay(std::chrono::seconds{1});
 			for (uint32_t x = 0; x < DI_Lcd().Width(); x++)
 			{
 				for (uint32_t y = 0; y < DI_Lcd().Height(); y++)
@@ -22,10 +22,10 @@ namespace bsp
 				}
 			}
 
-			base::Delay(std::chrono::seconds{1});
+			base::task::Delay(std::chrono::seconds{1});
 			DI_Lcd().Clear(bsp::Color::Black);
 			bsp::di::led::RedDigitalLed().Toggle();
-			base::Delay(std::chrono::seconds{1});
+			base::task::Delay(std::chrono::seconds{1});
 		}
 	}
 } // namespace bsp

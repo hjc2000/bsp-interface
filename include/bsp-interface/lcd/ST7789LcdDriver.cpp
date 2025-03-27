@@ -18,9 +18,9 @@ uint32_t bsp::ST7789LcdDriver::LcdDriverChipId()
 
 void bsp::ST7789LcdDriver::DisplayOn()
 {
-	base::Delay(std::chrono::milliseconds{50});
+	base::task::Delay(std::chrono::milliseconds{50});
 	WriteCommand(0x11);
-	base::Delay(std::chrono::milliseconds{120});
+	base::task::Delay(std::chrono::milliseconds{120});
 
 	WriteCommand(0x36);
 	WriteData(0x00);

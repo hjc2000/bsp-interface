@@ -33,7 +33,7 @@ void bsp::sdram::chip::W9825G6KH_6::Open()
 									bsp::sdram::property::ReadBurstLength{1});
 
 	// SDRAM控制器初始化完成以后还需要按照如下顺序初始化SDRAM
-	base::Delay(std::chrono::microseconds{500});
+	base::task::Delay(std::chrono::microseconds{500});
 	_controller.PrechargeAll();
 	_controller.AutoRefresh(8);
 
