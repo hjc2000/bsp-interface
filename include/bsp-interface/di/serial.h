@@ -9,12 +9,16 @@ namespace bsp
 	{
 		namespace serial
 		{
+			///
 			/// @brief 主串口。
 			/// @return
+			///
 			bsp::serial::ISerial &Serial();
 
+			///
 			/// @brief 包含所有可用串口的集合。
 			/// @return
+			///
 			base::IDictionary<std::string, bsp::serial::ISerial *> const &SerialCollection();
 		} // namespace serial
 	} // namespace di
