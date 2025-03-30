@@ -1,13 +1,13 @@
 #pragma once
-#include <bsp-interface/di/led.h>
-#include <bsp-interface/di/serial.h>
+#include "base/peripheral/ISerial.h"
+#include "bsp-interface/di/led.h"
 #include <stdexcept>
 
 namespace bsp
 {
 	inline void TestSerial()
 	{
-		bsp::serial::ISerial *serial = bsp::di::serial::SerialCollection().Get("serial");
+		base::serial::ISerial *serial = base::serial::SerialCollection().Get("serial");
 		if (serial == nullptr)
 		{
 			throw std::runtime_error{"找不到名为 serial 的串口"};
