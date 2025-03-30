@@ -1,7 +1,6 @@
 #pragma once
-#include <base/container/IDictionary.h>
-#include <bsp-interface/serial/ISerial.h>
-#include <memory>
+#include "base/container/IDictionary.h"
+#include "bsp-interface/serial/ISerial.h"
 
 namespace bsp
 {
