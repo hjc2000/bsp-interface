@@ -1,6 +1,6 @@
 #pragma once
+#include "base/peripheral/IDigitalLed.h"
 #include <base/container/IDictionary.h>
-#include <bsp-interface/IDigitalLed.h>
 #include <string>
 
 namespace bsp
@@ -11,11 +11,12 @@ namespace bsp
 		{
 			/// @brief 数字 LED 灯集合。
 			/// @return
-			base::IDictionary<std::string, bsp::IDigitalLed *> const &DigitalLedCollection();
+			base::IDictionary<std::string, base::IDigitalLed *> const &DigitalLedCollection();
 
-			bsp::IDigitalLed &RedDigitalLed();
-			bsp::IDigitalLed &GreenDigitalLed();
-			bsp::IDigitalLed &BlueDigitalLed();
+			base::IDigitalLed &RedDigitalLed();
+			base::IDigitalLed &GreenDigitalLed();
+			base::IDigitalLed &BlueDigitalLed();
+
 		} // namespace led
 	} // namespace di
 } // namespace bsp
