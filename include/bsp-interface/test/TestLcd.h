@@ -1,14 +1,14 @@
 #pragma once
+#include "base/peripheral/IDigitalLed.h"
 #include "base/task/delay.h"
 #include <bsp-interface/di/lcd.h>
-#include <bsp-interface/di/led.h>
 
 #ifndef No_Build_Test
 namespace bsp
 {
 	inline void TestLcd()
 	{
-		bsp::di::led::GreenDigitalLed().TurnOn();
+		base::led::GreenDigitalLed().TurnOn();
 		DI_Lcd().DisplayOn();
 
 		while (true)
@@ -24,7 +24,7 @@ namespace bsp
 
 			base::task::Delay(std::chrono::seconds{1});
 			DI_Lcd().Clear(bsp::Color::Black);
-			bsp::di::led::RedDigitalLed().Toggle();
+			base::led::RedDigitalLed().Toggle();
 			base::task::Delay(std::chrono::seconds{1});
 		}
 	}

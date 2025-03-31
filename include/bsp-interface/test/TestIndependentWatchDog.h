@@ -1,8 +1,8 @@
 #pragma once
+#include "base/peripheral/IDigitalLed.h"
 #include "base/task/delay.h"
 #include <bsp-interface/di/independent-watch-dog.h>
 #include <bsp-interface/di/key.h>
-#include <bsp-interface/di/led.h>
 
 #ifndef No_Build_Test
 namespace bsp
@@ -10,7 +10,7 @@ namespace bsp
 	inline void TestIndependentWatchDog()
 	{
 		base::task::Delay(std::chrono::milliseconds{500});
-		bsp::di::led::RedDigitalLed().TurnOn();
+		base::led::RedDigitalLed().TurnOn();
 		DI_IndependentWatchDog().Open(std::chrono::milliseconds(1000));
 		while (true)
 		{

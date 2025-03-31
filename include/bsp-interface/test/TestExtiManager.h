@@ -1,6 +1,6 @@
 #pragma once
+#include "base/peripheral/IDigitalLed.h"
 #include "bsp-interface/di/interrupt.h"
-#include "bsp-interface/di/led.h"
 
 namespace bsp
 {
@@ -10,7 +10,7 @@ namespace bsp
 			line_id,
 			[]()
 			{
-				bsp::di::led::RedDigitalLed().Toggle();
+				base::led::RedDigitalLed().Toggle();
 			});
 
 		while (true)

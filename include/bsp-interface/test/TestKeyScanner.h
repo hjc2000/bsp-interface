@@ -1,6 +1,6 @@
 #pragma once
+#include "base/peripheral/IDigitalLed.h"
 #include "bsp-interface/di/key.h"
-#include "bsp-interface/di/led.h"
 
 namespace bsp
 {
@@ -11,12 +11,12 @@ namespace bsp
 			bsp::di::key::KeyScanner().ScanKeys();
 			if (bsp::di::key::KeyScanner().HasKeyDownEvent("key0"))
 			{
-				bsp::di::led::RedDigitalLed().Toggle();
+				base::led::RedDigitalLed().Toggle();
 			}
 
 			if (bsp::di::key::KeyScanner().HasKeyDownEvent("key1"))
 			{
-				bsp::di::led::GreenDigitalLed().Toggle();
+				base::led::GreenDigitalLed().Toggle();
 			}
 		}
 	}
