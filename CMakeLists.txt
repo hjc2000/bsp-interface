@@ -12,12 +12,6 @@ if(1)
 	set(CMAKE_C_STANDARD 17)
 endif()
 
-
-include(target_import_boost)
-include(target_import_nlohmann_json)
-include(target_import_base)
-
-
 add_library(${ProjectName} STATIC)
 target_import_src(${ProjectName})
 target_import_boost(${ProjectName} PUBLIC)
