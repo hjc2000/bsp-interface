@@ -10,99 +10,7 @@ namespace
 	std::vector<std::shared_ptr<bsp::IHeap>> *volatile _heap_vector = nullptr;
 }
 
-void *operator new(size_t size)
-{
-	void *ret = bsp::di::heap::Malloc(size);
-	if (ret == nullptr)
-	{
-		throw std::bad_alloc{};
-	}
-
-	return ret;
-}
-
-void *operator new[](size_t size)
-{
-	void *ret = bsp::di::heap::Malloc(size);
-	if (ret == nullptr)
-	{
-		throw std::bad_alloc{};
-	}
-
-	return ret;
-}
-
-void *operator new(size_t size, std::nothrow_t const &) noexcept
-{
-	void *ret = bsp::di::heap::Malloc(size);
-	return ret;
-}
-
-void *operator new[](size_t size, std::nothrow_t const &) noexcept
-{
-	void *ret = bsp::di::heap::Malloc(size);
-	return ret;
-}
-
-void operator delete(void *ptr) noexcept
-{
-	if (ptr == nullptr)
-	{
-		return;
-	}
-
-	bsp::di::heap::Free(ptr);
-}
-
-void operator delete[](void *ptr) noexcept
-{
-	if (ptr == nullptr)
-	{
-		return;
-	}
-
-	bsp::di::heap::Free(ptr);
-}
-
-void operator delete(void *ptr, std::nothrow_t const &) noexcept
-{
-	if (ptr == nullptr)
-	{
-		return;
-	}
-
-	bsp::di::heap::Free(ptr);
-}
-
-void operator delete[](void *ptr, std::nothrow_t const &) noexcept
-{
-	if (ptr == nullptr)
-	{
-		return;
-	}
-
-	bsp::di::heap::Free(ptr);
-}
-
-void operator delete(void *ptr, size_t size) noexcept
-{
-	if (ptr == nullptr)
-	{
-		return;
-	}
-
-	bsp::di::heap::Free(ptr);
-}
-
-void operator delete[](void *ptr, size_t size) noexcept
-{
-	if (ptr == nullptr)
-	{
-		return;
-	}
-
-	bsp::di::heap::Free(ptr);
-}
+/* #region AddHeap */
 
 void bsp::di::heap::AddHeap(std::shared_ptr<bsp::IHeap> const &heap)
 {
@@ -130,6 +38,8 @@ void bsp::di::heap::AddHeap(base::Span const &span)
 	bsp::di::task::TaskGuard g;
 	AddHeap(span.Buffer(), span.Size());
 }
+
+/* #endregion */
 
 void *bsp::di::heap::Malloc(size_t size) noexcept
 {
