@@ -1,6 +1,7 @@
 #pragma once
 #include <base/stream/Span.h>
 #include <bsp-interface/IHeap.h>
+#include <cstddef>
 #include <memory>
 
 namespace bsp
@@ -29,6 +30,10 @@ namespace bsp
 			/// @param span
 			void AddHeap(base::Span const &span);
 #pragma endregion
+
+			void *Malloc(size_t size) noexcept;
+
+			void Free(void *ptr) noexcept;
 		} // namespace heap
 	} // namespace di
 } // namespace bsp
