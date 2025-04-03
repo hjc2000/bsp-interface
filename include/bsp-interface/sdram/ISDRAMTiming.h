@@ -33,7 +33,8 @@ namespace bsp
 
 			int T_RSC_CLK_Count() const
 			{
-				return static_cast<base::Fraction>(T_RSC() / T_CLK()).Ceil();
+				base::Fraction value{T_RSC() / T_CLK()};
+				return static_cast<int>(value.Ceil());
 			}
 
 			/// @brief 退出自刷新模式的时间。
@@ -43,7 +44,8 @@ namespace bsp
 
 			int T_XSR_CLK_Count() const
 			{
-				return static_cast<base::Fraction>(T_XSR() / T_CLK()).Ceil();
+				base::Fraction value{T_XSR() / T_CLK()};
+				return static_cast<int>(value.Ceil());
 			}
 
 			/// @brief 从行激活到预充电的时间。
@@ -54,7 +56,8 @@ namespace bsp
 
 			int T_RAS_CLK_Count() const
 			{
-				return static_cast<base::Fraction>(T_RAS() / T_CLK()).Ceil();
+				base::Fraction value{T_RAS() / T_CLK()};
+				return static_cast<int>(value.Ceil());
 			}
 
 			/// @brief 行循环时间。
@@ -64,7 +67,8 @@ namespace bsp
 
 			int T_RC_CLK_Count() const
 			{
-				return static_cast<base::Fraction>(T_RC() / T_CLK()).Ceil();
+				base::Fraction value{T_RC() / T_CLK()};
+				return static_cast<int>(value.Ceil());
 			}
 
 			/// @brief 写恢复时间。
@@ -75,7 +79,8 @@ namespace bsp
 
 			int T_WR_CLK_Count() const
 			{
-				return static_cast<base::Fraction>(T_WR() / T_CLK()).Ceil();
+				base::Fraction value{T_WR() / T_CLK()};
+				return static_cast<int>(value.Ceil());
 			}
 
 			/// @brief 预充电命令后的延迟。
@@ -86,7 +91,8 @@ namespace bsp
 
 			int T_RP_CLK_Count() const
 			{
-				return static_cast<base::Fraction>(T_RP() / T_CLK()).Ceil();
+				base::Fraction value{T_RP() / T_CLK()};
+				return static_cast<int>(value.Ceil());
 			}
 
 			/// @brief 行到列时间。
@@ -97,7 +103,8 @@ namespace bsp
 
 			int T_RCD_CLK_Count() const
 			{
-				return static_cast<base::Fraction>(T_RCD() / T_CLK()).Ceil();
+				base::Fraction value{T_RCD() / T_CLK()};
+				return static_cast<int>(value.Ceil());
 			}
 
 			/// @brief 自动刷新时间。
@@ -111,7 +118,8 @@ namespace bsp
 
 			int T_REF_CLK_Count() const
 			{
-				return static_cast<base::Fraction>(T_REF() / T_CLK()).Ceil();
+				base::Fraction value{T_REF() / T_CLK()};
+				return static_cast<int>(value.Ceil());
 			}
 
 			/// @brief SDRAM 的行数。
@@ -126,7 +134,8 @@ namespace bsp
 			/// @return
 			int T_AutoRefreshCommand_CLK_Count() const
 			{
-				return static_cast<base::Fraction>(T_AutoRefreshCommand() / T_CLK()).Ceil();
+				base::Fraction value{T_AutoRefreshCommand() / T_CLK()};
+				return static_cast<int>(value.Ceil());
 			}
 
 			/// @brief 发送读命令后要等待多少个 CLK 信号的周期 SDRAM 才能将数据输出到数据总线上。
