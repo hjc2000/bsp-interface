@@ -2,7 +2,7 @@
 #include <base/container/iterator/IEnumerable.h>
 #include <base/net/Mac.h>
 #include <base/stream/Stream.h>
-#include <base/unit/Bps.h>
+#include <base/unit/bps.h>
 #include <base/unit/Mbps.h>
 #include <bsp-interface/ethernet/EthernetDuplexMode.h>
 #include <bsp-interface/ethernet/EthernetInterfaceType.h>
@@ -46,7 +46,7 @@ namespace bsp
 		/// @param duplex_mode
 		/// @param speed
 		virtual void Start(bsp::EthernetDuplexMode duplex_mode,
-						   base::Bps const &speed) = 0;
+						   base::bps const &speed) = 0;
 
 		/// @brief 发送。
 		/// @note 现代的单片机的以太网控制器使用多个 DMA 描述符来控制数据传输。每个 DMA

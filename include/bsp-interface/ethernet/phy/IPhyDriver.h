@@ -1,5 +1,5 @@
 #pragma once
-#include <base/unit/Bps.h>
+#include <base/unit/bps.h>
 #include <bsp-interface/ethernet/EthernetDuplexMode.h>
 #include <bsp-interface/ethernet/EthernetInterfaceType.h>
 #include <bsp-interface/ethernet/phy/IPhyController.h>
@@ -18,7 +18,7 @@ namespace bsp
 
 		/// @brief 获取此网口的速度。
 		/// @return
-		virtual base::Bps Speed() = 0;
+		virtual base::bps Speed() = 0;
 
 		/// @brief 软件复位 PHY.
 		void SoftwareReset();

@@ -33,16 +33,16 @@ bsp::EthernetDuplexMode bsp::LAN8720APhyDriver::DuplexMode()
 	return bsp::EthernetDuplexMode::HalfDuplex;
 }
 
-base::Bps bsp::LAN8720APhyDriver::Speed()
+base::bps bsp::LAN8720APhyDriver::Speed()
 {
 	uint32_t register_value = ReadRegister(0x1F);
 	uint32_t const mask = 0b01000;
 	if (register_value & mask)
 	{
 		bsp::di::Console().WriteLine("连接速率：100 Mbps");
-		return base::Bps{base::Mbps{100}};
+		return base::bps{base::Mbps{100}};
 	}
 
 	bsp::di::Console().WriteLine("连接速率：10 Mbps");
-	return base::Bps{base::Mbps{10}};
+	return base::bps{base::Mbps{10}};
 }

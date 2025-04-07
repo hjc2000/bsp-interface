@@ -21,6 +21,6 @@ namespace bsp
 
 		/// @brief 获取此网口的速度。
 		/// @return
-		virtual base::Bps Speed() override;
+		virtual base::bps Speed() override;
 	};
 } // namespace bsp

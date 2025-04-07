@@ -35,7 +35,7 @@ bsp::EthernetDuplexMode bsp::YT8512CPhyDriver::DuplexMode()
 	return bsp::EthernetDuplexMode::HalfDuplex;
 }
 
-base::Bps bsp::YT8512CPhyDriver::Speed()
+base::bps bsp::YT8512CPhyDriver::Speed()
 {
 	uint32_t register_value = ReadRegister(0x11);
 	uint32_t const mask = 0b11 << 14;
@@ -44,17 +44,17 @@ base::Bps bsp::YT8512CPhyDriver::Speed()
 	if (duplex_register == 0b00)
 	{
 		bsp::di::Console().WriteLine("连接速率：10 Mbps");
-		return base::Bps{base::Mbps{10}};
+		return base::bps{base::Mbps{10}};
 	}
 	else if (duplex_register == 0b01)
 	{
 		bsp::di::Console().WriteLine("连接速率：100 Mbps");
-		return base::Bps{base::Mbps{100}};
+		return base::bps{base::Mbps{100}};
 	}
 	else if (duplex_register == 0b01)
 	{
 		bsp::di::Console().WriteLine("连接速率：1000 Mbps");
-		return base::Bps{base::Mbps{1000}};
+		return base::bps{base::Mbps{1000}};
 	}
 	else
 	{
