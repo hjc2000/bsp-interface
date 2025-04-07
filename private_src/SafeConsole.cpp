@@ -3,20 +3,25 @@
 #include <bsp-interface/di/interrupt.h>
 #include <bsp-interface/TaskSingletonGetter.h>
 
-bsp::SafeConsole &bsp::SafeConsole::Instance()
+namespace
 {
-	class Getter :
-		public bsp::TaskSingletonGetter<bsp::SafeConsole>
+	class Init
 	{
 	public:
-		std::unique_ptr<bsp::SafeConsole> Create() override
+		Init()
 		{
-			return std::unique_ptr<bsp::SafeConsole>{new bsp::SafeConsole{}};
+			bsp::SafeConsole::Instance();
 		}
 	};
 
-	Getter g;
-	return g.Instance();
+	Init volatile _safe_console_hjc_init{};
+
+} // namespace
+
+bsp::SafeConsole &bsp::SafeConsole::Instance()
+{
+	static bsp::SafeConsole o{};
+	return o;
 }
 
 std::shared_ptr<base::Stream> bsp::SafeConsole::OutStream()
