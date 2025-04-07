@@ -1,7 +1,6 @@
 #include "SafeConsole.h"
 #include <base/string/ToHexString.h>
 #include <bsp-interface/di/interrupt.h>
-#include <bsp-interface/TaskSingletonGetter.h>
 
 namespace
 {

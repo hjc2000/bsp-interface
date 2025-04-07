@@ -1,22 +1,26 @@
 #include "IsrManager.h"
 #include "bsp-interface/di/interrupt.h"
 #include "bsp-interface/di/task.h"
-#include "bsp-interface/TaskSingletonGetter.h"
 
-bsp::IIsrManager &bsp::IsrManager::Instance()
+namespace
 {
-	class Getter :
-		public bsp::TaskSingletonGetter<bsp::IsrManager>
+	class Init
 	{
 	public:
-		std::unique_ptr<bsp::IsrManager> Create() override
+		Init()
 		{
-			return std::unique_ptr<bsp::IsrManager>{new bsp::IsrManager{}};
+			bsp::IsrManager::Instance();
 		}
 	};
 
-	Getter g;
-	return g.Instance();
+	Init volatile _isr_manager_init{};
+
+} // namespace
+
+bsp::IIsrManager &bsp::IsrManager::Instance()
+{
+	static bsp::IsrManager o{};
+	return o;
 }
 
 std::function<void()> &bsp::IsrManager::GetIsr(uint32_t irq) noexcept
