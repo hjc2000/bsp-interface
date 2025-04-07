@@ -13,7 +13,7 @@ namespace
 		}
 	};
 
-	Init volatile _isr_manager_init{};
+	Init volatile _isr_manager_hjc_init{};
 
 } // namespace
 
