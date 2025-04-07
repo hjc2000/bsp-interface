@@ -1,22 +1,23 @@
 #include "key.h"
-#include "bsp-interface/TaskSingletonGetter.h"
 #include "KeyScanner.h"
 
 namespace
 {
-	class Getter :
-		public bsp::TaskSingletonGetter<bsp::KeyScanner>
+	class Initializer
 	{
 	public:
-		std::unique_ptr<bsp::KeyScanner> Create() override
+		Initializer()
 		{
-			return std::unique_ptr<bsp::KeyScanner>{new bsp::KeyScanner{}};
+			bsp::di::key::KeyScanner();
 		}
 	};
+
+	Initializer volatile _key_scanner_initializer{};
+
 } // namespace
 
 bsp::IKeyScanner &bsp::di::key::KeyScanner()
 {
-	Getter g;
-	return g.Instance();
+	static bsp::KeyScanner o{};
+	return o;
 }
