@@ -7,8 +7,16 @@
 
 namespace
 {
+	// 这里使用裸指针，确保 C++ 的全局对象的构造函数访问到此变量时，此变量已经初始化完成了。
+	// 因为它在 C 的启动代码中被初始化，这发生在 C++ 启动代码之前。
+	//
+	// 这可以确保 C++ 全局对象构造函数如果涉及到动态内存分配，在构造函数中访问此变量时，此变量
+	// 已经初始化完成。随后在堆上构造 std::vector<std::shared_ptr<bsp::IHeap>> 对象将此变量
+	// 赋值为指向堆上 std::vector<std::shared_ptr<bsp::IHeap>> 对象的指针后不会被启动代码
+	// 赋值为 nullptr.
 	std::vector<std::shared_ptr<bsp::IHeap>> *volatile _heap_vector = nullptr;
-}
+
+} // namespace
 
 /* #region AddHeap */
 
