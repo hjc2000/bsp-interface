@@ -12,7 +12,7 @@ namespace
 		}
 	};
 
-	Initializer volatile _key_scanner_initializer{};
+	Initializer volatile _key_scanner_hjc_initializer{};
 
 } // namespace
 
