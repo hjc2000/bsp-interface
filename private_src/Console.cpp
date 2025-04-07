@@ -1,22 +1,26 @@
 #include "Console.h"
 #include <base/string/ToHexString.h>
 #include <bsp-interface/di/interrupt.h>
-#include <bsp-interface/TaskSingletonGetter.h>
 
-bsp::Console &bsp::Console::Instance()
+namespace
 {
-	class Getter :
-		public bsp::TaskSingletonGetter<bsp::Console>
+	class Init
 	{
 	public:
-		std::unique_ptr<bsp::Console> Create() override
+		Init()
 		{
-			return std::unique_ptr<bsp::Console>{new bsp::Console{}};
+			bsp::Console::Instance();
 		}
 	};
 
-	Getter g;
-	return g.Instance();
+	Init volatile _console_hjc_init{};
+
+} // namespace
+
+bsp::Console &bsp::Console::Instance()
+{
+	static bsp::Console o{};
+	return o;
 }
 
 std::shared_ptr<base::Stream> bsp::Console::OutStream()
