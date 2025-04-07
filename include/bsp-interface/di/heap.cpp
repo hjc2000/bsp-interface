@@ -14,6 +14,12 @@ namespace
 	// 已经初始化完成。随后在堆上构造 std::vector<std::shared_ptr<bsp::IHeap>> 对象将此变量
 	// 赋值为指向堆上 std::vector<std::shared_ptr<bsp::IHeap>> 对象的指针后不会被启动代码
 	// 赋值为 nullptr.
+	//
+	// 动态内存分配有可能被 C++ 全局对象的构造函数使用，如果这里使用的不是 C 的原始类型，即 std::vector
+	// 的裸指针，而是使用C++ 的 std::vector 对象的话，就会造成 “一个全局对象依赖另一个全局对象”，而 C++
+	// 全局对象的构造顺序是未定义的，会发生错误。
+	//
+	// 所以这里使用裸指针，并用延迟初始化技术，在需要时才在堆上构造 std::vector 对象并让此指针指向它。
 	std::vector<std::shared_ptr<bsp::IHeap>> *volatile _heap_vector = nullptr;
 
 } // namespace
