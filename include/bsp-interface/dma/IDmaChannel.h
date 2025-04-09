@@ -7,92 +7,88 @@ namespace bsp
 {
 	namespace dma
 	{
-		/// @brief DMA 属性
-		namespace property
+		/// @brief DMA 优先级
+		enum class Priority
 		{
-			/// @brief DMA 优先级
-			enum class Priority
+			Low,
+			Medium,
+			High,
+			VeryHigh,
+		};
+
+		/// @brief DMA 在读写外设地址空间时，是否自动递增地址。即每读取 1 个字节，
+		/// 就将地址递增 1.
+		class PeripheralIncrement
+		{
+		private:
+			bool _value = false;
+
+		public:
+			explicit PeripheralIncrement(bool value)
 			{
-				Low,
-				Medium,
-				High,
-				VeryHigh,
-			};
+				_value = value;
+			}
 
-			/// @brief DMA 在读写外设地址空间时，是否自动递增地址。即每读取 1 个字节，
-			/// 就将地址递增 1.
-			class PeripheralIncrement
+			bool Value() const
 			{
-			private:
-				bool _value = false;
+				return _value;
+			}
+		};
 
-			public:
-				explicit PeripheralIncrement(bool value)
-				{
-					_value = value;
-				}
+		/// @brief DMA 在读写内存地址空间时是否自动递增地址。即每读取 1 个字节，
+		/// 就将地址递增 1.
+		class MemoryIncrement
+		{
+		private:
+			bool _value = false;
 
-				bool Value() const
-				{
-					return _value;
-				}
-			};
-
-			/// @brief DMA 在读写内存地址空间时是否自动递增地址。即每读取 1 个字节，
-			/// 就将地址递增 1.
-			class MemoryIncrement
+		public:
+			explicit MemoryIncrement(bool value)
 			{
-			private:
-				bool _value = false;
+				_value = value;
+			}
 
-			public:
-				explicit MemoryIncrement(bool value)
-				{
-					_value = value;
-				}
-
-				bool Value() const
-				{
-					return _value;
-				}
-			};
-
-			/// @brief DMA 读写外设时采用的数据对齐字节数。例如 1 字节对齐或 4 字节对齐。
-			class PeripheralDataAlignment
+			bool Value() const
 			{
-			private:
-				int _value = 4;
+				return _value;
+			}
+		};
 
-			public:
-				explicit PeripheralDataAlignment(int value)
-				{
-					_value = value;
-				}
+		/// @brief DMA 读写外设时采用的数据对齐字节数。例如 1 字节对齐或 4 字节对齐。
+		class PeripheralDataAlignment
+		{
+		private:
+			int _value = 4;
 
-				int Value() const
-				{
-					return _value;
-				}
-			};
-
-			/// @brief DMA 读写内存时采用的数据对齐字节数。例如 1 字节对齐或 4 字节对齐。
-			class MemoryDataAlignment
+		public:
+			explicit PeripheralDataAlignment(int value)
 			{
-			private:
-				int _value = 4;
+				_value = value;
+			}
 
-			public:
-				explicit MemoryDataAlignment(int value)
-				{
-					_value = value;
-				}
+			int Value() const
+			{
+				return _value;
+			}
+		};
 
-				int Value() const
-				{
-					return _value;
-				}
-			};
-		} // namespace property
+		/// @brief DMA 读写内存时采用的数据对齐字节数。例如 1 字节对齐或 4 字节对齐。
+		class MemoryDataAlignment
+		{
+		private:
+			int _value = 4;
+
+		public:
+			explicit MemoryDataAlignment(int value)
+			{
+				_value = value;
+			}
+
+			int Value() const
+			{
+				return _value;
+			}
+		};
 
 		/// @brief DMA 通道
 		class IDmaChannel
@@ -108,14 +104,13 @@ namespace bsp
 			/// @param memory_data_alignment
 			/// @param priority
 			/// @param request
-			virtual void OpenAsPeripheralToMemoryMode(
-				void *parent,
-				bsp::dma::property::PeripheralIncrement const &peripheral_increment,
-				bsp::dma::property::MemoryIncrement const &memory_increment,
-				bsp::dma::property::PeripheralDataAlignment const &peripheral_data_alignment,
-				bsp::dma::property::MemoryDataAlignment const &memory_data_alignment,
-				bsp::dma::property::Priority priority,
-				std::string const &request)
+			virtual void OpenAsPeripheralToMemoryMode(void *parent,
+													  bsp::dma::PeripheralIncrement const &peripheral_increment,
+													  bsp::dma::MemoryIncrement const &memory_increment,
+													  bsp::dma::PeripheralDataAlignment const &peripheral_data_alignment,
+													  bsp::dma::MemoryDataAlignment const &memory_data_alignment,
+													  bsp::dma::Priority priority,
+													  std::string const &request)
 			{
 				throw std::runtime_error{CODE_POS_STR + "不支持此模式"};
 			}
@@ -130,11 +125,11 @@ namespace bsp
 			/// @param request
 			virtual void OpenAsMemoryToPeripheralMode(
 				void *parent,
-				bsp::dma::property::PeripheralIncrement const &peripheral_increment,
-				bsp::dma::property::MemoryIncrement const &memory_increment,
-				bsp::dma::property::PeripheralDataAlignment const &peripheral_data_alignment,
-				bsp::dma::property::MemoryDataAlignment const &memory_data_alignment,
-				bsp::dma::property::Priority priority,
+				bsp::dma::PeripheralIncrement const &peripheral_increment,
+				bsp::dma::MemoryIncrement const &memory_increment,
+				bsp::dma::PeripheralDataAlignment const &peripheral_data_alignment,
+				bsp::dma::MemoryDataAlignment const &memory_data_alignment,
+				bsp::dma::Priority priority,
 				std::string const &request)
 			{
 				throw std::runtime_error{CODE_POS_STR + "不支持此模式"};
@@ -150,11 +145,11 @@ namespace bsp
 			/// @param request
 			virtual void OpenAsMomoryToMemoryMode(
 				void *parent,
-				bsp::dma::property::PeripheralIncrement const &peripheral_increment,
-				bsp::dma::property::MemoryIncrement const &memory_increment,
-				bsp::dma::property::PeripheralDataAlignment const &peripheral_data_alignment,
-				bsp::dma::property::MemoryDataAlignment const &memory_data_alignment,
-				bsp::dma::property::Priority priority,
+				bsp::dma::PeripheralIncrement const &peripheral_increment,
+				bsp::dma::MemoryIncrement const &memory_increment,
+				bsp::dma::PeripheralDataAlignment const &peripheral_data_alignment,
+				bsp::dma::MemoryDataAlignment const &memory_data_alignment,
+				bsp::dma::Priority priority,
 				std::string const &request)
 			{
 				throw std::runtime_error{CODE_POS_STR + "不支持此模式"};
