@@ -26,21 +26,10 @@ namespace bsp
 
 		/// @brief DMA 在读写内存地址空间时是否自动递增地址。即每读取 1 个字节，
 		/// 就将地址递增 1.
-		class MemoryIncrement
+		enum class MemoryIncrement
 		{
-		private:
-			bool _value = false;
-
-		public:
-			explicit MemoryIncrement(bool value)
-			{
-				_value = value;
-			}
-
-			bool Value() const
-			{
-				return _value;
-			}
+			Increase,
+			DoNotIncrease,
 		};
 
 		/// @brief DMA 读写外设时采用的数据对齐字节数。例如 1 字节对齐或 4 字节对齐。
@@ -95,7 +84,7 @@ namespace bsp
 			/// @param request
 			virtual void OpenAsPeripheralToMemoryMode(void *parent,
 													  bsp::dma::PeripheralIncrement peripheral_increment,
-													  bsp::dma::MemoryIncrement const &memory_increment,
+													  bsp::dma::MemoryIncrement memory_increment,
 													  bsp::dma::PeripheralDataAlignment const &peripheral_data_alignment,
 													  bsp::dma::MemoryDataAlignment const &memory_data_alignment,
 													  bsp::dma::Priority priority,
@@ -114,7 +103,7 @@ namespace bsp
 			/// @param request
 			virtual void OpenAsMemoryToPeripheralMode(void *parent,
 													  bsp::dma::PeripheralIncrement peripheral_increment,
-													  bsp::dma::MemoryIncrement const &memory_increment,
+													  bsp::dma::MemoryIncrement memory_increment,
 													  bsp::dma::PeripheralDataAlignment const &peripheral_data_alignment,
 													  bsp::dma::MemoryDataAlignment const &memory_data_alignment,
 													  bsp::dma::Priority priority,
@@ -131,14 +120,13 @@ namespace bsp
 			/// @param memory_data_alignment
 			/// @param priority
 			/// @param request
-			virtual void OpenAsMomoryToMemoryMode(
-				void *parent,
-				bsp::dma::PeripheralIncrement peripheral_increment,
-				bsp::dma::MemoryIncrement const &memory_increment,
-				bsp::dma::PeripheralDataAlignment const &peripheral_data_alignment,
-				bsp::dma::MemoryDataAlignment const &memory_data_alignment,
-				bsp::dma::Priority priority,
-				std::string const &request)
+			virtual void OpenAsMomoryToMemoryMode(void *parent,
+												  bsp::dma::PeripheralIncrement peripheral_increment,
+												  bsp::dma::MemoryIncrement memory_increment,
+												  bsp::dma::PeripheralDataAlignment const &peripheral_data_alignment,
+												  bsp::dma::MemoryDataAlignment const &memory_data_alignment,
+												  bsp::dma::Priority priority,
+												  std::string const &request)
 			{
 				throw std::runtime_error{CODE_POS_STR + "不支持此模式"};
 			}
