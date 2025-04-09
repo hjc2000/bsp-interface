@@ -123,14 +123,13 @@ namespace bsp
 			/// @param memory_data_alignment
 			/// @param priority
 			/// @param request
-			virtual void OpenAsMemoryToPeripheralMode(
-				void *parent,
-				bsp::dma::PeripheralIncrement const &peripheral_increment,
-				bsp::dma::MemoryIncrement const &memory_increment,
-				bsp::dma::PeripheralDataAlignment const &peripheral_data_alignment,
-				bsp::dma::MemoryDataAlignment const &memory_data_alignment,
-				bsp::dma::Priority priority,
-				std::string const &request)
+			virtual void OpenAsMemoryToPeripheralMode(void *parent,
+													  bsp::dma::PeripheralIncrement const &peripheral_increment,
+													  bsp::dma::MemoryIncrement const &memory_increment,
+													  bsp::dma::PeripheralDataAlignment const &peripheral_data_alignment,
+													  bsp::dma::MemoryDataAlignment const &memory_data_alignment,
+													  bsp::dma::Priority priority,
+													  std::string const &request)
 			{
 				throw std::runtime_error{CODE_POS_STR + "不支持此模式"};
 			}
