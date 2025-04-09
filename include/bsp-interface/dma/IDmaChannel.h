@@ -18,21 +18,10 @@ namespace bsp
 
 		/// @brief DMA 在读写外设地址空间时，是否自动递增地址。即每读取 1 个字节，
 		/// 就将地址递增 1.
-		class PeripheralIncrement
+		enum class PeripheralIncrement
 		{
-		private:
-			bool _value = false;
-
-		public:
-			explicit PeripheralIncrement(bool value)
-			{
-				_value = value;
-			}
-
-			bool Value() const
-			{
-				return _value;
-			}
+			Increase,
+			DoNotIncrease,
 		};
 
 		/// @brief DMA 在读写内存地址空间时是否自动递增地址。即每读取 1 个字节，
@@ -105,7 +94,7 @@ namespace bsp
 			/// @param priority
 			/// @param request
 			virtual void OpenAsPeripheralToMemoryMode(void *parent,
-													  bsp::dma::PeripheralIncrement const &peripheral_increment,
+													  bsp::dma::PeripheralIncrement peripheral_increment,
 													  bsp::dma::MemoryIncrement const &memory_increment,
 													  bsp::dma::PeripheralDataAlignment const &peripheral_data_alignment,
 													  bsp::dma::MemoryDataAlignment const &memory_data_alignment,
@@ -124,7 +113,7 @@ namespace bsp
 			/// @param priority
 			/// @param request
 			virtual void OpenAsMemoryToPeripheralMode(void *parent,
-													  bsp::dma::PeripheralIncrement const &peripheral_increment,
+													  bsp::dma::PeripheralIncrement peripheral_increment,
 													  bsp::dma::MemoryIncrement const &memory_increment,
 													  bsp::dma::PeripheralDataAlignment const &peripheral_data_alignment,
 													  bsp::dma::MemoryDataAlignment const &memory_data_alignment,
@@ -144,7 +133,7 @@ namespace bsp
 			/// @param request
 			virtual void OpenAsMomoryToMemoryMode(
 				void *parent,
-				bsp::dma::PeripheralIncrement const &peripheral_increment,
+				bsp::dma::PeripheralIncrement peripheral_increment,
 				bsp::dma::MemoryIncrement const &memory_increment,
 				bsp::dma::PeripheralDataAlignment const &peripheral_data_alignment,
 				bsp::dma::MemoryDataAlignment const &memory_data_alignment,
