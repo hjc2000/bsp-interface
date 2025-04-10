@@ -117,14 +117,6 @@ namespace bsp
 
 	/* #endregion */
 
-	namespace gpio
-	{
-		class gpio_handle;
-
-		bool read_pin(bsp::gpio::gpio_handle &handle);
-
-	} // namespace gpio
-
 	///
 	/// @brief 管理单个 GPIO 引脚。
 	///
