@@ -1,10 +1,5 @@
 #include "ISDRAMTiming.h"
 
-base::Nanoseconds bsp::sdram::ISDRAMTiming::T_AutoRefreshCommand() const
-{
-	return T_REF() / RowCount();
-}
-
 base::Json bsp::sdram::ISDRAMTiming::ToJson() const
 {
 	base::Json root{

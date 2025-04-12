@@ -128,7 +128,10 @@ namespace bsp
 
 			/// @brief 发送自动刷新命令的时间间隔。
 			/// @return
-			base::Nanoseconds T_AutoRefreshCommand() const;
+			base::Nanoseconds T_AutoRefreshCommand() const
+			{
+				return T_REF() / RowCount();
+			}
 
 			/// @brief 每隔多少个 CLK 周期要发送一次自动刷新命令。
 			/// @return
