@@ -1,6 +1,6 @@
 #include "W9825G6KH_6.h"
+#include "base/peripheral/sdram/chip-timing-provider/W9825G6KH_6_TimingProvider.h"
 #include "base/task/delay.h"
-#include "bsp-interface/sdram/chip/W9825G6KH_6_TimingProvider.h"
 
 // SDRAM开始地址
 #define Bank5_SDRAM_ADDR ((uint32_t)(0XC0000000))
@@ -25,7 +25,7 @@ bsp::sdram::chip::W9825G6KH_6::W9825G6KH_6(bsp::sdram::ISDRAMController &control
 
 void bsp::sdram::chip::W9825G6KH_6::Open()
 {
-	_controller.OpenAsReadBurstMode(bsp::sdram::chip::W9825G6KH_6_TimingProvider{},
+	_controller.OpenAsReadBurstMode(base::sdram::W9825G6KH_6_TimingProvider{},
 									bsp::sdram::property::BankCount{4},
 									bsp::sdram::property::RowBitCount{13},
 									bsp::sdram::property::ColumnBitCount{9},
@@ -38,7 +38,7 @@ void bsp::sdram::chip::W9825G6KH_6::Open()
 	_controller.AutoRefresh(8);
 
 	uint32_t cas_letency = SDRAM_MODEREG_CAS_LATENCY_2;
-	if (_controller.Timing().CASLatency() == 3)
+	if (_controller.Timing().cas_latency() == 3)
 	{
 		cas_letency = SDRAM_MODEREG_CAS_LATENCY_3;
 	}
