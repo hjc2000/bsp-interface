@@ -14,7 +14,7 @@ namespace bsp
 		}
 
 		base::led::RedDigitalLed().TurnOn();
-		serial->Open();
+		serial->Start();
 		std::unique_ptr<uint8_t[]> buffer{new uint8_t[128]};
 		while (true)
 		{
