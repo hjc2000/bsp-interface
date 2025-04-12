@@ -1,6 +1,6 @@
 #pragma once
 #include "base/peripheral/IDigitalLed.h"
-#include "base/peripheral/ISerial.h"
+#include "base/peripheral/serial/ISerial.h"
 #include <stdexcept>
 
 namespace bsp
