@@ -1,5 +1,5 @@
 #pragma once
-#include "base/peripheral/IDigitalLed.h"
+#include "base/peripheral/led/IDigitalLed.h"
 #include "base/task/delay.h"
 #include <bsp-interface/di/independent-watch-dog.h>
 #include <bsp-interface/di/key.h>

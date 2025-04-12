@@ -1,5 +1,5 @@
 #pragma once
-#include "base/peripheral/IDigitalLed.h"
+#include "base/peripheral/led/IDigitalLed.h"
 #include "bsp-interface/di/interrupt.h"
 
 namespace bsp
