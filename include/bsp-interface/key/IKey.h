@@ -7,8 +7,6 @@ namespace bsp
 	class IKey
 	{
 	public:
-		virtual ~IKey() = default;
-
 		/// @brief 按键名称。
 		/// @return
 		virtual std::string KeyName() = 0;
