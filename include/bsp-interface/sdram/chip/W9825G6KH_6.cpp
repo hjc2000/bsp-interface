@@ -26,11 +26,11 @@ bsp::sdram::chip::W9825G6KH_6::W9825G6KH_6(bsp::sdram::ISDRAMController &control
 void bsp::sdram::chip::W9825G6KH_6::Open()
 {
 	_controller.OpenAsReadBurstMode(base::sdram::W9825G6KH_6_TimingProvider{},
-									bsp::sdram::BankCount{4},
-									bsp::sdram::RowBitCount{13},
-									bsp::sdram::ColumnBitCount{9},
-									bsp::sdram::DataWidth{16},
-									bsp::sdram::ReadBurstLength{1});
+									base::sdram::BankCount{4},
+									base::sdram::RowBitCount{13},
+									base::sdram::ColumnBitCount{9},
+									base::sdram::DataWidth{16},
+									base::sdram::ReadBurstLength{1});
 
 	// SDRAM控制器初始化完成以后还需要按照如下顺序初始化SDRAM
 	base::task::Delay(std::chrono::microseconds{500});

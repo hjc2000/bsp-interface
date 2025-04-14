@@ -1,101 +1,12 @@
 #pragma once
 #include "base/peripheral/sdram/ISDRAMTimingProvider.h"
+#include "base/peripheral/sdram/parameter.h"
 #include "base/peripheral/sdram/sdram_timing.h"
 
 namespace bsp
 {
 	namespace sdram
 	{
-		/// @brief SDRAM 中 BANK 的数量。
-		class BankCount
-		{
-		private:
-			int _value = 0;
-
-		public:
-			explicit BankCount(int value)
-				: _value(value)
-			{
-			}
-
-			int Value() const
-			{
-				return _value;
-			}
-		};
-
-		/// @brief 行地址的位数。
-		class RowBitCount
-		{
-		private:
-			int _value = 0;
-
-		public:
-			explicit RowBitCount(int value)
-				: _value(value)
-			{
-			}
-
-			int Value() const
-			{
-				return _value;
-			}
-		};
-
-		/// @brief 列地址的位数。
-		class ColumnBitCount
-		{
-		private:
-			int _value = 0;
-
-		public:
-			explicit ColumnBitCount(int value)
-				: _value(value)
-			{
-			}
-
-			int Value() const
-			{
-				return _value;
-			}
-		};
-
-		/// @brief 数据宽度，或者说数据总线位数。
-		class DataWidth
-		{
-		private:
-			int _value = 0;
-
-		public:
-			explicit DataWidth(int value)
-				: _value(value)
-			{
-			}
-
-			int Value() const
-			{
-				return _value;
-			}
-		};
-
-		/// @brief 读突发长度
-		class ReadBurstLength
-		{
-		private:
-			int _value = 0;
-
-		public:
-			explicit ReadBurstLength(int value)
-				: _value(value)
-			{
-			}
-
-			int Value() const
-			{
-				return _value;
-			}
-		};
-
 		/// @brief SDRAM 控制器接口。
 		/// @note 这个接口用来封装类似于 stm32 的 FMC 接口的 SDRAM 控制器。
 		class ISDRAMController
@@ -109,11 +20,11 @@ namespace bsp
 			/// @param data_width
 			/// @param read_burst_length
 			virtual void OpenAsReadBurstMode(base::sdram::ISDRAMTimingProvider const &timing_provider,
-											 bsp::sdram::BankCount const &bank_count,
-											 bsp::sdram::RowBitCount const &row_bit_count,
-											 bsp::sdram::ColumnBitCount const &column_bit_count,
-											 bsp::sdram::DataWidth const &data_width,
-											 bsp::sdram::ReadBurstLength const &read_burst_length) = 0;
+											 base::sdram::BankCount const &bank_count,
+											 base::sdram::RowBitCount const &row_bit_count,
+											 base::sdram::ColumnBitCount const &column_bit_count,
+											 base::sdram::DataWidth const &data_width,
+											 base::sdram::ReadBurstLength const &read_burst_length) = 0;
 
 			/// @brief 发送：“预充电所有 BANK” 的命令。
 			virtual void PrechargeAll() = 0;
