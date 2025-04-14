@@ -6,68 +6,65 @@ namespace bsp
 {
 	namespace sdram
 	{
-		namespace property
+		/// @brief SDRAM 中 BANK 的数量。
+		class BankCount
 		{
-			/// @brief SDRAM 中 BANK 的数量。
-			class BankCount
+		public:
+			explicit BankCount(int value)
+				: _value(value)
 			{
-			public:
-				explicit BankCount(int value)
-					: _value(value)
-				{
-				}
+			}
 
-				int _value = 0;
-			};
+			int _value = 0;
+		};
 
-			/// @brief 行地址的位数。
-			class RowBitCount
+		/// @brief 行地址的位数。
+		class RowBitCount
+		{
+		public:
+			explicit RowBitCount(int value)
+				: _value(value)
 			{
-			public:
-				explicit RowBitCount(int value)
-					: _value(value)
-				{
-				}
+			}
 
-				int _value = 0;
-			};
+			int _value = 0;
+		};
 
-			/// @brief 列地址的位数。
-			class ColumnBitCount
+		/// @brief 列地址的位数。
+		class ColumnBitCount
+		{
+		public:
+			explicit ColumnBitCount(int value)
+				: _value(value)
 			{
-			public:
-				explicit ColumnBitCount(int value)
-					: _value(value)
-				{
-				}
+			}
 
-				int _value = 0;
-			};
+			int _value = 0;
+		};
 
-			/// @brief 数据宽度，或者说数据总线位数。
-			class DataWidth
+		/// @brief 数据宽度，或者说数据总线位数。
+		class DataWidth
+		{
+		public:
+			explicit DataWidth(int value)
+				: _value(value)
 			{
-			public:
-				explicit DataWidth(int value)
-					: _value(value)
-				{
-				}
+			}
 
-				int _value = 0;
-			};
+			int _value = 0;
+		};
 
-			/// @brief 读突发长度
-			class ReadBurstLength
+		/// @brief 读突发长度
+		class ReadBurstLength
+		{
+		public:
+			explicit ReadBurstLength(int value)
+				: _value(value)
 			{
-			public:
-				explicit ReadBurstLength(int value)
-					: _value(value)
-				{
-				}
+			}
 
-				int _value = 0;
-			};
-		} // namespace property
+			int _value = 0;
+		};
 
 		/// @brief SDRAM 控制器接口。
 		/// @note 这个接口用来封装类似于 stm32 的 FMC 接口的 SDRAM 控制器。
@@ -82,11 +79,11 @@ namespace bsp
 			/// @param data_width
 			/// @param read_burst_length
 			virtual void OpenAsReadBurstMode(base::sdram::ISDRAMTimingProvider const &timing_provider,
-											 bsp::sdram::property::BankCount const &bank_count,
-											 bsp::sdram::property::RowBitCount const &row_bit_count,
-											 bsp::sdram::property::ColumnBitCount const &column_bit_count,
-											 bsp::sdram::property::DataWidth const &data_width,
-											 bsp::sdram::property::ReadBurstLength const &read_burst_length) = 0;
+											 bsp::sdram::BankCount const &bank_count,
+											 bsp::sdram::RowBitCount const &row_bit_count,
+											 bsp::sdram::ColumnBitCount const &column_bit_count,
+											 bsp::sdram::DataWidth const &data_width,
+											 bsp::sdram::ReadBurstLength const &read_burst_length) = 0;
 
 			/// @brief 发送：“预充电所有 BANK” 的命令。
 			virtual void PrechargeAll() = 0;
