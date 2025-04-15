@@ -18,24 +18,24 @@
 #define SDRAM_MODEREG_WRITEBURST_MODE_PROGRAMMED ((uint16_t)0x0000)
 #define SDRAM_MODEREG_WRITEBURST_MODE_SINGLE ((uint16_t)0x0200)
 
-bsp::sdram::chip::W9825G6KH_6::W9825G6KH_6(bsp::sdram::ISDRAMController &controller)
+bsp::sdram::chip::W9825G6KH_6::W9825G6KH_6(base::sdram::SdramController const &controller)
 	: _controller(controller)
 {
 }
 
 void bsp::sdram::chip::W9825G6KH_6::Open()
 {
-	_controller.OpenAsReadBurstMode(base::sdram::W9825G6KH_6_TimingProvider{},
-									base::sdram::BankCount{4},
-									base::sdram::RowBitCount{13},
-									base::sdram::ColumnBitCount{9},
-									base::sdram::DataWidth{16},
-									base::sdram::ReadBurstLength{1});
+	_controller.InitializeAsReadBurstMode(base::sdram::W9825G6KH_6_TimingProvider{},
+										  base::sdram::BankCount{4},
+										  base::sdram::RowBitCount{13},
+										  base::sdram::ColumnBitCount{9},
+										  base::sdram::DataWidth{16},
+										  base::sdram::ReadBurstLength{1});
 
 	// SDRAM控制器初始化完成以后还需要按照如下顺序初始化SDRAM
 	base::task::Delay(std::chrono::microseconds{500});
-	_controller.PrechargeAll();
-	_controller.AutoRefresh(8);
+	_controller.SendPrechargeAllCommand();
+	_controller.SendAutoRefreshCommand(8);
 
 	uint32_t cas_letency = SDRAM_MODEREG_CAS_LATENCY_2;
 	if (_controller.Timing().cas_latency() == 3)
@@ -60,5 +60,5 @@ void bsp::sdram::chip::W9825G6KH_6::Open()
 
 base::Span bsp::sdram::chip::W9825G6KH_6::Span() const
 {
-	return base::Span{_controller.StartAddress(), 32 * 1024 * 1024};
+	return base::Span{_controller.Span().Buffer(), 32 * 1024 * 1024};
 }

@@ -1,5 +1,5 @@
 #pragma once
-#include "bsp-interface/sdram/ISDRAMController.h"
+#include "base/peripheral/sdram/SdramController.h"
 
 namespace bsp
 {
@@ -11,12 +11,12 @@ namespace bsp
 			class W9825G6KH_6
 			{
 			private:
-				bsp::sdram::ISDRAMController &_controller;
+				base::sdram::SdramController _controller;
 
 			public:
 				/// @brief 构造函数。
 				/// @param controller 需要一个控制器来控制 SDRAM 芯片。
-				W9825G6KH_6(bsp::sdram::ISDRAMController &controller);
+				W9825G6KH_6(base::sdram::SdramController const &controller);
 
 				/// @brief 打开 SDRAM.
 				/// @note 分为 2 步：
