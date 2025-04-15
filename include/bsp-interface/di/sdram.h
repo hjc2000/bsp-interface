@@ -1,6 +1,5 @@
 #pragma once
-#include <bsp-interface/sdram/ISDRAM.h>
-#include <bsp-interface/sdram/ISDRAMController.h>
+#include "bsp-interface/sdram/ISDRAMController.h"
 
 namespace bsp
 {
@@ -12,7 +11,6 @@ namespace bsp
 			/// @return
 			bsp::sdram::ISDRAMController &SDRAMController();
 
-			bsp::sdram::ISDRAM &SDRAM();
 		} // namespace sdram
 	} // namespace di
 } // namespace bsp
