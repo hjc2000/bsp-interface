@@ -19,18 +19,18 @@ bsp::IPhyController &bsp::LAN8720APhyDriver::PhyController()
 	return *_phy_controller;
 }
 
-bsp::EthernetDuplexMode bsp::LAN8720APhyDriver::DuplexMode()
+base::ethernet::DuplexMode bsp::LAN8720APhyDriver::DuplexMode()
 {
 	uint32_t register_value = ReadRegister(0x1F);
 	uint32_t const mask = 0b10000;
 	if (register_value & mask)
 	{
 		bsp::di::Console().WriteLine("全双工");
-		return bsp::EthernetDuplexMode::FullDuplex;
+		return base::ethernet::DuplexMode::FullDuplex;
 	}
 
 	bsp::di::Console().WriteLine("半双工");
-	return bsp::EthernetDuplexMode::HalfDuplex;
+	return base::ethernet::DuplexMode::HalfDuplex;
 }
 
 base::bps bsp::LAN8720APhyDriver::Speed()

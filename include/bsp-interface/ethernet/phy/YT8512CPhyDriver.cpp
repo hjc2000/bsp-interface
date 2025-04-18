@@ -1,4 +1,5 @@
 #include "YT8512CPhyDriver.h"
+#include "base/peripheral/ethernet/parameter.h"
 #include <base/container/Array.h>
 #include <base/string/define.h>
 #include <base/unit/Mbps.h>
@@ -19,7 +20,7 @@ bsp::IPhyController &bsp::YT8512CPhyDriver::PhyController()
 	return *_phy_controller;
 }
 
-bsp::EthernetDuplexMode bsp::YT8512CPhyDriver::DuplexMode()
+base::ethernet::DuplexMode bsp::YT8512CPhyDriver::DuplexMode()
 {
 	uint32_t register_value = ReadRegister(0x11);
 	uint32_t const mask = 0b1 << 13;
@@ -28,11 +29,11 @@ bsp::EthernetDuplexMode bsp::YT8512CPhyDriver::DuplexMode()
 	if (duplex_register)
 	{
 		bsp::di::Console().WriteLine("全双工");
-		return bsp::EthernetDuplexMode::FullDuplex;
+		return base::ethernet::DuplexMode::FullDuplex;
 	}
 
 	bsp::di::Console().WriteLine("半双工");
-	return bsp::EthernetDuplexMode::HalfDuplex;
+	return base::ethernet::DuplexMode::HalfDuplex;
 }
 
 base::bps bsp::YT8512CPhyDriver::Speed()

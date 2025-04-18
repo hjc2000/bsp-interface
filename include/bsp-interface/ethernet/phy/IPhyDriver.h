@@ -1,6 +1,6 @@
 #pragma once
+#include "base/peripheral/ethernet/parameter.h"
 #include "base/unit/bps.h"
-#include "bsp-interface/ethernet/EthernetDuplexMode.h"
 #include "bsp-interface/ethernet/phy/IPhyController.h"
 
 namespace bsp
@@ -13,7 +13,7 @@ namespace bsp
 
 		/// @brief 获取此网口的双工模式。
 		/// @return
-		virtual bsp::EthernetDuplexMode DuplexMode() = 0;
+		virtual base::ethernet::DuplexMode DuplexMode() = 0;
 
 		/// @brief 获取此网口的速度。
 		/// @return

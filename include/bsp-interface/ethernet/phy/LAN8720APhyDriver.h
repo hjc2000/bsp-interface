@@ -1,4 +1,5 @@
 #pragma once
+#include "base/peripheral/ethernet/parameter.h"
 #include <bsp-interface/ethernet/phy/IPhyDriver.h>
 #include <memory>
 
@@ -17,7 +18,7 @@ namespace bsp
 
 		/// @brief 获取此网口的双工模式。
 		/// @return
-		virtual bsp::EthernetDuplexMode DuplexMode() override;
+		virtual base::ethernet::DuplexMode DuplexMode() override;
 
 		/// @brief 获取此网口的速度。
 		/// @return

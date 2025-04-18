@@ -2,10 +2,8 @@
 #include "base/container/iterator/IEnumerable.h"
 #include "base/net/Mac.h"
 #include "base/peripheral/ethernet/parameter.h"
-#include "base/stream/Stream.h"
 #include "base/unit/bps.h"
 #include "base/unit/Mbps.h"
-#include "bsp-interface/ethernet/EthernetDuplexMode.h"
 #include <string>
 
 namespace bsp
@@ -45,7 +43,7 @@ namespace bsp
 		/// @brief 启动以太网。
 		/// @param duplex_mode
 		/// @param speed
-		virtual void Start(bsp::EthernetDuplexMode duplex_mode,
+		virtual void Start(base::ethernet::DuplexMode duplex_mode,
 						   base::bps const &speed) = 0;
 
 		/// @brief 发送。
