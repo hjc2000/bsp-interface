@@ -1,8 +1,7 @@
 #pragma once
-#include <base/unit/bps.h>
-#include <bsp-interface/ethernet/EthernetDuplexMode.h>
-#include <bsp-interface/ethernet/EthernetInterfaceType.h>
-#include <bsp-interface/ethernet/phy/IPhyController.h>
+#include "base/unit/bps.h"
+#include "bsp-interface/ethernet/EthernetDuplexMode.h"
+#include "bsp-interface/ethernet/phy/IPhyController.h"
 
 namespace bsp
 {

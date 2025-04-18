@@ -1,11 +1,11 @@
 #pragma once
-#include <base/container/iterator/IEnumerable.h>
-#include <base/net/Mac.h>
-#include <base/stream/Stream.h>
-#include <base/unit/bps.h>
-#include <base/unit/Mbps.h>
-#include <bsp-interface/ethernet/EthernetDuplexMode.h>
-#include <bsp-interface/ethernet/EthernetInterfaceType.h>
+#include "base/container/iterator/IEnumerable.h"
+#include "base/net/Mac.h"
+#include "base/peripheral/ethernet/parameter.h"
+#include "base/stream/Stream.h"
+#include "base/unit/bps.h"
+#include "base/unit/Mbps.h"
+#include "bsp-interface/ethernet/EthernetDuplexMode.h"
 #include <string>
 
 namespace bsp
@@ -23,7 +23,7 @@ namespace bsp
 		/// @param interface_type 连接着 PHY 的接口类型。（使用的是 MII 还是 RMII）
 		/// @param phy_address PHY 的地址。
 		/// @param mac MAC 地址。
-		virtual void Open(bsp::EthernetInterfaceType interface_type,
+		virtual void Open(base::ethernet::InterfaceType interface_type,
 						  uint32_t phy_address,
 						  base::Mac const &mac) = 0;
 

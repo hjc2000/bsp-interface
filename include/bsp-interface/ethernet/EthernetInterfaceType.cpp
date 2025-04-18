@@ -1,1 +1,0 @@
-#include "EthernetInterfaceType.h"
