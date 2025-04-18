@@ -44,7 +44,7 @@ namespace bsp
 		/// @param duplex_mode
 		/// @param speed
 		virtual void Start(base::ethernet::DuplexMode duplex_mode,
-						   base::bps const &speed) = 0;
+						   base::Mbps const &speed) = 0;
 
 		/// @brief 发送。
 		/// @note 现代的单片机的以太网控制器使用多个 DMA 描述符来控制数据传输。每个 DMA
