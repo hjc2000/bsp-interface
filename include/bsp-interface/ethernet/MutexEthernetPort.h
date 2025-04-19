@@ -37,7 +37,7 @@ namespace bsp
 
 		/// @brief 发送。
 		/// @param spans
-		void Send(base::IEnumerable<base::ReadOnlySpan> const &spans) override;
+		void Send(std::vector<base::ReadOnlySpan> const &spans) override;
 
 		/// @brief 发送单个 span.
 		/// @note 默认实现是基于 void Send(base::IEnumerable<base::ReadOnlySpan> const &spans).

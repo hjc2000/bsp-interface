@@ -17,7 +17,7 @@ void bsp::MutexEthernetPort::Open(base::Mac const &mac)
 	_port->Open(mac);
 }
 
-void bsp::MutexEthernetPort::Send(base::IEnumerable<base::ReadOnlySpan> const &spans)
+void bsp::MutexEthernetPort::Send(std::vector<base::ReadOnlySpan> const &spans)
 {
 	base::LockGuard l{*_sending_lock};
 	_port->Send(spans);

@@ -1,6 +1,7 @@
 #pragma once
+#include "base/net/Mac.h"
 #include <base/delegate/Delegate.h>
-#include <bsp-interface/ethernet/IEthernetController.h>
+#include <vector>
 
 namespace bsp
 {
@@ -18,12 +19,12 @@ namespace bsp
 
 		/// @brief 发送。
 		/// @param spans
-		virtual void Send(base::IEnumerable<base::ReadOnlySpan> const &spans) = 0;
+		virtual void Send(std::vector<base::ReadOnlySpan> const &spans) = 0;
 
 		/// @brief 发送单个 span.
 		/// @note 默认实现是基于 void Send(base::IEnumerable<base::ReadOnlySpan> const &spans).
 		/// @param span
-		virtual void Send(base::ReadOnlySpan const &span);
+		virtual void Send(base::ReadOnlySpan const &span) = 0;
 
 		/// @brief 收到以太网帧会触发此事件。
 		/// @note 事件回调中会传入一个装有完整的以太网帧的 base::ReadOnlySpan.
