@@ -5,7 +5,6 @@
 
 namespace bsp
 {
-	/// @brief 通过 IPhyController 驱动 PHY 芯片。
 	class IPhyDriver
 	{
 	public:
@@ -28,7 +27,8 @@ namespace bsp
 			EthernetController().HardwareResetPhy();
 		}
 
-#pragma region 自动协商
+		/* #region 自动协商 */
+
 		/// @brief 检查本网口是否支持自动协商。
 		/// @return 支持则返回 true，不支持则返回 false.
 		bool SupportAutoNegotiation();
@@ -41,7 +41,7 @@ namespace bsp
 		/// @brief 自动协商完成。
 		/// @return
 		bool AutoNegotiationCompleted();
-#pragma endregion
+		/* #endregion */
 
 		void EnablePowerDownMode();
 		void DisablePowerDownMode();
