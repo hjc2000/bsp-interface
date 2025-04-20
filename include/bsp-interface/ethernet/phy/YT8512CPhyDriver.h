@@ -1,7 +1,7 @@
 #pragma once
+#include "base/peripheral/ethernet/EthernetController.h"
 #include "base/peripheral/ethernet/parameter.h"
 #include <bsp-interface/ethernet/phy/IPhyDriver.h>
-#include <memory>
 
 namespace bsp
 {
@@ -9,12 +9,12 @@ namespace bsp
 		public bsp::IPhyDriver
 	{
 	private:
-		std::shared_ptr<bsp::IPhyController> _phy_controller;
+		base::ethernet::EthernetController _ethernet_controller;
 
 	public:
-		YT8512CPhyDriver(std::shared_ptr<bsp::IPhyController> const &phy_controller);
+		YT8512CPhyDriver(base::ethernet::EthernetController const &controller);
 
-		virtual bsp::IPhyController &PhyController() override;
+		virtual base::ethernet::EthernetController &EthernetController() override;
 
 		/// @brief 获取此网口的双工模式。
 		/// @return

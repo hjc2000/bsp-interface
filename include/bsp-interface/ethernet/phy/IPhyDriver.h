@@ -1,7 +1,7 @@
 #pragma once
+#include "base/peripheral/ethernet/EthernetController.h"
 #include "base/peripheral/ethernet/parameter.h"
 #include "base/unit/bps.h"
-#include "bsp-interface/ethernet/phy/IPhyController.h"
 
 namespace bsp
 {
@@ -9,7 +9,7 @@ namespace bsp
 	class IPhyDriver
 	{
 	public:
-		virtual bsp::IPhyController &PhyController() = 0;
+		virtual base::ethernet::EthernetController &EthernetController() = 0;
 
 		/// @brief 获取此网口的双工模式。
 		/// @return
@@ -25,7 +25,7 @@ namespace bsp
 		/// @brief 通过 PHY 的复位引脚将 PHY 复位。
 		void HardwareReset()
 		{
-			PhyController().HardwareReset();
+			EthernetController().HardwareResetPhy();
 		}
 
 #pragma region 自动协商
@@ -58,7 +58,7 @@ namespace bsp
 		/// @return
 		uint32_t ReadRegister(uint32_t register_index)
 		{
-			return PhyController().ReadRegister(register_index);
+			return EthernetController().ReadPhyRegister(register_index);
 		}
 
 		/// @brief 写 PHY 的寄存器。
@@ -66,7 +66,7 @@ namespace bsp
 		/// @param value
 		void WriteRegister(uint32_t register_index, uint32_t value)
 		{
-			PhyController().WriteRegister(register_index, value);
+			EthernetController().WritePhyRegister(register_index, value);
 		}
 	};
 } // namespace bsp

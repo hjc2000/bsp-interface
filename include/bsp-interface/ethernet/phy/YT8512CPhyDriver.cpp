@@ -5,19 +5,14 @@
 #include <base/unit/Mbps.h>
 #include <bsp-interface/di/console.h>
 
-bsp::YT8512CPhyDriver::YT8512CPhyDriver(std::shared_ptr<bsp::IPhyController> const &phy_controller)
+bsp::YT8512CPhyDriver::YT8512CPhyDriver(base::ethernet::EthernetController const &controller)
+	: _ethernet_controller(controller)
 {
-	if (phy_controller == nullptr)
-	{
-		throw std::invalid_argument{CODE_POS_STR + "不能是空指针。"};
-	}
-
-	_phy_controller = phy_controller;
 }
 
-bsp::IPhyController &bsp::YT8512CPhyDriver::PhyController()
+base::ethernet::EthernetController &bsp::YT8512CPhyDriver::EthernetController()
 {
-	return *_phy_controller;
+	return _ethernet_controller;
 }
 
 base::ethernet::DuplexMode bsp::YT8512CPhyDriver::DuplexMode()

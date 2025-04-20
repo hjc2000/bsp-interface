@@ -4,19 +4,14 @@
 #include <base/unit/Mbps.h>
 #include <bsp-interface/di/console.h>
 
-bsp::LAN8720APhyDriver::LAN8720APhyDriver(std::shared_ptr<bsp::IPhyController> const &phy_controller)
+bsp::LAN8720APhyDriver::LAN8720APhyDriver(base::ethernet::EthernetController const &controller)
+	: _ethernet_controller(controller)
 {
-	if (phy_controller == nullptr)
-	{
-		throw std::invalid_argument{CODE_POS_STR + "不能是空指针。"};
-	}
-
-	_phy_controller = phy_controller;
 }
 
-bsp::IPhyController &bsp::LAN8720APhyDriver::PhyController()
+base::ethernet::EthernetController &bsp::LAN8720APhyDriver::EthernetController()
 {
-	return *_phy_controller;
+	return _ethernet_controller;
 }
 
 base::ethernet::DuplexMode bsp::LAN8720APhyDriver::DuplexMode()
