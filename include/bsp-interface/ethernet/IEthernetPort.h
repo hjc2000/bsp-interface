@@ -9,10 +9,6 @@ namespace bsp
 	class IEthernetPort
 	{
 	public:
-		/// @brief 以太网控制器的名称。
-		/// @return
-		virtual std::string Name() const = 0;
-
 		/// @brief 打开以太网端口。
 		/// @param mac MAC 地址。
 		virtual void Open(base::Mac const &mac) = 0;

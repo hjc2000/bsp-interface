@@ -27,10 +27,6 @@ namespace bsp
 	public:
 		MutexEthernetPort(bsp::IEthernetPort *port);
 
-		/// @brief 以太网控制器的名称。
-		/// @return
-		std::string Name() const override;
-
 		/// @brief 打开以太网端口。
 		/// @param mac MAC 地址。
 		void Open(base::Mac const &mac) override;

@@ -5,12 +5,6 @@ bsp::MutexEthernetPort::MutexEthernetPort(bsp::IEthernetPort *port)
 	_port = port;
 }
 
-std::string bsp::MutexEthernetPort::Name() const
-{
-	base::LockGuard l{*_lock};
-	return _port->Name();
-}
-
 void bsp::MutexEthernetPort::Open(base::Mac const &mac)
 {
 	base::LockGuard l{*_lock};
