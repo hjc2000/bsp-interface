@@ -1,5 +1,5 @@
 #pragma once
-#include "base/task/IMutex.h"
+#include "base/task/Mutex.h"
 #include "bsp-interface/iic/IIicHost.h"
 
 namespace bsp
@@ -12,7 +12,7 @@ namespace bsp
 		public bsp::IIicHost
 	{
 	private:
-		std::shared_ptr<base::IMutex> _lock = base::CreateIMutex();
+		base::task::Mutex _lock{};
 		bsp::IIicHost *_host = nullptr;
 
 	public:

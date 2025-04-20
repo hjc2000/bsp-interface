@@ -1,7 +1,6 @@
 #pragma once
-#include <base/task/IMutex.h>
-#include <bsp-interface/di/task.h>
-#include <Console.h>
+#include "base/task/Mutex.h"
+#include "Console.h"
 
 namespace bsp
 {
@@ -9,7 +8,7 @@ namespace bsp
 		public bsp::IConsole
 	{
 	private:
-		std::shared_ptr<base::IMutex> _lock = base::CreateIMutex();
+		base::task::Mutex _lock{};
 		bsp::IConsole *_console = &Console::Instance();
 
 	public:
