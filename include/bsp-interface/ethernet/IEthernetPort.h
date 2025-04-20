@@ -1,6 +1,6 @@
 #pragma once
+#include "base/delegate/IEvent.h"
 #include "base/net/Mac.h"
-#include <base/delegate/Delegate.h>
 #include <vector>
 
 namespace bsp
