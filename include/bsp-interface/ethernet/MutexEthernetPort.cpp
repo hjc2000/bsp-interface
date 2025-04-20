@@ -29,14 +29,14 @@ base::IEvent<base::ReadOnlySpan> &bsp::MutexEthernetPort::ReceivingEhternetFrame
 	return _port->ReceivingEhternetFrameEvent();
 }
 
-base::IEvent<> &bsp::MutexEthernetPort::ConnectionEvent()
+base::IEvent<> &bsp::MutexEthernetPort::ConnectedEvent()
 {
 	base::LockGuard l{*_sending_lock};
-	return _port->ConnectionEvent();
+	return _port->ConnectedEvent();
 }
 
-base::IEvent<> &bsp::MutexEthernetPort::DisconnectionEvent()
+base::IEvent<> &bsp::MutexEthernetPort::DisconnectedEvent()
 {
 	base::LockGuard l{*_sending_lock};
-	return _port->DisconnectionEvent();
+	return _port->DisconnectedEvent();
 }

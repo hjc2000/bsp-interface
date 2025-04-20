@@ -1,1 +1,1 @@
-#include "IEthernetPort.h"
+#include "IEthernetPort.h" // IWYU pragma: keep
