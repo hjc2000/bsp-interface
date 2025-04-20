@@ -1,11 +1,11 @@
 #pragma once
 #include "base/peripheral/ethernet/parameter.h"
-#include <bsp-interface/ethernet/phy/IPhyDriver.h>
+#include "base/peripheral/ethernet/phy/IPhyDriver.h"
 
 namespace bsp
 {
 	class LAN8720APhyDriver :
-		public bsp::IPhyDriver
+		public base::ethernet::IPhyDriver
 	{
 	private:
 		base::ethernet::EthernetController _ethernet_controller;
