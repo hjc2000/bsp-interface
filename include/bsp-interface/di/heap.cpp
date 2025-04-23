@@ -1,8 +1,6 @@
 #include "heap.h"
-#include <base/RentedPtrFactory.h>
-#include <base/string/define.h>
-#include <bsp-interface/di/interrupt.h>
-#include <bsp-interface/di/task.h>
+#include "base/RentedPtrFactory.h"
+#include "base/task/task.h"
 #include <vector>
 
 namespace
@@ -28,7 +26,7 @@ namespace
 
 void bsp::di::heap::AddHeap(std::shared_ptr<bsp::IHeap> const &heap)
 {
-	bsp::di::task::TaskGuard g;
+	base::task::TaskSchedulerSuspendGuard g;
 	if (_heap_vector == nullptr)
 	{
 		std::vector<std::shared_ptr<bsp::IHeap>> *vec = new std::vector<std::shared_ptr<bsp::IHeap>>{};
@@ -43,13 +41,13 @@ void bsp::di::heap::AddHeap(std::shared_ptr<bsp::IHeap> const &heap)
 
 void bsp::di::heap::AddHeap(uint8_t *buffer, size_t size)
 {
-	bsp::di::task::TaskGuard g;
+	base::task::TaskSchedulerSuspendGuard g;
 	bsp::di::heap::AddHeap(bsp::di::heap::CreateHeap(buffer, size));
 }
 
 void bsp::di::heap::AddHeap(base::Span const &span)
 {
-	bsp::di::task::TaskGuard g;
+	base::task::TaskSchedulerSuspendGuard g;
 	AddHeap(span.Buffer(), span.Size());
 }
 
@@ -57,7 +55,7 @@ void bsp::di::heap::AddHeap(base::Span const &span)
 
 void *bsp::di::heap::Malloc(size_t size) noexcept
 {
-	bsp::di::task::TaskGuard g;
+	base::task::TaskSchedulerSuspendGuard g;
 	if (_heap_vector == nullptr)
 	{
 		void *p = bsp::di::heap::Heap().Malloc(size);
@@ -78,7 +76,7 @@ void *bsp::di::heap::Malloc(size_t size) noexcept
 
 void bsp::di::heap::Free(void *ptr) noexcept
 {
-	bsp::di::task::TaskGuard g;
+	base::task::TaskSchedulerSuspendGuard g;
 	if (_heap_vector == nullptr)
 	{
 		bsp::di::heap::Heap().Free(ptr);
