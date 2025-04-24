@@ -9,8 +9,8 @@ namespace
 	// 因为它在 C 的启动代码中被初始化，这发生在 C++ 启动代码之前。
 	//
 	// 这可以确保 C++ 全局对象构造函数如果涉及到动态内存分配，在构造函数中访问此变量时，此变量
-	// 已经初始化完成。随后在堆上构造 std::vector<std::shared_ptr<bsp::IHeap>> 对象将此变量
-	// 赋值为指向堆上 std::vector<std::shared_ptr<bsp::IHeap>> 对象的指针后不会被启动代码
+	// 已经初始化完成。随后在堆上构造 std::vector<std::shared_ptr<base::heap::IHeap>> 对象将此变量
+	// 赋值为指向堆上 std::vector<std::shared_ptr<base::heap::IHeap>> 对象的指针后不会被启动代码
 	// 赋值为 nullptr.
 	//
 	// 动态内存分配有可能被 C++ 全局对象的构造函数使用，如果这里使用的不是 C 的原始类型，即 std::vector
@@ -18,18 +18,18 @@ namespace
 	// 全局对象的构造顺序是未定义的，会发生错误。
 	//
 	// 所以这里使用裸指针，并用延迟初始化技术，在需要时才在堆上构造 std::vector 对象并让此指针指向它。
-	std::vector<std::shared_ptr<bsp::IHeap>> *volatile _heap_vector = nullptr;
+	std::vector<std::shared_ptr<base::heap::IHeap>> *volatile _heap_vector = nullptr;
 
 } // namespace
 
 /* #region AddHeap */
 
-void bsp::di::heap::AddHeap(std::shared_ptr<bsp::IHeap> const &heap)
+void bsp::di::heap::AddHeap(std::shared_ptr<base::heap::IHeap> const &heap)
 {
 	base::task::TaskSchedulerSuspendGuard g;
 	if (_heap_vector == nullptr)
 	{
-		std::vector<std::shared_ptr<bsp::IHeap>> *vec = new std::vector<std::shared_ptr<bsp::IHeap>>{};
+		std::vector<std::shared_ptr<base::heap::IHeap>> *vec = new std::vector<std::shared_ptr<base::heap::IHeap>>{};
 		vec->push_back(heap);
 		vec->push_back(base::RentedPtrFactory::Create(&bsp::di::heap::Heap()));
 		_heap_vector = vec;
@@ -62,7 +62,7 @@ void *bsp::di::heap::Malloc(size_t size) noexcept
 		return p;
 	}
 
-	for (std::shared_ptr<bsp::IHeap> &heap : *_heap_vector)
+	for (std::shared_ptr<base::heap::IHeap> &heap : *_heap_vector)
 	{
 		void *ptr = heap->Malloc(size);
 		if (ptr != nullptr)
@@ -83,7 +83,7 @@ void bsp::di::heap::Free(void *ptr) noexcept
 		return;
 	}
 
-	for (std::shared_ptr<bsp::IHeap> &heap : *_heap_vector)
+	for (std::shared_ptr<base::heap::IHeap> &heap : *_heap_vector)
 	{
 		if (ptr >= heap->begin() && ptr < heap->end())
 		{

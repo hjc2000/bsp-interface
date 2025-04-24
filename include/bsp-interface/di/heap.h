@@ -1,6 +1,6 @@
 #pragma once
-#include <base/stream/Span.h>
-#include <bsp-interface/IHeap.h>
+#include "base/peripheral/heap/IHeap.h"
+#include "base/stream/Span.h"
 #include <cstddef>
 #include <memory>
 
@@ -16,7 +16,7 @@ namespace bsp
 			/// @warning 返回的对象必须是函数内部的 static 变量，并且使用 PREINIT 先
 			/// 调用一次，保证在 main 函数之前已经初始化过了。
 			///
-			/// @warning 禁止在全局中定义 bsp::IHeap 变量然后返回这个变量，
+			/// @warning 禁止在全局中定义 base::heap::IHeap 变量然后返回这个变量，
 			/// 因为全局变量的构造顺序是不确定的。其他全局对象很有可能依赖动态内存分配。
 			///
 			/// @return
@@ -40,7 +40,7 @@ namespace bsp
 
 				/// @brief 获取主堆。
 				/// @return
-				bsp::IHeap &bsp::di::heap::Heap()
+				base::heap::IHeap &bsp::di::heap::Heap()
 				{
 					return Heap4();
 				}
@@ -51,15 +51,15 @@ namespace bsp
 			/// 来确保 Heap4() 函数在 main 函数前面至少被调用过一次了。然后实现本函数，直接转发 Heap4()
 			/// 函数
 			///
-			bsp::IHeap &Heap();
+			base::heap::IHeap &Heap();
 
-			std::shared_ptr<bsp::IHeap> CreateHeap(uint8_t *buffer, size_t size);
+			std::shared_ptr<base::heap::IHeap> CreateHeap(uint8_t *buffer, size_t size);
 
 			/* #region AddHeap */
 
 			/// @brief 添加一个堆到堆列表。一旦添加，堆就会投入使用，被用于动态内存分配。
 			/// @param heap
-			void AddHeap(std::shared_ptr<bsp::IHeap> const &heap);
+			void AddHeap(std::shared_ptr<base::heap::IHeap> const &heap);
 
 			/// @brief 添加一个堆到堆列表。一旦添加，堆就会投入使用，被用于动态内存分配。
 			/// @param buffer
