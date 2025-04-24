@@ -21,6 +21,36 @@ namespace bsp
 			///
 			/// @return
 			///
+			/// 下面是例子：
+			/*
+
+				namespace
+				{
+					uint8_t _buffer[configTOTAL_HEAP_SIZE];
+
+					freertos::Heap4 &Heap4()
+					{
+						static freertos::Heap4 heap4{_buffer, sizeof(_buffer)};
+						return heap4;
+					}
+
+				} // namespace
+
+				PREINIT(Heap4)
+
+				/// @brief 获取主堆。
+				/// @return
+				bsp::IHeap &bsp::di::heap::Heap()
+				{
+					return Heap4();
+				}
+
+			 */
+			///
+			/// 这个例子中，在 Heap4() 函数内部定义 static 的 freertos::Heap4 对象，然后通过 PREINIT
+			/// 来确保 Heap4() 函数在 main 函数前面至少被调用过一次了。然后实现本函数，直接转发 Heap4()
+			/// 函数
+			///
 			bsp::IHeap &Heap();
 
 			std::shared_ptr<bsp::IHeap> CreateHeap(uint8_t *buffer, size_t size);
