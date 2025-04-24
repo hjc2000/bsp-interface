@@ -18,7 +18,7 @@ namespace
 	// 全局对象的构造顺序是未定义的，会发生错误。
 	//
 	// 所以这里使用裸指针，并用延迟初始化技术，在需要时才在堆上构造 std::vector 对象并让此指针指向它。
-	std::vector<std::shared_ptr<base::heap::IHeap>> *volatile _heap_vector = nullptr;
+	std::vector<std::shared_ptr<base::heap::IHeap>> *_heap_vector = nullptr;
 
 } // namespace
 

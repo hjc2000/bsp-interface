@@ -75,6 +75,7 @@ namespace bsp
 			void *Malloc(size_t size) noexcept;
 
 			void Free(void *ptr) noexcept;
+
 		} // namespace heap
 	} // namespace di
 } // namespace bsp
