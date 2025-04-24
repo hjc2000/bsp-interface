@@ -1,5 +1,5 @@
 #pragma once
-#include "base/peripheral/serial/Serial.h"
+#include "base/embedded/serial/Serial.h"
 
 namespace bsp
 {
