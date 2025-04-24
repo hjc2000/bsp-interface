@@ -13,7 +13,7 @@ namespace bsp
 			///
 			/// @brief 获取主堆。
 			///
-			/// @warning 返回的对象必须是本函数内部的 static 变量，并且使用 PREINIT 先
+			/// @warning 返回的对象必须是函数内部的 static 变量，并且使用 PREINIT 先
 			/// 调用一次，保证在 main 函数之前已经初始化过了。
 			///
 			/// @warning 禁止在全局中定义 bsp::IHeap 变量然后返回这个变量，
