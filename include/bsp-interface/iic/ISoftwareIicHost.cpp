@@ -1,10 +1,11 @@
 #include "ISoftwareIicHost.h"
+#include "base/embedded/gpio/gpio_parameter.h"
 #include "base/task/delay.h"
 
 void bsp::ISoftwareIicHost::SendAcknowledgment()
 {
 	WriteSCL(false);
-	ChangeSDADirection(bsp::ISoftwareIicHost_SDADirection::Output);
+	ChangeSDADirection(base::gpio::Direction::Output);
 	WriteSDA(false);
 	base::task::Delay(SclCycle() / 2);
 	WriteSCL(true);
@@ -15,7 +16,7 @@ void bsp::ISoftwareIicHost::SendAcknowledgment()
 void bsp::ISoftwareIicHost::SendNotAcknowledgment()
 {
 	WriteSCL(false);
-	ChangeSDADirection(bsp::ISoftwareIicHost_SDADirection::Output);
+	ChangeSDADirection(base::gpio::Direction::Output);
 	WriteSDA(true);
 	base::task::Delay(SclCycle() / 2);
 	WriteSCL(true);
@@ -25,7 +26,7 @@ void bsp::ISoftwareIicHost::SendNotAcknowledgment()
 
 bool bsp::ISoftwareIicHost::WaitForAcknowledgment()
 {
-	ChangeSDADirection(bsp::ISoftwareIicHost_SDADirection::Input);
+	ChangeSDADirection(base::gpio::Direction::Input);
 	WriteSDA(true);
 	base::task::Delay(SclCycle() / 2);
 	WriteSCL(true);
@@ -49,7 +50,7 @@ bool bsp::ISoftwareIicHost::WaitForAcknowledgment()
 
 void bsp::ISoftwareIicHost::SendBit(bool value)
 {
-	ChangeSDADirection(bsp::ISoftwareIicHost_SDADirection::Output);
+	ChangeSDADirection(base::gpio::Direction::Output);
 	WriteSCL(false);
 	WriteSDA(value);
 	base::task::Delay(SclCycle() / 2);
@@ -61,7 +62,7 @@ void bsp::ISoftwareIicHost::SendBit(bool value)
 
 bool bsp::ISoftwareIicHost::ReceiveBit()
 {
-	ChangeSDADirection(bsp::ISoftwareIicHost_SDADirection::Input);
+	ChangeSDADirection(base::gpio::Direction::Input);
 	WriteSCL(false);
 	base::task::Delay(SclCycle() / 2);
 	WriteSCL(true);
@@ -72,7 +73,7 @@ bool bsp::ISoftwareIicHost::ReceiveBit()
 
 void bsp::ISoftwareIicHost::SendStartingSignal()
 {
-	ChangeSDADirection(bsp::ISoftwareIicHost_SDADirection::Output);
+	ChangeSDADirection(base::gpio::Direction::Output);
 	WriteSDA(true);
 	WriteSCL(true);
 	base::task::Delay(SclCycle());
@@ -83,7 +84,7 @@ void bsp::ISoftwareIicHost::SendStartingSignal()
 
 void bsp::ISoftwareIicHost::SendStoppingSignal()
 {
-	ChangeSDADirection(bsp::ISoftwareIicHost_SDADirection::Output);
+	ChangeSDADirection(base::gpio::Direction::Output);
 	WriteSCL(false);
 	WriteSDA(false);
 	base::task::Delay(SclCycle());

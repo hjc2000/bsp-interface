@@ -1,34 +1,11 @@
 #include "GpioSoftwareIicHost.h"
-#include "bsp-interface/di/gpio.h"
+#include "base/embedded/gpio/gpio_parameter.h"
 
 bsp::GpioSoftwareIicHost::GpioSoftwareIicHost(std::string name,
-											  std::string scl_pin_name,
-											  std::string sda_pin_name)
+											  std::shared_ptr<base::iic::ISoftwareIicHostPinDriver> const &pin_driver)
 {
 	_name = name;
-	_scl_pin_name = scl_pin_name;
-	_sda_pin_name = sda_pin_name;
-
-	// 查找引脚
-	{
-		_scl_pin = DI_GpioPinCollection().Get(_scl_pin_name);
-		_sda_pin = DI_GpioPinCollection().Get(_sda_pin_name);
-	}
-
-	// 打开引脚
-	{
-		_scl_pin->OpenAsOutputMode(bsp::IGpioPinPullMode::PullUp,
-								   bsp::IGpioPinDriver::PushPull);
-
-		_sda_pin->OpenAsOutputMode(bsp::IGpioPinPullMode::PullUp,
-								   bsp::IGpioPinDriver::PushPull);
-	}
-
-	// 空闲状态输出高电平
-	{
-		_scl_pin->WritePin(true);
-		_sda_pin->WritePin(true);
-	}
+	_pin_driver = pin_driver;
 }
 
 std::string bsp::GpioSoftwareIicHost::Name() const
@@ -38,33 +15,22 @@ std::string bsp::GpioSoftwareIicHost::Name() const
 
 void bsp::GpioSoftwareIicHost::WriteSCL(bool value)
 {
-	_scl_pin->WritePin(value);
+	_pin_driver->WriteSCL(value);
 }
 
-void bsp::GpioSoftwareIicHost::ChangeSDADirection(ISoftwareIicHost_SDADirection value)
+void bsp::GpioSoftwareIicHost::ChangeSDADirection(base::gpio::Direction value)
 {
-	// 要先关闭才能重新以新的配置打开引脚。
-	_sda_pin->Close();
-	if (value == bsp::ISoftwareIicHost_SDADirection::Input)
-	{
-		_sda_pin->OpenAsInputMode(bsp::IGpioPinPullMode::PullUp,
-								  bsp::IGpioPinTriggerEdge::Disable);
-	}
-	else
-	{
-		_sda_pin->OpenAsOutputMode(bsp::IGpioPinPullMode::PullUp,
-								   bsp::IGpioPinDriver::PushPull);
-	}
+	_pin_driver->ChangeSDADirection(value);
 }
 
 void bsp::GpioSoftwareIicHost::WriteSDA(bool value)
 {
-	_sda_pin->WritePin(value);
+	_pin_driver->WriteSDA(value);
 }
 
 bool bsp::GpioSoftwareIicHost::ReadSDA() const
 {
-	return _sda_pin->ReadPin();
+	return _pin_driver->ReadSDA();
 }
 
 std::chrono::microseconds bsp::GpioSoftwareIicHost::SclCycle() const

@@ -1,6 +1,7 @@
 #pragma once
-#include "bsp-interface/gpio/IGpioPin.h"
+#include "base/embedded/iic/SoftwareIicHostPinDriver.h"
 #include "bsp-interface/iic/ISoftwareIicHost.h"
+#include <memory>
 
 namespace bsp
 {
@@ -10,21 +11,15 @@ namespace bsp
 	{
 	private:
 		std::string _name;
-		std::string _scl_pin_name;
-		std::string _sda_pin_name;
-		bsp::IGpioPin *_scl_pin = nullptr;
-		bsp::IGpioPin *_sda_pin = nullptr;
 		std::chrono::microseconds _scl_cycle{4};
 		int _waiting_for_ack_timeout_cycle = 100;
+		std::shared_ptr<base::iic::ISoftwareIicHostPinDriver> _pin_driver;
 
 	public:
 		/// @brief 构造函数。
 		/// @param name IIC 端口名。
-		/// @param scl_pin_name SCL 对应的 IGpioPin 的名称。
-		/// @param sda_pin_name SDA 对应的 IGpioPin 的名称。
 		GpioSoftwareIicHost(std::string name,
-							std::string scl_pin_name,
-							std::string sda_pin_name);
+							std::shared_ptr<base::iic::ISoftwareIicHostPinDriver> const &pin_driver);
 
 		/// @brief 此 IIC 接口的名称。
 		/// @return
@@ -36,7 +31,7 @@ namespace bsp
 
 		/// @brief 更改 SDA 引脚的 IO 方向。
 		/// @param value
-		void ChangeSDADirection(ISoftwareIicHost_SDADirection value) override;
+		void ChangeSDADirection(base::gpio::Direction value) override;
 
 		/// @brief 写 SDA 引脚的值。
 		/// @param value

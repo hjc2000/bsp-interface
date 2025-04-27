@@ -1,5 +1,6 @@
 #pragma once
-#include <bsp-interface/iic/IIicHost.h>
+#include "base/embedded/gpio/gpio_parameter.h"
+#include "bsp-interface/iic/IIicHost.h"
 
 namespace bsp
 {
@@ -55,7 +56,7 @@ namespace bsp
 		///
 		/// @param value
 		///
-		virtual void ChangeSDADirection(ISoftwareIicHost_SDADirection value) = 0;
+		virtual void ChangeSDADirection(base::gpio::Direction value) = 0;
 
 		///
 		/// @brief 写 SDA 引脚的值。
