@@ -1,8 +1,5 @@
 #pragma once
 
-/// @brief 复位单片机。
-void DI_Reset();
-
 /// @brief 执行初始化工作。
 /// @note 此函数需要实现为幂等。
 /// @note 这个函数需要在 main 函数一开始调用。
