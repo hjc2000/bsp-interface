@@ -4,13 +4,6 @@
 
 namespace bsp
 {
-	/// @brief SDA 方向枚举。
-	enum class ISoftwareIicHost_SDADirection
-	{
-		Input,
-		Output,
-	};
-
 	/// @brief 通过软件模拟的 IIC 总线主机接口。
 	class ISoftwareIicHost :
 		public bsp::IIicHost
