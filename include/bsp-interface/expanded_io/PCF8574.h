@@ -1,8 +1,8 @@
 #pragma once
+#include "base/embedded/gpio/GpioPin.h"
 #include "base/embedded/iic/IicHost.h"
 #include "base/task/delay.h"
 #include "bsp-interface/expanded_io/IExpandedIoPort.h"
-#include "bsp-interface/gpio/IGpioPin.h"
 #include <functional>
 #include <memory>
 
@@ -23,7 +23,7 @@ namespace bsp
 	{
 	private:
 		std::string _name;
-		bsp::IGpioPin *_interrupt_pin = nullptr;
+		base::gpio::GpioPin _interrupt_pin;
 		std::shared_ptr<base::iic::IicHost> _iic_host;
 
 		/// @brief 地址寄存器。高 4 位固定为 0b0100，低 4 位中的高 3 位是地址，最低位用来表示
@@ -39,12 +39,12 @@ namespace bsp
 		/// 多个 PCF8574 芯片。允许的地址范围为 [0, 7]，因为芯片上总共有 3 个引脚，用来接低电平或高电平
 		/// 表示地址。
 		PCF8574(std::string const &name,
-				bsp::IGpioPin *interrupt_pin,
+				base::gpio::GpioPin interrupt_pin,
 				std::shared_ptr<base::iic::IicHost> const &iic_host,
 				uint8_t address)
+			: _interrupt_pin(interrupt_pin)
 		{
 			_name = name;
-			_interrupt_pin = interrupt_pin;
 			_iic_host = iic_host;
 
 			if (address > 0b111)
@@ -55,8 +55,8 @@ namespace bsp
 			_address_register = 0b01000000 | (address << 1);
 
 			// 打开中断引脚
-			_interrupt_pin->OpenAsInputMode(bsp::IGpioPinPullMode::PullUp,
-											bsp::IGpioPinTriggerEdge::FallingEdge);
+			_interrupt_pin.InitializeAsInputMode(base::gpio::PullMode::PullUp,
+												 base::gpio::TriggerEdge::FallingEdge);
 
 			// 初始化后将所有引脚置为高电平。即让芯片内每个引脚的开关管关断。
 			WriteByte(0, 0xff);
@@ -71,13 +71,13 @@ namespace bsp
 		/// @param func
 		void RegisterInterruptCallback(std::function<void()> func) override
 		{
-			_interrupt_pin->RegisterInterruptCallback(func);
+			_interrupt_pin.RegisterInterruptCallback(func);
 		}
 
 		/// @brief 取消注册中断回调函数。
 		void UnregisterInterruptCallback() override
 		{
-			_interrupt_pin->UnregisterInterruptCallback();
+			_interrupt_pin.UnregisterInterruptCallback();
 		}
 
 		/// @brief 读取一个字节。这是一个 8 位的 IO 扩展芯片，读取 1 个字节意味着读取
