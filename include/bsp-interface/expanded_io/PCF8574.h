@@ -1,8 +1,9 @@
 #pragma once
+#include "base/embedded/iic/IicHost.h"
 #include <bsp-interface/expanded_io/IExpandedIoPort.h>
 #include <bsp-interface/gpio/IGpioPin.h>
-#include <bsp-interface/iic/IIicHost.h>
 #include <functional>
+#include <memory>
 
 namespace bsp
 {
@@ -22,7 +23,7 @@ namespace bsp
 	private:
 		std::string _name;
 		bsp::IGpioPin *_interrupt_pin = nullptr;
-		bsp::IIicHost *_iic_host = nullptr;
+		std::shared_ptr<base::iic::IicHost> _iic_host;
 
 		/// @brief 地址寄存器。高 4 位固定为 0b0100，低 4 位中的高 3 位是地址，最低位用来表示
 		/// 读操作还是写操作。最低位为 1 表示读操作，最低位为 0 表示写操作。
@@ -38,7 +39,7 @@ namespace bsp
 		/// 表示地址。
 		PCF8574(std::string const &name,
 				bsp::IGpioPin *interrupt_pin,
-				bsp::IIicHost *iic_host,
+				std::shared_ptr<base::iic::IicHost> const &iic_host,
 				uint8_t address);
 
 		std::string Name() const override;
