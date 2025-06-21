@@ -1,5 +1,6 @@
 #include "IsrManager.h"
 #include "base/embedded/interrupt/interrupt.h"
+#include "base/task/task.h"
 
 namespace
 {
