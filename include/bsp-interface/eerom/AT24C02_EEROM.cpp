@@ -29,8 +29,8 @@ uint8_t bsp::AT24C02_EEROM::ReadByte(int32_t addr)
 {
 	base::iic::IicHostOperator op{*_iic_host};
 
-	op.Initialize(base::unit::Nanoseconds{std::chrono::microseconds{4}},
-				  base::unit::Nanoseconds{std::chrono::microseconds{4} * 20});
+	op.Initialize(base::unit::Nanosecond{std::chrono::microseconds{4}},
+				  base::unit::Nanosecond{std::chrono::microseconds{4} * 20});
 
 	op.SendStartingSignal();
 	op.SendByte(0XA0 + ((addr / 256) << 1)); // 发送器件地址0XA0,写数据
@@ -46,8 +46,8 @@ void bsp::AT24C02_EEROM::WriteByte(int32_t addr, uint8_t data)
 {
 	base::iic::IicHostOperator op{*_iic_host};
 
-	op.Initialize(base::unit::Nanoseconds{std::chrono::microseconds{4}},
-				  base::unit::Nanoseconds{std::chrono::microseconds{4} * 20});
+	op.Initialize(base::unit::Nanosecond{std::chrono::microseconds{4}},
+				  base::unit::Nanosecond{std::chrono::microseconds{4} * 20});
 
 	op.SendStartingSignal();
 	op.SendByte(0XA0 + ((addr / 256) << 1)); // 发送器件地址0XA0,写数据
